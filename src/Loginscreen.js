@@ -18,12 +18,12 @@ class Loginscreen extends Component {
   render() {
 
     return (
-      <div className="loginscreen" class='row'>
+      <div className="loginscreen">
         <Login parentContext={this} appContext={this.props.parentContext} />
-        <div class="col-sm-4">
+        <div>
           {this.state.loginmessage}
         </div>
-        <div class="col-sm-8">
+        <div>
           statistaika
           </div>
       </div>

@@ -5,7 +5,6 @@ import Loginscreen from './Loginscreen'
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
 
 class App extends Component {
   constructor(props){
@@ -27,7 +26,6 @@ class App extends Component {
     return (
       <div className="App">
         {this.state.loginPage}
-        {this.state.uploadScreen}
       </div>
     );
   }

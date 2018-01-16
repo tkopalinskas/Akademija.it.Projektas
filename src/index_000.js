@@ -5,6 +5,8 @@ import App from './App';
 import Hello from './Navigation/Hello'
 import Admin from './Admin'
 import { HashRouter, Route, Switch } from 'react-router-dom';
+import Register from './Register';
+import Visit from './Visit/Visit'
 
 
 ReactDOM.render(
@@ -12,7 +14,9 @@ ReactDOM.render(
         <Switch>
             <Route exact path="/" name="home" component={App} />
             <Route path="/hi/" name="hello" component={Hello} />
-            <Route path ="/admin" name="admin" component={Admin} />
+            <Route exact path ="/admin" name="admin" component={Admin} />
+            <Route path ="/admin/register" name="register" component={Register} />
+            <Route exact path ="/admin/visit" name="visit" component={Visit} />
         </Switch>
     </HashRouter>,
 
