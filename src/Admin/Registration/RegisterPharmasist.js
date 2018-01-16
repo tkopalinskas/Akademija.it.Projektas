@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import HostUrl from "./HostUrl"
+import {API} from "./HostUrl"
 import axios from 'axios';
 
 class RegisterPharmasist extends Component {
@@ -21,7 +21,7 @@ class RegisterPharmasist extends Component {
     }
 
     handleClick(event) {
-        var apiUrl = { HostUrl }.toString;
+        var apiUrl = API;
 
         //set values
         var information = {

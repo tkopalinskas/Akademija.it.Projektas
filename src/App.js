@@ -7,25 +7,12 @@ import Loginscreen from './Loginscreen'
 // http://stackoverflow.com/a/34015469/988941
 
 class App extends Component {
-  constructor(props){
-    super(props);
-    this.state={
-      loginPage:[],
-      uploadScreen:[]
-    }
-  }
+  
 
-  componentWillMount(){
-    var loginPage =[];
-    loginPage.push(<Loginscreen parentContext={this}/>);
-    this.setState({
-                  loginPage:loginPage
-                    })
-  }
   render() {
     return (
       <div className="App">
-        {this.state.loginPage}
+        <Loginscreen />
       </div>
     );
   }

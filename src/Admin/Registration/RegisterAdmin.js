@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
-import HostUrl from "./HostUrl"
+import {API} from "./HostUrl"
 
 class RegisterAdmin extends Component {
 
@@ -16,7 +16,7 @@ class RegisterAdmin extends Component {
   }
 
   handleClick(event) {
-    var apiUrl = {HostUrl}.toString;
+    var apiUrl = API;
     console.log(apiUrl)
 
     //set values
