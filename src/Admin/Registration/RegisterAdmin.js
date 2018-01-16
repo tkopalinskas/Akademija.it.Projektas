@@ -3,25 +3,33 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
+import HostUrl from "./HostUrl"
 
 class RegisterAdmin extends Component {
 
   state = {
-    first_name: '',
+    firstName: '',
+    lastName: '',
+    userName: '',
+    codeofUserRights: 1,
     password: '',
   }
 
   handleClick(event) {
-    var apiUrl = "http://localhost:8000/user/admin/addNew"
+    var apiUrl = {HostUrl}.toString;
+    console.log(apiUrl)
 
     //set values
     var information = {
-      "first_name ": this.state.first_name,
-      "password": this.state.password,
+    firstName : this.state.firstName,
+    lastName : this.state.lastName,
+    userName : this.state.userName,
+    password  : this.state.password,
+    codeofUserRights : this.state.codeofUserRights
      
     }
     //send to back end
-    axios.post(apiUrl , information)
+    axios.post(apiUrl + "/user/admin/addNew" , information)
     .then(function (response){
       if (response.date.code == 200){
         console.log("registrations  succsessfull");
@@ -41,7 +49,19 @@ class RegisterAdmin extends Component {
             <TextField
               hintText="Iveskite Varda"
               floatingLabelText="Vardas"
-              onChange={(event, newValue) => this.setState({ first_name: newValue })}
+              onChange={(event, newValue) => this.setState({ firstName: newValue })}
+            />
+            <br />
+            <TextField
+              hintText="Iveskite Pavarde"
+              floatingLabelText="Pavardė"
+              onChange={(event, newValue) => this.setState({ lastName: newValue })}
+            />
+            <br />
+            <TextField
+              hintText="Iveskite Slapyvardį"
+              floatingLabelText="Slapyvardis"
+              onChange={(event, newValue) => this.setState({ userName: newValue })}
             />
             <br />
             <TextField

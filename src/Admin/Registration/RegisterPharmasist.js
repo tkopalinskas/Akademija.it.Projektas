@@ -5,21 +5,40 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import HostUrl from "./HostUrl"
 import axios from 'axios';
 
-class RegisterDoctor extends Component {
+class RegisterPharmasist extends Component {
 
     state = {
-        first_name: '',
-        last_name: '',
-        email: '',
+        firstName: '',
+        lastName: '',
+        userName: '',
         password: '',
-        value: 0,
+        workplace: '',
+        personalId: '',
+        typeOfWorkplace : 0,
     }
 
-    handleChange = (event, index, value) => this.setState({ value });
+    handleClick(event) {
+        var apiUrl = { HostUrl }.toString;
 
-
+        //set values
+        var information = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            userName: this.state.userName,
+            password: this.state.password,
+            workplace: this.state.workplace,
+            personalId: this.state.personalId
+        }
+        axios.post(apiUrl + '/admin/pharmasist', information)
+            .then(function (response) {
+                if (response.date.code == 200) {
+                    console.log("registrations  succsessfull");
+                }
+            })
+    }
 
     render() {
         return (
@@ -39,25 +58,25 @@ class RegisterDoctor extends Component {
                         />
                         <br />
                         <TextField
+                            hintText="Darbo vieta"
+                            floatingLabelText="Imones Pavadinimas"
+                            onChange={(event, newValue) => this.setState({ workplace: newValue })}
+                        />
+                        <br />
+
+                        <TextField
                             type="password"
                             hintText="Enter your Password"
                             floatingLabelText="Password"
                             onChange={(event, newValue) => this.setState({ password: newValue })}
                         />
-                        <br/>
+                        <br />
                         <TextField
                             type="password"
                             hintText="Confirm Password"
                             floatingLabelText="Confirm password"
                             onChange={(event, newValue) => this.setState({ password: newValue })}
                         />
-                        <br/>
-                        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
-                            <MenuItem value={0} primaryText="Specilizacija" />
-                            <MenuItem value={1} primaryText="Gyditojas" />
-                            <MenuItem value={2} primaryText="Chirurgas" />
-                            <MenuItem value={3} primaryText="Fizioterapiautas" />
-                        </DropDownMenu>
                         <br />
                         <RaisedButton label="Submit" primary={true} onClick={(event) => this.handleClick(event)} />
                     </div>
@@ -67,5 +86,4 @@ class RegisterDoctor extends Component {
     }
 }
 
-
-export default RegisterDoctor;
+export default RegisterPharmasist;

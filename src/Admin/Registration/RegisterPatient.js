@@ -3,30 +3,33 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import MenuItem from 'material-ui/MenuItem';
+import HostUrl from "./HostUrl"
 import axios from 'axios';
 
 class RegisterPatient extends Component {
 
   state = {
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
+    userName: '',
     password: '',
-    date: '',
-    A_k: ''
+    dateOfBirth: '',
+    personalId: ''
   }
 
   handleClick(event) {
-    var apiUrl = "http://localhost:8000/user/admin/addNew"
+    var apiUrl = {HostUrl}.toString;
 
     //set values
     var information = {
-      "first_name ": this.state.first_name,
-      "last_name": this.state.last_name,
-      "password": this.state.password,
-      "date": this.state.date,
-      "A_k": this.state.A_k
+      firstName : this.state.firstName,
+      lastName : this.state.lastName,
+      userName: this.state.userName,
+      password : this.state.password,
+      dateOfBirth : this.state.dateOfBirth,
+      personalId : this.state.personalId
     }
-    axios.post(apiUrl + '/RegisterPatient', information)
+    axios.post(apiUrl + '/admin/patient', information)
     .then(function (response){
       if (response.date.code == 200){
         console.log("registrations  succsessfull");
@@ -43,26 +46,26 @@ class RegisterPatient extends Component {
           <div>
             <TextField
               type="date"
-              onChange={(event, newValue) => this.setState({ date: newValue })}
+              onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
             />
             <br />
             <TextField
               hintText="Iveskite Varda"
               floatingLabelText="Vardas"
-              onChange={(event, newValue) => this.setState({ first_name: newValue })}
+              onChange={(event, newValue) => this.setState({ firstName: newValue })}
             />
             <br />
             <TextField
               hintText="Iveskite pavarde"
               floatingLabelText="pavarde"
-              onChange={(event, newValue) => this.setState({ last_name: newValue })}
+              onChange={(event, newValue) => this.setState({ lastName: newValue })}
             />
             <br />
             <TextField
               hintText="Asmens Kodas"
               type="numbers"
               floatingLabelText="asmens Kodas"
-              onChange={(event, newValue) => this.setState({ A_k: newValue })}
+              onChange={(event, newValue) => this.setState({ personalId: newValue })}
             />
             <br />
 
