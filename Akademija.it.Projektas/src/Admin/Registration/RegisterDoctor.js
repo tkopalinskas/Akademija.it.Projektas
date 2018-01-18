@@ -13,8 +13,9 @@ class RegisterDoctor extends Component {
         firstName: '',
         lastName: '',
         specialization: '',
+        userName: '',
         password: '',
-        value: 0
+        
       }
     
       handleClick(event) {
@@ -25,18 +26,23 @@ class RegisterDoctor extends Component {
           firstName : this.state.firstName,
           lastName : this.state.lastName,
           specialization: this.state.specialization,
+          userName : this.state.userName,
           password : this.state.password,
 
         }
-        axios.post(apiUrl + '/admin/doctor', information)
+        axios.post(/*apiUrl + */'http://localhost:8081/admin/doctor', information)
         .then(function (response){
           if (response.date.code === 200){
             console.log("registrations  succsessfull");
           }
         })
+        .catch(function (error) {
+            console.log(error);
+          })
+          console.log(this.state);
       }
 
-    handleChange= (event, index, value) => this.setState({ value });
+    /*handleChange= (event, index, value) => this.setState({ value });*/
 
 
 
@@ -47,39 +53,49 @@ class RegisterDoctor extends Component {
                     <span>
                     <div>
                         <TextField
-                            hintText="Iveskite Varda"
+                            hintText="Įveskite vardą"
                             floatingLabelText="Vardas"
-                            onChange={(event, newValue) => this.setState({ first_name: newValue })}
+                            onChange={(event, newValue) => this.setState({ firstName: newValue })}
                         />
                         <br />
                         <TextField
-                            hintText="Iveskite pavarde"
-                            floatingLabelText="pavarde"
-                            onChange={(event, newValue) => this.setState({ last_name: newValue })}
+                            hintText="Įveskite pavardę"
+                            floatingLabelText="Pavardė"
+                            onChange={(event, newValue) => this.setState({ lastName: newValue })}
                         />
                         <br />
+                        <TextField
+                        hintText="Įveskite slapyvardį"
+                        floatingLabelText="Slapyvardis"
+                        onChange={(event, newValue) => this.setState({ userName: newValue })}
+                        />
+                        <br/>
                         <TextField
                             type="password"
-                            hintText="Enter your Password"
-                            floatingLabelText="Password"
+                            hintText="Įveskite slaptažodį"
+                            floatingLabelText="Slaptažodis"
                             onChange={(event, newValue) => this.setState({ password: newValue })}
                         />
                         <br/>
                         <TextField
                             type="password"
-                            hintText="Confirm Password"
-                            floatingLabelText="Confirm password"
+                            hintText="Pakartokite slaptažodį"
+                            floatingLabelText="Pakartokite slaptažodį"
                             onChange={(event, newValue) => this.setState({ password: newValue })}
                         />
                         <br/>
-                        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+
+                        {/*paziureti, kodel specializacija iveda numeriu, o ne zodziu*/}
+                       
+                        <DropDownMenu value={this.state.value} onChange={(event, newValue) => 
+                            this.setState({ specialization: newValue })}>
                             <MenuItem value={0} primaryText="Specializacija" />
-                            <MenuItem value={1} primaryText="Gydytojas" />
+                            <MenuItem value={"Gydytojas"} primaryText="Gydytojas" />
                             <MenuItem value={2} primaryText="Chirurgas" />
                             <MenuItem value={3} primaryText="Fizioterapeutas" />
                         </DropDownMenu>
                         <br />
-                        <RaisedButton label="Submit" primary={true} onClick={(event) => this.handleClick(event)} />
+                        <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
                     </div>
                     </span>
                 </MuiThemeProvider>

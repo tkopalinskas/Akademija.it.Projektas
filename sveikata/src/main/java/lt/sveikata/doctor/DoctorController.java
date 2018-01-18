@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/user/doctor")
+@RequestMapping(value = "/admin")
 public class DoctorController {
 
 	
@@ -24,7 +24,7 @@ public class DoctorController {
 		return getDoctorService().receiveAllDoctors();
 	}
 
-	@RequestMapping(value = "/admin/doctor", method = RequestMethod.POST)
+	@RequestMapping(value = "/doctor", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createDoctor(@RequestBody final AddNewDoctor newDoctor) {
 		doctorService.addNewDoctor(newDoctor);

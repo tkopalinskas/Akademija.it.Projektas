@@ -4,7 +4,7 @@ public class AdminForClient {
 
 	private String firstName;
 	private String lastName;
-	private boolean isNotSuspended;
+	//private boolean isNotSuspended;
 
 	public String getFirstName() {
 		return firstName;
@@ -22,13 +22,13 @@ public class AdminForClient {
 		this.lastName = lastName;
 	}
 
-	public boolean isNotSuspended() {
-		return isNotSuspended;
-	}
-
-	public void setNotSuspended(boolean isNotSuspended) {
-		this.isNotSuspended = isNotSuspended;
-	}
+//	public boolean isNotSuspended() {
+//		return isNotSuspended;
+//	}
+//
+//	public void setNotSuspended(boolean isNotSuspended) {
+//		this.isNotSuspended = isNotSuspended;
+//	}
 	
 	
 }

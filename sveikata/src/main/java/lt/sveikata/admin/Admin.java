@@ -19,8 +19,8 @@ public class Admin {
 	private String userName;
 	private String password;
 	//private String userType = "admin";
-	@NotNull
-	private boolean isNotSuspended;
+//	@NotNull
+//	private boolean isNotSuspended;
 
 	private final String codeOfUserRights = "0";
 
@@ -72,14 +72,13 @@ public class Admin {
 		this.password = password;
 	}
 
-	public boolean isNotSuspended() {
-		return isNotSuspended;
-	}
-
-	public void setNotSuspended(boolean isNotSuspended) {
-		isNotSuspended=false;
-		this.isNotSuspended = isNotSuspended;
-	}
+//	public boolean isNotSuspended() {
+//		return isNotSuspended;
+//	}
+//
+//	public void setNotSuspended(boolean isNotSuspended) {
+//		this.isNotSuspended = isNotSuspended;
+//	}
 
 	public String getCodeOfUserRights() {
 		return codeOfUserRights;

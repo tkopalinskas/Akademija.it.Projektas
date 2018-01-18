@@ -2,6 +2,7 @@ package lt.sveikata.patientsHistory;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,7 @@ public class VisitService {
 		List<Visit> visitsFromDatabase = getVisitRepository().findAll();
 		List<VisitForClient> visitsForClient = visitsFromDatabase.stream().map((visit) -> {
 			VisitForClient vfc = new VisitForClient();
-			vfc.setDateOfVisit(visit.getDateOfVisit());
+			vfc.setDateOfVisit(Calendar.getInstance());
 			vfc.setIllnessTLKCode(visit.getIllnessTLKCode());
 			vfc.setDoctorsFullName(visit.getDoctorsFullName());
 			vfc.setLengthOfVisit(visit.getLengthOfVisit());
@@ -40,7 +41,7 @@ public class VisitService {
 
 	public void addNewVisit(AddNewVisit newVisit) {
 		Visit vis = new Visit();
-		vis.setDateOfVisit(newVisit.getDateOfVisit());
+		vis.setDateOfVisit(Calendar.getInstance());
 		vis.setIllnessTLKCode(newVisit.getIllnessTLKCode());
 		vis.setDoctorsFullName(newVisit.getDoctorsFullName());
 		vis.setLengthOfVisit(newVisit.getLengthOfVisit());
@@ -57,9 +58,8 @@ public class VisitService {
 
 	public void updateVisit(Visit visit, Long id) {
 		Visit vis = visitRepository.findOne(id);
-		vis.setDateOfVisit(visit.getDateOfVisit());
+		vis.setDateOfVisit(Calendar.getInstance());
 		vis.setIllnessTLKCode(visit.getIllnessTLKCode());
-		vis.setDoctorsFullName(visit.getDoctorsFullName());
 		vis.setLengthOfVisit(visit.getLengthOfVisit());
 		vis.setDescription(visit.getDescription());
 		vis.setCompensated(visit.isCompensated());

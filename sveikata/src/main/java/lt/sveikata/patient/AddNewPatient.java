@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class AddNewPatient {
@@ -14,13 +15,20 @@ public class AddNewPatient {
 	@Id
 	@Column(unique = true)
 	private long personalId;
+	@NotNull
 	private String firstName;
+	@NotNull
 	private String lastName;
 	private String dateOfBirth;
+	private String doctorsFullName;
 	private String userName;
 	private String password;
+//	@NotNull
+//	private boolean isNotSuspended;
 
 	private final String codeOfUserRights = "3";
+
+	// private List<Visit> listOfVisits;
 
 	public long getId() {
 		return id;
@@ -62,6 +70,14 @@ public class AddNewPatient {
 		this.personalId = personalId;
 	}
 
+	public String getDoctorsFullName() {
+		return doctorsFullName;
+	}
+
+	public void setDoctorsFullName(String doctorsFullName) {
+		this.doctorsFullName = doctorsFullName;
+	}
+
 	public String getUserName() {
 		return userName;
 	}
@@ -78,7 +94,23 @@ public class AddNewPatient {
 		this.password = password;
 	}
 
-	public String getCodeOfUserRights() {
-		return codeOfUserRights;
-	}
+//	public boolean isNotSuspended() {
+//		return isNotSuspended;
+//	}
+//
+//	public void setNotSuspended(boolean isNotSuspended) {
+//		this.isNotSuspended = isNotSuspended;
+//	}
+//
+//	public String getCodeOfUserRights() {
+//		return codeOfUserRights;
+//	}
+
+	// public List<Visit> getListOfVisits() {
+	// return listOfVisits;
+	// }
+	//
+	// public void setListOfVisits(List<Visit> listOfVisits) {
+	// this.listOfVisits = listOfVisits;
+	// }
 }

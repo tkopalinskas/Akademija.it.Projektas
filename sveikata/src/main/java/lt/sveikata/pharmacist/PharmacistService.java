@@ -22,6 +22,7 @@ public class PharmacistService {
 			phfc.setLastName(pharmacist.getLastName());
 			phfc.setWorkplace(pharmacist.getWorkplace());
 			phfc.setTypeOfWorkplace(pharmacist.getTypeOfWorkplace());
+			//phfc.setNotSuspended(pharmacist.isNotSuspended());
 			return phfc;
 		}).collect(Collectors.toList());
 		return pharmacistsForClient;
@@ -41,6 +42,9 @@ public class PharmacistService {
 		pharm.setLastName(newPharmacist.getLastName());
 		pharm.setWorkplace(newPharmacist.getWorkplace());
 		pharm.setTypeOfWorkplace(newPharmacist.getTypeOfWorkplace());
+		pharm.setUserName(newPharmacist.getUserName());
+		pharm.setPassword(newPharmacist.getPassword());
+		//pharm.setNotSuspended(newPharmacist.isNotSuspended());
 		pharmacistRepository.save(pharm);
 
 	}
@@ -55,6 +59,8 @@ public class PharmacistService {
 		pharm.setLastName(pharmacist.getLastName());
 		pharm.setWorkplace(pharmacist.getWorkplace());
 		pharm.setTypeOfWorkplace(pharmacist.getTypeOfWorkplace());
+		pharm.setPassword(pharmacist.getPassword());
+		//pharm.setNotSuspended(pharmacist.isNotSuspended());
 		pharmacistRepository.save(pharm);
 	}
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/user/patient")
+@RequestMapping(value="/admin")
 public class PatientController {
 	@Autowired
 	private PatientService patientService;
@@ -22,7 +22,7 @@ public class PatientController {
 		return getPatientService().receiveAllPatients();
 	}
 
-	@RequestMapping(value = "/admin/patient", method = RequestMethod.POST)
+	@RequestMapping(value = "/patient", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createPatient(@RequestBody final AddNewPatient newPatient) {
 		patientService.addNewPatient(newPatient);

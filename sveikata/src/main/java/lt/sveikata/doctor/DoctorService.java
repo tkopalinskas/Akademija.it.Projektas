@@ -18,9 +18,9 @@ public class DoctorService {
 		List<Doctor> doctorsFromDatabase = getDoctorRepository().findAll();
 		List<DoctorForClient> doctorsForClient = doctorsFromDatabase.stream().map((doctor) -> {
 			DoctorForClient dfc = new DoctorForClient();
-			dfc.setFirstName(doctor.getFirstName());
-			dfc.setLastName(doctor.getLastName());
+			dfc.setDoctorsFullName(doctor.getFirstName()+" " + doctor.getLastName());
 			dfc.setSpecialization(doctor.getSpecialization());
+			//dfc.setNotSuspended(doctor.isNotSuspended());
 			// dfc.setWorkplace(doctor.getWorkplace());
 			return dfc;
 		}).collect(Collectors.toList());
@@ -57,8 +57,9 @@ public class DoctorService {
 		doc.setFirstName(doctor.getFirstName());
 		doc.setLastName(doctor.getLastName());
 		doc.setSpecialization(doctor.getSpecialization());
+		doc.setPassword(doctor.getPassword());
 		// doc.setWorkplace(doctor.getWorkplace());
-		doc.setNotSuspended(doctor.isNotSuspended());
+		//doc.setNotSuspended(doctor.isNotSuspended());
 		doctorRepository.save(doc);
 	}
 

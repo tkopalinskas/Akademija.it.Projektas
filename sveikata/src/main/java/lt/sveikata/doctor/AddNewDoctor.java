@@ -14,15 +14,17 @@ public class AddNewDoctor {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long id;
+	@NotNull
 	private String firstName;
+	@NotNull
 	private String lastName;
 	private String specialization;
 	// private String workplace;
 	@Column(unique = true)
 	private String userName;
 	private String password;
-	@NotNull
-	private boolean isNotSuspended=false;
+//	@NotNull
+//	private boolean isNotSuspended;
 
 	private final String codeOfUserRights = "1";
 
@@ -74,14 +76,14 @@ public class AddNewDoctor {
 		this.password = password;
 	}
 
-	public boolean isNotSuspended() {
-		return isNotSuspended;
-	}
-
-	public void setNotSuspended(boolean isNotSuspended) {
-		this.isNotSuspended = isNotSuspended;
-	}
-
+//	public boolean isNotSuspended() {
+//		return isNotSuspended;
+//	}
+//
+//	public void setNotSuspended(boolean isNotSuspended) {
+//		this.isNotSuspended = isNotSuspended;
+//	}
+//
 	public String getCodeOfUserRights() {
 		return codeOfUserRights;
 	}

@@ -22,6 +22,8 @@ public class PatientService {
 			pfc.setLastName(patient.getLastName());
 			pfc.setDateOfBirth(patient.getDateOfBirth());
 			pfc.setPersonalId(patient.getPersonalId());
+			pfc.setDoctorsFullName(patient.getDoctorsFullName());
+			//pfc.setNotSuspended(patient.isNotSuspended());
 			return pfc;
 		}).collect(Collectors.toList());
 		return patientsForClient;
@@ -41,12 +43,14 @@ public class PatientService {
 		pat.setLastName(newPatient.getLastName());
 		pat.setDateOfBirth(newPatient.getDateOfBirth());
 		pat.setPersonalId(newPatient.getPersonalId());
+		pat.setDoctorsFullName(newPatient.getDoctorsFullName());
 		pat.setUserName(newPatient.getUserName());
 		pat.setPassword(newPatient.getPassword());
+		//pat.setNotSuspended(newPatient.isNotSuspended());
 		patientRepository.save(pat);
 
 	}
-//
+
 //	public void deletePatient(Long id) {
 //		patientRepository.delete(id);
 //	}
@@ -57,6 +61,8 @@ public class PatientService {
 		pat.setLastName(patient.getLastName());
 		pat.setDateOfBirth(patient.getDateOfBirth());
 		pat.setPersonalId(patient.getPersonalId());
+		pat.setDoctorsFullName(patient.getDoctorsFullName());
+		//pat.setNotSuspended(patient.isNotSuspended());
 		patientRepository.save(pat);
 	}
 	

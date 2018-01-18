@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Pharmacist {
@@ -13,12 +14,19 @@ public class Pharmacist {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long id;
+	@NotNull
 	private String firstName;
+	@NotNull
 	private String lastName;
+	@NotNull
 	private String workplace;
 	private String typeOfWorkplace;
-	private final String codeOfUserRights = "2";
+	private String userName;
+	private String password;
+	// @NotNull
+	// private boolean isNotSuspended;
 
+	private final String codeOfUserRights = "2";
 
 	public long getId() {
 		return id;
@@ -60,7 +68,31 @@ public class Pharmacist {
 		this.typeOfWorkplace = typeOfWorkplace;
 	}
 
+	// public boolean isNotSuspended() {
+	// return isNotSuspended;
+	// }
+	//
+	// public void setNotSuspended(boolean isNotSuspended) {
+	// this.isNotSuspended = isNotSuspended;
+	// }
+
 	public String getCodeOfUserRights() {
 		return codeOfUserRights;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

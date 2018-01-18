@@ -14,7 +14,8 @@ class RegisterPatient extends Component {
     userName: '',
     password: '',
     dateOfBirth: '',
-    personalId: ''
+    personalId: '',
+    doctorsFullName: ''
   }
 
   handleClick(event) {
@@ -27,14 +28,19 @@ class RegisterPatient extends Component {
       userName: this.state.userName,
       password : this.state.password,
       dateOfBirth : this.state.dateOfBirth,
-      personalId : this.state.personalId
+      personalId : this.state.personalId,
+      doctorsFullName: this.state.doctorsFullName
     }
-    axios.post(apiUrl + '/admin/patient', information)
+    axios.post(/* apiUrl +  */'http://localhost:8081/admin/patient', information)
     .then(function (response){
       if (response.date.code===200){
         console.log("registrations  succsessfull");
       }
     })
+    .catch(function (error) {
+      console.log(error);
+    })
+    console.log(this.state);
   }
 
 
@@ -51,40 +57,45 @@ class RegisterPatient extends Component {
             />
             <br />
             <TextField
-              hintText="Iveskite Varda"
+              hintText="Įveskite vardą"
               floatingLabelText="Vardas"
               onChange={(event, newValue) => this.setState({ firstName: newValue })}
             />
             <br />
             <TextField
-              hintText="Iveskite pavarde"
-              floatingLabelText="pavarde"
+              hintText="Įveskite pavardę"
+              floatingLabelText="Pavardė"
               onChange={(event, newValue) => this.setState({ lastName: newValue })}
             />
             <br />
             <TextField
-              hintText="Asmens Kodas"
+              hintText="Asmens kodas"
               type="numbers"
-              floatingLabelText="asmens Kodas"
+              floatingLabelText="Asmens kodas"
               onChange={(event, newValue) => this.setState({ personalId: newValue })}
             />
             <br />
-
+            <TextField
+              hintText="Įveskite slapyvardį"
+              floatingLabelText="Slapyvardis"
+              onChange={(event, newValue) => this.setState({ userName: newValue })}
+            />
+            <br />
             <TextField
               type="password"
-              hintText="Enter your Password"
-              floatingLabelText="Password"
+              hintText="Įveskite slaptažodį"
+              floatingLabelText="Slaptažodis"
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
             <TextField
               type="password"
-              hintText="Confirm Password"
-              floatingLabelText="Confirm password"
+              hintText="Pakartokite slaptažodį"
+              floatingLabelText="Pakartokite slaptažodį"
               onChange={(event, newValue) => this.setState({ confirmPassword: newValue })}
             />
             <br />
-            <RaisedButton label="Submit" primary={true} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
           </div>
           </span>
         </MuiThemeProvider>

@@ -1,10 +1,13 @@
 package lt.sveikata.patientsHistory;
 
+import java.util.Calendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class AddNewVisit {
@@ -13,8 +16,10 @@ public class AddNewVisit {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long id;
-	private int dateOfVisit;
+	@NotNull
+	private Calendar dateOfVisit;
 	private String illnessTLKCode;
+	@NotNull
 	private String doctorsFullName;
 	private int lengthOfVisit;
 	private String description;
@@ -29,12 +34,12 @@ public class AddNewVisit {
 		this.id = id;
 	}
 
-	public int getDateOfVisit() {
+	public Calendar getDateOfVisit() {
 		return dateOfVisit;
 	}
 
-	public void setDateOfVisit(int dateOfVisit) {
-		this.dateOfVisit = dateOfVisit;
+	public void setDateOfVisit(Calendar calendar) {
+		this.dateOfVisit = calendar;
 	}
 
 	public String getIllnessTLKCode() {

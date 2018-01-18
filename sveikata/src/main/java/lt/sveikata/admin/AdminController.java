@@ -17,23 +17,24 @@ public class AdminController {
 
 	@Autowired
 	private AdminService adminService;
-
+	//private DoctorService doctorService;
+	
 	@RequestMapping(value = "/allAdmins", method = RequestMethod.GET)
 	public List<AdminForClient> giveAllAdmins() {
 		return getAdminService().receiveAllAdmins();
 	}
 
-	@RequestMapping(value = "/admin/addNewAdmin", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createAdmin(@RequestBody final AddNewAdmin newAdmin) {
 		adminService.addNewAdmin(newAdmin);
 	}
 
-	@RequestMapping(/*value = "/admin/findUser/manageUser", */path = "/{id}", method = RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deleteAdminFromDatabase(@PathVariable final Long id) {
-		adminService.deleteAdmin(id);
-	}
+//	@RequestMapping(/*value = "/admin/findUser/manageUser", */path = "/{id}", method = RequestMethod.DELETE)
+//	@ResponseStatus(HttpStatus.NO_CONTENT)
+//	public void deleteAdminFromDatabase(@PathVariable final Long id) {
+//		adminService.deleteAdmin(id);
+//	}
 
 	@RequestMapping(value = "/admin/findUser/manageUser/{id}", method = RequestMethod.PATCH)
 	@ResponseStatus(HttpStatus.CREATED)

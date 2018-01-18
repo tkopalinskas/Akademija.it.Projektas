@@ -19,7 +19,7 @@ public class PrescriptionService {
 		List<PrescriptionForClient> prescriptionsForClient = prescriptionsFromDatabase.stream().map((prescription) -> {
 			PrescriptionForClient prescr = new PrescriptionForClient();
 			// prescr.setNameOfHealthInstitution(prescription.getNameOfHealthInstitution());
-			prescr.setDoctorsName(prescription.getDoctorsName());
+			prescr.setDoctorsFullName(prescription.getDoctorsFullName());
 			prescr.setPrescriptionDate(prescription.getPrescriptionDate());
 			// prescr.setPatientsName(prescription.getPatientsName());
 			prescr.setPatientsPersonalCode(prescription.getPatientsPersonalCode());
@@ -44,7 +44,7 @@ public class PrescriptionService {
 	public void addNewPrescription(AddNewPrescription newPrescription) {
 		Prescription prescr = new Prescription();
 		// prescr.setNameOfHealthInstitution(newPrescription.getNameOfHealthInstitution());
-		prescr.setDoctorsName(newPrescription.getDoctorsName());
+		prescr.setDoctorsFullName(newPrescription.getDoctorsFullName());
 		prescr.setPrescriptionDate(newPrescription.getPrescriptionDate());
 		// prescr.setPatientsName(newPrescription.getPatientsName());
 		prescr.setPatientsPersonalCode(newPrescription.getPatientsPersonalCode());
@@ -64,7 +64,7 @@ public class PrescriptionService {
 	public void updatePrescription(Prescription prescription, Long id) {
 		Prescription prescr = prescriptionRepository.findOne(id);
 		// prescr.setNameOfHealthInstitution(prescription.getNameOfHealthInstitution());
-		prescr.setDoctorsName(prescription.getDoctorsName());
+		prescr.setDoctorsFullName(prescription.getDoctorsFullName());
 		prescr.setPrescriptionDate(prescription.getPrescriptionDate());
 		// prescr.setPatientsName(prescription.getPatientsName());
 		prescr.setPatientsPersonalCode(prescription.getPatientsPersonalCode());
