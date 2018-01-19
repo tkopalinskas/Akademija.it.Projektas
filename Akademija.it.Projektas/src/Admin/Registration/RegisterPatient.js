@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-//import MenuItem from 'material-ui/MenuItem';
-import HostUrl from "./HostUrl"
+import DatePicker from 'material-ui/DatePicker';
+import {API} from "./HostUrl"
 import axios from 'axios';
 
 class RegisterPatient extends Component {
@@ -19,7 +19,7 @@ class RegisterPatient extends Component {
   }
 
   handleClick(event) {
-    var apiUrl={HostUrl}.toString;
+    var apiUrl=API;
 
     //set values
     var information={
@@ -31,17 +31,17 @@ class RegisterPatient extends Component {
       personalId : this.state.personalId,
       doctorsFullName: this.state.doctorsFullName
     }
-    axios.post(/* apiUrl +  */'http://localhost:8081/admin/patient', information)
-    .then(function (response){
-      if (response.date.code===200){
-        console.log("registrations  succsessfull");
-      }
+    axios.post(apiUrl +  '/admin/patient', information)
+    .then((response)=>{
+      console.log("registration  successful");
+      alert("Registracija sėkminga!");     
     })
-    .catch(function (error) {
+    .catch((error)=>{
       console.log(error);
     })
     console.log(this.state);
-  }
+    event.preventDefault();
+    }
 
 
 
@@ -49,12 +49,7 @@ class RegisterPatient extends Component {
     return (
       <div>
         <MuiThemeProvider>
-          <span>
           <div>
-            <TextField
-              type="date"
-              onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
-            />
             <br />
             <TextField
               hintText="Įveskite vardą"
@@ -73,6 +68,10 @@ class RegisterPatient extends Component {
               type="numbers"
               floatingLabelText="Asmens kodas"
               onChange={(event, newValue) => this.setState({ personalId: newValue })}
+            />
+            <br />
+            <DatePicker hintText="Gimimo data"
+              onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
             />
             <br />
             <TextField
@@ -97,7 +96,6 @@ class RegisterPatient extends Component {
             <br />
             <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
           </div>
-          </span>
         </MuiThemeProvider>
       </div>
     );

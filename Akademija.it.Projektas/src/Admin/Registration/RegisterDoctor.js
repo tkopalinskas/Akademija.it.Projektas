@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import HostUrl from "./HostUrl"
+import {API} from "./HostUrl"
 import axios from 'axios';
 
 class RegisterDoctor extends Component {
@@ -15,11 +15,12 @@ class RegisterDoctor extends Component {
         specialization: '',
         userName: '',
         password: '',
+        value: 'specializacija'
         
       }
     
       handleClick(event) {
-        var apiUrl= {HostUrl}.toString;
+        var apiUrl= API;
     
         //set values
         var information= {
@@ -30,21 +31,19 @@ class RegisterDoctor extends Component {
           password : this.state.password,
 
         }
-        axios.post(/*apiUrl + */'http://localhost:8081/admin/doctor', information)
-        .then(function (response){
-          if (response.date.code === 200){
-            console.log("registrations  succsessfull");
-          }
+        axios.post(apiUrl + '/admin/doctor', information)
+        .then((response)=>{
+            console.log("registration  successful");
+            alert("Registracija sėkminga!");     
         })
-        .catch(function (error) {
-            console.log(error);
-          })
-          console.log(this.state);
+        .catch((error)=>{
+          console.log(error);
+        })
+        console.log(this.state);
+        event.preventDefault();
       }
 
-    /*handleChange= (event, index, value) => this.setState({ value });*/
-
-
+      handleChange= (event, index, value) => this.setState({ specialization: value });
 
     render() {
         return (
@@ -85,14 +84,14 @@ class RegisterDoctor extends Component {
                         />
                         <br/>
 
-                        {/*paziureti, kodel specializacija iveda numeriu, o ne zodziu*/}
+                        {/*pagalvoti, kaip padaryti, kad issirinkus is saraso, matytusi
+                        pasirinkimas, o issaugojus i duombaze viskas resetintu*/}
                        
-                        <DropDownMenu value={this.state.value} onChange={(event, newValue) => 
-                            this.setState({ specialization: newValue })}>
-                            <MenuItem value={0} primaryText="Specializacija" />
-                            <MenuItem value={"Gydytojas"} primaryText="Gydytojas" />
-                            <MenuItem value={2} primaryText="Chirurgas" />
-                            <MenuItem value={3} primaryText="Fizioterapeutas" />
+                        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+                            <MenuItem value={"specializacija"} primaryText="Specializacija" />
+                            <MenuItem value={"gydytojas"} primaryText="Gydytojas" />
+                            <MenuItem value={"chirurgas"} primaryText="Chirurgas" />
+                            <MenuItem value={"fizioterapeutas"} primaryText="Fizioterapeutas" />
                         </DropDownMenu>
                         <br />
                         <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />

@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import HostUrl from "./HostUrl"
+import {API} from "./HostUrl"
 import axios from 'axios';
 
 class RegisterPharmacist extends Component {
@@ -17,11 +17,13 @@ class RegisterPharmacist extends Component {
         password: '',
         workplace: '',
         personalId: '',
-        typeOfWorkplace : '', 
+        typeOfWorkplace : '',
+        value: 'Pasirinkite įmonės tipą'
+        
     }
 
     handleClick(event) {
-        var apiUrl={ HostUrl }.toString;
+        var apiUrl=API;
 
         //set values
         var information={
@@ -32,23 +34,24 @@ class RegisterPharmacist extends Component {
             workplace: this.state.workplace,
             typeOfWorkplace: this.state.typeOfWorkplace
         }
-        axios.post(/* apiUrl + */ 'http://localhost:8081/admin/pharmacist', information)
-            .then(function (response) {
-                if (response.date.code===200) {
-                    console.log("registrations  succsessfull");
-                }
+        axios.post(apiUrl + '/admin/pharmacist', information)
+            .then((response)=>{
+                console.log("registration  successful");
+                alert("Registracija sėkminga!");     
             })
-            .catch(function (error) {
-                console.log(error);
-              })
-              console.log(this.state);
+            .catch((error)=>{
+            console.log(error);
+            })
+            console.log(this.state);
+            event.preventDefault();
     }
+
+    handleChange= (event, index, value) => this.setState({ typeOfWorkplace: value });
 
     render() {
         return (
             <div>
                 <MuiThemeProvider>
-                    <span>
                     <div>
                     <TextField
                             hintText="Įveskite vardą"
@@ -68,10 +71,10 @@ class RegisterPharmacist extends Component {
                             onChange={(event, newValue) => this.setState({ workplace: newValue })}
                         />
                         <br/>
-                        {/* paziureti, kodel neraso pavadinimo, bet raso skaiciu */}
-                        <DropDownMenu value={this.state.value} onChange={(event, newValue) => 
-                            this.setState({ typeOfWorkplace: newValue })}>
-                            <MenuItem value={"Pasirinkite įmones tipą"} primaryText="Pasirinkite įmones tipą" />
+                        {/* pagalvoti, kaip padaryti, kad issirinkus is saraso, matytusi
+                        pasirinkimas, o issaugojus i duombaze viskas resetintu */}
+                        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+                            <MenuItem value={"Pasirinkite įmonės tipą"} primaryText={"Pasirinkite įmonės tipą"} />
                             <MenuItem value={"UAB"} primaryText="UAB" />
                             <MenuItem value={"AB"} primaryText="AB" />
                             <MenuItem value={"MB"} primaryText="MB" />
@@ -100,7 +103,6 @@ class RegisterPharmacist extends Component {
                         <br />
                         <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
                     </div>
-                    </span>
                 </MuiThemeProvider>
             </div>
         );
