@@ -3,6 +3,9 @@ package lt.sveikata.pharmacist;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+
+import lt.sveikata.user.User;
 
 
 @Entity
@@ -17,7 +20,6 @@ public class Pharmacist extends User{
 	private String typeOfWorkplace;
 
 
-	private final String codeOfUserRights = "2";
 
 	public String getFirstName() {
 		return firstName;

@@ -18,13 +18,10 @@ class Login extends Component {
     }
   }
   handleClick=(event)=> {
-    let value =event.target.value;
-    let inputName = event.target.name;
-    this.setState({[inputName]: value});
+    console.log(this.state);
+    event.preventDefault();
    
-    // console.log(this.state);
-    // event.preventDefault();
-  };
+  }
 
   render(){
 
@@ -63,11 +60,11 @@ class Login extends Component {
   }
 }
 
-handleSubmit= (event)=>{
-  event.preventDefault() ;
-  const {username, password} = this.state;
-  const {login} = this.props;
-  login (username, password)
-}
+// handleSubmit= (event)=>{
+//   event.preventDefault() ;
+//   const {username, password} = this.state;
+//   const {login} = this.props;
+//   login (username, password)
+// }
 
 export default Login;

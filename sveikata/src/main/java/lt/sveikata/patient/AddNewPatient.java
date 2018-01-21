@@ -3,6 +3,9 @@ package lt.sveikata.patient;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+
+import lt.sveikata.user.AddNewUser;
 
 @Entity
 @DiscriminatorValue("NewPatient")
@@ -19,8 +22,6 @@ public class AddNewPatient extends AddNewUser{
 
   
 	private String doctorsFullName;
-	private String userName;
-	private String password;
 
   
 	// private List<Visit> listOfVisits;

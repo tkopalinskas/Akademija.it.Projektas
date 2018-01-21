@@ -3,6 +3,9 @@ package lt.sveikata.patient;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+
+import lt.sveikata.user.User;
 
 
 @Entity

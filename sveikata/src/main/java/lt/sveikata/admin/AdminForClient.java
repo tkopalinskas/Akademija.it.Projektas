@@ -1,6 +1,8 @@
 package lt.sveikata.admin;
 
-public class AdminForClient {
+import lt.sveikata.user.UserForClient;
+
+public class AdminForClient extends UserForClient{
 
 	private String firstName;
 	private String lastName;

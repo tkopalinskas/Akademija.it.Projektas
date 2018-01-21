@@ -3,6 +3,9 @@ package lt.sveikata.pharmacist;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
+
+import lt.sveikata.user.AddNewUser;
 
 
 @Entity

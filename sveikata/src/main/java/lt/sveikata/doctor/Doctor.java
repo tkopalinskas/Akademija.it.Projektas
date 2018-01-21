@@ -2,7 +2,7 @@ package lt.sveikata.doctor;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-
+import javax.validation.constraints.NotNull;
 
 import lt.sveikata.user.User;
 
