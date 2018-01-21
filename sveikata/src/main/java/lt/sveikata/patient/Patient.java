@@ -1,18 +1,14 @@
 package lt.sveikata.patient;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+
 
 @Entity
-public class Patient {
+@DiscriminatorValue("Patient")
+public class Patient extends User{
 
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	@Id
 	@Column(unique = true)
 	private long personalId;
 	@NotNull
@@ -20,23 +16,13 @@ public class Patient {
 	@NotNull
 	private String lastName;
 	private String dateOfBirth;
-	private String doctorsFullName;
-	private String userName;
-	private String password;
-	//@NotNull
-	//private boolean isNotSuspended;
 
-	private final String codeOfUserRights = "3";
+	private String doctorsFullName;
+
 
 	// private List<Visit> listOfVisits;
 
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -70,13 +56,7 @@ public class Patient {
 		this.personalId = personalId;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 
 	public String getDoctorsFullName() {
 		return doctorsFullName;
@@ -86,31 +66,4 @@ public class Patient {
 		this.doctorsFullName = doctorsFullName;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-//	public boolean isNotSuspended() {
-//		return isNotSuspended;
-//	}
-//
-//	public void setNotSuspended(boolean isNotSuspended) {
-//		this.isNotSuspended = isNotSuspended;
-//	}
-
-	public String getCodeOfUserRights() {
-		return codeOfUserRights;
-	}
-
-	// public List<Visit> getListOfVisits() {
-	// return listOfVisits;
-	// }
-	//
-	// public void setListOfVisits(List<Visit> listOfVisits) {
-	// this.listOfVisits = listOfVisits;
-	// }
 }

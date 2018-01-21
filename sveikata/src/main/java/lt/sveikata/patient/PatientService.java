@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,10 @@ public class PatientService {
 
 	@Autowired
 	private PatientRepository patientRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 
 	public List<PatientForClient> receiveAllPatients() {
 		List<Patient> patientsFromDatabase = getPatientRepository().findAll();
@@ -45,8 +50,10 @@ public class PatientService {
 		pat.setPersonalId(newPatient.getPersonalId());
 		pat.setDoctorsFullName(newPatient.getDoctorsFullName());
 		pat.setUserName(newPatient.getUserName());
-		pat.setPassword(newPatient.getPassword());
-		//pat.setNotSuspended(newPatient.isNotSuspended());
+		pat.setPassword(passwordEncoder.encode(newPatient.getPassword()));
+		pat.setRole("PATIENT");
+		pat.setCodeOfUserRights("3");
+
 		patientRepository.save(pat);
 
 	}

@@ -1,6 +1,11 @@
 {
   "main.css": "static/css/main.c17080f1.css",
   "main.css.map": "static/css/main.c17080f1.css.map",
-  "main.js": "static/js/main.eb8f126c.js",
-  "main.js.map": "static/js/main.eb8f126c.js.map"
+//<<<<<<< sveikata
+  "main.js": "static/js/main.f2119a64.js",
+  "main.js.map": "static/js/main.f2119a64.js.map"
+=======
+//  "main.js": "static/js/main.eb8f126c.js",
+ // "main.js.map": "static/js/main.eb8f126c.js.map"
+//>>>>>>> master
 }
