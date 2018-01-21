@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/user/pharmacist")
+@RequestMapping(value="/admin")
 public class PharmacistController {
 
 	@Autowired
@@ -23,7 +23,7 @@ public class PharmacistController {
 		return getPharmacistService().receiveAllPharmacists();
 	}
 
-	@RequestMapping(value = "/admin/pharmacist", method = RequestMethod.POST)
+	@RequestMapping(value = "/pharmacist", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createPharmacist(@RequestBody final AddNewPharmacist newPharmacist) {
 		pharmacistService.addNewPharmacist(newPharmacist);
@@ -35,7 +35,7 @@ public class PharmacistController {
 //		pharmacistService.deletePharmacist(id);
 //	}
 
-	@RequestMapping(value = "/admin/findUser/manageUser/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/admin/manageUser/{id}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void updateExistingPharmacist(@RequestBody final Pharmacist pharmacist, @PathVariable final Long id) {
 		pharmacistService.updatePharmacist(pharmacist, id);

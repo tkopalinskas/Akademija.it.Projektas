@@ -14,7 +14,7 @@ class Admin extends Component {
             <MuiThemeProvider>
                 <span>
                 <div>
-                    <Link to="/admin/admin/addNewAdmin" ><RaisedButton label="Admin" primary={true} style={style} /></Link>
+                    <Link to="/admin/admin" ><RaisedButton label="Admin" primary={true} style={style} /></Link>
                 </div>
                 <div>
                     <Link to="/admin/doctor" ><RaisedButton label="Doctor" primary={true} style={style} /></Link>

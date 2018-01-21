@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-//import MenuItem from 'material-ui/MenuItem';
-import HostUrl from "./HostUrl"
+import DatePicker from 'material-ui/DatePicker';
+import {API} from "./HostUrl"
 import axios from 'axios';
 
 class RegisterPatient extends Component {
@@ -14,11 +14,12 @@ class RegisterPatient extends Component {
     userName: '',
     password: '',
     dateOfBirth: '',
-    personalId: ''
+    personalId: '',
+    doctorsFullName: ''
   }
 
   handleClick(event) {
-    var apiUrl={HostUrl}.toString;
+    var apiUrl=API;
 
     //set values
     var information={
@@ -27,15 +28,20 @@ class RegisterPatient extends Component {
       userName: this.state.userName,
       password : this.state.password,
       dateOfBirth : this.state.dateOfBirth,
-      personalId : this.state.personalId
+      personalId : this.state.personalId,
+      doctorsFullName: this.state.doctorsFullName
     }
-    axios.post(apiUrl + '/admin/patient', information)
-    .then(function (response){
-      if (response.date.code===200){
-        console.log("registrations  succsessfull");
-      }
+    axios.post(apiUrl +  '/admin/patient', information)
+    .then((response)=>{
+      console.log("registration  successful");
+      alert("Registracija sėkminga!");     
     })
-  }
+    .catch((error)=>{
+      console.log(error);
+    })
+    console.log(this.state);
+    event.preventDefault();
+    }
 
 
 
@@ -43,50 +49,53 @@ class RegisterPatient extends Component {
     return (
       <div>
         <MuiThemeProvider>
-          <span>
           <div>
-            <TextField
-              type="date"
-              onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
-            />
             <br />
             <TextField
-              hintText="Iveskite Varda"
+              hintText="Įveskite vardą"
               floatingLabelText="Vardas"
               onChange={(event, newValue) => this.setState({ firstName: newValue })}
             />
             <br />
             <TextField
-              hintText="Iveskite pavarde"
-              floatingLabelText="pavarde"
+              hintText="Įveskite pavardę"
+              floatingLabelText="Pavardė"
               onChange={(event, newValue) => this.setState({ lastName: newValue })}
             />
             <br />
             <TextField
-              hintText="Asmens Kodas"
+              hintText="Asmens kodas"
               type="numbers"
-              floatingLabelText="asmens Kodas"
+              floatingLabelText="Asmens kodas"
               onChange={(event, newValue) => this.setState({ personalId: newValue })}
             />
             <br />
-
+            <DatePicker hintText="Gimimo data"
+              onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
+            />
+            <br />
+            <TextField
+              hintText="Įveskite slapyvardį"
+              floatingLabelText="Slapyvardis"
+              onChange={(event, newValue) => this.setState({ userName: newValue })}
+            />
+            <br />
             <TextField
               type="password"
-              hintText="Enter your Password"
-              floatingLabelText="Password"
+              hintText="Įveskite slaptažodį"
+              floatingLabelText="Slaptažodis"
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
             <TextField
               type="password"
-              hintText="Confirm Password"
-              floatingLabelText="Confirm password"
+              hintText="Pakartokite slaptažodį"
+              floatingLabelText="Pakartokite slaptažodį"
               onChange={(event, newValue) => this.setState({ confirmPassword: newValue })}
             />
             <br />
-            <RaisedButton label="Submit" primary={true} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
           </div>
-          </span>
         </MuiThemeProvider>
       </div>
     );

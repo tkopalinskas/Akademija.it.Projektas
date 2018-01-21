@@ -19,7 +19,7 @@ class Register extends Component {
       value: value,
     });
   }
-  componentWillMount() {
+  /* componentWillMount() {
     var registerDoctor=[];
     registerDoctor.push(<RegisterDoctor parentContext={this} />);
     this.setState({
@@ -35,13 +35,13 @@ class Register extends Component {
     this.setState({
       registerPharmacist : registerPharmacist
     })
-  }
+  } */
 
 
 
   render() {
     return (
-      <MuiThemeProvider>
+      {/* <MuiThemeProvider>
         <Tabs
         value={this.state.value}
         onChange={this.handleChange}
@@ -71,7 +71,7 @@ class Register extends Component {
           </div>
         </Tab>
       </Tabs>
-      </MuiThemeProvider>
+      </MuiThemeProvider> */}
     );
   }
 }

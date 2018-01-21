@@ -3,7 +3,12 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
-import HostUrl from "./HostUrl"
+import {API} from "./HostUrl";
+import { Link } from 'react-router-dom';
+
+const style={
+  margin: 15,
+};
 
 class RegisterAdmin extends Component {
 
@@ -11,7 +16,7 @@ class RegisterAdmin extends Component {
     firstName: '',
     lastName: '',
     userName: '',
-    codeofUserRights: 1,
+    //codeofUserRights: 1,
     password: '',
   }
 
@@ -26,7 +31,7 @@ class RegisterAdmin extends Component {
 }    */
    
   handleClick(event) {
-    var apiUrl= {HostUrl}.toString;
+    var apiUrl= API;
     console.log(apiUrl)
 
     //set values
@@ -34,64 +39,64 @@ class RegisterAdmin extends Component {
     firstName : this.state.firstName,
     lastName : this.state.lastName,
     userName : this.state.userName,
-    password  : this.state.password,
-    /* codeofUserRights : this.state.codeofUserRights */
+    password  : this.state.password
      
     }
     //send to back end
-    axios.post(/* apiUrl +  */"http://localhost:8081/admin/admin/addNewAdmin" , information)
-    .then(function (responce){
-      if (responce.date.code === 200){
-        console.log("registration  succsessfull");
-      }
+    axios.post(apiUrl + "/admin/admin" , information)
+    .then((response)=>{
+        console.log("registration  successful");
+        alert("Registracija sėkminga!");     
     })
-    .catch(function (error) {
+    .catch((error)=>{
       console.log(error);
-    });
+    })
+    console.log(this.state);
+    event.preventDefault();
   }
-
 
   render() {
     return (
       <div>
         <MuiThemeProvider>
-          <span>
           <div>
             <TextField
-              hintText="Iveskite Varda"
+              hintText="Įveskite vardą"
               floatingLabelText="Vardas"
               onChange={(event, newValue) => this.setState({ firstName: newValue })}
             />
             <br />
             <TextField
-              hintText="Iveskite Pavarde"
+              hintText="Įveskite pavardę"
               floatingLabelText="Pavardė"
               onChange={(event, newValue) => this.setState({ lastName: newValue })}
             />
             <br />
             <TextField
-              hintText="Iveskite Slapyvardį"
+              hintText="Įveskite slapyvardį"
               floatingLabelText="Slapyvardis"
               onChange={(event, newValue) => this.setState({ userName: newValue })}
             />
             <br />
             <TextField
               type="password"
-              hintText="Enter your Password"
-              floatingLabelText="Password"
+              hintText="Įveskite slaptažodį"
+              floatingLabelText="Slaptažodis"
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
             <TextField
               type="password"
-              hintText="Confirm Password"
-              floatingLabelText="Confirm password"
+              hintText="Pakartokite slaptažodį"
+              floatingLabelText="Pakartokite slaptažodį"
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
-            <RaisedButton label="Submit" primary={true} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
+            <div>
+          <Link to="/admin" ><RaisedButton label="Grįžti į pagrindinį" primary={true} style={style} /></Link>
+        </div>
           </div>
-          </span>
         </MuiThemeProvider>
       </div>
     );

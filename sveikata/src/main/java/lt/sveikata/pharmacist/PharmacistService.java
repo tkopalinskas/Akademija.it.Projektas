@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,10 @@ public class PharmacistService {
 
 	@Autowired
 	private PharmacistRepository pharmacistRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 
 	public List<PharmacistForClient> receiveAllPharmacists() {
 		List<Pharmacist> pharmacistsFromDatabase = getPharmacistRepository().findAll();
@@ -41,6 +46,9 @@ public class PharmacistService {
 		pharm.setLastName(newPharmacist.getLastName());
 		pharm.setWorkplace(newPharmacist.getWorkplace());
 		pharm.setTypeOfWorkplace(newPharmacist.getTypeOfWorkplace());
+		pharm.setPassword(passwordEncoder.encode(newPharmacist.getPassword()));
+		pharm.setRole("PHARMACIST");
+		pharm.setCodeOfUserRights("4");
 		pharmacistRepository.save(pharm);
 
 	}

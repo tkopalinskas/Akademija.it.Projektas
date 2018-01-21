@@ -24,13 +24,11 @@ class Loginscreen extends Component {
           {this.state.loginmessage}
         </div>
         <div className="col-sm-8">
-          statistika
+          Statistika
           </div>
       </div>
     );
   }
 }
-/* const style={
-  margin: 15,
-}; */
+
 export default Loginscreen;

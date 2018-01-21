@@ -6,7 +6,6 @@ public class DoctorForClient {
 	private String lastName;
 	private String specialization;
 	// private String workplace;
-	private boolean isNotSuspended;
 
 	public String getFirstName() {
 		return firstName;
@@ -32,12 +31,5 @@ public class DoctorForClient {
 		this.specialization = specialization;
 	}
 
-	public boolean isNotSuspended() {
-		return isNotSuspended;
-	}
-
-	public void setNotSuspended(boolean isNotSuspended) {
-		this.isNotSuspended = isNotSuspended;
-	}
-
 }
+

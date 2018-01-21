@@ -1,9 +1,8 @@
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-//import { AppBar } from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import React, { Component } from 'react'
-//import axios from 'axios';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 const style={
   margin: 15,
@@ -19,22 +18,19 @@ class Login extends Component {
     }
   }
   handleClick=(event)=> {
+    let value =event.target.value;
+    let inputName = event.target.name;
+    this.setState({[inputName]: value});
    
-    console.log(this.state);
-    event.preventDefault();
-  }
+    // console.log(this.state);
+    // event.preventDefault();
+  };
 
   render(){
 
     return (
       <div>
         <MuiThemeProvider>
-          <span>
-          {/* <div>
-            <AppBar
-              title="Prisijungimas"
-            />
-          </div> */}
           <div className='login'>
             <TextField
               hintText="Įveskite prisijungimo vardą"
@@ -49,13 +45,27 @@ class Login extends Component {
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
-            <RaisedButton label="Prisijungti" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton type="submit" label="Prisijungti" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+            <br />
+
+            {/*sita linka BUTINA istrint, kai bus 
+            padaryta passwordo validacija!! */}
+            
+            <div>
+              <Link to="/admin" ><RaisedButton label="Admin Console" primary={true} style={style} /></Link>
+            </div>
           </div>
-          </span>
         </MuiThemeProvider>
       </div>
     );
   }
+}
+
+handleSubmit= (event)=>{
+  event.preventDefault() ;
+  const {username, password} = this.state;
+  const {login} = this.props;
+  login (username, password)
 }
 
 export default Login;
