@@ -6,6 +6,7 @@ public class PharmacistForClient {
 	private String lastName;
 	private String workplace;
 	private String typeOfWorkplace;
+	//private boolean isNotSuspended;
 
 	public String getFirstName() {
 		return firstName;
@@ -38,6 +39,14 @@ public class PharmacistForClient {
 	public void setTypeOfWorkplace(String typeOfWorkplace) {
 		this.typeOfWorkplace = typeOfWorkplace;
 	}
+
+//	public boolean isNotSuspended() {
+//		return isNotSuspended;
+//	}
+//
+//	public void setNotSuspended(boolean isNotSuspended) {
+//		this.isNotSuspended = isNotSuspended;
+//	}
 
 }
 

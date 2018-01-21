@@ -45,7 +45,9 @@ class Login extends Component {
               onChange={(event, newValue) => this.setState({ password: newValue })}
             />
             <br />
-            <RaisedButton type="submit" label="Prisijungti" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+
+            <RaisedButton label="Prisijungti" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+
             <br />
 
             {/*sita linka BUTINA istrint, kai bus 

@@ -4,17 +4,19 @@ package lt.sveikata.pharmacist;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import lt.sveikata.user.AddNewUser;
 
 @Entity
 @DiscriminatorValue("NewPharmacist")
 public class AddNewPharmacist extends AddNewUser {
 
-	
+
 	private String firstName;
+	@NotNull
 	private String lastName;
+	@NotNull
 	private String workplace;
 	private String typeOfWorkplace;
+
 
 
 	public String getFirstName() {
@@ -48,6 +50,5 @@ public class AddNewPharmacist extends AddNewUser {
 	public void setTypeOfWorkplace(String typeOfWorkplace) {
 		this.typeOfWorkplace = typeOfWorkplace;
 	}
-
 
 }

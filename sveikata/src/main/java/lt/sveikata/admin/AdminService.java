@@ -52,16 +52,16 @@ public class AdminService {
 
 	}
 
-	public void deleteAdmin(Long id) {
-		adminRepository.delete(id);
-	}
+//	public void deleteAdmin(Long id) {
+//		adminRepository.delete(id);
+//	}
 
 	public void updateAdmin(Admin admin, Long id) {
 		Admin adm = adminRepository.findOne(id);
 		adm.setFirstName(admin.getFirstName());
 		adm.setLastName(admin.getLastName());
 		adm.setPassword(admin.getPassword());
-		adm.setNotSuspended(admin.isNotSuspended());
+		//adm.setNotSuspended(admin.isNotSuspended());
 		adminRepository.save(adm);
 	}
 

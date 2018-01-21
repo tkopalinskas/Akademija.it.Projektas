@@ -10,10 +10,13 @@ import lt.sveikata.user.User;
 @DiscriminatorValue("Doctor")
 public class Doctor  extends User{
 
+
 	private String firstName;
+	@NotNull
 	private String lastName;
 	private String specialization;
 	// private String workplace;
+
 
 	public String getFirstName() {
 		return firstName;

@@ -23,7 +23,7 @@ public class PrescriptionController {
 		return getPrescriptionService().receiveAllPrescriptions();
 	}
 
-	@RequestMapping(value = "/addNew", method = RequestMethod.POST)
+	@RequestMapping(value = "/prescription/addNew", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createPrescription(@RequestBody final AddNewPrescription newPrescription) {
 		prescriptionService.addNewPrescription(newPrescription);

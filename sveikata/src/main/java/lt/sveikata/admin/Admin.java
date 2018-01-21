@@ -15,7 +15,6 @@ public class Admin extends User {
 	private String firstName;
 	private String lastName;
 
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -31,6 +30,5 @@ public class Admin extends User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
 
 }

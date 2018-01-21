@@ -3,7 +3,7 @@ package lt.sveikata.patient;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import lt.sveikata.user.User;
+
 
 @Entity
 @DiscriminatorValue("Patient")
@@ -11,10 +11,18 @@ public class Patient extends User{
 
 	@Column(unique = true)
 	private long personalId;
+	@NotNull
 	private String firstName;
+	@NotNull
 	private String lastName;
 	private String dateOfBirth;
-	
+
+	private String doctorsFullName;
+
+
+	// private List<Visit> listOfVisits;
+
+
 
 	public String getFirstName() {
 		return firstName;
@@ -46,6 +54,16 @@ public class Patient extends User{
 
 	public void setPersonalId(long personalId) {
 		this.personalId = personalId;
+	}
+
+
+
+	public String getDoctorsFullName() {
+		return doctorsFullName;
+	}
+
+	public void setDoctorsFullName(String doctorsFullName) {
+		this.doctorsFullName = doctorsFullName;
 	}
 
 }

@@ -4,8 +4,6 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
-import lt.sveikata.user.AddNewUser;
-
 @Entity
 @DiscriminatorValue("NewPatient")
 public class AddNewPatient extends AddNewUser{
@@ -13,11 +11,20 @@ public class AddNewPatient extends AddNewUser{
 
 	@Column(unique = true)
 	private long personalId;
+	@NotNull
 	private String firstName;
+	@NotNull
 	private String lastName;
 	private String dateOfBirth;
 
-//	private final String codeOfUserRights = "3";
+  
+	private String doctorsFullName;
+	private String userName;
+	private String password;
+
+  
+	// private List<Visit> listOfVisits;
+
 
 
 	public String getFirstName() {
@@ -51,5 +58,17 @@ public class AddNewPatient extends AddNewUser{
 	public void setPersonalId(long personalId) {
 		this.personalId = personalId;
 	}
+
+	public String getDoctorsFullName() {
+		return doctorsFullName;
+	}
+
+	public void setDoctorsFullName(String doctorsFullName) {
+		this.doctorsFullName = doctorsFullName;
+	}
+
+	// public List<Visit> getListOfVisits() {
+	// return listOfVisits;
+	// }
 
 }

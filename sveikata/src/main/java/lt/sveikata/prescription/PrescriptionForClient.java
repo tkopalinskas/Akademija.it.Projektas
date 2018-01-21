@@ -3,7 +3,7 @@ package lt.sveikata.prescription;
 public class PrescriptionForClient {
 
 	// private String nameOfHealthInstitution;
-	private String doctorsName;
+	private String doctorsFullName;
 	private int prescriptionDate;
 	// private String patientsName;
 	private String patientsPersonalCode;
@@ -13,12 +13,12 @@ public class PrescriptionForClient {
 	private String units;
 	private String description;
 
-	public String getDoctorsName() {
-		return doctorsName;
+	public String getDoctorsFullName() {
+		return doctorsFullName;
 	}
 
-	public void setDoctorsName(String doctorsName) {
-		this.doctorsName = doctorsName;
+	public void setDoctorsFullName(String doctorsFullName) {
+		this.doctorsFullName = doctorsFullName;
 	}
 
 	public int getPrescriptionDate() {

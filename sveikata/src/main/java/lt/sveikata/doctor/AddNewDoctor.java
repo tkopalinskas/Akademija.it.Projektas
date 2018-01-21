@@ -11,11 +11,12 @@ import lt.sveikata.user.AddNewUser;
 public class AddNewDoctor extends AddNewUser{
 
 
+
 	private String firstName;
+	@NotNull
 	private String lastName;
 	private String specialization;
 	// private String workplace;
-
 
 	public String getFirstName() {
 		return firstName;
@@ -40,6 +41,5 @@ public class AddNewDoctor extends AddNewUser{
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
 	}
-
 
 }
