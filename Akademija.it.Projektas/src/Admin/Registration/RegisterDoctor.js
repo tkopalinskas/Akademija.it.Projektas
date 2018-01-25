@@ -62,24 +62,18 @@ class RegisterDoctor extends Component {
     }
 
     specializationIsSelected() {
-        if(this.state.specialization!=='')/*||
-    this.otherSpecializationIsSelected()*/{
+        if(this.state.specialization!==''||
+    this.otherSpecializationIsSelected()){
             return true;
         }
     }
 
-   /*  otherSpecializationIsSelected(){
+    otherSpecializationIsSelected(){
         if(this.state.specialization==="kita"&&
         this.state.otherSpecialization!==''){
             return true;
         }
-    } */
-
-    /* postCorrectSpecialization(){
-        if(this.state.specialization==="kita"){
-            this.setState.specialization= this.state.otherSpecialization
-        }
-    } */
+    }
 
     bothPasswordsMatch(){
         if (this.state.password===this.state.repeatedPassword){
@@ -120,7 +114,9 @@ class RegisterDoctor extends Component {
             var information= {
             firstName : this.state.firstName,
             lastName : this.state.lastName,
-            specialization: this.state.specialization,
+            specialization: this.state.value==="kita"
+                            ?this.state.otherSpecialization
+                            :this.state.specialization,
             userName : this.state.userName,
             password : this.state.password,
             }
@@ -177,12 +173,12 @@ class RegisterDoctor extends Component {
                         />
                         <br />
                         <TextField
-                        hintText="Įveskite prisijungimo vardą"
-                        errorText="Privalomas laukas"
-                        errorStyle={textStyles.errorStyle}
-                        floatingLabelText="Prisijungimo vardas"
-                        floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
-                        onChange={(event, newValue) => this.setState({ userName: newValue })}
+                            hintText="Įveskite prisijungimo vardą"
+                            errorText="Privalomas laukas"
+                            errorStyle={textStyles.errorStyle}
+                            floatingLabelText="Prisijungimo vardas"
+                            floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
+                            onChange={(event, newValue) => this.setState({ userName: newValue })}
                         />
                         <br/>
                         <TextField
@@ -212,12 +208,12 @@ class RegisterDoctor extends Component {
                             <MenuItem value={"fizioterapeutas"} primaryText="Fizioterapeutas" />
                             <MenuItem value={"kita"} primaryText="Kita" />
                         </DropDownMenu>
-                        {/* <br/>
+                        <br/>
                         <TextField
                             hintText="Įveskite kitą specializaciją"
                             floatingLabelText="Kita specializacija"
                             onChange={(event, newValue) => this.setState({ otherSpecialization: newValue })}
-                        /> */}
+                        />
                         <br />
                         <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
                         <div>

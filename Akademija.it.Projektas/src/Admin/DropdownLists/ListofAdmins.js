@@ -26,7 +26,7 @@ export default class ListofAdmins extends React.Component {
 
 getAdmins(){
      axios.get("http://localhost:8081/admin/allAdmins")
-     .then((responce)=>{this.setState({adminList: responce.data.firstName})})
+     .then((responce)=>{this.setState({adminsList: responce.data.firstName})})
      .catch((error)=>{console.log(error)});
      ;
 }
@@ -45,7 +45,7 @@ getAdmins(){
                     <MenuItem onClick={this.props.closeAction}>Back</MenuItem>
 
                     {this.adminsList.map((admins, index) => 
-                    <MenuItem key = {index}>{admins.firstName}</MenuItem>)} 
+                    <MenuItem key={index}>{admins.firstName}</MenuItem>)} 
 
                     <MenuItem>admin</MenuItem>
                     <MenuItem>admin</MenuItem>
