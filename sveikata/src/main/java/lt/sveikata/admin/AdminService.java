@@ -60,7 +60,7 @@ public class AdminService {
 		Admin adm = adminRepository.findOne(id);
 		adm.setFirstName(admin.getFirstName());
 		adm.setLastName(admin.getLastName());
-		adm.setPassword(admin.getPassword());
+		adm.setPassword(passwordEncoder.encode(admin.getPassword()));
 		//adm.setNotSuspended(admin.isNotSuspended());
 		adminRepository.save(adm);
 	}

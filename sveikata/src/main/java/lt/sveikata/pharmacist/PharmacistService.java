@@ -47,7 +47,7 @@ public class PharmacistService {
 		pharm.setLastName(newPharmacist.getLastName());
 		pharm.setWorkplace(newPharmacist.getWorkplace());
 		pharm.setTypeOfWorkplace(newPharmacist.getTypeOfWorkplace());
-
+		pharm.setUserName(newPharmacist.getUserName());
 		pharm.setPassword(passwordEncoder.encode(newPharmacist.getPassword()));
 		pharm.setRole("PHARMACIST");
 		pharm.setCodeOfUserRights("4");

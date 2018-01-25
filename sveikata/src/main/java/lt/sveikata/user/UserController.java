@@ -1,10 +1,13 @@
 package lt.sveikata.user;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
@@ -31,11 +34,11 @@ public class UserController {
 //		userService.deleteUser(id);
 //	}
 
-	@RequestMapping(value = "/admin/findUser/manageUser/{id}", method = RequestMethod.PATCH)
-	@ResponseStatus(HttpStatus.CREATED)
-	public void updateExistingAdmin(@RequestBody final User user, @PathVariable final Long id) {
-		userService.updateUser(user, id);
-	}
+//	@RequestMapping(value = "/admin/findUser/manageUser/{id=7}", method = RequestMethod.PATCH)
+//	@ResponseStatus(HttpStatus.CREATED)
+//	public void updateExistingAdmin(@RequestBody final User user, @PathVariable final Long id) {
+//		userService.updateUser(user, id);
+//	}
 
 	public UserService getUserService() {
 		return userService;
