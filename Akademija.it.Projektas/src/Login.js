@@ -51,7 +51,7 @@ class Login extends Component {
             padaryta passwordo validacija!! */}
             
             <div>
-              <Link to="/admin" ><RaisedButton label="Admin Console" primary={true} style={style} /></Link>
+              <Link to="/admin" ><RaisedButton label="Button will be removed. Admin Console" primary={true} style={style} /></Link>
             </div>
           </div>
         </MuiThemeProvider>

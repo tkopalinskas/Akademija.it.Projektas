@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import axios from 'axios';
-import {API} from "../Registration/HostUrl";
 import { Link } from 'react-router-dom';
 
 const style={
@@ -19,34 +17,23 @@ class PasswordChangeComponent extends Component {
     }
 
     handleClick(event){
-        var apiUrl= API;
-
         if (this.state.newPassword === this.state.confirmPassword){
             this.setState.password=this.state.newPassword;
 
-           axios.put(apiUrl+ "/admin/changePassword/{id}", 
-           {password: this.state.password})
-           .then((response)=>{
-               console.log("password change successful!");
-               alert("Slaptažodis pakeistas!");
-           })
-           .catch((error)=>{
-               console.log(error);
-           })
-           /*galutiniam variante istrinti console.log, 
-        kad nesimatytu slaptazodzio konsolej*/
-            console.log(this.state);
-            event.preventDefault();   
+           /*  axios.patch() */
         }
         else{
             alert("Naujasis slaptažodis nesutampa su pakartotu naujuoju slaptažodžiu! Bandykite įvesti iš naujo.");
             console.log("wrong password");
-        } 
+        }
+        /*galutiniam variante istrinti console.log, 
+        kad nesimatytu slaptazodzio konsolej*/
+        console.log(this.state);
+        event.preventDefault(); 
     }
 
     render() {
         return (
-            <MuiThemeProvider>
             <div>
                 <TextField
                     type="password"
@@ -74,7 +61,6 @@ class PasswordChangeComponent extends Component {
                 <Link to="/admin" ><RaisedButton label="Grįžti į pagrindinį" primary={true} style={style} /></Link>
                 </div>
             </div>
-            </MuiThemeProvider>
         )
     }
 }
