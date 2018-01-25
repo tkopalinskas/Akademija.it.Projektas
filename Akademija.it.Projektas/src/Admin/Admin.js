@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link/*,  Route  */} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import DropdownComponent from './DropdownLists/DropdownComponent';
 
 const style = {
     margin: 15,
@@ -14,7 +15,7 @@ class Admin extends Component {
             <MuiThemeProvider>
                 <span>
                 <div>
-                    <Link to="/admin/admin" ><RaisedButton label="Admin" primary={true} style={style} /></Link>
+                    <Link to="/admin/admin/addNewAdmin" ><RaisedButton label="Admin" primary={true} style={style} /></Link>
                 </div>
                 <div>
                     <Link to="/admin/doctor" ><RaisedButton label="Doctor" primary={true} style={style} /></Link>
@@ -28,7 +29,11 @@ class Admin extends Component {
                 <div>
                     <Link to="/admin/visit" ><RaisedButton label="Registration to Dr" primary={true} style={style}/></Link>
                 </div>
+                <div>
+                    <DropdownComponent/>
+                </div>
                 </span>
+                
             </MuiThemeProvider>
 
         );
