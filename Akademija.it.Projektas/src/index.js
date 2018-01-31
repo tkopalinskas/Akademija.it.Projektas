@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Admin from './Admin/Admin'
+import Admin from './Admin/Admin2'
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import RegisterDoctor from './Admin/Registration/RegisterDoctor';
 import RegisterPatient from './Admin/Registration/RegisterPatient';
