@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
 import RegisterBar from './RegisterBar';
 import UserList from './UserList';
+import './Drawer.css'
 // import DrAndPatient from '.DrAndPatient'
 
 
@@ -24,11 +25,12 @@ class SideBarMain extends Component {
     }
 
     render() {
-        console.log(this.state.showRegisterOptions)
         return (
             <div>
                 <Drawer open={this.state.open}
-                onRequestChange={this.state.closeAction}>
+                onRequestChange={this.state.closeAction}
+                className = "drawerStyles">
+                
                 
                     <AppBar title={<span>Admin</span>}
                         showMenuIconButton={false} />

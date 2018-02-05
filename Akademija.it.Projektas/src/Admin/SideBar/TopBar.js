@@ -1,16 +1,14 @@
-import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
-import SideBarMain from './SideBar/SideBarMain';
+import React, { Component } from 'react';
 
 
 
-
-class Admin extends React.Component {
+class TopBar extends Component {
 
     state = {
         LeftDrop: false
@@ -32,6 +30,7 @@ class Admin extends React.Component {
 
     render() {
         return (
+            <div>
             <MuiThemeProvider>
                 <AppBar
                     showMenuIconButton={false}
@@ -52,11 +51,10 @@ class Admin extends React.Component {
                         <MenuItem primaryText="Atsijungti" />
                     </Menu>
                 </Popover>
-                    <SideBarMain />
-            </MuiThemeProvider>
+                </MuiThemeProvider>
+            </div>
         );
     }
 }
 
-
-export default Admin;
+export default TopBar;
