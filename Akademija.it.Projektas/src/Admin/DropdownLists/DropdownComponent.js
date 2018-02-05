@@ -20,19 +20,15 @@ export default class DrawerUndockedExample extends React.Component {
         };
     }
 
-
-
-
     handleToggle = (toggleName) => {
         this.setState({ [toggleName]: !this.state[toggleName] });
     }
     
-
     render() {
         return (
             <div>
                 <RaisedButton
-                    label="Open Lists"
+                    label="Vartotojų sąrašas"
                     onClick={this.handleToggle.bind(this, "showDrawer")}
                 />
                 <Drawer
@@ -42,11 +38,11 @@ export default class DrawerUndockedExample extends React.Component {
                     openSecondary={true}
                     onRequestChange={(showDrawer) => this.setState({showDrawer})}
                 >
-                    <MenuItem onClick={this.handleToggle.bind(this, "showDrawer")}>Close</MenuItem>
-                    <MenuItem onClick={this.handleToggle.bind(this, "showAdminList")}>List of Admins</MenuItem>
-                    <MenuItem onClick={this.handleToggle.bind(this, "showPatientList")}>List of Patients</MenuItem>
-                    <MenuItem onClick={this.handleToggle.bind(this, "showDoctorList")}>List of Doctors</MenuItem>
-                    <MenuItem onClick={this.handleToggle.bind(this, "showPharmacistList")}>List of Pharmasists</MenuItem>
+                    <MenuItem onClick={this.handleToggle.bind(this, "showDrawer")}>Uždaryti</MenuItem>
+                    <MenuItem onClick={this.handleToggle.bind(this, "showAdminList")}>Adminstratorių sąrašas</MenuItem>
+                    <MenuItem onClick={this.handleToggle.bind(this, "showPatientList")}>Pacientų sąrašas</MenuItem>
+                    <MenuItem onClick={this.handleToggle.bind(this, "showDoctorList")}>Gydytojų sąrašas</MenuItem>
+                    <MenuItem onClick={this.handleToggle.bind(this, "showPharmacistList")}>Vaistininkų sąrašas</MenuItem>
                     <ListofAdmins 
                     open={this.state.showAdminList} 
                     closeAction={this.handleToggle.bind(this, 'showAdminList')} />

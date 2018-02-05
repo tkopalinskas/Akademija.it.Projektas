@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value="/patient/visit/prescription")
+@RequestMapping(value="/patient/prescription")
 public class PrescriptionController {
 
 	@Autowired

@@ -5,7 +5,6 @@ import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios'
 
 export default class Listofpatientss extends React.Component {
-
  
     constructor(props) {
         super(props);
@@ -19,13 +18,11 @@ export default class Listofpatientss extends React.Component {
         axios.get("http://localhost:8081/admin/allPatients")
             .then((responce) => { this.setState({ patientsGet: responce.data });})
             .catch((error) => { console.log(error) });
-            }
-   
-            
+            }           
 
     render() {
         var patientsListComponent = this.state.patientsGet.map((patients, index) =>
-            <MenuItem key={index}>{patients.firstName}</MenuItem>)
+            <MenuItem key={index}>{patients.firstName + " " + patients.lastName}</MenuItem>)
 
          if(!this.state.patientsGet){
              return null;
@@ -40,10 +37,9 @@ export default class Listofpatientss extends React.Component {
                     openSecondary={true}
                     onRequestChange={(open) => this.setState({ open })}
                 >
-                    <MenuItem onClick={this.props.closeAction}>Back</MenuItem>
+                    <MenuItem onClick={this.props.closeAction}>Grįžti atgal</MenuItem>
                     {patientsListComponent}
                 
-
                 </Drawer>
             </div>
         );

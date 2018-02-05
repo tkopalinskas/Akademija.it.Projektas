@@ -1,4 +1,4 @@
-package lt.sveikata.patientsHistory;
+package lt.sveikata.medicalRecords;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

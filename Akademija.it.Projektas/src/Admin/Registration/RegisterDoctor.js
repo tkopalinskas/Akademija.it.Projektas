@@ -29,13 +29,20 @@ class RegisterDoctor extends Component {
             firstName: '',
             lastName: '',
             specialization: '',
-            /*otherSpecialization: '',*/
+            otherSpecialization: '',
             userName: '',
             password: '',
             repeatedPassword: '',
-            value: ''
+            value: '',
+           /*  isHidden: true */
         };
     }
+
+    /* toggleOther(){
+        this.setState({
+            isHidden: !this.state.isHidden
+        });
+    } */
 
     validFirstNameEntered(){
         if(this.state.firstName!==''&&
@@ -63,7 +70,7 @@ class RegisterDoctor extends Component {
 
     specializationIsSelected() {
         if(this.state.specialization!==''||
-    this.otherSpecializationIsSelected()){
+        this.otherSpecializationIsSelected()){
             return true;
         }
     }
@@ -120,7 +127,6 @@ class RegisterDoctor extends Component {
             userName : this.state.userName,
             password : this.state.password,
             }
-
             
             axios.post(apiUrl + '/admin/doctor', information)
             .then((response)=>{
@@ -132,7 +138,7 @@ class RegisterDoctor extends Component {
             .catch((error)=>{
                 console.log(error);
             })
-            console.log(this.state);
+            /* console.log(this.state); */
             event.preventDefault();
             return true;
         }else{
@@ -155,6 +161,7 @@ class RegisterDoctor extends Component {
                     {/*pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu*/}
                     <div>
                         <TextField
+                            name="FirstName"
                             hintText="Įveskite vardą"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -164,6 +171,7 @@ class RegisterDoctor extends Component {
                         />
                         <br />
                         <TextField
+                            name="LastName"
                             hintText="Įveskite pavardę"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -173,6 +181,7 @@ class RegisterDoctor extends Component {
                         />
                         <br />
                         <TextField
+                            name="userName"
                             hintText="Įveskite prisijungimo vardą"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -182,6 +191,7 @@ class RegisterDoctor extends Component {
                         />
                         <br/>
                         <TextField
+                            name="password"
                             type="password"
                             hintText="Įveskite slaptažodį"
                             errorText="Privalomas laukas"
@@ -192,6 +202,7 @@ class RegisterDoctor extends Component {
                         />
                         <br/>
                         <TextField
+                            name="repeatedPassword"
                             type="password"
                             hintText="Pakartokite slaptažodį"
                             errorText="Privalomas laukas"
@@ -206,14 +217,16 @@ class RegisterDoctor extends Component {
                             <MenuItem value={"gydytojas"} primaryText="Gydytojas" />
                             <MenuItem value={"chirurgas"} primaryText="Chirurgas" />
                             <MenuItem value={"fizioterapeutas"} primaryText="Fizioterapeutas" />
-                            <MenuItem value={"kita"} primaryText="Kita" />
+                            <MenuItem value={"kita"} primaryText="Kita" /*onClick={(event)=>{this.toggleOther()}}*/ />
+                            {/* {this.state.isHidden ? <TextField name="otherSpecialization"/> : null}  */} 
                         </DropDownMenu>
                         <br/>
-                        <TextField
+                        {<TextField
+                            name="otherSpecialization" 
                             hintText="Įveskite kitą specializaciją"
                             floatingLabelText="Kita specializacija"
                             onChange={(event, newValue) => this.setState({ otherSpecialization: newValue })}
-                        />
+                        />}
                         <br />
                         <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
                         <div>

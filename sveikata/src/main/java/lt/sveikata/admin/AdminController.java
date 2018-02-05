@@ -36,7 +36,7 @@ public class AdminController {
 //		adminService.deleteAdmin(id);
 //	}
 
-	@RequestMapping(value = "/admin/changePassword/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/admin/{id}/changePassword", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void updateExistingAdmin(@RequestBody final Admin admin, @PathVariable final Long id) {
 		adminService.updateAdmin(admin, id);

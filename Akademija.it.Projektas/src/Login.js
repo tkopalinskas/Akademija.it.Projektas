@@ -2,7 +2,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 const style={
   margin: 15,
@@ -13,7 +13,7 @@ class Login extends Component {
     super(props);
     console.log(props)
     this.state={
-      username: '',
+      userName: '',
       password: ''
     }
   }
@@ -32,7 +32,7 @@ class Login extends Component {
             <TextField
               hintText="Įveskite prisijungimo vardą"
               floatingLabelText="Prisijungimo vardas"
-              onChange={(event, newValue) => this.setState({ username: newValue })}
+              onChange={(event, newValue) => this.setState({ userName: newValue })}
             />
             <br />
             <TextField
@@ -50,9 +50,9 @@ class Login extends Component {
             {/*sita linka BUTINA istrint, kai bus 
             padaryta passwordo validacija!! */}
             
-            <div>
+            {/* <div>
               <Link to="/admin" ><RaisedButton label="Button will be removed. Admin Console" primary={true} style={style} /></Link>
-            </div>
+            </div> */}
           </div>
         </MuiThemeProvider>
       </div>
@@ -64,7 +64,7 @@ class Login extends Component {
 //   event.preventDefault() ;
 //   const {username, password} = this.state;
 //   const {login} = this.props;
-//   login (username, password)
+//   login (userName, password)
 // }
 
 export default Login;

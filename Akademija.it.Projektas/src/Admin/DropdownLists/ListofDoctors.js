@@ -6,7 +6,6 @@ import axios from 'axios'
 
 export default class ListofDoctors extends React.Component {
 
- 
     constructor(props) {
         super(props);
         this.state = {
@@ -19,10 +18,8 @@ export default class ListofDoctors extends React.Component {
         axios.get("http://localhost:8081/admin/allDoctors")
             .then((responce) => { this.setState({ doctorsGet: responce.data });console.log(this.state.doctorsGet)})
             .catch((error) => { console.log(error) });
-            }
-   
+            }  
             
-
     render() {
         var doctorsListComponent = this.state.doctorsGet.map((doctors, index) =>
             <MenuItem key={index}>{doctors.firstName + " " + doctors.lastName}</MenuItem>)
@@ -40,11 +37,9 @@ export default class ListofDoctors extends React.Component {
                     openSecondary={true}
                     onRequestChange={(open) => this.setState({ open })}
                 >
-                    <MenuItem onClick={this.props.closeAction}>Back</MenuItem>
+                    <MenuItem onClick={this.props.closeAction}>Grįžti atgal</MenuItem>
 
                     {doctorsListComponent}
-                    
-                    <MenuItem> Dotroino </MenuItem>
 
                 </Drawer>
             </div>
