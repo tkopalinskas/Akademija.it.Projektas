@@ -106,7 +106,7 @@ class RegisterAdmin extends Component {
       .catch((error)=>{
         console.log(error);
       })
-      console.log(this.state);
+     /*  console.log(this.state); */
       event.preventDefault();
     }else{
       alert("Patikrinkite, ar visi duomenys įvesti teisingai! Privalomi laukai turi būti užpildyti.")
@@ -176,12 +176,5 @@ class RegisterAdmin extends Component {
     );
   }
 }
-/* RegisterAdmin.propTypes={
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  repeatedPassword: PropTypes.string.isRequired
-}; */
 
 export default RegisterAdmin;

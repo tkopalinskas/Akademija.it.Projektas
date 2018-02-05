@@ -1,30 +1,30 @@
 import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
-//import {API} from "/Admin/Register/HostUrl";
+//import {API} from "/doctors/Register/HostUrl";
 import axios from 'axios'
 
-export default class ListofAdmins extends React.Component {
+export default class ListofDoctors extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-        showAdminList: false,
-        adminGet: []
+        showDoctorList: false,
+        doctorsGet: []
         };
     }
    
     componentWillMount = () => {
-        axios.get("http://localhost:8081/admin/allAdmins")
-            .then((responce) => { this.setState({ adminGet: responce.data });console.log(this.state.adminGet)})
+        axios.get("http://localhost:8081/admin/allDoctors")
+            .then((responce) => { this.setState({ doctorsGet: responce.data });console.log(this.state.doctorsGet)})
             .catch((error) => { console.log(error) });
-            }             
-
+            }  
+            
     render() {
-        var adminListComponent = this.state.adminGet.map((admins, index) =>
-            <MenuItem key={index}>{admins.firstName + " " + admins.lastName}</MenuItem>)
+        var doctorsListComponent = this.state.doctorsGet.map((doctors, index) =>
+            <MenuItem key={index}>{doctors.firstName + " " + doctors.lastName}</MenuItem>)
 
-         if(!this.state.adminGet){
+         if(!this.state.doctorsGet){
              return null;
          }
 
@@ -39,8 +39,8 @@ export default class ListofAdmins extends React.Component {
                 >
                     <MenuItem onClick={this.props.closeAction}>Grįžti atgal</MenuItem>
 
-                    {adminListComponent}
-                
+                    {doctorsListComponent}
+
                 </Drawer>
             </div>
         );

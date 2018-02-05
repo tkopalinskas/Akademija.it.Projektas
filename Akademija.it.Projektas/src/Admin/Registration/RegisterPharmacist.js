@@ -128,7 +128,7 @@ class RegisterPharmacist extends Component {
                 .catch((error)=>{
                 console.log(error);
                 })
-                console.log(this.state);
+                /* console.log(this.state); */
                 event.preventDefault();
         }else{
             alert("Patikrinkite, ar visi duomenys įvesti teisingai! Privalomi laukai turi būti užpildyti.")

@@ -23,7 +23,9 @@ public class DoctorService {
 		List<Doctor> doctorsFromDatabase = getDoctorRepository().findAll();
 		List<DoctorForClient> doctorsForClient = doctorsFromDatabase.stream().map((doctor) -> {
 			DoctorForClient dfc = new DoctorForClient();
-			dfc.setDoctorsFullName(doctor.getFirstName()+" " + doctor.getLastName());
+			//dfc.setDoctorsFullName(doctor.getFirstName()+" " + doctor.getLastName());
+			dfc.setFirstName(doctor.getFirstName());
+			dfc.setLastName(doctor.getLastName());
 			dfc.setSpecialization(doctor.getSpecialization());
 			//dfc.setNotSuspended(doctor.isNotSuspended());
 			// dfc.setWorkplace(doctor.getWorkplace());

@@ -36,7 +36,7 @@ class Admin extends Component {
                     <Link to="/admin/visit" ><RaisedButton label="Registration to Dr" primary={true} style={style}/></Link>
                 </div> */}
                 <div>
-                    <Link to="/admin/changePassword"><RaisedButton label="Pakeisti slaptažodį" primary={false} style={changePasswordStyle} /></Link>
+                    <Link to="/admin/:id/changePassword"><RaisedButton label="Pakeisti slaptažodį" primary={false} style={changePasswordStyle} /></Link>
                 </div>
                 <div>
                     <Link to="/ "><RaisedButton label="Atsijungti" primary={true} style={style} /></Link>

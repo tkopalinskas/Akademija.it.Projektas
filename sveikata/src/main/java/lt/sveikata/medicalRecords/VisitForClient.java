@@ -1,39 +1,16 @@
-package lt.sveikata.patientsHistory;
+package lt.sveikata.medicalRecords;
 
 import java.util.Calendar;
-import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+public class VisitForClient {
 
-@Entity
-public class Visit {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(unique = true)
-	private long id;
-	@NotNull
 	private Calendar dateOfVisit;
 	private String illnessTLKCode;
-	@NotNull
 	private String doctorsFullName;
 	private int lengthOfVisit;
 	private String description;
 	private boolean isCompensated;
 	private boolean visitIsRepeated;
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
 
 	public Calendar getDateOfVisit() {
 		return dateOfVisit;

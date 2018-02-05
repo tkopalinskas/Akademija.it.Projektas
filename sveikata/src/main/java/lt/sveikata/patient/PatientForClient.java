@@ -2,7 +2,7 @@ package lt.sveikata.patient;
 
 import java.util.List;
 
-import lt.sveikata.patientsHistory.Visit;
+import lt.sveikata.medicalRecords.Visit;
 
 public class PatientForClient {
 

@@ -123,7 +123,7 @@ dataIsValid(){
       .catch((error)=>{
         console.log(error);
       })
-      console.log(this.state);
+    /*   console.log(this.state); */
       event.preventDefault();
       return true;
     }else{
