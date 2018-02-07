@@ -2,22 +2,19 @@ import React, { Component } from 'react';
 import {
     Table,
     TableBody,
-    TableFooter,
     TableHeader,
     TableHeaderColumn,
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Divider from 'material-ui/Divider';
 import Search from 'material-ui/svg-icons/action/search';
 import axios from 'axios'
 import InformationModal from './InformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
-const styles = {
+/* const styles = {
     propContainer: {
         width: 200,
         overflow: 'hidden',
@@ -26,7 +23,7 @@ const styles = {
     propToggleHeader: {
         margin: '20px auto 10px',
     },
-};
+}; */
 
 export default class ListofPharmacists extends Component {
     constructor(props) {
@@ -85,8 +82,8 @@ export default class ListofPharmacists extends Component {
 
         console.log(this.state.disabled)
         return (
-            <div>
-                <MuiThemeProvider>
+            <MuiThemeProvider>
+                <div>
                     <Table
                         height={this.state.height}
                         fixedHeader={this.state.fixedHeader}
@@ -133,8 +130,8 @@ export default class ListofPharmacists extends Component {
                         open={this.state.showModal}
                         disabled={this.state.disabled}
                         closeAction={this.openModal} />
-                </MuiThemeProvider>
-            </div>
+                </div>
+            </MuiThemeProvider>
         );
     }
 }

@@ -19,7 +19,7 @@ public class VisitService {
 		List<Visit> visitsFromDatabase = getVisitRepository().findAll();
 		List<VisitForClient> visitsForClient = visitsFromDatabase.stream().map((visit) -> {
 			VisitForClient vfc = new VisitForClient();
-			vfc.setDateOfVisit(Calendar.getInstance());
+			//vfc.setDateOfVisit(Calendar.getInstance());
 			vfc.setIllnessTLKCode(visit.getIllnessTLKCode());
 			vfc.setDoctorsFullName(visit.getDoctorsFullName());
 			vfc.setLengthOfVisit(visit.getLengthOfVisit());
@@ -41,7 +41,7 @@ public class VisitService {
 
 	public void addNewVisit(AddNewVisit newVisit) {
 		Visit vis = new Visit();
-		vis.setDateOfVisit(Calendar.getInstance());
+		//vis.setDateOfVisit(Calendar.getInstance());
 		vis.setIllnessTLKCode(newVisit.getIllnessTLKCode());
 		vis.setDoctorsFullName(newVisit.getDoctorsFullName());
 		vis.setLengthOfVisit(newVisit.getLengthOfVisit());
@@ -58,7 +58,7 @@ public class VisitService {
 
 	public void updateVisit(Visit visit, Long id) {
 		Visit vis = visitRepository.findOne(id);
-		vis.setDateOfVisit(Calendar.getInstance());
+		//vis.setDateOfVisit(Calendar.getInstance());
 		vis.setIllnessTLKCode(visit.getIllnessTLKCode());
 		vis.setLengthOfVisit(visit.getLengthOfVisit());
 		vis.setDescription(visit.getDescription());

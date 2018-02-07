@@ -9,11 +9,14 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+/* import InformationModal from './InformationModal' */
+import FlatButton from 'material-ui/FlatButton/FlatButton';
 //import MedicalRecordsComponent from './MedicalRecordsComponent';
 
 const styles ={
-  marginLeft: 200,
-  width: 1100  
+  marginLeft: 0,
+  marginRight: 10
+  
 }
 
 const visits = [
@@ -72,7 +75,7 @@ class MedicalRecordsTable extends Component {
     }
     componentWillMount(){
         axios
-            .get("http://localhost:8081/patient/:id/medicalRecords")
+            .get("http://localhost:8081/patient/medicalRecords")
             .then((response) => {
                 console.log(response);
                 this.setState({visits: response.data});
@@ -83,10 +86,24 @@ class MedicalRecordsTable extends Component {
     } 
 
       render() {
+        var allMedicalRecords = this.state.visits.map((records, index) => (
+          <TableRow key={index}/*  onClick={this.openModal} */>
+              <TableRowColumn>{index}</TableRowColumn>
+              <TableRowColumn>{records.dateOfVisit}</TableRowColumn>
+              <TableRowColumn>{records.illnessTLKCode}</TableRowColumn>
+              <TableRowColumn>{records.doctorsFullName}</TableRowColumn>
+              <TableRowColumn>{records.description}</TableRowColumn>
+              <TableRowColumn><FlatButton label="Info" primary={true} /* onClick={this.openModal} */ /></TableRowColumn>
+          </TableRow>
+      ))
+
+      if (!this.state.visits) {
+          return null;
+      }
+
         return (
         <MuiThemeProvider>
         <div>
-        {/* <MedicalRecordsComponent allMedicalRecords={this.state.visits}/> */}
             <Table
               height={this.state.height}
               style={styles}
@@ -142,15 +159,14 @@ class MedicalRecordsTable extends Component {
                 deselectOnClickaway={this.state.deselectOnClickaway}
                 showRowHover={this.state.showRowHover}
               >
-                {visits.map( (row, index) => (
-                  <TableRow key={index}>
-                    <TableRowColumn>{index}</TableRowColumn>
-                    <TableRowColumn>{row.dateOfVisit}</TableRowColumn>
-                    <TableRowColumn>{row.illnessTLKCode}</TableRowColumn>
-                    <TableRowColumn>{row.doctorsFullName}</TableRowColumn>
-                    <TableRowColumn>{row.description}</TableRowColumn>
+               { allMedicalRecords}
+                  <TableRow >
+                    <TableRowColumn>index</TableRowColumn>
+                    <TableRowColumn>dateOfVisit</TableRowColumn>
+                    <TableRowColumn>illnessTLKCode</TableRowColumn>
+                    <TableRowColumn>doctorsFullName</TableRowColumn>
+                    <TableRowColumn>description</TableRowColumn>
                   </TableRow>
-                  ))}
               </TableBody>
             </Table> 
         </div>

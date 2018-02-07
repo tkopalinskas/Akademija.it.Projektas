@@ -12,8 +12,9 @@ import {
 //import ManyPrescriptionsComponent from './ManyPrescriptionsComponent';
 
 const styles ={
-  marginLeft: 200,
-  width: 1100  
+  marginLeft: 0,
+  marginRight: 10
+  
 }
 
 const prescriptions=[];

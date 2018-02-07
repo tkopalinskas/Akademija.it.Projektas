@@ -30,29 +30,30 @@ class TopBar extends Component {
 
     render() {
         return (
-            <div>
+            
             <MuiThemeProvider>
-                <AppBar
-                    showMenuIconButton={false}
-                    iconElementRight={<FlatButton
-                        onClick={this.handleClick}
-                        label="Vardas Pavarde" />
-                    }
-                />
-                <Popover
-                    open={this.state.LeftDrop}
-                    anchorEl={this.state.anchorEl}
-                    anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-                    targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-                    onRequestClose={this.handleRequestClose}
-                >
-                    <Menu>
-                        <MenuItem primaryText="Pakeisti slapatažodį" />
-                        <MenuItem primaryText="Atsijungti" />
-                    </Menu>
-                </Popover>
-                </MuiThemeProvider>
-            </div>
+                <div>
+                    <AppBar
+                        showMenuIconButton={false}
+                        iconElementRight={<FlatButton
+                            onClick={this.handleClick}
+                            label="Vardas Pavarde" />
+                        }
+                    />
+                    <Popover
+                        open={this.state.LeftDrop}
+                        anchorEl={this.state.anchorEl}
+                        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                        targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                        onRequestClose={this.handleRequestClose}
+                    >
+                        <Menu>
+                            <MenuItem primaryText="Pakeisti slapatažodį" />
+                            <MenuItem primaryText="Atsijungti" />
+                        </Menu>
+                    </Popover>
+                </div>    
+            </MuiThemeProvider>
         );
     }
 }

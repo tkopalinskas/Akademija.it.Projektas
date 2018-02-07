@@ -11,9 +11,9 @@ class PatientWindowNavigation extends Component{
             <main>
                 <Switch>
                     <Route exact path="/" name="home" component={App} /> 
-                    <Route path="/patient/:id/changePassword" name="changePatientsPassword" component={PatientPasswordChangeComponent} />
-                    <Route path="/patient/:id/prescriptions" name="prescriptions" component={PrescriptionsTable} />
-                    <Route path="/patient/:id/medicalRecords" name="medicalRecords" component={MedicalRecordsTable} />
+                    <Route path="/patient/changePassword" name="changePatientsPassword" component={PatientPasswordChangeComponent} />
+                    <Route path="/patient/prescriptions" name="prescriptions" component={PrescriptionsTable} />
+                    <Route path="/patient/medicalRecords" name="medicalRecords" component={MedicalRecordsTable} />
                 </Switch>
             </main>
         )

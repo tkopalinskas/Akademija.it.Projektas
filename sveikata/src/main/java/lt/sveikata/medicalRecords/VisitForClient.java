@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class VisitForClient {
 
-	private Calendar dateOfVisit;
+	//private Calendar dateOfVisit;
 	private String illnessTLKCode;
 	private String doctorsFullName;
 	private int lengthOfVisit;
@@ -12,13 +12,13 @@ public class VisitForClient {
 	private boolean isCompensated;
 	private boolean visitIsRepeated;
 
-	public Calendar getDateOfVisit() {
-		return dateOfVisit;
-	}
-
-	public void setDateOfVisit(Calendar calendar) {
-		this.dateOfVisit = calendar;
-	}
+//	public Calendar getDateOfVisit() {
+//		return dateOfVisit;
+//	}
+//
+//	public void setDateOfVisit(Calendar calendar) {
+//		this.dateOfVisit = calendar;
+//	}
 
 	public String getIllnessTLKCode() {
 		return illnessTLKCode;

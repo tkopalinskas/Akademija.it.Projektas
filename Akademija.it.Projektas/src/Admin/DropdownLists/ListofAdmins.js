@@ -2,21 +2,18 @@ import React, { Component } from 'react';
 import {
     Table,
     TableBody,
-    TableFooter,
     TableHeader,
     TableHeaderColumn,
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Divider from 'material-ui/Divider';
 import Search from 'material-ui/svg-icons/action/search';
 import axios from 'axios'
 import InformationModal from './InformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
-
+/* 
 const styles = {
     propContainer: {
         width: 200,
@@ -26,7 +23,7 @@ const styles = {
     propToggleHeader: {
         margin: '20px auto 10px',
     },
-};
+}; */
 
 export default class ListofAdmins extends Component {
     constructor(props) {
@@ -84,9 +81,9 @@ export default class ListofAdmins extends Component {
         }
 
         console.log(this.state.disabled)
-        return (
-            <div>
-                <MuiThemeProvider>
+        return (    
+            <MuiThemeProvider>
+                <div>
                     <Table
                         height={this.state.height}
                         fixedHeader={this.state.fixedHeader}
@@ -120,21 +117,21 @@ export default class ListofAdmins extends Component {
                             deselectOnClickaway={this.state.deselectOnClickaway}
                         >
                             {adminListComponenet}
-                            <TableRow>
+                            {/* <TableRow>
                                 <TableRowColumn>1</TableRowColumn>
                                 <TableRowColumn>Name</TableRowColumn>
                                 <TableRowColumn>Username</TableRowColumn>
                                 <TableRowColumn>Admin</TableRowColumn>
                                 <TableRowColumn><FlatButton label="Info" primary={true} onClick={this.openModal} /></TableRowColumn>
-                            </TableRow>
+                            </TableRow> */}
                         </TableBody>
                     </Table>
                     <InformationModal
                         open={this.state.showModal}
                         disabled={this.state.disabled}
                         closeAction={this.openModal} />
-                </MuiThemeProvider>
-            </div>
+                </div>
+            </MuiThemeProvider>
         );
     }
 }

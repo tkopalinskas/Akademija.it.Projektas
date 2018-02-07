@@ -17,7 +17,7 @@ public class AddNewVisit {
 	@Column(unique = true)
 	private long id;
 	@NotNull
-	private Calendar dateOfVisit;
+//	private Calendar dateOfVisit;
 	private String illnessTLKCode;
 	@NotNull
 	private String doctorsFullName;
@@ -34,13 +34,13 @@ public class AddNewVisit {
 		this.id = id;
 	}
 
-	public Calendar getDateOfVisit() {
-		return dateOfVisit;
-	}
-
-	public void setDateOfVisit(Calendar calendar) {
-		this.dateOfVisit = calendar;
-	}
+//	public Calendar getDateOfVisit() {
+//		return dateOfVisit;
+//	}
+//
+//	public void setDateOfVisit(Calendar calendar) {
+//		this.dateOfVisit = calendar;
+//	}
 
 	public String getIllnessTLKCode() {
 		return illnessTLKCode;

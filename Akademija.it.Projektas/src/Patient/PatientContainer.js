@@ -11,10 +11,20 @@ import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
 import PatientWindowNavigation from './PatientWindowNavigation';
 import './SideBar.css';
+import Container from 'muicss/lib/react/container';
+import Row from 'muicss/lib/react/row';
+import Col from 'muicss/lib/react/col';
+
 //import MedicalRecordsComponent from './MedicalRecordsComponent';
 //import ManyPrescriptionsComponent from './ManyPrescriptionsComponent';
 
+const rowStyle={
+    margin: 0,
+}
 
+const containerStyle={
+    padding: 0,
+}
 
 class PatientContainer extends Component{
     constructor(){
@@ -87,6 +97,9 @@ class PatientContainer extends Component{
         return(
             <MuiThemeProvider>
             <div>
+                <Container fluid={true} style={containerStyle}>
+                <Row style={rowStyle}>
+                <Col xs="12" md="12">
                 <AppBar showMenuIconButton={false} iconElementRight={<FlatButton
                         onClick={this.handleClick}
                         label={"Sveiki, "+ this.state.firstName} />
@@ -96,29 +109,40 @@ class PatientContainer extends Component{
                         anchorEl={this.state.anchorEl}
                         onRequestClose={this.handleRequestClose}
                     >
-                            <MenuItem containerElement={<Link to="/patient/:id/changePassword" />}
+                            <MenuItem containerElement={<Link to="/patient/changePassword" />}
                                       primaryText="Pakeisti slaptažodį"/>   
                             <MenuItem containerElement={<Link to="/" />}
                                       primaryText="Atsijungti"/>
                     </Popover>
                 </AppBar>
- 
-                <Drawer open={this.state.open} >
+                </Col>
+                </Row>
+                </Container>
+                <Container fluid={true} style={containerStyle}>
+                <Row style={rowStyle}>
+                <Col xs="2" md="2">
+                <Drawer open={this.state.open} width={170}>
                         <AppBar showMenuIconButton={false} 
                        /*  iconElementLeft={<div>
                             <FontIcon className="muidocs-icon-action-home" /><ArrowBack onClick={this.props.closeAction} />
                                         </div>} */>
                         </AppBar>
-                    <MenuItem containerElement={<Link to="/patient/:id/medicalRecords" />}
+                    <MenuItem containerElement={<Link to="/patient/medicalRecords" />}
                               leftIcon={
                                 <FontIcon className="material-icons">Ligos įrašai</FontIcon>
                     }/>       
-                    <MenuItem containerElement={<Link to="/patient/:id/prescriptions" />}
+                    <MenuItem containerElement={<Link to="/patient/prescriptions" />}
                               leftIcon={
                                 <FontIcon className="material-icons">Receptai</FontIcon>
                     }/>       
-                </Drawer> 
+                </Drawer>
+                </Col>
+                <Col xs="10" md="10">
                 <PatientWindowNavigation/>
+                </Col>
+            </Row>
+            </Container> 
+
             </div>
             </MuiThemeProvider>
         );

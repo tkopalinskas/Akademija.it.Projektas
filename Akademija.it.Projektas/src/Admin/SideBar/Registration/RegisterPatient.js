@@ -6,11 +6,6 @@ import TextField from 'material-ui/TextField';
 import DatePicker from 'material-ui/DatePicker';
 import {API} from "./HostUrl";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-const style={
-  margin: 15,
-};
 
 const textStyles = {
   errorStyle: {

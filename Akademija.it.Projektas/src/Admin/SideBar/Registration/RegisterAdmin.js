@@ -5,11 +5,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import {API} from "./HostUrl";
-import { Link } from 'react-router-dom';
-
-const style={
-  margin: 15,
-};
 
 const textStyles = {
   errorStyle: {
@@ -122,7 +117,7 @@ class RegisterAdmin extends Component {
       <div >
         <MuiThemeProvider>
           <div
-           open = {this.props.open}>
+           open={this.props.open}>
             <TextField
               hintText="Įveskite vardą"
               errorText="Privalomas laukas"
