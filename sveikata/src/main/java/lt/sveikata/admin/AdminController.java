@@ -24,6 +24,11 @@ public class AdminController {
 		return getAdminService().receiveAllAdmins();
 	}
 
+	@RequestMapping(value = "/admin/{userName}", method = RequestMethod.GET)
+	public List<AdminForClient> giveAllAdmins(@PathVariable final String userName) {
+	return getAdminService().receiveAllAdmins( userName); }
+
+
 	@RequestMapping(value = "/admin", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createAdmin(@RequestBody final AddNewAdmin newAdmin) {

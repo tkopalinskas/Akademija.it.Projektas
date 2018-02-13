@@ -14,16 +14,16 @@ import axios from 'axios'
 import InformationModal from './InformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
-/* const styles = {
-    propContainer: {
-        width: 200,
-        overflow: 'hidden',
-        margin: '20px auto 0',
-    },
-    propToggleHeader: {
-        margin: '20px auto 10px',
-    },
-}; */
+// const styles = {
+//     propContainer: {
+//         width: 200,
+//         overflow: 'hidden',
+//         margin: '20px auto 0',
+//     },
+//     propToggleHeader: {
+//         margin: '20px auto 10px',
+//     },
+// };
 
 export default class ListofDoctors extends Component {
     constructor(props) {
@@ -55,8 +55,10 @@ export default class ListofDoctors extends Component {
         this.setState({ height: event.target.value });
     };
 
-    openModal = () => {
-        this.setState({ showModal: !this.state.showModal })
+    openModal = (userName) => {
+        axios.get(`http://localhost:8081/admin/doctor/${userName}`)
+            .then((response) => { this.setState({ userInfo: response.data }) })
+            .then(this.setState({ showModal: !this.state.showModal }))
     }
 
     componentWillMount = () => {
@@ -67,12 +69,12 @@ export default class ListofDoctors extends Component {
 
     render() {
         var adminListComponenet = this.state.doctorGet.map((doctors, index) => (
-            <TableRow key={index} onClick={this.openModal}>
+            <TableRow key={index}>
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{doctors.firstName + " " + doctors.lastName}</TableRowColumn>
-                <TableRowColumn>Username</TableRowColumn>
+                <TableRowColumn>{doctors.userName}</TableRowColumn>
                 <TableRowColumn>Doctor</TableRowColumn>
-                <TableRowColumn><FlatButton label="Info" primary={true} onClick={this.openModal} /></TableRowColumn>
+                <TableRowColumn><FlatButton label="Info" primary={true} onClick ={() => this.openModal(doctors.userName)} /></TableRowColumn>
             </TableRow>
         ))
 
@@ -82,8 +84,8 @@ export default class ListofDoctors extends Component {
 
         console.log(this.state.disabled)
         return (
-            <MuiThemeProvider>
-                <div>
+            <div>
+                <MuiThemeProvider>
                     <Table
                         height={this.state.height}
                         fixedHeader={this.state.fixedHeader}
@@ -117,21 +119,15 @@ export default class ListofDoctors extends Component {
                             deselectOnClickaway={this.state.deselectOnClickaway}
                         >
                             {adminListComponenet}
-                            <TableRow>
-                                <TableRowColumn>1</TableRowColumn>
-                                <TableRowColumn>Name</TableRowColumn>
-                                <TableRowColumn>Username</TableRowColumn>
-                                <TableRowColumn>Doctor</TableRowColumn>
-                                <TableRowColumn><FlatButton label="Info" primary={true} onClick={this.openModal} /></TableRowColumn>
-                            </TableRow>
                         </TableBody>
                     </Table>
                     <InformationModal
                         open={this.state.showModal}
-                        disabled={this.state.disabled}
-                        closeAction={this.openModal} />
-                </div>
-            </MuiThemeProvider>
+                        closeAction={this.openModal}
+                        userInfo={this.state.userInfo}
+                    />
+                </MuiThemeProvider>
+            </div>
         );
     }
 }

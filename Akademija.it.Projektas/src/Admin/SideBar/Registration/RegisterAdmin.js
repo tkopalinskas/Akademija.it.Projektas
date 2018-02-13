@@ -78,8 +78,6 @@ class RegisterAdmin extends Component {
 }
    
   handleClick(event) {
-    var apiUrl= API;
-    console.log(apiUrl)
 
     if (this.dataIsValid()){
       
@@ -95,7 +93,7 @@ class RegisterAdmin extends Component {
       //send to back end
       
        /*sugalvot kuo pakeisti alertus*/
-      axios.post(apiUrl + "/admin/admin" , information)
+      axios.post(API + "/admin/admin" , information)
       .then((response)=>{
           console.log("registration  successful");
           alert("Registracija sėkminga!");     
@@ -118,6 +116,7 @@ class RegisterAdmin extends Component {
         <MuiThemeProvider>
           <div
            open={this.props.open}>
+           <h2> Registruoti Administratorių </h2>
             <TextField
               hintText="Įveskite vardą"
               errorText="Privalomas laukas"

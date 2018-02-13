@@ -6,6 +6,8 @@ public class AdminForClient extends UserForClient{
 
 	private String firstName;
 	private String lastName;
+	private String userName;
+	private String role;
 	//private boolean isNotSuspended;
 
 	public String getFirstName() {
@@ -24,7 +26,18 @@ public class AdminForClient extends UserForClient{
 		this.lastName = lastName;
 	}
 
-//	public boolean isNotSuspended() {
+	public String getUserName() { return userName; }
+
+	public void setUserName(String userName) { this.userName = userName; }
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	//	public boolean isNotSuspended() {
 //		return isNotSuspended;
 //	}
 //

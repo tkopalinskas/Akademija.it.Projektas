@@ -1,5 +1,6 @@
 package lt.sveikata.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,10 +15,10 @@ public class AdminService {
 
 	@Autowired
 	private AdminRepository adminRepository;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 
 	public List<AdminForClient> receiveAllAdmins() {
 		List<Admin> adminsFromDatabase = getAdminRepository().findAll();
@@ -25,7 +26,22 @@ public class AdminService {
 			AdminForClient adm = new AdminForClient();
 			adm.setFirstName(admin.getFirstName());
 			adm.setLastName(admin.getLastName());
+			adm.setUserName(admin.getUserName());
 			adm.setNotSuspended(admin.isNotSuspended());
+			return adm;
+		}).collect(Collectors.toList());
+		return adminsForClient;
+	}
+
+	public List<AdminForClient> receiveAllAdmins(String userName) {
+		List<Admin> adminsFromDatabase = getAdminRepository().findByUserName(userName);
+		List<AdminForClient> adminsForClient = adminsFromDatabase.stream().map((admin) -> {
+			AdminForClient adm = new AdminForClient();
+			adm.setFirstName(admin.getFirstName());
+			adm.setLastName(admin.getLastName());
+			adm.setUserName(admin.getUserName());
+			adm.setNotSuspended(admin.isNotSuspended());
+			adm.setRole(admin.getRole());
 			return adm;
 		}).collect(Collectors.toList());
 		return adminsForClient;
@@ -65,4 +81,14 @@ public class AdminService {
 		adminRepository.save(adm);
 	}
 
+//	public List<SingleAdminForClient> recieveSingleAdmin(Admin admin, String userName) {
+//		List<Admin> singleAdminFromDatabase = getAdminRepository().findByUserName(userName);
+//		List<SingleAdminForClient> singleAdminForClients = new ArrayList<>();
+//		SingleAdminForClient adm = new SingleAdminForClient();
+//		adm.setFirstName(admin.getFirstName());
+//		adm.setLastName(admin.getLastName());
+//		adm.setUserName(admin.getUserName());
+//		adm.setRole(admin.getRole());
+//		return singleAdminForClients;
+//	}
 }

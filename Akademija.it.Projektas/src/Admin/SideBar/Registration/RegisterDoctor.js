@@ -154,6 +154,7 @@ class RegisterDoctor extends Component {
                 <MuiThemeProvider>
                     {/*pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu*/}
                     <div>
+                    <h2> Registruoti Daktarą </h2>
                         <TextField
                             hintText="Įveskite vardą"
                             errorText="Privalomas laukas"

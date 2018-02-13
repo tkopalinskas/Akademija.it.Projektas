@@ -143,6 +143,7 @@ class RegisterPharmacist extends Component {
                 <MuiThemeProvider>
                     {/* pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu */}
                     <div>
+                    <h2> Registruoti Vaistininką </h2>
                     <TextField
                             hintText="Įveskite vardą"
                             errorText="Privalomas laukas"

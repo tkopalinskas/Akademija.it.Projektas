@@ -14,6 +14,8 @@ public class Admin extends User {
 	
 	private String firstName;
 	private String lastName;
+	private String userName;
+	private String role;
 
 	public String getFirstName() {
 		return firstName;
@@ -29,6 +31,23 @@ public class Admin extends User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+
+	public void setRole() {
+		this.role = "Admin";
 	}
 
 }

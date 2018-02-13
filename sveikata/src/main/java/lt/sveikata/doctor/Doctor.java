@@ -15,6 +15,7 @@ public class Doctor  extends User{
 	@NotNull
 	private String lastName;
 	private String specialization;
+	private String userName;
 	// private String workplace;
 
 
@@ -42,4 +43,11 @@ public class Doctor  extends User{
 		this.specialization = specialization;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }

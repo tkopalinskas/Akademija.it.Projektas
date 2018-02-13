@@ -27,8 +27,22 @@ public class DoctorService {
 			dfc.setFirstName(doctor.getFirstName());
 			dfc.setLastName(doctor.getLastName());
 			dfc.setSpecialization(doctor.getSpecialization());
+			dfc.setUserName(doctor.getUserName());
 			//dfc.setNotSuspended(doctor.isNotSuspended());
-			// dfc.setWorkplace(doctor.getWorkplace());
+//			 dfc.setWorkplace(doctor.getWorkplace());
+			return dfc;
+		}).collect(Collectors.toList());
+		return doctorsForClient;
+	}
+
+	public List<DoctorForClient> receiveDoctor(String userName) {
+		List<Doctor> doctorsFromDatabase = getDoctorRepository().findByUserName(userName);
+		List<DoctorForClient> doctorsForClient = doctorsFromDatabase.stream().map((doctor) -> {
+			DoctorForClient dfc = new DoctorForClient();
+			dfc.setFirstName(doctor.getFirstName());
+			dfc.setLastName(doctor.getLastName());
+			dfc.setSpecialization(doctor.getSpecialization());
+			dfc.setUserName(doctor.getUserName());
 			return dfc;
 		}).collect(Collectors.toList());
 		return doctorsForClient;
