@@ -12,7 +12,6 @@ export default class InformationModal extends React.Component {
         this.state = {
             open: false,
             disabled: true,
-            name: "",
         };
     }
 
@@ -44,8 +43,11 @@ export default class InformationModal extends React.Component {
         //modal pagauna paduoda array su specifiniu userinfo per props
         let user = this.props.userInfo.map((User, index) => (
             <div key={index} >
-                <p> {User.firstName + " " + User.lastName}</p>
-                <p>{User.role + " " + User.notSuspended}</p>
+                <h3> {User.firstName + " " + User.lastName}</h3>
+                <span>
+                    <p>{"Rolė: " + User.role}</p>
+                    <p>{"Užbanintas: " + User.suspended}</p>
+                </span>
             </div>
         ));
 
@@ -55,16 +57,16 @@ export default class InformationModal extends React.Component {
             <div>
                 <MuiThemeProvider>
                     <Dialog
-                        title={this.name}
                         actions={actions}
                         modal={true}
                         open={this.props.open}
                     >
+
+                        {user}
                         <Checkbox
                             label="Suspend User"
                             onCheck={this.handleToggle}
                         />
-                        {user}
                     </Dialog>
                 </MuiThemeProvider>
             </div>

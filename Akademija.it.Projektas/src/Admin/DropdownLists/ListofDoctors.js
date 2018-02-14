@@ -73,7 +73,7 @@ export default class ListofDoctors extends Component {
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{doctors.firstName + " " + doctors.lastName}</TableRowColumn>
                 <TableRowColumn>{doctors.userName}</TableRowColumn>
-                <TableRowColumn>Doctor</TableRowColumn>
+                <TableRowColumn>{doctors.role}</TableRowColumn>
                 <TableRowColumn><FlatButton label="Info" primary={true} onClick ={() => this.openModal(doctors.userName)} /></TableRowColumn>
             </TableRow>
         ))
@@ -110,8 +110,8 @@ export default class ListofDoctors extends Component {
                                 <TableHeaderColumn>ID</TableHeaderColumn>
                                 <TableHeaderColumn>Vardas</TableHeaderColumn>
                                 <TableHeaderColumn>Slapyvardis</TableHeaderColumn>
-                                <TableHeaderColumn>Pareigos?</TableHeaderColumn>
-                                <TableHeaderColumn>More info</TableHeaderColumn>
+                                <TableHeaderColumn>Pareigos</TableHeaderColumn>
+                                <TableHeaderColumn>Daugiau info</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
                         <TableBody

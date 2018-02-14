@@ -40,7 +40,8 @@ export default class ListofPatients extends Component {
             showCheckboxes: false,
             height: '480px',
             showModal: false,
-            disabled: true
+            disabled: true,
+            patientGet:[]
         };
     }
 
@@ -72,7 +73,7 @@ export default class ListofPatients extends Component {
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{patients.firstName + " " + patients.lastName}</TableRowColumn>
                 <TableRowColumn>{patients.userName}</TableRowColumn>
-                <TableRowColumn>patient</TableRowColumn>
+                <TableRowColumn>{patients.role}</TableRowColumn>
                 <TableRowColumn><FlatButton label="Info" primary={true} onClick ={() => this.openModal(patients.userName)} /></TableRowColumn>
             </TableRow>
         ))
@@ -109,8 +110,8 @@ export default class ListofPatients extends Component {
                                 <TableHeaderColumn>ID</TableHeaderColumn>
                                 <TableHeaderColumn>Vardas</TableHeaderColumn>
                                 <TableHeaderColumn>Slapyvardis</TableHeaderColumn>
-                                <TableHeaderColumn>Pareigos?</TableHeaderColumn>
-                                <TableHeaderColumn>More info</TableHeaderColumn>
+                                <TableHeaderColumn>Pareigos</TableHeaderColumn>
+                                <TableHeaderColumn>Daugiau info</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
                         <TableBody

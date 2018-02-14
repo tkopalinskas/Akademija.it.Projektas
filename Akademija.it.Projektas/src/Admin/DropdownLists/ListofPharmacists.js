@@ -56,7 +56,7 @@ export default class ListofPharmacists extends Component {
     };
 
     openModal = (userName) => {
-        axios.get(`http://localhost:8081/admin/pharmasist/${userName}`)
+        axios.get(`http://localhost:8081/admin/pharmacist/${userName}`)
             .then((response) => { this.setState({ userInfo: response.data }) })
             .then(this.setState({ showModal: !this.state.showModal }))
     }
@@ -73,7 +73,7 @@ export default class ListofPharmacists extends Component {
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{pharmacists.firstName + " " + pharmacists.lastName}</TableRowColumn>
                 <TableRowColumn>{pharmacists.userName}</TableRowColumn>
-                <TableRowColumn>pharmacist</TableRowColumn>
+                <TableRowColumn>{pharmacists.role}</TableRowColumn>
                 <TableRowColumn><FlatButton label="Info" primary={true} onClick ={() => this.openModal(pharmacists.userName)} /></TableRowColumn>
             </TableRow>
         ))
@@ -110,8 +110,8 @@ export default class ListofPharmacists extends Component {
                                 <TableHeaderColumn>ID</TableHeaderColumn>
                                 <TableHeaderColumn>Vardas</TableHeaderColumn>
                                 <TableHeaderColumn>Slapyvardis</TableHeaderColumn>
-                                <TableHeaderColumn>Pareigos?</TableHeaderColumn>
-                                <TableHeaderColumn>More info</TableHeaderColumn>
+                                <TableHeaderColumn>Pareigos</TableHeaderColumn>
+                                <TableHeaderColumn>Daugiau info</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
                         <TableBody

@@ -81,7 +81,7 @@ export default class ListofAdmins extends Component {
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{admins.firstName + " " + admins.lastName}</TableRowColumn>
                 <TableRowColumn>{admins.userName}</TableRowColumn>
-                <TableRowColumn>Admin</TableRowColumn>
+                <TableRowColumn>{admins.role}</TableRowColumn>
                 <TableRowColumn><FlatButton label="Info" primary={true} onClick ={() => this.openModal(admins.userName)} /></TableRowColumn>
             </TableRow>
         ))
@@ -116,8 +116,8 @@ export default class ListofAdmins extends Component {
                                 <TableHeaderColumn>ID</TableHeaderColumn>
                                 <TableHeaderColumn>Vardas</TableHeaderColumn>
                                 <TableHeaderColumn>Slapyvardis</TableHeaderColumn>
-                                <TableHeaderColumn>Pareigos?</TableHeaderColumn>
-                                <TableHeaderColumn>More info</TableHeaderColumn>
+                                <TableHeaderColumn>Pareigos</TableHeaderColumn>
+                                <TableHeaderColumn>Daugiau info</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
                         <TableBody
