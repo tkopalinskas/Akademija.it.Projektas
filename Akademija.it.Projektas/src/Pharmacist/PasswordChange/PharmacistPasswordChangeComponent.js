@@ -26,7 +26,7 @@ const textStyles = {
     },
   };
 
-class PatientPasswordChangeComponent extends Component {
+class PharmacistPasswordChangeComponent extends Component {
 
     constructor(){
         super()
@@ -66,8 +66,8 @@ class PatientPasswordChangeComponent extends Component {
     handleClick(event){
         if (this.dataIsValid()){
 
-           /*  axios.put() arba post */
-           axios.put(API+ "/patient/changePassword", 
+           /*  send a changed password to database */
+           axios.put(API+ "/pharmacist/changePassword", 
            {password: this.state.password})
            .then((response)=>{
                console.log("password change successful!");
@@ -82,7 +82,7 @@ class PatientPasswordChangeComponent extends Component {
         }
         /*galutiniam variante istrinti console.log, 
         kad nesimatytu slaptazodzio konsolej*/
-        console.log(this.state);
+        /* console.log(this.state); */
         event.preventDefault(); 
     }
 
@@ -132,4 +132,4 @@ class PatientPasswordChangeComponent extends Component {
         )
     }
 }
-export default PatientPasswordChangeComponent;
+export default PharmacistPasswordChangeComponent;

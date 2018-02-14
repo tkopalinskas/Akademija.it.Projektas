@@ -1,7 +1,6 @@
 package lt.sveikata.medicalRecords;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,13 +11,17 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 public class Visit {
+	
+	public Visit() {
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long id;
 	@NotNull
-	//private Calendar dateOfVisit;
+	
+	private String dateOfVisit;
 	private String illnessTLKCode;
 	@NotNull
 	private String doctorsFullName;
@@ -35,13 +38,13 @@ public class Visit {
 		this.id = id;
 	}
 
-//	public Calendar getDateOfVisit() {
-//		return dateOfVisit;
-//	}
-//
-//	public void setDateOfVisit(Calendar calendar) {
-//		this.dateOfVisit = calendar;
-//	}
+	public String getDateOfVisit() {
+		return dateOfVisit;
+	}
+
+	public void setDateOfVisit(String dateOfVisit) {
+		this.dateOfVisit = dateOfVisit;
+	}
 
 	public String getIllnessTLKCode() {
 		return illnessTLKCode;

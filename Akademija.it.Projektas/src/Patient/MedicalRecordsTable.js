@@ -11,47 +11,12 @@ import {
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 /* import InformationModal from './InformationModal' */
 import FlatButton from 'material-ui/FlatButton/FlatButton';
-//import MedicalRecordsComponent from './MedicalRecordsComponent';
 
 const styles ={
   marginLeft: 0,
   marginRight: 10
   
 }
-
-const visits = [
-    /*{
-      dateOfVisit: 'dfgh',
-      illnessTLKCode:'sef',
-      doctorsFullName:'aesgr',
-      description: 'segrd'
-    },
-    
-    {
-      name: 'Randal White',
-      status: 'Unemployed',
-    },
-    {
-      name: 'Stephanie Sanders',
-      status: 'Employed',
-    },
-    {
-      name: 'Steve Brown',
-      status: 'Employed',
-    },
-    {
-      name: 'Joyce Whitten',
-      status: 'Employed',
-    },
-    {
-      name: 'Samuel Roberts',
-      status: 'Employed',
-    },
-    {
-      name: 'Adam Moore',
-      status: 'Employed',
-    }, */
-  ];
 
 class MedicalRecordsTable extends Component {
     constructor(){
@@ -70,7 +35,6 @@ class MedicalRecordsTable extends Component {
             illnessTLKCode: '',
             doctorsFullName: '',
             description: ''
-
         }
     }
     componentWillMount(){
@@ -88,12 +52,10 @@ class MedicalRecordsTable extends Component {
       render() {
         var allMedicalRecords = this.state.visits.map((records, index) => (
           <TableRow key={index}/*  onClick={this.openModal} */>
-              <TableRowColumn>{index}</TableRowColumn>
               <TableRowColumn>{records.dateOfVisit}</TableRowColumn>
               <TableRowColumn>{records.illnessTLKCode}</TableRowColumn>
               <TableRowColumn>{records.doctorsFullName}</TableRowColumn>
-              <TableRowColumn>{records.description}</TableRowColumn>
-              <TableRowColumn><FlatButton label="Info" primary={true} /* onClick={this.openModal} */ /></TableRowColumn>
+              <TableRowColumn>{records.description}<FlatButton label="Info" primary={true} /* onClick={this.openModal} */ /></TableRowColumn>
           </TableRow>
       ))
 
@@ -127,12 +89,6 @@ class MedicalRecordsTable extends Component {
                       whiteSpace: "normal",
                       wordWrap: "break-word"
                     }} 
-                    tooltip="Nr.">Nr.</TableHeaderColumn>
-                  <TableHeaderColumn 
-                    style={{
-                      whiteSpace: "normal",
-                      wordWrap: "break-word"
-                    }} 
                     tooltip="Vizito data">Vizito data</TableHeaderColumn>
                   <TableHeaderColumn 
                     style={{
@@ -161,11 +117,10 @@ class MedicalRecordsTable extends Component {
               >
                { allMedicalRecords}
                   <TableRow >
-                    <TableRowColumn>index</TableRowColumn>
                     <TableRowColumn>dateOfVisit</TableRowColumn>
                     <TableRowColumn>illnessTLKCode</TableRowColumn>
                     <TableRowColumn>doctorsFullName</TableRowColumn>
-                    <TableRowColumn>description</TableRowColumn>
+                    <TableRowColumn>description<FlatButton label="Info" primary={true} /* onClick={this.openModal} */ /></TableRowColumn>
                   </TableRow>
               </TableBody>
             </Table> 

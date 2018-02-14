@@ -9,7 +9,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import InformationModal from './InformationModal'
+import InformationModal from './SinglePrescriptionInformation'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
 const styles ={
@@ -18,7 +18,7 @@ const styles ={
   
 }
 
-class PrescriptionsTable extends Component {
+class PharmacistsPrescriptionsTable extends Component {
     constructor() {
       super();
         this.state = {
@@ -31,7 +31,7 @@ class PrescriptionsTable extends Component {
           height: '300px',
           showModal: false,
 
-          prescriptions: [],           
+          validPrescriptions: [],           
             validUntil: '',
             prescriptionDate: '',
             timesUsed: 0,
@@ -39,32 +39,26 @@ class PrescriptionsTable extends Component {
             description: '',
             number: '',
 
-          prescriptionInfo:[]
+          validPrescriptionInfo:[]
       }
   }
 
   /*get single prescription*/
     openModal = (number) => {
-      console.log("number:"+number);
-      axios.get(`http://localhost:8081/patient/prescriptions/`+ number)
-
-          .then((response) => { this.setState({ prescriptionInfo: response.data }) 
-            this.setState({ showModal: !this.state.showModal })
-            console.log("perscription info", this.state.prescriptionInfo)
-            console.log(this.state.showModal)})
-            .catch((error) => {
-              console.log(error);
-              
-            })
+      console.log(number);
+      axios.get(`http://localhost:8081/pharmacist/prescriptions/`+ {number})
+          .then((response) => { this.setState({ validPrescriptionInfo: response.data }) })
+          .then(
+            this.setState({ showModal: !this.state.showModal }))
   }
 
-  /*get all patient's prescriptions*/
+  /*get valid patient's prescriptions*/
     componentWillMount() {
        axios
-            .get("http://localhost:8081/patient/prescriptions")
+            .get("http://localhost:8081/pharmacist/prescriptions")
             .then((response) => {
                 console.log(response);
-                this.setState({prescriptions: response.data});
+                this.setState({validPrescriptions: response.data});
             })
             .catch((error) => {
                 console.log(error);
@@ -73,21 +67,23 @@ class PrescriptionsTable extends Component {
 
     render() {
 
-      var allPrescriptions = this.state.prescriptions.map((prescription, index) => (
+      console.log(this.state.validPrescriptionInfo);
+
+      var allPrescriptions = this.state.validPrescriptions.map((prescription, index) => (
         <TableRow key={index}  onClick={this.openModal} >
             {/* <TableRowColumn>{prescription.number}</TableRowColumn> */}
             <TableRowColumn>{prescription.validUntil}</TableRowColumn>
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn>{prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn>{prescription.description}<FlatButton label="Info" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
+            <TableRowColumn>{prescription.description}<FlatButton label="Info" primary={true} onClick={this.openModal(prescription.number)} /></TableRowColumn>
         </TableRow>
     ))
 
-    if (!this.state.prescriptions) {
+    if (!this.state.validPrescriptions) {
         return null;
     }
-console.log(this.state.prescriptionInfo)
+
       return (
         <MuiThemeProvider>
         <div>
@@ -141,31 +137,28 @@ console.log(this.state.prescriptionInfo)
                   tooltip="Aprašymas">Aprašymas</TableHeaderColumn>
               </TableRow>
             </TableHeader>
-        
             <TableBody
               displayRowCheckbox={this.state.showCheckboxes}
               deselectOnClickaway={this.state.deselectOnClickaway}
               showRowHover={this.state.showRowHover}
             >
               { allPrescriptions}
-              {/* <TableRow>
-                <TableRowColumn>validUntil</TableRowColumn>
-                <TableRowColumn>prescriptionDate</TableRowColumn>
-                <TableRowColumn>timesUsed</TableRowColumn>
-                <TableRowColumn>activeIngredient</TableRowColumn>
-                <TableRowColumn>description<FlatButton label="Info" primary={true} onClick={this.openModal} /></TableRowColumn>
-              </TableRow> */}
+              {<TableRow>
+                <TableRowColumn>{/* validUntil */}</TableRowColumn>
+                <TableRowColumn>{/* prescriptionDate */}</TableRowColumn>
+                <TableRowColumn>{/* timesUsed */}</TableRowColumn>
+                <TableRowColumn>{/* activeIngredient */}</TableRowColumn>
+                <TableRowColumn>{/* description */}{/* <FlatButton label="Info" primary={true} onClick={this.openModal} /> */}</TableRowColumn>
+              </TableRow>}
             </TableBody>
-            
           </Table>
-          <p> bla{this.state.showModal}bla</p>
           <InformationModal
                         open={this.state.showModal}
                         closeAction={this.openModal}
-                        prescriptionInfo={this.state.prescriptionInfo} />
+                        validPrescriptionInfo={this.state.validPrescriptionInfo} />
         </div>
         </MuiThemeProvider>
       );
     }
   };
-export default PrescriptionsTable;
+export default PharmacistsPrescriptionsTable;

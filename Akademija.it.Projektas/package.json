@@ -6,7 +6,7 @@
     "axios": "0.17.1",
     "bootstrap": "3.3.7",
     "material-ui": "^0.20.0",
-    "muicss":"^0.9.36",
+    "muicss": "^0.9.36",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router-dom": "^4.2.2",
@@ -19,8 +19,8 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-    "homepage": "./",
-    "eslintConfig": {
+  "homepage": "./",
+  "eslintConfig": {
     "extends": "react-app"
   }
 }

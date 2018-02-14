@@ -1,6 +1,7 @@
 package lt.sveikata.medicalRecords;
 
-import java.util.Calendar;
+import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,15 +10,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Entity
 public class AddNewVisit {
+
+//	public AddNewVisit() {
+//		super();
+//	}
+//
+//	@JsonCreator
+//	public AddNewVisit(String dateOfVisit) {
+//		this.dateOfVisit = dateOfVisit;
+//	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long id;
 	@NotNull
-//	private Calendar dateOfVisit;
+	@Column
+	private String dateOfVisit;
+	
+
 	private String illnessTLKCode;
 	@NotNull
 	private String doctorsFullName;
@@ -33,13 +52,45 @@ public class AddNewVisit {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	
+	public String getDateOfVisit() {
+		return dateOfVisit;
+	}
 
-//	public Calendar getDateOfVisit() {
+	public void setDateOfVisit(String dateOfVisit) {
+		this.dateOfVisit = dateOfVisit;
+	}
+//
+//	public String getDateOfVisit() {
+//		try {
+//		 ObjectMapper mapper = new ObjectMapper();
+//		 mapper.getDeserializationConfig().
+//		    mapper.reader()
+//		    .forType(AddNewVisit.class)
+//		    .readValue(dateOfVisit);
+//		} catch (JsonMappingException e) {
+//		    e.printStackTrace();
+//		} catch (JsonGenerationException ex) {
+//		    ex.printStackTrace();
+//		} catch (IOException exc) {
+//		    exc.printStackTrace();
+//		}
 //		return dateOfVisit;
 //	}
 //
-//	public void setDateOfVisit(Calendar calendar) {
-//		this.dateOfVisit = calendar;
+//	public void setDateOfVisit(String jsonInString) {
+//		try {
+//			ObjectMapper mapper = new ObjectMapper();
+//			jsonInString=mapper.writeValueAsString(dateOfVisit);
+//		} catch (JsonMappingException e) {
+//		    e.printStackTrace();
+//		} catch (JsonGenerationException ex) {
+//		    ex.printStackTrace();
+//		} catch (IOException exc) {
+//		    exc.printStackTrace();
+//		}
+//		this.dateOfVisit = jsonInString;
 //	}
 
 	public String getIllnessTLKCode() {
@@ -89,5 +140,5 @@ public class AddNewVisit {
 	public void setVisitIsRepeated(boolean visitIsRepeated) {
 		this.visitIsRepeated = visitIsRepeated;
 	}
-
+	
 }
