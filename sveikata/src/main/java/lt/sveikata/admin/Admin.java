@@ -1,21 +1,20 @@
 package lt.sveikata.admin;
 
-
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lt.sveikata.user.User;
 
 @Entity
-@DiscriminatorValue("Admin")
+@Table(name = "ADMIN")
+@PrimaryKeyJoinColumn(name = "adminId")
 public class Admin extends User {
 
-	
-	
+
 	private String firstName;
 	private String lastName;
-	private String userName;
-	private String role;
 
 	public String getFirstName() {
 		return firstName;
@@ -32,22 +31,4 @@ public class Admin extends User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-
-	public void setRole() {
-		this.role = "Admin";
-	}
-
 }

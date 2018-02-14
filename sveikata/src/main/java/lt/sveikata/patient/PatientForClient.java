@@ -1,19 +1,23 @@
 package lt.sveikata.patient;
 
-import java.util.List;
 
-import lt.sveikata.medicalRecords.Visit;
+import lt.sveikata.doctor.Doctor;
+import lt.sveikata.user.UserForClient;
 
 public class PatientForClient {
+	
+	private long personalId;
 
 	private String firstName;
 	private String lastName;
 	private String dateOfBirth;
-	private long personalId;
-	private String doctorsFullName;
-	//private boolean isNotSuspended;
+	private String role;
+	private String userName;
+	private boolean isSuspended;
+//	private String doctorsFullName;
 
-	// private List<Visit> listOfVisits;
+	private Doctor doctor;
+
 
 	public String getFirstName() {
 		return firstName;
@@ -47,28 +51,36 @@ public class PatientForClient {
 		this.personalId = personalId;
 	}
 
-	public String getDoctorsFullName() {
-		return doctorsFullName;
+	public Doctor getDoctor() {
+		return doctor;
 	}
 
-	public void setDoctorsFullName(String doctorsFullName) {
-		this.doctorsFullName = doctorsFullName;
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 
-//	public boolean isNotSuspended() {
-//		return isNotSuspended;
-//	}
-//
-//	public void setNotSuspended(boolean isNotSuspended) {
-//		this.isNotSuspended = isNotSuspended;
-//	}
+	public String getRole() {
+		return role;
+	}
 
-	// public List<Visit> getListOfVisits() {
-	// return listOfVisits;
-	// }
-	//
-	// public void setListOfVisits(List<Visit> listOfVisits) {
-	// this.listOfVisits = listOfVisits;
-	// }
+	public void setRole(String role) {
+		this.role = role;
+	}
 
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public boolean isSuspended() {
+		return isSuspended;
+	}
+
+	public void setSuspended(boolean suspended) {
+		isSuspended = suspended;
+	}
 }
+

@@ -25,8 +25,9 @@ public class DoctorController {
 	}
 
 	@RequestMapping(value = "/doctor/{userName}", method = RequestMethod.GET)
-	public List<DoctorForClient> giveAllAdmins(@PathVariable final String userName) {
-		return getDoctorService().receiveDoctor(userName); }
+	public List<DoctorForClient> giveAllDoctors(@PathVariable final String userName){
+		return getDoctorService().receiveAllDoctors(userName);
+	}
 
 	@RequestMapping(value = "/doctor", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)

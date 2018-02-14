@@ -1,12 +1,16 @@
 package lt.sveikata.pharmacist;
 
+import lt.sveikata.user.UserForClient;
+
 public class PharmacistForClient {
 
 	private String firstName;
 	private String lastName;
 	private String workplace;
 	private String typeOfWorkplace;
-	//private boolean isNotSuspended;
+	private boolean isSuspended;
+	private String role;
+	private String userName;
 
 	public String getFirstName() {
 		return firstName;
@@ -40,14 +44,29 @@ public class PharmacistForClient {
 		this.typeOfWorkplace = typeOfWorkplace;
 	}
 
-//	public boolean isNotSuspended() {
-//		return isNotSuspended;
-//	}
-//
-//	public void setNotSuspended(boolean isNotSuspended) {
-//		this.isNotSuspended = isNotSuspended;
-//	}
+	public boolean isSuspended() {
+		return isSuspended;
+	}
 
+	public void setSuspended(boolean suspended) {
+		isSuspended = suspended;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 }
 
 

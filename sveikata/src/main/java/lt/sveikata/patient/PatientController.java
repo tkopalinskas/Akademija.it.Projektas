@@ -22,6 +22,11 @@ public class PatientController {
 		return getPatientService().receiveAllPatients();
 	}
 
+	@RequestMapping(value = "/patient/{userName}", method = RequestMethod.GET)
+	public List<PatientForClient> giveAllPatients(@PathVariable final String userName){
+		return getPatientService().receiveAllPatients(userName);
+	}
+
 	@RequestMapping(value = "/patient", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createPatient(@RequestBody final AddNewPatient newPatient) {

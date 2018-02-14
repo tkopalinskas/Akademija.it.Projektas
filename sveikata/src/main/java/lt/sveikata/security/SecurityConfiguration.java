@@ -7,66 +7,53 @@
 //import org.springframework.security.config.annotation.web.builders.WebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+//import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 //
-//import lombok.Value;
 //
 //@EnableWebSecurity
 //@Configuration
 //public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-//	
-////	 @Value("${jwt.route.authentication.path}")
-////	    private String authPath;
-////	 
-//	 
-//	    @Autowired
-//	    public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-//	        authenticationManagerBuilder
-//	            .userDetailsService(userDetailsService())
-//	            .passwordEncoder(new BCryptPasswordEncoder());
-//	    }
 //
 //
+//	@Autowired
+//	private SecurityEntryPoint securityEntryPoint;
+//	@Autowired
 //
+//	private UserDetailsService userService;
 //
-////	@Override
-////	protected void configure(AuthenticationManagerBuilder auth)
-////			throws Exception {
-////		auth.
-////			jdbcAuthentication()
-////				.usersByUsernameQuery(usersQuery)
-////				.authoritiesByUsernameQuery(rolesQuery)
-////				.dataSource(dataSource)
-////				.passwordEncoder(bCryptPasswordEncoder);
-////	}
-////	
-//
+//	@Autowired
+//	public void configureGlobal(AuthenticationManagerBuilder auth)
+//	throws Exception {
+//	auth.userDetailsService(userService);
+//	auth.inMemoryAuthentication().withUser("adminas")
+//	 .password("adminas").roles("ADMIN");
+//	}
+
 //	@Override
 //	protected void configure(HttpSecurity http) throws Exception {
-//		
+//
 //		http.
 //			authorizeRequests()
-//				.antMatchers("/h2/**").permitAll()
-//				.antMatchers("/").permitAll()
-//				.antMatchers("/login").permitAll()
-//				.antMatchers("/admin/**").hasAuthority("ADMIN").anyRequest()
-//				.authenticated().and().csrf().disable().formLogin()
-//				.loginPage("/login").failureUrl("/login?error=true")
-////				.defaultSuccessUrl("/admin/home")
-//				.usernameParameter("username")
-//				.passwordParameter("password")
-//				.and().logout();
-////				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-////				.logoutSuccessUrl("/").and().exceptionHandling()
-////				.accessDeniedPage("/access-denied");
-//	}
-//	
+//			//be saugumo
+//			.antMatchers("/","swagger-ui.html").permitAll()
+//			.antMatchers("/admin/**/**","/user/**", "/#/**").hasRole("ADMIN");
+//			.and()
+//			.formLogin() // leidziam login
+//			// prisijungus
+//			.successHandler(new SimpleUrlAuthenticationSuccessHandler())
+//			// esant blogiems user/pass
+//			.failureHandler(new SimpleUrlAuthenticationFailureHandler())
+//			.loginPage("/login").permitAll(); // jis jau egzistuoja !
+
+
+	//}
+	
 //	@Override
 //	public void configure(WebSecurity web) throws Exception {
 //	    web
 //	       .ignoring()
 //	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
 //	}
-//	
-//
 //}

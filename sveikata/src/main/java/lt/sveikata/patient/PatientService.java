@@ -23,12 +23,25 @@ public class PatientService {
 		List<Patient> patientsFromDatabase = getPatientRepository().findAll();
 		List<PatientForClient> patientsForClient = patientsFromDatabase.stream().map((patient) -> {
 			PatientForClient pfc = new PatientForClient();
+			pfc.setUserName(patient.getUserName());
+			pfc.setRole(patient.getRole());
 			pfc.setFirstName(patient.getFirstName());
 			pfc.setLastName(patient.getLastName());
+			return pfc;
+		}).collect(Collectors.toList());
+		return patientsForClient;
+	}
+
+	public List<PatientForClient> receiveAllPatients(String userName) {
+		List<Patient> patientsFromDatabase = getPatientRepository().findByUserName(userName);
+		List<PatientForClient> patientsForClient = patientsFromDatabase.stream().map((patient) -> {
+			PatientForClient pfc = new PatientForClient();
+			pfc.setRole(patient.getRole());
+			pfc.setFirstName(patient.getFirstName());
+			pfc.setLastName(patient.getLastName());
+			pfc.setSuspended(patient.isSuspended());
+			pfc.setDoctor(patient.getDoctor());
 			pfc.setDateOfBirth(patient.getDateOfBirth());
-			pfc.setPersonalId(patient.getPersonalId());
-			pfc.setDoctorsFullName(patient.getDoctorsFullName());
-			//pfc.setNotSuspended(patient.isNotSuspended());
 			return pfc;
 		}).collect(Collectors.toList());
 		return patientsForClient;
@@ -48,19 +61,14 @@ public class PatientService {
 		pat.setLastName(newPatient.getLastName());
 		pat.setDateOfBirth(newPatient.getDateOfBirth());
 		pat.setPersonalId(newPatient.getPersonalId());
-		pat.setDoctorsFullName(newPatient.getDoctorsFullName());
+//		pat.setDoctorsFullName(newPatient.getDoctorsFullName());
 		pat.setUserName(newPatient.getUserName());
 		pat.setPassword(passwordEncoder.encode(newPatient.getPassword()));
 		pat.setRole("PATIENT");
-		pat.setCodeOfUserRights("3");
-
 		patientRepository.save(pat);
 
 	}
 
-//	public void deletePatient(Long id) {
-//		patientRepository.delete(id);
-//	}
 
 	public void updatePatient(Patient patient, Long personalId) {
 		Patient pat = patientRepository.findOne(personalId);
@@ -68,8 +76,8 @@ public class PatientService {
 		pat.setLastName(patient.getLastName());
 		pat.setDateOfBirth(patient.getDateOfBirth());
 		pat.setPersonalId(patient.getPersonalId());
-		pat.setDoctorsFullName(patient.getDoctorsFullName());
-		//pat.setNotSuspended(patient.isNotSuspended());
+//		pat.setDoctorsFullName(patient.getDoctorsFullName());
+//		pat.setNotSuspended(patient.isNotSuspended());
 		patientRepository.save(pat);
 	}
 	

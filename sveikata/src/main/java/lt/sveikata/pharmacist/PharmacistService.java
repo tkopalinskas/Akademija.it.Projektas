@@ -23,11 +23,25 @@ public class PharmacistService {
 		List<Pharmacist> pharmacistsFromDatabase = getPharmacistRepository().findAll();
 		List<PharmacistForClient> pharmacistsForClient = pharmacistsFromDatabase.stream().map((pharmacist) -> {
 			PharmacistForClient phfc = new PharmacistForClient();
+			phfc.setUserName(pharmacist.getUserName());
+			phfc.setRole(pharmacist.getRole());
+			phfc.setFirstName(pharmacist.getFirstName());
+			phfc.setLastName(pharmacist.getLastName());
+			return phfc;
+		}).collect(Collectors.toList());
+		return pharmacistsForClient;
+	}
+
+	public List<PharmacistForClient> receiveAllPharmacists(String userName) {
+		List<Pharmacist> pharmacistsFromDatabase = getPharmacistRepository().findByUserName(userName);
+		List<PharmacistForClient> pharmacistsForClient = pharmacistsFromDatabase.stream().map((pharmacist) -> {
+			PharmacistForClient phfc = new PharmacistForClient();
+			phfc.setRole(pharmacist.getRole());
 			phfc.setFirstName(pharmacist.getFirstName());
 			phfc.setLastName(pharmacist.getLastName());
 			phfc.setWorkplace(pharmacist.getWorkplace());
 			phfc.setTypeOfWorkplace(pharmacist.getTypeOfWorkplace());
-			//phfc.setNotSuspended(pharmacist.isNotSuspended());
+			phfc.setSuspended(pharmacist.isSuspended());
 			return phfc;
 		}).collect(Collectors.toList());
 		return pharmacistsForClient;
@@ -50,14 +64,10 @@ public class PharmacistService {
 		pharm.setUserName(newPharmacist.getUserName());
 		pharm.setPassword(passwordEncoder.encode(newPharmacist.getPassword()));
 		pharm.setRole("PHARMACIST");
-		pharm.setCodeOfUserRights("4");
 		pharmacistRepository.save(pharm);
 
 	}
 
-//	public void deletePharmacist(Long id) {
-//		pharmacistRepository.delete(id);
-//	}
 
 	public void updatePharmacist(Pharmacist pharmacist, Long id) {
 		Pharmacist pharm = pharmacistRepository.findOne(id);
@@ -66,7 +76,6 @@ public class PharmacistService {
 		pharm.setWorkplace(pharmacist.getWorkplace());
 		pharm.setTypeOfWorkplace(pharmacist.getTypeOfWorkplace());
 		pharm.setPassword(pharmacist.getPassword());
-		//pharm.setNotSuspended(pharmacist.isNotSuspended());
 		pharmacistRepository.save(pharm);
 	}
 

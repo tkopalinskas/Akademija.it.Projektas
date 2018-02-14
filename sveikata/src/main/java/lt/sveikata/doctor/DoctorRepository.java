@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long>{
     List<Doctor> findByUserName(String userName);
-
 }

@@ -23,6 +23,10 @@ public class PharmacistController {
 		return getPharmacistService().receiveAllPharmacists();
 	}
 
+	@RequestMapping(value = "/pharmacist/{userName}", method = RequestMethod.GET)
+	public List<PharmacistForClient> giveAllPharmacists(@PathVariable final String userName) {
+		return getPharmacistService().receiveAllPharmacists(userName); }
+
 	@RequestMapping(value = "/pharmacist", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createPharmacist(@RequestBody final AddNewPharmacist newPharmacist) {
