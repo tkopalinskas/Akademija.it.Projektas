@@ -3,23 +3,29 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Checkbox from 'material-ui/Checkbox';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import axios from 'axios'
 
-/**
- * A modal dialog can only be closed by selecting one of the actions.
- */
+
 export default class InformationModal extends React.Component {
-    state = {
-        open: false,
-        disabled: true,
-    };
-
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+            disabled: true,
+        };
+    }
 
     handleToggle = () => {
         this.setState({ disabled: !this.state.disabled })
     }
 
+
     render() {
+
+        if (!this.props.userInfo) {
+            return null;
+        }
+
         const actions = [
             <FlatButton
                 label="Cancel"
@@ -34,17 +40,29 @@ export default class InformationModal extends React.Component {
             />,
         ];
 
+        //modal pagauna paduoda array su specifiniu userinfo per props
+        let user = this.props.userInfo.map((User, index) => (
+            <div key={index} >
+                <h3> {User.firstName + " " + User.lastName}</h3>
+                <span>
+                    <p>{"Rolė: " + User.role}</p>
+                    <p>{"Užbanintas: " + User.suspended}</p>
+                </span>
+            </div>
+        ));
 
-        console.log(this.state.disabled)
+        console.log(this.props.userInfo);
+
         return (
             <div>
                 <MuiThemeProvider>
                     <Dialog
-                        title="Vardas Pavarde"
                         actions={actions}
                         modal={true}
                         open={this.props.open}
                     >
+
+                        {user}
                         <Checkbox
                             label="Suspend User"
                             onCheck={this.handleToggle}

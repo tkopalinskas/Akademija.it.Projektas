@@ -2,31 +2,28 @@ import React, { Component } from 'react';
 import {
     Table,
     TableBody,
-    TableFooter,
     TableHeader,
     TableHeaderColumn,
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Divider from 'material-ui/Divider';
 import Search from 'material-ui/svg-icons/action/search';
 import axios from 'axios'
 import InformationModal from './InformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
-const styles = {
-    propContainer: {
-        width: 200,
-        overflow: 'hidden',
-        margin: '20px auto 0',
-    },
-    propToggleHeader: {
-        margin: '20px auto 10px',
-    },
-};
+// const styles = {
+//     propContainer: {
+//         width: 200,
+//         overflow: 'hidden',
+//         margin: '20px auto 0',
+//     },
+//     propToggleHeader: {
+//         margin: '20px auto 10px',
+//     },
+// };
 
 export default class ListofPatients extends Component {
     constructor(props) {
@@ -42,9 +39,9 @@ export default class ListofPatients extends Component {
             deselectOnClickaway: true,
             showCheckboxes: false,
             height: '480px',
-            patientGet: [],
             showModal: false,
-            disabled: true
+            disabled: true,
+            patientGet:[]
         };
     }
 
@@ -58,8 +55,10 @@ export default class ListofPatients extends Component {
         this.setState({ height: event.target.value });
     };
 
-    openModal = () => {
-        this.setState({ showModal: !this.state.showModal })
+    openModal = (userName) => {
+        axios.get(`http://localhost:8081/admin/patient/${userName}`)
+            .then((response) => { this.setState({ userInfo: response.data }) })
+            .then(this.setState({ showModal: !this.state.showModal }))
     }
 
     componentWillMount = () => {
@@ -70,12 +69,12 @@ export default class ListofPatients extends Component {
 
     render() {
         var adminListComponenet = this.state.patientGet.map((patients, index) => (
-            <TableRow key={index} onClick={this.openModal}>
+            <TableRow key={index}>
                 <TableRowColumn>{index}</TableRowColumn>
                 <TableRowColumn>{patients.firstName + " " + patients.lastName}</TableRowColumn>
-                <TableRowColumn>Username</TableRowColumn>
-                <TableRowColumn>patient</TableRowColumn>
-                <TableRowColumn><FlatButton label="Info" primary={true} onClick={this.openModal} /></TableRowColumn>
+                <TableRowColumn>{patients.userName}</TableRowColumn>
+                <TableRowColumn>{patients.role}</TableRowColumn>
+                <TableRowColumn><FlatButton label="Info" primary={true} onClick ={() => this.openModal(patients.userName)} /></TableRowColumn>
             </TableRow>
         ))
 
@@ -85,8 +84,8 @@ export default class ListofPatients extends Component {
 
         console.log(this.state.disabled)
         return (
-            <MuiThemeProvider>
-                <div>
+            <div>
+                <MuiThemeProvider>
                     <Table
                         height={this.state.height}
                         fixedHeader={this.state.fixedHeader}
@@ -111,8 +110,8 @@ export default class ListofPatients extends Component {
                                 <TableHeaderColumn>ID</TableHeaderColumn>
                                 <TableHeaderColumn>Vardas</TableHeaderColumn>
                                 <TableHeaderColumn>Slapyvardis</TableHeaderColumn>
-                                <TableHeaderColumn>Pareigos?</TableHeaderColumn>
-                                <TableHeaderColumn>More info</TableHeaderColumn>
+                                <TableHeaderColumn>Pareigos</TableHeaderColumn>
+                                <TableHeaderColumn>Daugiau info</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
                         <TableBody
@@ -120,21 +119,14 @@ export default class ListofPatients extends Component {
                             deselectOnClickaway={this.state.deselectOnClickaway}
                         >
                             {adminListComponenet}
-                            <TableRow>
-                                <TableRowColumn>1</TableRowColumn>
-                                <TableRowColumn>Name</TableRowColumn>
-                                <TableRowColumn>Username</TableRowColumn>
-                                <TableRowColumn>patient</TableRowColumn>
-                                <TableRowColumn><FlatButton label="Info" primary={true} onClick={this.openModal} /></TableRowColumn>
-                            </TableRow>
                         </TableBody>
                     </Table>
                     <InformationModal
                         open={this.state.showModal}
-                        disabled={this.state.disabled}
+                        userInfo={this.state.userInfo}
                         closeAction={this.openModal} />
-                </div>
-            </MuiThemeProvider>
+                </MuiThemeProvider>
+            </div>
         );
     }
 }

@@ -23,12 +23,24 @@ public class DoctorService {
 		List<Doctor> doctorsFromDatabase = getDoctorRepository().findAll();
 		List<DoctorForClient> doctorsForClient = doctorsFromDatabase.stream().map((doctor) -> {
 			DoctorForClient dfc = new DoctorForClient();
-			//dfc.setDoctorsFullName(doctor.getFirstName()+" " + doctor.getLastName());
+			dfc.setRole(doctor.getRole());
+			dfc.setUserName(doctor.getUserName());
+			dfc.setFirstName(doctor.getFirstName());
+			dfc.setLastName(doctor.getLastName());
+			return dfc;
+		}).collect(Collectors.toList());
+		return doctorsForClient;
+	}
+
+	public List<DoctorForClient> receiveAllDoctors(String username) {
+		List<Doctor> doctorsFromDatabase = getDoctorRepository().findByUserName(username);
+		List<DoctorForClient> doctorsForClient = doctorsFromDatabase.stream().map((doctor) -> {
+			DoctorForClient dfc = new DoctorForClient();
 			dfc.setFirstName(doctor.getFirstName());
 			dfc.setLastName(doctor.getLastName());
 			dfc.setSpecialization(doctor.getSpecialization());
-			//dfc.setNotSuspended(doctor.isNotSuspended());
-			// dfc.setWorkplace(doctor.getWorkplace());
+			dfc.setSuspended(doctor.isSuspended());
+			dfc.setRole(doctor.getRole());
 			return dfc;
 		}).collect(Collectors.toList());
 		return doctorsForClient;
@@ -50,9 +62,9 @@ public class DoctorService {
 		// doc.setWorkplace(newDoctor.getWorkplace());
 		doc.setUserName(newDoctor.getUserName());
 		doc.setPassword(passwordEncoder.encode(newDoctor.getPassword()));
-		doc.setNotSuspended(newDoctor.isNotSuspended());
+		doc.setSuspended(newDoctor.isSuspended());
 		doc.setRole("DOCTOR");
-		doc.setCodeOfUserRights("2");
+	
 		doctorRepository.save(doc);
 
 	}
@@ -64,7 +76,6 @@ public class DoctorService {
 		doc.setSpecialization(doctor.getSpecialization());
 		doc.setPassword(doctor.getPassword());
 		// doc.setWorkplace(doctor.getWorkplace());
-		//doc.setNotSuspended(doctor.isNotSuspended());
 		doctorRepository.save(doc);
 	}
 

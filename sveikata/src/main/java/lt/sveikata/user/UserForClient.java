@@ -1,11 +1,11 @@
 package lt.sveikata.user;
 
 
-public abstract class UserForClient {
+public  class UserForClient {
 
 	private long id;
 	private String userName;
-	private boolean isNotSuspended;
+	private boolean isSuspended = false;
 	private String role;
 	private  String codeOfUserRights;
 
@@ -28,17 +28,17 @@ public abstract class UserForClient {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public String getCodeOfUserRights() {
-		return codeOfUserRights;
-	}
+//	public String getCodeOfUserRights() {
+//		return codeOfUserRights;
+//	}
 	public void setCodeOfUserRights(String codeOfUserRights) {
 		this.codeOfUserRights = codeOfUserRights;
 	}
-	public boolean isNotSuspended() {
-		return isNotSuspended;
+	public boolean isSuspended() {
+		return isSuspended;
 	}
-	public void setNotSuspended(boolean isNotSuspended) {
-		this.isNotSuspended = isNotSuspended;
+	public void setSuspended(boolean isSuspended) {
+		this.isSuspended = isSuspended;
 	}
 		
 }

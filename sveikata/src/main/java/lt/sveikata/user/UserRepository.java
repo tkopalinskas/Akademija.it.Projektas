@@ -8,7 +8,7 @@ import lt.sveikata.user.User;
 @Repository
 public interface UserRepository  extends JpaRepository<User, Long>{
 	
-//	User findByUsername(String userName);
+	User findByUserName(String userName);
 //	User findByRole(String role);
 
 }

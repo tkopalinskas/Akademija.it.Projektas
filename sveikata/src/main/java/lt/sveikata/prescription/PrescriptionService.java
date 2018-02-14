@@ -18,8 +18,8 @@ public class PrescriptionService {
 		List<Prescription> prescriptionsFromDatabase = getPrescriptionRepository().findAll();
 		List<PrescriptionForClient> prescriptionsForClient = prescriptionsFromDatabase.stream().map((prescription) -> {
 			PrescriptionForClient prescr = new PrescriptionForClient();
-			prescr.setDoctorsFullName(prescription.getDoctorsFullName());
-			prescr.setPrescriptionDate(prescription.getPrescriptionDate());
+//			prescr.setDoctorsFullName(prescription.getDoctorsFullName());
+//			prescr.setPrescriptionDate(prescription.getPrescriptionDate());
 			prescr.setPatientsPersonalCode(prescription.getPatientsPersonalCode());
 			prescr.setValidUntil(prescription.getValidUntil());
 			prescr.setActiveIngredient(prescription.getActiveIngredient());

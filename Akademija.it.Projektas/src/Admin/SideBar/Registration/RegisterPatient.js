@@ -133,6 +133,7 @@ dataIsValid(){
       <div>
         <MuiThemeProvider>
           <div>
+          <h2> Registruoti Pacientą </h2>
             <TextField
               hintText="Įveskite vardą"
               errorText="Privalomas laukas"

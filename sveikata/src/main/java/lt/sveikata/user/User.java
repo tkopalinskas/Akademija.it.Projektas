@@ -2,35 +2,34 @@ package lt.sveikata.user;
 
 import javax.persistence.*;
 
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name="USERS")
-@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorValue(value = "SUPER_CLASS")
-public abstract class User {
-	
-	private long id;
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User  {
+
 	private String userName;
+	@NotBlank
 	private String password;
-	private boolean isNotSuspended;
+	private boolean isSuspended = false;
 	private String role;
-	private String codeOfUserRights;
-	
-	
+
+	 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name ="id", updatable = false, nullable =false)
-	
-	public long getId() {
-	return id;
-			}
-	
-	public void setId(long id) {
-		this.id=id;
-	}
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "user_id", updatable = false, nullable = false)
+	private long userId;
 
 	public String getUserName() {
 		return userName;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 	public void setUserName(String userName) {
@@ -45,7 +44,6 @@ public abstract class User {
 		this.password = password;
 	}
 
-
 	public String getRole() {
 		return role;
 	}
@@ -54,20 +52,13 @@ public abstract class User {
 		this.role = role;
 	}
 
-	public String getCodeOfUserRights() {
-		return codeOfUserRights;
+	public boolean isSuspended() {
+		return isSuspended;
 	}
 
-	public void setCodeOfUserRights(String codeOfUserRights) {
-		this.codeOfUserRights = codeOfUserRights;
+	public void setSuspended(boolean isSuspended) {
+		this.isSuspended = isSuspended;
 	}
 
-	public boolean isNotSuspended() {
-		return isNotSuspended;
-	}
-
-	public void setNotSuspended(boolean isNotSuspended) {
-		this.isNotSuspended = isNotSuspended;
-	}
-	
 }
+

@@ -23,9 +23,25 @@ public class AdminService {
 		List<Admin> adminsFromDatabase = getAdminRepository().findAll();
 		List<AdminForClient> adminsForClient = adminsFromDatabase.stream().map((admin) -> {
 			AdminForClient adm = new AdminForClient();
+			adm.setRole(admin.getRole());
 			adm.setFirstName(admin.getFirstName());
 			adm.setLastName(admin.getLastName());
-			adm.setNotSuspended(admin.isNotSuspended());
+			adm.setSuspended(admin.isSuspended());
+			adm.setUserName(admin.getUserName());
+			return adm;
+		}).collect(Collectors.toList());
+		return adminsForClient;
+	}
+
+	public List<AdminForClient> receiveAllAdmins(String userName) {
+		List<Admin> adminsFromDatabase = getAdminRepository().findByUserName(userName);
+		List<AdminForClient> adminsForClient = adminsFromDatabase.stream().map((admin) -> {
+			AdminForClient adm = new AdminForClient();
+			adm.setFirstName(admin.getFirstName());
+			adm.setLastName(admin.getLastName());
+			adm.setUserName(admin.getUserName());
+			adm.setRole(admin.getRole());
+			adm.setSuspended(admin.isSuspended());
 			return adm;
 		}).collect(Collectors.toList());
 		return adminsForClient;
@@ -46,22 +62,17 @@ public class AdminService {
 		adm.setUserName(newAdmin.getUserName());
 		adm.setPassword(passwordEncoder.encode(newAdmin.getPassword()));
 		adm.setRole("ADMIN");
-		adm.setCodeOfUserRights("1");
-		adm.setNotSuspended(newAdmin.isNotSuspended());
+		adm.setSuspended(newAdmin.isSuspended());
 		adminRepository.save(adm);
 
 	}
 
-//	public void deleteAdmin(Long id) {
-//		adminRepository.delete(id);
-//	}
 
 	public void updateAdmin(Admin admin, Long id) {
 		Admin adm = adminRepository.findOne(id);
 		adm.setFirstName(admin.getFirstName());
 		adm.setLastName(admin.getLastName());
 		adm.setPassword(passwordEncoder.encode(admin.getPassword()));
-		//adm.setNotSuspended(admin.isNotSuspended());
 		adminRepository.save(adm);
 	}
 

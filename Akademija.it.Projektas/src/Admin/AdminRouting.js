@@ -6,7 +6,7 @@ import RegisterPatient from './SideBar/Registration/RegisterPatient';
 import RegisterPharmacist from './SideBar/Registration/RegisterPharmacist';
 import ListofAdmins from './DropdownLists/ListofAdmins';
 import ListofDoctors from './DropdownLists/ListofDoctors';
-import ListofPatients from './DropdownLists/test';
+import ListofPatients from './DropdownLists/ListofPatients';
 import ListofPharmacists from './DropdownLists/ListofPharmacists';
 
 class AdminRouting extends Component {

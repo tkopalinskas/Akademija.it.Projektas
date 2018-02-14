@@ -1,16 +1,15 @@
 package lt.sveikata.patient;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
+import lt.sveikata.doctor.Doctor;
 import lt.sveikata.user.User;
 
-
 @Entity
-@DiscriminatorValue("Patient")
-public class Patient extends User{
+@Table(name = "PATIENT")
+@PrimaryKeyJoinColumn(name = "patientId")
+//@DiscriminatorValue("Patient")
+public class Patient extends User {
 
 	@Column(unique = true)
 	private long personalId;
@@ -20,11 +19,11 @@ public class Patient extends User{
 	private String lastName;
 	private String dateOfBirth;
 
-	private String doctorsFullName;
+//	private String doctorsFullName;
 
-
-	// private List<Visit> listOfVisits;
-
+    @ManyToOne
+    @JoinColumn(name="doctorId")
+	private Doctor doctor;
 
 
 	public String getFirstName() {
@@ -59,14 +58,13 @@ public class Patient extends User{
 		this.personalId = personalId;
 	}
 
-
-
-	public String getDoctorsFullName() {
-		return doctorsFullName;
+	public Doctor getDoctor() {
+		return doctor;
 	}
 
-	public void setDoctorsFullName(String doctorsFullName) {
-		this.doctorsFullName = doctorsFullName;
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
-
+	
 }
+

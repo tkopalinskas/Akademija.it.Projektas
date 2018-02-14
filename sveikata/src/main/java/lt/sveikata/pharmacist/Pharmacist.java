@@ -1,16 +1,17 @@
 package lt.sveikata.pharmacist;
 
-
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import lt.sveikata.user.User;
 
-
 @Entity
-@DiscriminatorValue("Pharmacist")
-public class Pharmacist extends User{
+@Table(name = "PHARMACIST")
+@PrimaryKeyJoinColumn(name = "pharmacistId")
+// @DiscriminatorValue("Pharmacist")
+public class Pharmacist extends User {
 
 	private String firstName;
 	@NotNull
@@ -18,8 +19,6 @@ public class Pharmacist extends User{
 	@NotNull
 	private String workplace;
 	private String typeOfWorkplace;
-
-
 
 	public String getFirstName() {
 		return firstName;
@@ -52,7 +51,6 @@ public class Pharmacist extends User{
 	public void setTypeOfWorkplace(String typeOfWorkplace) {
 		this.typeOfWorkplace = typeOfWorkplace;
 	}
-
 
 }
 
