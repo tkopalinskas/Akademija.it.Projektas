@@ -1,6 +1,5 @@
 package lt.sveikata.prescription;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -22,7 +21,7 @@ public class Prescription {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long prescriptionId;
-	private String doctorsFullName;
+	//private String doctorsFullName;
 	private String prescriptionDate;
 	private String patientsPersonalCode;
 	private String validUntil;

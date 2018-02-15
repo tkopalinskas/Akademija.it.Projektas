@@ -28,13 +28,14 @@ class SideBarMain extends Component {
         return (
             <div>
                 <Drawer open={this.state.open}
+                /* width={170} */
                 onRequestChange={this.state.closeAction}
                 className="drawerStyles">
                 
                 
                     <AppBar title={<span>Meniu</span>}
                         showMenuIconButton={false} />
-                    <MenuItem onClick={this.handleToggle.bind(this, "showRegisterOptions")}>Naujų vartotojų registracija</MenuItem>
+                    <MenuItem onClick={this.handleToggle.bind(this, "showRegisterOptions")}>Naujų vartotojų  registracija</MenuItem>
                     <MenuItem onClick={this.handleToggle.bind(this, "showPatientGetDoctor")}>Priskirti pacientą daktarui</MenuItem>
                     <MenuItem onClick={this.handleToggle.bind(this, "showUserManagementOptions")}>Vartotojų sarašas</MenuItem>
                 </Drawer>

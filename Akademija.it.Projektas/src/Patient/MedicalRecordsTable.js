@@ -55,7 +55,7 @@ class MedicalRecordsTable extends Component {
               <TableRowColumn>{records.dateOfVisit}</TableRowColumn>
               <TableRowColumn>{records.illnessTLKCode}</TableRowColumn>
               <TableRowColumn>{records.doctorsFullName}</TableRowColumn>
-              <TableRowColumn>{records.description}<FlatButton label="Info" primary={true} /* onClick={this.openModal} */ /></TableRowColumn>
+              <TableRowColumn><FlatButton label="Info" primary={true} /* onClick={this.openModal} */ /></TableRowColumn>
           </TableRow>
       ))
 
@@ -102,12 +102,12 @@ class MedicalRecordsTable extends Component {
                       wordWrap: "break-word"
                     }} 
                     tooltip="Gydytojo vardas">Gydytojo vardas</TableHeaderColumn>
-                  <TableHeaderColumn 
+                    <TableHeaderColumn 
                     style={{
                       whiteSpace: "normal",
                       wordWrap: "break-word"
                     }} 
-                    tooltip="Aprašymas">Aprašymas</TableHeaderColumn>
+                    tooltip="Info">Informacija</TableHeaderColumn>
                 </TableRow>
               </TableHeader>
               <TableBody
@@ -116,12 +116,12 @@ class MedicalRecordsTable extends Component {
                 showRowHover={this.state.showRowHover}
               >
                { allMedicalRecords}
-                  <TableRow >
+                  {/* <TableRow >
                     <TableRowColumn>dateOfVisit</TableRowColumn>
                     <TableRowColumn>illnessTLKCode</TableRowColumn>
                     <TableRowColumn>doctorsFullName</TableRowColumn>
-                    <TableRowColumn>description<FlatButton label="Info" primary={true} /* onClick={this.openModal} */ /></TableRowColumn>
-                  </TableRow>
+                    <TableRowColumn>description<FlatButton label="Info" primary={true} /* onClick={this.openModal} */ /*/></TableRowColumn>
+                  </TableRow> */}
               </TableBody>
             </Table> 
         </div>

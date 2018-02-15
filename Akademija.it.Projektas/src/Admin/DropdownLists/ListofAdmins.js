@@ -2,22 +2,19 @@ import React, { Component } from 'react';
 import {
     Table,
     TableBody,
-    TableFooter,
     TableHeader,
     TableHeaderColumn,
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
-import Toggle from 'material-ui/Toggle';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Divider from 'material-ui/Divider';
 import Search from 'material-ui/svg-icons/action/search';
 import axios from 'axios'
 import InformationModal from './InformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
-const styles = {
+/* const styles = {
     propContainer: {
         width: 200,
         overflow: 'hidden',
@@ -26,7 +23,7 @@ const styles = {
     propToggleHeader: {
         margin: '20px auto 10px',
     },
-};
+}; */
 
 export default class ListofAdmins extends Component {
     constructor(props) {
@@ -90,8 +87,8 @@ export default class ListofAdmins extends Component {
             return null;
         }
         return (
-            <div>
-                <MuiThemeProvider>
+            <MuiThemeProvider>
+                <div>
                     <Table
                         height={this.state.height}
                         fixedHeader={this.state.fixedHeader}
@@ -132,8 +129,8 @@ export default class ListofAdmins extends Component {
                         open={this.state.showModal}
                         closeAction={this.openModal}
                         userInfo={this.state.userInfo} />
-                </MuiThemeProvider>
-            </div>
+                </div>
+            </MuiThemeProvider>       
         );
     }
 }

@@ -1,7 +1,6 @@
 package lt.sveikata.medicalRecords;
 
-
-import java.util.Date;
+//import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,41 +24,36 @@ public class Record {
 	private long recordId;
 	@NotNull
 	@Column
-	@Type(type="date")
-	private Date dateOfVisit;
+	//@Type(type = "date")
+	private String dateOfVisit;
 	private String illnessTLKCode;
+	private String doctorsFullName;
 	private int lengthOfVisit;
 	private String description;
 	private boolean isCompensated;
 	private boolean visitIsRepeated;
-	
+
 	@ManyToOne
-	@JoinColumn(name= "patientId")
+	@JoinColumn(name = "patientId")
 	private Patient patient;
 
-	
 	@ManyToOne
-    @JoinColumn(name="doctorId")
+	@JoinColumn(name = "doctorId")
 	private Doctor doctor;
-
-
 
 	public long getRecordId() {
 		return recordId;
 	}
 
-
 	public void setRecordId(long recordId) {
 		this.recordId = recordId;
 	}
 
-
-	public Date getDateOfVisit() {
+	public String getDateOfVisit() {
 		return dateOfVisit;
 	}
 
-
-	public void setDateOfVisit(Date dateOfVisit) {
+	public void setDateOfVisit(String dateOfVisit) {
 		this.dateOfVisit = dateOfVisit;
 	}
 
@@ -69,6 +63,14 @@ public class Record {
 
 	public void setIllnessTLKCode(String illnessTLKCode) {
 		this.illnessTLKCode = illnessTLKCode;
+	}
+
+	public String getDoctorsFullName() {
+		return doctorsFullName;
+	}
+
+	public void setDoctorsFullName(String doctorsFullName) {
+		this.doctorsFullName = doctorsFullName;
 	}
 
 	public int getLengthOfVisit() {

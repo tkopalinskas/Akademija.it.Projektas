@@ -1,10 +1,10 @@
 package lt.sveikata.medicalRecords;
 
-import java.util.Calendar;
+//import java.time.LocalDate;
 
 public class RecordForClient {
 
-	//private Calendar dateOfVisit;
+	private String dateOfVisit;
 	private String illnessTLKCode;
 	private String doctorsFullName;
 	private int lengthOfVisit;
@@ -12,13 +12,13 @@ public class RecordForClient {
 	private boolean isCompensated;
 	private boolean visitIsRepeated;
 
-//	public Calendar getDateOfVisit() {
-//		return dateOfVisit;
-//	}
-//
-//	public void setDateOfVisit(Calendar calendar) {
-//		this.dateOfVisit = calendar;
-//	}
+	public String getDateOfVisit() {
+		return dateOfVisit;
+	}
+
+	public void setDateOfVisit(String dateOfVisit) {
+		this.dateOfVisit = dateOfVisit;
+	}
 
 	public String getIllnessTLKCode() {
 		return illnessTLKCode;

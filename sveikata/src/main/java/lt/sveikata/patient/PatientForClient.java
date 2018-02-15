@@ -2,7 +2,6 @@ package lt.sveikata.patient;
 
 
 import lt.sveikata.doctor.Doctor;
-import lt.sveikata.user.UserForClient;
 
 public class PatientForClient {
 	

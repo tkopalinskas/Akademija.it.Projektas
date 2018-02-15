@@ -48,12 +48,14 @@ class PharmacistsPrescriptionsTable extends Component {
       console.log(number);
       axios.get(`http://localhost:8081/pharmacist/prescriptions/`+ {number})
           .then((response) => { this.setState({ validPrescriptionInfo: response.data }) })
-          .then(
-            this.setState({ showModal: !this.state.showModal }))
+                  this.setState({ showModal: !this.state.showModal })
+          .catch((error) => {
+            console.log(error);
+          }); 
   }
 
   /*get valid patient's prescriptions*/
-    componentWillMount() {
+    /* componentWillMount() {
        axios
             .get("http://localhost:8081/pharmacist/prescriptions")
             .then((response) => {
@@ -63,8 +65,9 @@ class PharmacistsPrescriptionsTable extends Component {
             .catch((error) => {
                 console.log(error);
             }); 
+            console.log(this.state)
     }
-
+ */
     render() {
 
       console.log(this.state.validPrescriptionInfo);
@@ -144,7 +147,7 @@ class PharmacistsPrescriptionsTable extends Component {
             >
               { allPrescriptions}
               {<TableRow>
-                <TableRowColumn>{/* validUntil */}</TableRowColumn>
+                <TableRowColumn> {/* validUntil */} </TableRowColumn>
                 <TableRowColumn>{/* prescriptionDate */}</TableRowColumn>
                 <TableRowColumn>{/* timesUsed */}</TableRowColumn>
                 <TableRowColumn>{/* activeIngredient */}</TableRowColumn>

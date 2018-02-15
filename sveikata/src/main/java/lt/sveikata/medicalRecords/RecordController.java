@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,24 +22,17 @@ public class RecordController {
 		return getVisitService().receiveAllVisits();
 	}
 
-	@RequestMapping(value = "/medicalRecords/addNew", method = RequestMethod.POST)
+	@RequestMapping(value = "/addNewRecord", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createVisit(@RequestBody final AddNewRecord newVisit) {
 		visitService.addNewVisit(newVisit);
 	}
 
-	// @RequestMapping(value = "/doctor/visit/manageVisit", path =
-	// "/{id}", method = RequestMethod.DELETE)
-	// @ResponseStatus(HttpStatus.NO_CONTENT)
-	// public void deleteVisitFromDatabase(@PathVariable final Long id) {
-	// visitService.deleteVisit(id);
-	// }
-
-	@RequestMapping(value = "/doctor/visit/manageVisit/{id}", method = RequestMethod.PATCH)
-	@ResponseStatus(HttpStatus.CREATED)
-	public void updateExistingVisit(@RequestBody final Record visit, @PathVariable final Long id) {
-		visitService.updateVisit(visit, id);
-	}
+//	@RequestMapping(value = "/doctor/visit/manageVisit/{id}", method = RequestMethod.PATCH)
+//	@ResponseStatus(HttpStatus.CREATED)
+//	public void updateExistingVisit(@RequestBody final Record visit, @PathVariable final Long id) {
+//		visitService.updateVisit(visit, id);
+//	}
 
 	public RecordService getVisitService() {
 		return visitService;

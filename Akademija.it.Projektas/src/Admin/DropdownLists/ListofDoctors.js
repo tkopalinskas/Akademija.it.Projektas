@@ -84,8 +84,8 @@ export default class ListofDoctors extends Component {
 
         console.log(this.state.disabled)
         return (
-            <div>
-                <MuiThemeProvider>
+            <MuiThemeProvider>
+                <div>
                     <Table
                         height={this.state.height}
                         fixedHeader={this.state.fixedHeader}
@@ -126,8 +126,8 @@ export default class ListofDoctors extends Component {
                         closeAction={this.openModal}
                         userInfo={this.state.userInfo}
                     />
-                </MuiThemeProvider>
-            </div>
+                </div>
+            </MuiThemeProvider>
         );
     }
 }

@@ -20,11 +20,13 @@ public class PrescriptionController {
 	@Autowired
 	private PrescriptionService prescriptionService;
 
+	/*gets all prescriptions from database*/
 	@RequestMapping(value = "/prescriptions", method = RequestMethod.GET)
 	public List<PrescriptionForClient> giveAllPrescriptions() {
 		return getPrescriptionService().receiveAllPrescriptions();
 	}
 
+	/*gets a specified prescription from database, searches by number*/
 	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)
 	public Prescription singlePrescription(@PathVariable("number") String Strnumber) {
 		System.out.println(Strnumber);
@@ -32,19 +34,14 @@ public class PrescriptionController {
 		return prescriptionService.receivePrescriptionInfo(number);
 	}
 
+	/*adds a new prescription to database*/
 	@RequestMapping(value = "/addNewPrescription", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createPrescription(@RequestBody final AddNewPrescription newPrescription) {
 		prescriptionService.addNewPrescription(newPrescription);
 	}
 
-	// @RequestMapping(value = "/doctor/prescription/managePrescription", path =
-	// "/{id}", method = RequestMethod.DELETE)
-	// @ResponseStatus(HttpStatus.NO_CONTENT)
-	// public void deletePrescriptionFromDatabase(@PathVariable final Long id) {
-	// prescriptionService.deletePrescription(id);
-	// }
-
+	/*will be used to mark a prescription as used or invalid. doesn't work yet*/
 	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void updateExistingPrescription(@RequestBody final Prescription prescription,

@@ -4,7 +4,7 @@ import {orange500, blue500} from 'material-ui/styles/colors';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import axios from 'axios';
-import {API} from "../../Admin/Registration/HostUrl";
+import {API} from "../../Admin/SideBar/Registration/HostUrl";
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';

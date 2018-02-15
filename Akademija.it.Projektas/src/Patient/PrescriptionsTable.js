@@ -80,7 +80,7 @@ class PrescriptionsTable extends Component {
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn>{prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn>{prescription.description}<FlatButton label="Info" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
+            <TableRowColumn><FlatButton label="Info" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
         </TableRow>
     ))
 
@@ -138,8 +138,9 @@ console.log(this.state.prescriptionInfo)
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }} 
-                  tooltip="Aprašymas">Aprašymas</TableHeaderColumn>
+                  tooltip="Info">Informacija</TableHeaderColumn>
               </TableRow>
+              
             </TableHeader>
         
             <TableBody
@@ -158,7 +159,6 @@ console.log(this.state.prescriptionInfo)
             </TableBody>
             
           </Table>
-          <p> bla{this.state.showModal}bla</p>
           <InformationModal
                         open={this.state.showModal}
                         closeAction={this.openModal}
