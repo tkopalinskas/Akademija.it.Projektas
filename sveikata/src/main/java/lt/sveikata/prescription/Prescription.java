@@ -22,13 +22,16 @@ public class Prescription {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long prescriptionId;
-	private Date prescriptionDate;
+	private String doctorsFullName;
+	private String prescriptionDate;
 	private String patientsPersonalCode;
-	private int validUntil;
+	private String validUntil;
 	private String activeIngredient;
 	private String amountPerDose;
 	private String units;
 	private String description;
+	private long number;
+	private int timesUsed;
 	
 	
 	@OneToMany(mappedBy="prescription")
@@ -52,11 +55,11 @@ public class Prescription {
 		this.prescriptionId = prescriptionId;
 	}
 
-	public Date getPrescriptionDate() {
+	public String getPrescriptionDate() {
 		return prescriptionDate;
 	}
 
-	public void setPrescriptionDate(Date prescriptionDate) {
+	public void setPrescriptionDate(String prescriptionDate) {
 		this.prescriptionDate = prescriptionDate;
 	}
 
@@ -68,11 +71,11 @@ public class Prescription {
 		this.patientsPersonalCode = patientsPersonalCode;
 	}
 
-	public int getValidUntil() {
+	public String getValidUntil() {
 		return validUntil;
 	}
 
-	public void setValidUntil(int validUntil) {
+	public void setValidUntil(String validUntil) {
 		this.validUntil = validUntil;
 	}
 
@@ -107,4 +110,21 @@ public class Prescription {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public long getNumber() {
+		return number;
+	}
+
+	public void setNumber(long number) {
+		this.number = number;
+	}
+
+	public int getTimesUsed() {
+		return timesUsed;
+	}
+
+	public void setTimesUsed(int timesUsed) {
+		this.timesUsed = timesUsed;
+	}
+
 }

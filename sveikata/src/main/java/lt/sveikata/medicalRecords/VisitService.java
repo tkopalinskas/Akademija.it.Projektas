@@ -1,8 +1,8 @@
 package lt.sveikata.medicalRecords;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class VisitService {
 		List<Visit> visitsFromDatabase = getVisitRepository().findAll();
 		List<VisitForClient> visitsForClient = visitsFromDatabase.stream().map((visit) -> {
 			VisitForClient vfc = new VisitForClient();
-			//vfc.setDateOfVisit(Calendar.getInstance());
+			vfc.setDateOfVisit(visit.getDateOfVisit());
 			vfc.setIllnessTLKCode(visit.getIllnessTLKCode());
 			vfc.setDoctorsFullName(visit.getDoctorsFullName());
 			vfc.setLengthOfVisit(visit.getLengthOfVisit());
@@ -31,17 +31,11 @@ public class VisitService {
 		return visitsForClient;
 	}
 
-	public VisitRepository getVisitRepository() {
-		return visitRepository;
-	}
 
-	public void setVisitRepository(VisitRepository visitRepository) {
-		this.visitRepository = visitRepository;
-	}
 
 	public void addNewVisit(AddNewVisit newVisit) {
 		Visit vis = new Visit();
-		//vis.setDateOfVisit(Calendar.getInstance());
+		vis.setDateOfVisit(newVisit.getDateOfVisit());
 		vis.setIllnessTLKCode(newVisit.getIllnessTLKCode());
 		vis.setDoctorsFullName(newVisit.getDoctorsFullName());
 		vis.setLengthOfVisit(newVisit.getLengthOfVisit());
@@ -51,19 +45,40 @@ public class VisitService {
 		visitRepository.save(vis);
 
 	}
+	
+
+	
+	public VisitRepository getVisitRepository() {
+		return visitRepository;
+	}
+
+	public void setVisitRepository(VisitRepository visitRepository) {
+		this.visitRepository = visitRepository;
+	}
+
+//	public LocalDate getCurrentDate() {
+//		return dateOfVisit;
+//	}
+//
+//	public void setCurrentDate(LocalDate dateOfVisit) {
+//		dateOfVisit=LocalDate.now();
+//		this.dateOfVisit = dateOfVisit;
+//	}
+
+	
 //
 //	public void deletePrescription(Long id) {
 //		prescriptionRepository.delete(id);
 //	}
 
-	public void updateVisit(Visit visit, Long id) {
-		Visit vis = visitRepository.findOne(id);
-		//vis.setDateOfVisit(Calendar.getInstance());
-		vis.setIllnessTLKCode(visit.getIllnessTLKCode());
-		vis.setLengthOfVisit(visit.getLengthOfVisit());
-		vis.setDescription(visit.getDescription());
-		vis.setCompensated(visit.isCompensated());
-		vis.setVisitIsRepeated(visit.isVisitIsRepeated());
-		visitRepository.save(visit);
-	}
+//	public void updateVisit(Visit visit, Long id) {
+//		Visit vis = visitRepository.findOne(id);
+//		vis.setDateOfVisit(visit.getDateOfVisit());
+//		vis.setIllnessTLKCode(visit.getIllnessTLKCode());
+//		vis.setLengthOfVisit(visit.getLengthOfVisit());
+//		vis.setDescription(visit.getDescription());
+//		vis.setCompensated(visit.isCompensated());
+//		vis.setVisitIsRepeated(visit.isVisitIsRepeated());
+//		visitRepository.save(visit);
+//	}
 }

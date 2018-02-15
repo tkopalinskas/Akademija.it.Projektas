@@ -25,7 +25,7 @@ class AdminRouting extends Component {
                     <Route exact path="/admin/alldoctors" component={ListofDoctors} />
                     <Route exact path="/admin/allpatients" component={ListofPatients} />
                     <Route exact path="/admin/allpharmacists" component={ListofPharmacists} />
-                    <Route exact path="/admin/changepassword" component={AdminPasswordChangeComponent}/>
+                    <Route exact path="/admin/changepassword" component={AdminPasswordChangeComponent} />
                 </Switch>
             </main>
         );

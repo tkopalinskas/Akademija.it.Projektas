@@ -4,11 +4,10 @@ import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FontIcon from 'material-ui/FontIcon';
-//import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import { Link } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
-import PatientWindowNavigation from './PatientWindowNavigation';
+import PharmacistWindowNavigation from './PharmacistWindowNavigation';
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
@@ -21,12 +20,11 @@ const containerStyle={
     padding: 0,
 }
 
-class PatientContainer extends Component{
+class PharmacistContainer extends Component{
     constructor(){
         super();
         this.state ={
             userName: 'user',
-            medicalRecords: [],
             prescriptions: [],
             open: true,
             leftDrop: false,
@@ -87,7 +85,7 @@ class PatientContainer extends Component{
                         anchorEl={this.state.anchorEl}
                         onRequestClose={this.handleRequestClose}
                     >
-                            <MenuItem containerElement={<Link to="/patient/changePassword" />}
+                            <MenuItem containerElement={<Link to="/pharmacist/changePassword" />}
                                       primaryText="Pakeisti slaptažodį"/>   
                             <MenuItem containerElement={<Link to="/" />}
                                       primaryText="Atsijungti"/>
@@ -100,23 +98,16 @@ class PatientContainer extends Component{
                 <Row style={rowStyle}>
                 <Col xs="2" md="2">
                 <Drawer open={this.state.open} width={170}>
-                        <AppBar showMenuIconButton={false} 
-                       /*  iconElementLeft={<div>
-                            <FontIcon className="muidocs-icon-action-home" /><ArrowBack onClick={this.props.closeAction} />
-                                        </div>} */>
-                        </AppBar>
-                    <MenuItem containerElement={<Link to="/patient/medicalRecords" />}
-                              leftIcon={
-                                <FontIcon className="material-icons">Ligos įrašai</FontIcon>
-                    }/>       
-                    <MenuItem containerElement={<Link to="/patient/prescriptions" />}
+                        <AppBar showMenuIconButton={false}>
+                        </AppBar>      
+                    <MenuItem containerElement={<Link to="/pharmacist/prescriptions" />}
                               leftIcon={
                                 <FontIcon className="material-icons">Receptai</FontIcon>
                     }/>       
                 </Drawer>
                 </Col>
                 <Col xs="10" md="10">
-                    <PatientWindowNavigation/>
+                    <PharmacistWindowNavigation/>
                 </Col>
             </Row>
             </Container> 
@@ -126,4 +117,4 @@ class PatientContainer extends Component{
         );
     }
 }
-export default PatientContainer;
+export default PharmacistContainer;

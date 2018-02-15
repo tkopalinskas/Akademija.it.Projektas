@@ -5,10 +5,8 @@ import App from './App';
 import Admin from './Admin/Admin';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import AdminPasswordChangeComponent from './Admin/PasswordChange/AdminPasswordChangeComponent';
-//import PatientPasswordChangeComponent from './Patient/PasswordChange/PatientPasswordChangeComponent';
 import PatientContainer from './Patient/PatientContainer';
-//import PrescriptionsTable from './Patient/PrescriptionsTable';
-//import MedicalRecordsTable from './Patient/MedicalRecordsTable';
+import PharmacistContainer from './Pharmacist/PharmacistContainer';
 
 
 ReactDOM.render(
