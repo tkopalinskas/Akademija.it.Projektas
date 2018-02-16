@@ -5,6 +5,7 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 
 
@@ -48,8 +49,10 @@ class TopBar extends Component {
                         onRequestClose={this.handleRequestClose}
                     >
                         <Menu>
-                            <MenuItem primaryText="Pakeisti slapatažodį" />
-                            <MenuItem primaryText="Atsijungti" />
+                            <MenuItem primaryText="Pakeisti slapatažodį" 
+                            containerElement={<Link to="/admin/changePassword" />}/>
+                            <MenuItem primaryText="Atsijungti" 
+                            containerElement={<Link to="/" />}/>
                         </Menu>
                     </Popover>
                 </div>    
