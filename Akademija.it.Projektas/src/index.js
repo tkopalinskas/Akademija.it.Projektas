@@ -16,7 +16,6 @@ ReactDOM.render(
             <Route exact path="/admin/" name="loginToAdmin" component={Admin} />
             <Route path="/patient/" name="loginToPatient" component={PatientContainer} />
             <Route path="/pharmacist/" name="loginToPharmacist" component={PharmacistContainer} />
-           {/*  <Route path="/admin/changePassword" name="changeAdminsPassword" component={AdminPasswordChangeComponent} /> */}
             <Admin />
         </Switch>
     </HashRouter>,
