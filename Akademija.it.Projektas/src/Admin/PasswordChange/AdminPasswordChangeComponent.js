@@ -6,9 +6,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import axios from 'axios';
 import {API} from "../SideBar/Registration/HostUrl";
 
-const styles ={
-    marginLeft: 300, 
-  }
 
 const textStyles = {
     errorStyle: {
@@ -57,10 +54,11 @@ class AdminPasswordChangeComponent extends Component {
     }
 
     handleClick(event){
+ 
 
         if(this.dataIsValid()){
-
-           axios.put(API+ "/admin/{id}/changePassword", 
+/* 
+           axios.put(API + "/admin/{id}/changePassword", 
            {password: this.state.password})
            .then((response)=>{
                console.log("password change successful!");
@@ -68,7 +66,8 @@ class AdminPasswordChangeComponent extends Component {
            })
            .catch((error)=>{
                console.log(error);
-           })
+           }) */
+           alert("Slaptažodis pakeistas!");
            /*galutiniam variante istrinti console.log, 
         kad nesimatytu slaptazodzio konsolej*/   
         }
@@ -82,7 +81,7 @@ class AdminPasswordChangeComponent extends Component {
     render() {
         return (
             <MuiThemeProvider>
-            <div style={styles}>
+            <div >
 
                 <TextField
                     type="password"

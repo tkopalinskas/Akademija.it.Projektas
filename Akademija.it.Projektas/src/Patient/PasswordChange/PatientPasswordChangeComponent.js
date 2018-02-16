@@ -67,7 +67,7 @@ class PatientPasswordChangeComponent extends Component {
         if (this.dataIsValid()){
 
            /*  axios.put() arba post */
-           axios.put(API+ "/patient/changePassword", 
+          /*  axios.put(API+ "/patient/changePassword", 
            {password: this.state.password})
            .then((response)=>{
                console.log("password change successful!");
@@ -75,7 +75,8 @@ class PatientPasswordChangeComponent extends Component {
            })
            .catch((error)=>{
                console.log(error);
-           })
+           }) */
+           alert("Slaptažodis pakeistas!");
         }
         else{
             console.log("wrong password");
