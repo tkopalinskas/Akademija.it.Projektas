@@ -101,8 +101,9 @@ class PatientPasswordChangeComponent extends Component {
             <div>
             <Container fluid={true} style={containerStyle}>
                 <Row style={rowStyle}>
-                <Col xs="12" md="12">
+                <Col md="12">
                 <TextField
+                    className="password"
                     type="password"
                     hintText="Įveskite dabartinį slaptažodį"
                     errorText="Privalomas laukas"
@@ -113,6 +114,7 @@ class PatientPasswordChangeComponent extends Component {
                 />
                 <br />
                 <TextField
+                    className="newPassword"
                     type="password"
                     hintText="Nuo 6 iki 30 simbolių"
                     errorText="Privalomas laukas"
@@ -123,6 +125,7 @@ class PatientPasswordChangeComponent extends Component {
                 />
                 <br />
                 <TextField
+                    className="confirmPassword"
                     type="password"
                     hintText="Nuo 6 iki 30 simbolių"
                     errorText="Privalomas laukas"
@@ -132,7 +135,7 @@ class PatientPasswordChangeComponent extends Component {
                     onChange={(event, newValue) => this.setState({ confirmPassword: newValue })}
                 />
                 <br />
-                <RaisedButton label="Siųsti" primary={true} onClick={(event) => this.handleClick(event)} />
+                <RaisedButton className="submitButton" label="Siųsti" primary={true} onClick={(event) => this.handleClick(event)} />
                 </Col>
             </Row>
             </Container>

@@ -6,7 +6,17 @@ import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import axios from 'axios';
 import {API} from "../SideBar/Registration/HostUrl";
+import Container from 'muicss/lib/react/container';
+import Row from 'muicss/lib/react/row';
+import Col from 'muicss/lib/react/col';
 
+const rowStyle={
+    margin: 0,
+}
+
+const containerStyle={
+    paddingLeft: 50,
+}
 
 const textStyles = {
     errorStyle: {
@@ -83,8 +93,11 @@ class AdminPasswordChangeComponent extends Component {
         return (
             <MuiThemeProvider>
             <div >
-
+            <Container fluid={true} style={containerStyle}>
+                <Row style={rowStyle}>
+                <Col md="12">
                 <TextField
+                    className="password"
                     type="password"
                     hintText="Įveskite dabartinį slaptažodį"
                     errorText="Privalomas laukas"
@@ -95,6 +108,7 @@ class AdminPasswordChangeComponent extends Component {
                 />
                 <br />
                 <TextField
+                    className="newPassword"
                     type="password"
                     hintText="Nuo 6 iki 30 simbolių"
                     errorText="Privalomas laukas"
@@ -105,6 +119,7 @@ class AdminPasswordChangeComponent extends Component {
                 />
                 <br />
                 <TextField
+                    className="confirmPassword"
                     type="password"
                     hintText="Nuo 6 iki 30 simbolių"
                     errorText="Privalomas laukas"
@@ -114,7 +129,10 @@ class AdminPasswordChangeComponent extends Component {
                     onChange={(event, newValue) => this.setState({ confirmPassword: newValue })}
                 />
                 <br />
-                <RaisedButton label="Siųsti" primary={true} onClick={(event) => this.handleClick(event)} />
+                <RaisedButton className="submitButton" label="Siųsti" primary={true} onClick={(event) => this.handleClick(event)} />
+                </Col>
+            </Row>
+            </Container>
             </div>
             </MuiThemeProvider>
         )

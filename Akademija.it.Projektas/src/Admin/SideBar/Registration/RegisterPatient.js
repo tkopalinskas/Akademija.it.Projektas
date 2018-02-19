@@ -37,6 +37,9 @@ class RegisterPatient extends Component {
     this.state.firstName.length<=30){
         return true;
     }
+    else{
+      alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+    }
 }
 
 validLastNameEntered(){
@@ -45,6 +48,9 @@ validLastNameEntered(){
     this.state.lastName.length<=30){
         return true;
     }
+    else{
+      alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+    }
 }
 
 validUserNameEntered(){
@@ -52,6 +58,9 @@ validUserNameEntered(){
     this.state.userName.length>=6&&
     this.state.userName.length<=30){
         return true;
+    }
+    else{
+      alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
 }
 
@@ -64,11 +73,17 @@ validPersonalIdEntered(){
     this.state.personalId.length===11){
         return true;
     }
+    else{
+      alert("Asmens kodas privalomas!")
+    }
 }
 
 bothPasswordsMatch(){
     if (this.state.password===this.state.repeatedPassword){
         return true;
+    }
+    else{
+      alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
     }
 }
 
@@ -76,6 +91,9 @@ validPassword(){
     if(this.state.password.length>=6&&
     this.state.password.length<=30){
         return true;
+    }
+    else{
+      alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
     }
 }
 
@@ -122,7 +140,6 @@ dataIsValid(){
       event.preventDefault();
       return true;
     }else{
-      alert("Patikrinkite, ar visi duomenys įvesti teisingai! Privalomi laukai turi būti užpildyti.")
       console.log("some data is wrong");
       return false;
     }
@@ -133,9 +150,10 @@ dataIsValid(){
       <div>
         <MuiThemeProvider>
           <div>
-          <h2> Registruoti Pacientą </h2>
+          <h2> Registruoti pacientą </h2>
             <TextField
-              hintText="Įveskite vardą"
+              className="firstName"
+              hintText="Nuo 3 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               floatingLabelText="Vardas"
@@ -144,7 +162,8 @@ dataIsValid(){
             />
             <br />
             <TextField
-              hintText="Įveskite pavardę"
+              className="lastName"
+              hintText="Nuo 3 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               floatingLabelText="Pavardė"
@@ -153,7 +172,8 @@ dataIsValid(){
             />
             <br />
             <TextField
-              hintText="Asmens kodas"
+              className="personalCode"
+              hintText="Asmens kodą sudaro 11 skaitmenų"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               type="numbers"
@@ -162,12 +182,13 @@ dataIsValid(){
               onChange={(event, newValue) => this.setState({ personalId: newValue })}
             />
             <br />
-            <DatePicker hintText="Gimimo data"
+            <DatePicker className="dateOfBirth" hintText="Gimimo data"
               onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
             />
             <br />
             <TextField
-              hintText="Įveskite prisijungimo vardą"
+              className="userName"
+              hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               floatingLabelText="Prisijungimo vardas"
@@ -176,8 +197,9 @@ dataIsValid(){
             />
             <br />
             <TextField
+              className="password"
               type="password"
-              hintText="Įveskite slaptažodį"
+              hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               floatingLabelText="Slaptažodis"
@@ -186,8 +208,9 @@ dataIsValid(){
             />
             <br />
             <TextField
+              className="repeatedPassword"
               type="password"
-              hintText="Pakartokite slaptažodį"
+              hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               floatingLabelText="Pakartokite slaptažodį"
@@ -195,7 +218,7 @@ dataIsValid(){
               onChange={(event, newValue) => this.setState({ repeatedPassword: newValue })}
             />
             <br />
-            <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton className="submitButton" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
           </div>
         </MuiThemeProvider>
       </div>

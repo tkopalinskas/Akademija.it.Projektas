@@ -41,6 +41,9 @@ class RegisterPharmacist extends Component {
         this.state.firstName.length<=30){
             return true;
         }
+        else{
+            alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+        }
     }
 
     validLastNameEntered(){
@@ -48,6 +51,9 @@ class RegisterPharmacist extends Component {
         this.state.lastName.length>=3&&
         this.state.lastName.length<=30){
             return true;
+        }
+        else{
+            alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
         }
     }
 
@@ -57,11 +63,17 @@ class RegisterPharmacist extends Component {
         this.state.userName.length<=30){
             return true;
         }
+        else{
+            alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
+        }
     }
 
     typeOfWorkplaceIsSelected() {
         if(this.state.typeOfWorkplace!==''){
             return true;
+        }
+        else{
+            alert("Pasirinkite įmonės tipą!")
         }
     }
 
@@ -71,11 +83,17 @@ class RegisterPharmacist extends Component {
         this.state.workplace.length<=50){
             return true;
         }
+        else{
+            alert("Įmonės pavadinimas privalomas!")
+        }
     } 
 
     bothPasswordsMatch(){
         if (this.state.password===this.state.repeatedPassword){
             return true;
+        }
+        else{
+            alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
         }
     }
 
@@ -83,6 +101,9 @@ class RegisterPharmacist extends Component {
         if(this.state.password.length>=6&&
         this.state.password.length<=30){
             return true;
+        }
+        else{
+            alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
         }
     }
 
@@ -128,7 +149,6 @@ class RegisterPharmacist extends Component {
                 console.log(this.state);
                 event.preventDefault();
         }else{
-            alert("Patikrinkite, ar visi duomenys įvesti teisingai! Privalomi laukai turi būti užpildyti.")
             console.log("some data is wrong");
         }
     }
@@ -143,9 +163,10 @@ class RegisterPharmacist extends Component {
                 <MuiThemeProvider>
                     {/* pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu */}
                     <div>
-                    <h2> Registruoti Vaistininką </h2>
-                    <TextField
-                            hintText="Įveskite vardą"
+                    <h2> Registruoti vaistininką </h2>
+                        <TextField
+                            className="firstName"
+                            hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
                             floatingLabelText="Vardas"
@@ -154,7 +175,8 @@ class RegisterPharmacist extends Component {
                         />
                         <br />
                         <TextField
-                            hintText="Įveskite pavardę"
+                            className="lastName"
+                            hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
                             floatingLabelText="Pavardė"
@@ -163,7 +185,8 @@ class RegisterPharmacist extends Component {
                         />
                         <br />
                         <TextField
-                            hintText="Darbo vieta"
+                            className="workplace"
+                            hintText="Nuo 2 iki 50 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
                             floatingLabelText="Įmonės pavadinimas"
@@ -171,7 +194,8 @@ class RegisterPharmacist extends Component {
                             onChange={(event, newValue) => this.setState({ workplace: newValue })}
                         />
                         <br/>
-                        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+                        <DropDownMenu className="typeOfWorkplace"
+                                      value={this.state.value} onChange={this.handleChange}>
                             <MenuItem value={""} primaryText={"Pasirinkite įmonės tipą"} />
                             <MenuItem value={"UAB"} primaryText="UAB" />
                             <MenuItem value={"AB"} primaryText="AB" />
@@ -180,7 +204,8 @@ class RegisterPharmacist extends Component {
                         </DropDownMenu>
                         <br />
                         <TextField
-                            hintText="Įveskite prisijungimo vardą"
+                            className="userName"
+                            hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
                             floatingLabelText="Prisijungimo vardas"
@@ -189,8 +214,9 @@ class RegisterPharmacist extends Component {
                         />
                         <br />
                         <TextField
+                            className="password"
                             type="password"
-                            hintText="Įveskite slaptažodį"
+                            hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
                             floatingLabelText="Slaptažodis"
@@ -199,8 +225,9 @@ class RegisterPharmacist extends Component {
                         />
                         <br />
                         <TextField
+                            className="repeatedPassword"
                             type="password"
-                            hintText="Pakartokite slaptažodį"
+                            hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
                             floatingLabelText="Pakartokite slaptažodį"
@@ -208,7 +235,7 @@ class RegisterPharmacist extends Component {
                             onChange={(event, newValue) => this.setState({ repeatedPassword: newValue })}
                         />
                         <br />
-                        <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
+                        <RaisedButton className="submitButton" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
                     </div>
                 </MuiThemeProvider>
             </div>
