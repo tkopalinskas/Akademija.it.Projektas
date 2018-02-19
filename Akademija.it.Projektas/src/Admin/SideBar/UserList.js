@@ -28,8 +28,8 @@ class UserList extends Component {
                     open={this.props.open}
                 >
                     <AppBar title={<span>Vartotojai</span>}
-                        iconElementLeft={<IconButton tooltip="Grįžti atgal">
-                        <FontIcon className="muidocs-icon-action-home" /><ArrowBack onClick={this.props.closeAction} />
+                        iconElementLeft={<IconButton tooltip="Grįžti atgal" onClick={this.props.closeAction} >
+                        <FontIcon className="muidocs-icon-action-home" /><ArrowBack />
                                     </IconButton>} />
                     <Link to="/admin/alladmins" style={{textDecoration: 'none'}}><MenuItem>Administratorių sąrašas</MenuItem></Link>
                     <Link to="/admin/allpharmacists" style={{textDecoration: 'none'}}><MenuItem>Vaistininkų sąrašas</MenuItem></Link>

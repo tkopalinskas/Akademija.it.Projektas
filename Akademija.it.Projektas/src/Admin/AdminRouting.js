@@ -4,6 +4,7 @@ import RegisterAdmin from './SideBar/Registration/RegisterAdmin';
 import RegisterDoctor from './SideBar/Registration/RegisterDoctor';
 import RegisterPatient from './SideBar/Registration/RegisterPatient';
 import RegisterPharmacist from './SideBar/Registration/RegisterPharmacist';
+import DoctorAssignmentToPatient from './SideBar/DrAndPatient'
 import ListofAdmins from './DropdownLists/ListofAdmins';
 import ListofDoctors from './DropdownLists/ListofDoctors';
 import ListofPatients from './DropdownLists/ListofPatients';
@@ -25,6 +26,7 @@ class AdminRouting extends Component {
                     <Route exact path="/admin/allpatients" component={ListofPatients} />
                     <Route exact path="/admin/allpharmacists" component={ListofPharmacists} />
                     <Route exact path="/admin/changePassword" component={AdminPasswordChangeComponent}/>
+                    <Route exact path="/admin/assigndoctor" component={DoctorAssignmentToPatient} />
                 </Switch>
             </main>
         );

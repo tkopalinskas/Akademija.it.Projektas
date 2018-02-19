@@ -33,8 +33,8 @@ static propTypes ={
                 <Drawer
                 open={this.props.open}>
                     <AppBar title={<span>Registracija</span>}
-                        iconElementLeft={<IconButton tooltip="Grįžti atgal">
-                            <FontIcon className="muidocs-icon-action-home" /><ArrowBack onClick={this.props.closeAction} />
+                        iconElementLeft={<IconButton tooltip="Grįžti atgal" onClick={this.props.closeAction} >
+                            <FontIcon className="muidocs-icon-action-home"   /><ArrowBack/>
                                         </IconButton>}
                     />
                     <Link to="/admin/register/newadmin" style={{textDecoration: 'none'}}><MenuItem>Registruoti administratorių</MenuItem></Link>
