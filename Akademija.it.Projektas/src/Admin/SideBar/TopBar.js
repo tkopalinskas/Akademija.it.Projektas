@@ -35,6 +35,7 @@ class TopBar extends Component {
             <MuiThemeProvider>
                 <div>
                     <AppBar
+                        className="helloUser"
                         showMenuIconButton={false}
                         iconElementRight={<FlatButton
                             onClick={this.handleClick}
@@ -49,10 +50,12 @@ class TopBar extends Component {
                         onRequestClose={this.handleRequestClose}
                     >
                         <Menu>
-                            <MenuItem primaryText="Pakeisti slapatažodį" 
-                            containerElement={<Link to="/admin/changePassword" />}/>
-                            <MenuItem primaryText="Atsijungti" 
-                            containerElement={<Link to="/" />}/>
+                            <MenuItem className="changePassword"
+                                      primaryText="Pakeisti slaptažodį" 
+                                      containerElement={<Link to="/admin/changePassword" />}/>
+                            <MenuItem className="logOut"
+                                      primaryText="Atsijungti" 
+                                      containerElement={<Link to="/" />}/>
                         </Menu>
                     </Popover>
                 </div>

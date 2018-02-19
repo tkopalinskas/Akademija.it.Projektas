@@ -110,30 +110,35 @@ console.log(this.state.prescriptionInfo)
               </TableRow>
               <TableRow>
                 <TableHeaderColumn 
+                  className="validUntil"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }} 
                   tooltip="Galiojimo data">Galiojimo data</TableHeaderColumn>
                 <TableHeaderColumn 
+                  className="prescriptionDate"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }} 
                   tooltip="Išrašymo data">Išrašymo data</TableHeaderColumn>
                 <TableHeaderColumn 
+                  className="timesUsed"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }} 
                   tooltip="Recepto panaudojimų skaičius">Recepto panaudojimų skaičius</TableHeaderColumn>
                 <TableHeaderColumn 
+                  className="activeIngredient"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }}
                   tooltip="Veiklioji medžiaga">Veiklioji medžiaga</TableHeaderColumn>
                 <TableHeaderColumn 
+                  className="informationButton"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"

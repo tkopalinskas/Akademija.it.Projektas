@@ -39,6 +39,9 @@ class RegisterDoctor extends Component {
         this.state.firstName.length<=30){
             return true;
         }
+        else{
+            alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+        }
     }
 
     validLastNameEntered(){
@@ -46,6 +49,9 @@ class RegisterDoctor extends Component {
         this.state.lastName.length>=3&&
         this.state.lastName.length<=30){
             return true;
+        }
+        else{
+            alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
         }
     }
 
@@ -55,12 +61,18 @@ class RegisterDoctor extends Component {
         this.state.userName.length<=30){
             return true;
         }
+        else{
+            alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
+        }
     }
 
     specializationIsSelected() {
         if(this.state.specialization!=='')/*||
     this.otherSpecializationIsSelected()*/{
             return true;
+        }
+        else{
+            alert("Pasirinkite specializaciją! Jei specializacijos nėra sąraše, pasirinkite 'kita' ir įrašykite specializaciją į laukelį.")
         }
     }
 
@@ -81,12 +93,18 @@ class RegisterDoctor extends Component {
         if (this.state.password===this.state.repeatedPassword){
             return true;
         }
+        else{
+            alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
+        }
     }
 
     validPassword(){
         if(this.state.password.length>=6&&
         this.state.password.length<=30){
             return true;
+        }
+        else{
+            alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
         }
     }
 
@@ -136,7 +154,6 @@ class RegisterDoctor extends Component {
             event.preventDefault();
             return true;
         }else{
-            alert("Patikrinkite, ar visi duomenys įvesti teisingai! Privalomi laukai turi būti užpildyti.")
             console.log("some data is wrong");
             return false;
         }
@@ -154,9 +171,10 @@ class RegisterDoctor extends Component {
                 <MuiThemeProvider>
                     {/*pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu*/}
                     <div>
-                    <h2> Registruoti Daktarą </h2>
+                    <h2> Registruoti gydytoją </h2>
                         <TextField
-                            hintText="Įveskite vardą"
+                            className="firstName"
+                            hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
                             floatingLabelText="Vardas"
@@ -165,7 +183,8 @@ class RegisterDoctor extends Component {
                         />
                         <br />
                         <TextField
-                            hintText="Įveskite pavardę"
+                            className="lastName"
+                            hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
                             floatingLabelText="Pavardė"
@@ -174,17 +193,19 @@ class RegisterDoctor extends Component {
                         />
                         <br />
                         <TextField
-                        hintText="Įveskite prisijungimo vardą"
-                        errorText="Privalomas laukas"
-                        errorStyle={textStyles.errorStyle}
-                        floatingLabelText="Prisijungimo vardas"
-                        floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
-                        onChange={(event, newValue) => this.setState({ userName: newValue })}
+                            className="userName"
+                            hintText="Nuo 6 iki 30 simbolių"
+                            errorText="Privalomas laukas"
+                            errorStyle={textStyles.errorStyle}
+                            floatingLabelText="Prisijungimo vardas"
+                            floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
+                            onChange={(event, newValue) => this.setState({ userName: newValue })}
                         />
                         <br/>
                         <TextField
+                            className="password"
                             type="password"
-                            hintText="Įveskite slaptažodį"
+                            hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
                             floatingLabelText="Slaptažodis"
@@ -193,8 +214,9 @@ class RegisterDoctor extends Component {
                         />
                         <br/>
                         <TextField
+                            className="repeatedPassword"
                             type="password"
-                            hintText="Pakartokite slaptažodį"
+                            hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
                             floatingLabelText="Pakartokite slaptažodį"
@@ -202,7 +224,8 @@ class RegisterDoctor extends Component {
                             onChange={(event, newValue) => this.setState({ repeatedPassword: newValue })}
                         />
                         <br/>                       
-                        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+                        <DropDownMenu className="specialization"
+                                      value={this.state.value} onChange={this.handleChange}>
                             <MenuItem value={""} primaryText="Specializacija" />
                             <MenuItem value={"gydytojas"} primaryText="Gydytojas" />
                             <MenuItem value={"chirurgas"} primaryText="Chirurgas" />
@@ -216,7 +239,7 @@ class RegisterDoctor extends Component {
                             onChange={(event, newValue) => this.setState({ otherSpecialization: newValue })}
                         /> */}
                         <br />
-                        <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
+                        <RaisedButton className="submitButton" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
                     </div>
                 </MuiThemeProvider>
             </div>

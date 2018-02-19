@@ -57,16 +57,16 @@ class PharmacistContainer extends Component{
         this.setState({
           anchorOrigin: anchorOrigin,
         });
-      };
+    };
     
-      setTarget = (positionElement, position) => {
+    setTarget = (positionElement, position) => {
         const {targetOrigin} = this.state;
         targetOrigin[positionElement] = position;
     
         this.setState({
           targetOrigin: targetOrigin,
         });
-      };
+    };
 
     
     render(){
@@ -75,8 +75,9 @@ class PharmacistContainer extends Component{
             <div>
                 <Container fluid={true} style={containerStyle}>
                 <Row style={rowStyle}>
-                <Col xs="12" md="12">
-                <AppBar showMenuIconButton={false} iconElementRight={<FlatButton
+                <Col md="12">
+                <AppBar className="helloUser"
+                        showMenuIconButton={false} iconElementRight={<FlatButton
                         onClick={this.handleClick}
                         label={"Sveiki, "+ this.state.userName} />
                     }>
@@ -85,9 +86,11 @@ class PharmacistContainer extends Component{
                         anchorEl={this.state.anchorEl}
                         onRequestClose={this.handleRequestClose}
                     >
-                            <MenuItem containerElement={<Link to="/pharmacist/changePassword" />}
+                            <MenuItem className="changePassword"
+                                      containerElement={<Link to="/pharmacist/changePassword" />}
                                       primaryText="Pakeisti slaptažodį"/>   
-                            <MenuItem containerElement={<Link to="/" />}
+                            <MenuItem className="logOut"
+                                      containerElement={<Link to="/" />}
                                       primaryText="Atsijungti"/>
                     </Popover>
                 </AppBar>
@@ -96,7 +99,7 @@ class PharmacistContainer extends Component{
                 </Container>
                 <Container fluid={true} style={containerStyle}>
                 <Row style={rowStyle}>
-                <Col xs="2" md="2">
+                <Col md="2">
                 <Drawer open={this.state.open} width={170}>
                         <AppBar showMenuIconButton={false}>
                         </AppBar>      
@@ -106,7 +109,7 @@ class PharmacistContainer extends Component{
                     }/>       
                 </Drawer>
                 </Col>
-                <Col xs="10" md="10">
+                <Col md="10">
                     <PharmacistWindowNavigation/>
                 </Col>
             </Row>

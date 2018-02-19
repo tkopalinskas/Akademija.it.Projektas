@@ -22,10 +22,10 @@ class Admin extends React.Component {
                     <TopBar />
                     <div>
                     <Row style={rowStyle}>
-                        <Col xs="3" md="3">
+                        <Col md="3">
                             <SideBarMain />
                         </Col>
-                        <Col xs="9" md="9">
+                        <Col md="9">
                             <AdminRouting />
                         </Col>
                     </Row>

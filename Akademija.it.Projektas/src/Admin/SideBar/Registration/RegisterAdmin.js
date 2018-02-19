@@ -36,6 +36,9 @@ class RegisterAdmin extends Component {
     this.state.firstName.length<=30){
         return true;
     }
+    else{
+      alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+    }
 }
 
   validLastNameEntered(){
@@ -43,6 +46,9 @@ class RegisterAdmin extends Component {
       this.state.lastName.length>=3&&
       this.state.lastName.length<=30){
           return true;
+      }
+      else{
+        alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
       }
   }
 
@@ -52,11 +58,17 @@ class RegisterAdmin extends Component {
       this.state.userName.length<=30){
           return true;
       }
+      else{
+        alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
+      }
   }
 
   bothPasswordsMatch(){
       if (this.state.password===this.state.repeatedPassword){
           return true;
+      }
+      else{
+        alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
       }
   }
 
@@ -64,6 +76,9 @@ class RegisterAdmin extends Component {
       if(this.state.password.length>=6&&
       this.state.password.length<=30){
           return true;
+      }
+      else{
+        alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
       }
   }
 
@@ -104,7 +119,6 @@ class RegisterAdmin extends Component {
       console.log(this.state);
       event.preventDefault();
     }else{
-      alert("Patikrinkite, ar visi duomenys įvesti teisingai! Privalomi laukai turi būti užpildyti.")
       console.log("some data is wrong");
     }
 }
@@ -116,9 +130,10 @@ class RegisterAdmin extends Component {
         <MuiThemeProvider>
           <div
            open={this.props.open}>
-           <h2> Registruoti Administratorių </h2>
+           <h2> Registruoti administratorių </h2>
             <TextField
-              hintText="Įveskite vardą"
+              className="firstName"
+              hintText="Nuo 3 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               floatingLabelText="Vardas"
@@ -127,7 +142,8 @@ class RegisterAdmin extends Component {
             />
             <br />
             <TextField
-              hintText="Įveskite pavardę"
+              className="lastName"
+              hintText="Nuo 3 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               floatingLabelText="Pavardė"
@@ -136,7 +152,8 @@ class RegisterAdmin extends Component {
             />
             <br />
             <TextField
-              hintText="Įveskite prisijungimo vardą"
+              className="userName"
+              hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               floatingLabelText="Prisijungimo vardas"
@@ -145,8 +162,9 @@ class RegisterAdmin extends Component {
             />
             <br />
             <TextField
+              className="password"
               type="password"
-              hintText="Įveskite slaptažodį"
+              hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               floatingLabelText="Slaptažodis"
@@ -155,8 +173,9 @@ class RegisterAdmin extends Component {
             />
             <br />
             <TextField
+              className="repeatedPassword"
               type="password"
-              hintText="Pakartokite slaptažodį"
+              hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               floatingLabelText="Pakartokite slaptažodį"
@@ -164,7 +183,7 @@ class RegisterAdmin extends Component {
               onChange={(event, newValue) => this.setState({ repeatedPassword: newValue })}
             />
             <br />
-            <RaisedButton label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton className="submitButton" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
             
           </div>
         </MuiThemeProvider>
