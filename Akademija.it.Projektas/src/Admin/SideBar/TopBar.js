@@ -5,7 +5,10 @@ import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import { Link } from 'react-router-dom';
+=======
+>>>>>>> 35db1d420ecf60c610c26c8dc642978f40251967
 
 
 
@@ -31,7 +34,11 @@ class TopBar extends Component {
 
     render() {
         return (
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 35db1d420ecf60c610c26c8dc642978f40251967
             <MuiThemeProvider>
                 <div>
                     <AppBar
@@ -49,6 +56,7 @@ class TopBar extends Component {
                         onRequestClose={this.handleRequestClose}
                     >
                         <Menu>
+<<<<<<< HEAD
                             <MenuItem primaryText="Pakeisti slapatažodį" 
                             containerElement={<Link to="/admin/changePassword" />}/>
                             <MenuItem primaryText="Atsijungti" 
@@ -56,6 +64,13 @@ class TopBar extends Component {
                         </Menu>
                     </Popover>
                 </div>
+=======
+                            <MenuItem primaryText="Pakeisti slapatažodį" />
+                            <MenuItem primaryText="Atsijungti" />
+                        </Menu>
+                    </Popover>
+                </div>    
+>>>>>>> 35db1d420ecf60c610c26c8dc642978f40251967
             </MuiThemeProvider>
         );
     }

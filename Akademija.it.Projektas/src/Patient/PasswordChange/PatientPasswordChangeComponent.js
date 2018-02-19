@@ -67,7 +67,11 @@ class PatientPasswordChangeComponent extends Component {
         if (this.dataIsValid()){
 
            /*  axios.put() arba post */
+<<<<<<< HEAD
           /*  axios.put(API+ "/patient/changePassword", 
+=======
+           axios.put(API+ "/patient/changePassword", 
+>>>>>>> 35db1d420ecf60c610c26c8dc642978f40251967
            {password: this.state.password})
            .then((response)=>{
                console.log("password change successful!");
@@ -75,8 +79,12 @@ class PatientPasswordChangeComponent extends Component {
            })
            .catch((error)=>{
                console.log(error);
+<<<<<<< HEAD
            }) */
            alert("Slaptažodis pakeistas!");
+=======
+           })
+>>>>>>> 35db1d420ecf60c610c26c8dc642978f40251967
         }
         else{
             console.log("wrong password");
