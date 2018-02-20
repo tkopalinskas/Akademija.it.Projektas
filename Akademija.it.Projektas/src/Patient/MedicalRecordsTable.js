@@ -24,6 +24,7 @@ class MedicalRecordsTable extends Component {
         this.state = {
             fixedHeader: true,
             showRowHover: true,
+            showCheckboxes: false,
             selectable: true,
             multiSelectable: false,
             enableSelectAll: false,
@@ -79,7 +80,7 @@ class MedicalRecordsTable extends Component {
                 enableSelectAll={this.state.enableSelectAll}
               >
                 <TableRow>
-                  <TableHeaderColumn colSpan="3" tooltip="Ligos įrašai" style={{textAlign: 'center'}}>
+                  <TableHeaderColumn colSpan="4" tooltip="Ligos įrašai" style={{textAlign: 'center'}}>
                   Ligos įrašai
                   </TableHeaderColumn>
                 </TableRow>

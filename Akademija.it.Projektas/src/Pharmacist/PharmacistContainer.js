@@ -105,7 +105,7 @@ class PharmacistContainer extends Component{
                         </AppBar>      
                     <MenuItem containerElement={<Link to="/pharmacist/prescriptions" />}
                               leftIcon={
-                                <FontIcon className="material-icons">Receptai</FontIcon>
+                                <FontIcon className="listOfPatientsPrescriptions-icons">Receptai</FontIcon>
                     }/>       
                 </Drawer>
                 </Col>

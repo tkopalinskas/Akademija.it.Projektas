@@ -29,18 +29,18 @@ static propTypes ={
     render() {
 
         return (
-            <div>
+            <div className="newUserRegistrationMenu">
                 <Drawer
                 open={this.props.open}>
                     <AppBar title={<span>Registracija</span>}
                         iconElementLeft={<IconButton tooltip="Grįžti atgal" onClick={this.props.closeAction} >
-                            <FontIcon className="muidocs-icon-action-home"   /><ArrowBack/>
+                            <FontIcon className="goBackArrow"   /><ArrowBack/>
                                         </IconButton>}
                     />
-                    <Link to="/admin/register/newadmin" style={{textDecoration: 'none'}}><MenuItem>Registruoti administratorių</MenuItem></Link>
-                    <Link to="/admin/register/newpatient" style={{textDecoration: 'none'}}><MenuItem>Registruoti pacientą</MenuItem></Link>
-                    <Link to="/admin/register/newdoctor" style={{textDecoration: 'none'}}><MenuItem>Registruoti gydytoją</MenuItem></Link>
-                    <Link to="/admin/register/newpharmacist" style={{textDecoration: 'none'}}><MenuItem>Registruoti vaistininką</MenuItem></Link>
+                    <Link to="/admin/register/newadmin" style={{textDecoration: 'none'}}><MenuItem className="registerAdmin">Registruoti administratorių</MenuItem></Link>
+                    <Link to="/admin/register/newpatient" style={{textDecoration: 'none'}}><MenuItem className="registerPatient">Registruoti pacientą</MenuItem></Link>
+                    <Link to="/admin/register/newdoctor" style={{textDecoration: 'none'}}><MenuItem className="registerDoctor">Registruoti gydytoją</MenuItem></Link>
+                    <Link to="/admin/register/newpharmacist" style={{textDecoration: 'none'}}><MenuItem className="registerPharmacist">Registruoti vaistininką</MenuItem></Link>
                 </Drawer>
             </div>
             

@@ -18,9 +18,9 @@ class Admin extends React.Component {
     render() {
         return (           
             <MuiThemeProvider>
-                <div>
+                <div className="adminPanel">
                     <TopBar />
-                    <div>
+                    <div className="sideBar">
                     <Row style={rowStyle}>
                         <Col xs="3" md="3">
                             <SideBarMain />

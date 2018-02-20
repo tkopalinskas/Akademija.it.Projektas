@@ -76,7 +76,8 @@ class DoctorAssignmentToPatient extends Component {
 
         return (
             <MuiThemeProvider>
-                <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }} >
+                <div className="doctorAssignmentToPatient" 
+                     style={{ width: '100%', maxWidth: 700, margin: 'auto' }} >
 
                     <Stepper linear={false} activeStep={stepIndex}>
                         <Step>

@@ -149,7 +149,7 @@ dataIsValid(){
     return (
       <div>
         <MuiThemeProvider>
-          <div>
+          <div className="registerPatient">
           <h2> Registruoti pacientą </h2>
             <TextField
               className="firstName"

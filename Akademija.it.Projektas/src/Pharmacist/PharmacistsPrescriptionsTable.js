@@ -24,6 +24,7 @@ class PharmacistsPrescriptionsTable extends Component {
         this.state = {
           fixedHeader: true,
           showRowHover: true,
+          showCheckboxes: false,
           selectable: true,
           multiSelectable: false,
           enableSelectAll: false,
@@ -103,7 +104,7 @@ class PharmacistsPrescriptionsTable extends Component {
                 enableSelectAll={this.state.enableSelectAll}
               >
               <TableRow>
-                <TableHeaderColumn colSpan="3" tooltip="Receptai" style={{textAlign: 'center'}}>
+                <TableHeaderColumn colSpan="5" tooltip="Receptai" style={{textAlign: 'center'}}>
                   Receptai
                 </TableHeaderColumn>
               </TableRow>

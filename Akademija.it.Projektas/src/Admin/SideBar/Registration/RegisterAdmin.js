@@ -128,7 +128,7 @@ class RegisterAdmin extends Component {
     return (
       <div >
         <MuiThemeProvider>
-          <div
+          <div className="registerAdmin"
            open={this.props.open}>
            <h2> Registruoti administratorių </h2>
             <TextField
