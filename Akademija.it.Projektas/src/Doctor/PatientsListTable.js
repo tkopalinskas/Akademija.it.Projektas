@@ -10,9 +10,8 @@ import {
 } from 'material-ui/Table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 /* import InformationModal from './InformationModal' */
-//import FlatButton from 'material-ui/FlatButton/FlatButton';
-import Search from 'material-ui/svg-icons/action/search';
-import TextField from 'material-ui/TextField';
+//import Search from 'material-ui/svg-icons/action/search';
+//import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom';
@@ -74,7 +73,8 @@ class PatientsListTable extends Component {
                     <DropDownMenu className="routeToComponent" /* onClick={this.openModal} */
                                       value={this.state.value} onChange={this.handleChange}>
                             <MenuItem value={""} primaryText="Daugiau informacijos" />
-                            <MenuItem value={"receptai"} primaryText="Receptai" />
+                            <MenuItem value={"receptai"} primaryText="Receptai" 
+                                      containerElement={<Link to="/doctor/patient/prescriptions" />}/>
                             <MenuItem value={"ligos įrašai"} primaryText="Ligos įrašai" 
                                       containerElement={<Link to="/doctor/patient/medicalRecords" />} />
                             <MenuItem value={"naujas ligos įrašas"} primaryText="Naujas ligos įrašas" />

@@ -3,8 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
-import axios from 'axios';
-import {API} from "../SideBar/Registration/HostUrl";
+//import axios from 'axios';
+//import {API} from "../SideBar/Registration/HostUrl";
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
@@ -97,6 +97,7 @@ class AdminPasswordChangeComponent extends Component {
                 <Col xs="12" md="12">
                 <TextField
                     className="password"
+                    id="inputPassword"
                     type="password"
                     hintText="Įveskite dabartinį slaptažodį"
                     errorText="Privalomas laukas"
@@ -108,6 +109,7 @@ class AdminPasswordChangeComponent extends Component {
                 <br />
                 <TextField
                     className="newPassword"
+                    id="inputNewPassword"
                     type="password"
                     hintText="Nuo 6 iki 30 simbolių"
                     errorText="Privalomas laukas"
@@ -119,6 +121,7 @@ class AdminPasswordChangeComponent extends Component {
                 <br />
                 <TextField
                     className="confirmPassword"
+                    id="inputConfirmPassword"
                     type="password"
                     hintText="Nuo 6 iki 30 simbolių"
                     errorText="Privalomas laukas"

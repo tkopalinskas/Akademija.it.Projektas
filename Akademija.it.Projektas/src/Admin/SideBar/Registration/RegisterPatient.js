@@ -153,6 +153,7 @@ dataIsValid(){
           <h2> Registruoti pacientą </h2>
             <TextField
               className="firstName"
+              id="inputFirstName"
               hintText="Nuo 3 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
@@ -163,6 +164,7 @@ dataIsValid(){
             <br />
             <TextField
               className="lastName"
+              id="inputLastName"
               hintText="Nuo 3 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
@@ -173,6 +175,7 @@ dataIsValid(){
             <br />
             <TextField
               className="personalCode"
+              id="inputPersonalCode"
               hintText="Asmens kodą sudaro 11 skaitmenų"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
@@ -182,12 +185,13 @@ dataIsValid(){
               onChange={(event, newValue) => this.setState({ personalId: newValue })}
             />
             <br />
-            <DatePicker className="dateOfBirth" hintText="Gimimo data"
+            <DatePicker className="dateOfBirth" id="inputDateOfBirth" hintText="Gimimo data"
               onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
             />
             <br />
             <TextField
               className="userName"
+              id="inputUserName"
               hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
@@ -198,6 +202,7 @@ dataIsValid(){
             <br />
             <TextField
               className="password"
+              id="inputPassword"
               type="password"
               hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
@@ -209,6 +214,7 @@ dataIsValid(){
             <br />
             <TextField
               className="repeatedPassword"
+              id="inputRepeatedPassword"
               type="password"
               hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"

@@ -174,6 +174,7 @@ class RegisterDoctor extends Component {
                     <h2> Registruoti gydytoją </h2>
                         <TextField
                             className="firstName"
+                            id="inputFirstName"
                             hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -184,6 +185,7 @@ class RegisterDoctor extends Component {
                         <br />
                         <TextField
                             className="lastName"
+                            id="inputLastName"
                             hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -194,6 +196,7 @@ class RegisterDoctor extends Component {
                         <br />
                         <TextField
                             className="userName"
+                            id="inputUserName"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -204,6 +207,7 @@ class RegisterDoctor extends Component {
                         <br/>
                         <TextField
                             className="password"
+                            id="inputPassword"
                             type="password"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
@@ -215,6 +219,7 @@ class RegisterDoctor extends Component {
                         <br/>
                         <TextField
                             className="repeatedPassword"
+                            id="inputRepeatedPassword"
                             type="password"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
@@ -225,6 +230,7 @@ class RegisterDoctor extends Component {
                         />
                         <br/>                       
                         <DropDownMenu className="specialization"
+                                      id="inputSpecialization"
                                       value={this.state.value} onChange={this.handleChange}>
                             <MenuItem value={""} primaryText="Specializacija" />
                             <MenuItem value={"gydytojas"} primaryText="Gydytojas" />
@@ -234,6 +240,8 @@ class RegisterDoctor extends Component {
                         </DropDownMenu>
                         {/* <br/>
                         <TextField
+                            className="otherSpecialization"
+                            id="inputOtherSpecialization"
                             hintText="Įveskite kitą specializaciją"
                             floatingLabelText="Kita specializacija"
                             onChange={(event, newValue) => this.setState({ otherSpecialization: newValue })}

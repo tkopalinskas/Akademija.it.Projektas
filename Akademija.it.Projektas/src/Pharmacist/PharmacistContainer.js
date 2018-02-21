@@ -11,6 +11,8 @@ import PharmacistWindowNavigation from './PharmacistWindowNavigation';
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
+import Search from 'material-ui/svg-icons/action/search';
+import TextField from 'material-ui/TextField';
 
 const rowStyle={
     margin: 0,
@@ -110,6 +112,10 @@ class PharmacistContainer extends Component{
                 </Drawer>
                 </Col>
                 <Col md="10">
+                    <div>
+                        <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '25', marginTop: '25'}} />
+                        <TextField hintText="Paciento asmens kodas" underlineShow={true} />
+                    </div>
                     <PharmacistWindowNavigation/>
                 </Col>
             </Row>

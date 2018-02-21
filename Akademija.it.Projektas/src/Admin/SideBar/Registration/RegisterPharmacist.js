@@ -166,6 +166,7 @@ class RegisterPharmacist extends Component {
                     <h2> Registruoti vaistininką </h2>
                         <TextField
                             className="firstName"
+                            id="inputFirstName"
                             hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -176,6 +177,7 @@ class RegisterPharmacist extends Component {
                         <br />
                         <TextField
                             className="lastName"
+                            id="inputLastName"
                             hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -186,6 +188,7 @@ class RegisterPharmacist extends Component {
                         <br />
                         <TextField
                             className="workplace"
+                            id="inputWorkplace"
                             hintText="Nuo 2 iki 50 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -195,6 +198,7 @@ class RegisterPharmacist extends Component {
                         />
                         <br/>
                         <DropDownMenu className="typeOfWorkplace"
+                                      id="inputTypeOfWorkplace"
                                       value={this.state.value} onChange={this.handleChange}>
                             <MenuItem value={""} primaryText={"Pasirinkite įmonės tipą"} />
                             <MenuItem value={"UAB"} primaryText="UAB" />
@@ -205,6 +209,7 @@ class RegisterPharmacist extends Component {
                         <br />
                         <TextField
                             className="userName"
+                            id="inputUserName"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -215,6 +220,7 @@ class RegisterPharmacist extends Component {
                         <br />
                         <TextField
                             className="password"
+                            id="inputPassword"
                             type="password"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
@@ -226,6 +232,7 @@ class RegisterPharmacist extends Component {
                         <br />
                         <TextField
                             className="repeatedPassword"
+                            id="inputRepeatedPassword"
                             type="password"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"

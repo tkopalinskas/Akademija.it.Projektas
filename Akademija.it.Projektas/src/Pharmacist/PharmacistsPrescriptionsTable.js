@@ -56,7 +56,7 @@ class PharmacistsPrescriptionsTable extends Component {
   }
 
   /*get valid patient's prescriptions*/
-    /* componentWillMount() {
+   /*  componentWillMount() {
        axios
             .get("http://localhost:8081/pharmacist/prescriptions")
             .then((response) => {
@@ -67,8 +67,8 @@ class PharmacistsPrescriptionsTable extends Component {
                 console.log(error);
             }); 
             console.log(this.state)
-    }
- */
+    } */
+ 
     render() {
 
       console.log(this.state.validPrescriptionInfo);

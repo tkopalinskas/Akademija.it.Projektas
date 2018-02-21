@@ -30,12 +30,16 @@ class Login extends Component {
         <MuiThemeProvider>
           <div className='login'>
             <TextField
+              className="userName"
+              id="inputUserName"
               hintText="Įveskite prisijungimo vardą"
               floatingLabelText="Prisijungimo vardas"
               onChange={(event, newValue) => this.setState({ userName: newValue })}
             />
             <br />
             <TextField
+              className="password"
+              id="inputPassword"
               type="password"
               hintText="Įveskite slaptažodį"
               floatingLabelText="Slaptažodis"
@@ -43,7 +47,7 @@ class Login extends Component {
             />
             <br />
 
-            <RaisedButton label="Prisijungti" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton className="loginButton" label="Prisijungti" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
 
             <br />
 
