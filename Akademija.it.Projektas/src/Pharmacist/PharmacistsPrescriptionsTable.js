@@ -19,8 +19,8 @@ const styles ={
 }
 
 class PharmacistsPrescriptionsTable extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
         this.state = {
           fixedHeader: true,
           showRowHover: true,
@@ -47,7 +47,7 @@ class PharmacistsPrescriptionsTable extends Component {
   /*get single prescription*/
     openModal = (number) => {
       console.log(number);
-      axios.get(`http://localhost:8081/pharmacist/prescriptions/`+ {number})
+      axios.get('http://localhost:8081/pharmacist/'+ {number})
           .then((response) => { this.setState({ validPrescriptionInfo: response.data }) })
                   this.setState({ showModal: !this.state.showModal })
           .catch((error) => {
@@ -56,9 +56,9 @@ class PharmacistsPrescriptionsTable extends Component {
   }
 
   /*get valid patient's prescriptions*/
-   /*  componentWillMount() {
+    componentWillMount=(personalCode)=> {
        axios
-            .get("http://localhost:8081/pharmacist/prescriptions")
+            .get('http://localhost:8081/pharmacist' + {personalCode})
             .then((response) => {
                 console.log(response);
                 this.setState({validPrescriptions: response.data});
@@ -67,11 +67,15 @@ class PharmacistsPrescriptionsTable extends Component {
                 console.log(error);
             }); 
             console.log(this.state)
-    } */
+    }
  
     render() {
 
-      console.log(this.state.validPrescriptionInfo);
+      if (!this.props.personalCode) {
+        return null;
+    }
+       console.log("personal",this.props.personalCode); 
+      /* console.log(this.state.validPrescriptionInfo); */
 
       var allPrescriptions = this.state.validPrescriptions.map((prescription, index) => (
         <TableRow key={index}  onClick={this.openModal} >
@@ -80,7 +84,7 @@ class PharmacistsPrescriptionsTable extends Component {
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn>{prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn>{prescription.description}<FlatButton label="Info" primary={true} onClick={this.openModal(prescription.number)} /></TableRowColumn>
+            <TableRowColumn>{prescription.description}<FlatButton label="Info" primary={true} /* onClick={this.openModal(prescription.number)} */ /></TableRowColumn>
         </TableRow>
     ))
 

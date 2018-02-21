@@ -11,7 +11,7 @@ class PharmacistWindowNavigation extends Component{
                 <Switch>
                     <Route exact path="/" name="home" component={App} /> 
                     <Route path="/pharmacist/changePassword" name="changePharmacistsPassword" component={PharmacistPasswordChangeComponent} />
-                    <Route path="/pharmacist/prescriptions" name="patientsprescriptions" component={PharmacistsPrescriptionsTable} />
+                    <Route path="/pharmacist" name="patientsprescriptions" component={PharmacistsPrescriptionsTable} />
                 </Switch>
             </main>
         )

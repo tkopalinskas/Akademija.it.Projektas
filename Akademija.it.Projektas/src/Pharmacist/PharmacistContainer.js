@@ -13,6 +13,7 @@ import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
+import PharmacistsPrescriptionsTable from './PharmacistsPrescriptionsTable';
 
 const rowStyle={
     margin: 0,
@@ -33,7 +34,9 @@ class PharmacistContainer extends Component{
             anchorOrigin: { horizontal: 'left',
                           vertical: 'bottom' },
             targetOrigin:{ horizontal: 'left', 
-                          vertical: 'top' },              
+                          vertical: 'top' },
+                          
+            personalCode: ''
         }
     }
 
@@ -70,8 +73,21 @@ class PharmacistContainer extends Component{
         });
     };
 
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            this.setState({
+                personalCode: e.target.value,
+            });
+          console.log('do validate');
+          
+        }
+    }
     
     render(){
+
+        /*remove before release */
+        console.log(this.state.personalCode);
+
         return(
             <MuiThemeProvider>
             <div>
@@ -105,18 +121,21 @@ class PharmacistContainer extends Component{
                 <Drawer open={this.state.open} width={170}>
                         <AppBar showMenuIconButton={false}>
                         </AppBar>      
-                    <MenuItem containerElement={<Link to="/pharmacist/prescriptions" />}
+                    <MenuItem /* containerElement={<Link to="/pharmacist/prescriptions" />} */
                               leftIcon={
-                                <FontIcon className="listOfPatientsPrescriptions-icons">Receptai</FontIcon>
+                                <FontIcon className="listOfPatientsPrescriptions">Receptai</FontIcon>
                     }/>       
                 </Drawer>
                 </Col>
                 <Col md="10">
                     <div>
-                        <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '25', marginTop: '25'}} />
-                        <TextField hintText="Paciento asmens kodas" underlineShow={true} />
+                        <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '15', marginTop: '25'}} />
+                        <TextField hintText="Paciento asmens kodas" 
+                                   underlineShow={true} 
+                                   onKeyPress={this.handleKeyPress}/>
                     </div>
                     <PharmacistWindowNavigation/>
+                    <PharmacistsPrescriptionsTable personalCode={this.state.personalCode}/>
                 </Col>
             </Row>
             </Container> 
