@@ -11,6 +11,8 @@ import {
 } from 'material-ui/Table';
 import InformationModal from './SinglePrescriptionInformation'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
+import Search from 'material-ui/svg-icons/action/search';
+import TextField from 'material-ui/TextField';
 
 const styles ={
   marginLeft: 0,
@@ -40,10 +42,19 @@ class PharmacistsPrescriptionsTable extends Component {
             description: '',
             number: '',
 
+            personalCode: '',
           validPrescriptionInfo:[]
       }
   }
 
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+        this.setState({
+            personalCode: e.target.value,
+        });
+      console.log('do validate');
+    }
+}
   /*get single prescription*/
     openModal = (number) => {
       console.log(number);
@@ -71,10 +82,7 @@ class PharmacistsPrescriptionsTable extends Component {
  
     render() {
 
-      if (!this.props.personalCode) {
-        return null;
-    }
-       console.log("personal",this.props.personalCode); 
+       console.log("personal",this.state.personalCode); 
       /* console.log(this.state.validPrescriptionInfo); */
 
       var allPrescriptions = this.state.validPrescriptions.map((prescription, index) => (
@@ -95,6 +103,12 @@ class PharmacistsPrescriptionsTable extends Component {
       return (
         <MuiThemeProvider>
         <div>
+        <div>
+                    <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '15', marginTop: '25'}} />
+                    <TextField hintText="Paciento asmens kodas" 
+                        underlineShow={true} 
+                        onKeyPress={this.handleKeyPress}/>
+                </div>
           <Table
             height={this.state.height}
             style={styles}

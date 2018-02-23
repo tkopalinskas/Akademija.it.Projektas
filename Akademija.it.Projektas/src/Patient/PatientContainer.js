@@ -79,6 +79,7 @@ class PatientContainer extends Component{
                 <Col md="12">
                 <AppBar className="helloUser"
                         showMenuIconButton={false} iconElementRight={<FlatButton
+                        className="userPopoverMenu"
                         onClick={this.handleClick}
                         label={"Sveiki, "+ this.state.userName} />
                     }>

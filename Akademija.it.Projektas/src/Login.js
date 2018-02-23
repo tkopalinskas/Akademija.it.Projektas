@@ -47,7 +47,7 @@ class Login extends Component {
             />
             <br />
 
-            <RaisedButton className="loginButton" label="Prisijungti" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton className="loginButton" id="login" label="Prisijungti" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
 
             <br />
 

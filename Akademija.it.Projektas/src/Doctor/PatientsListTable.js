@@ -15,6 +15,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom';
+import Search from 'material-ui/svg-icons/action/search';
+import TextField from 'material-ui/TextField';
 
 const styles ={
   marginLeft: 0,
@@ -62,7 +64,19 @@ class PatientsListTable extends Component {
         
     }
 
+    handleKeyPress = (e) => {
+      if (e.key === 'Enter') {
+          this.setState({
+              personalCode: e.target.value,
+          });
+        console.log('do validate');
+      }
+    }
+
       render() {
+        /*delete console.log before release */
+        console.log("personal", this.state.personalCode)
+
         var allPatients = this.state.patients.map((patient, index) => (
           <TableRow key={index}/*  onClick={this.openModal} */>
               <TableRowColumn>{patient.firstName}</TableRowColumn>
@@ -91,7 +105,11 @@ class PatientsListTable extends Component {
 
         return (
         <MuiThemeProvider>
-        <div>
+          <div>
+            <div>
+              <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '25', marginTop: '25'}} />
+              <TextField hintText="Pacientų paieška" underlineShow={true} onKeyPress={this.handleKeyPress}/>
+            </div>
             <Table
               height={this.state.height}
               style={styles}

@@ -242,7 +242,7 @@ class RegisterPharmacist extends Component {
                             onChange={(event, newValue) => this.setState({ repeatedPassword: newValue })}
                         />
                         <br />
-                        <RaisedButton className="submitButton" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
+                        <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
                     </div>
                 </MuiThemeProvider>
             </div>

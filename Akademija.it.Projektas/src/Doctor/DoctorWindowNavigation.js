@@ -1,10 +1,10 @@
 import { Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
 import App from '../App';
-import DoctorPasswordChangeComponent from './PasswordChange/DoctorPasswordChangeComponent';
+import PasswordChangeComponent from '../PasswordChange/PasswordChangeComponent';
 import PatientsListTable from './PatientsListTable';
-import MedicalRecordsTable from '../Patient/MedicalRecordsTable';
-import PrescriptionsTable from '../Patient/PrescriptionsTable';
+import PrescriptionsWithAddNew from './PrescriptionsWithAddNew';
+import RecordsWithAddNew from './RecordsWithAddNew';
 
 class DoctorWindowNavigation extends Component{
     render(){
@@ -12,10 +12,10 @@ class DoctorWindowNavigation extends Component{
             <main>
                 <Switch>
                     <Route exact path="/" name="home" component={App} /> 
-                    <Route path="/doctor/changePassword" name="changeDoctorsPassword" component={DoctorPasswordChangeComponent} />
+                    <Route path="/doctor/changePassword" name="changeDoctorsPassword" component={PasswordChangeComponent} />
                     <Route path="/doctor/patientsList" name="patientsList" component={PatientsListTable} />
-                    <Route path="/doctor/medicalRecords" name="medicalRecords" component={MedicalRecordsTable} />
-                    <Route path="/doctor/prescriptions" name="prescription" component={PrescriptionsTable} />
+                    <Route path="/doctor/medicalRecords" name="medicalRecords" component={RecordsWithAddNew} />
+                    <Route path="/doctor/prescriptions" name="prescription" component={PrescriptionsWithAddNew} />
                 </Switch>
             </main>
         )

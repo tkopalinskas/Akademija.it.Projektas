@@ -11,9 +11,8 @@ import PharmacistWindowNavigation from './PharmacistWindowNavigation';
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
-import Search from 'material-ui/svg-icons/action/search';
-import TextField from 'material-ui/TextField';
-import PharmacistsPrescriptionsTable from './PharmacistsPrescriptionsTable';
+/* import Search from 'material-ui/svg-icons/action/search';
+import TextField from 'material-ui/TextField'; */
 
 const rowStyle={
     margin: 0,
@@ -34,9 +33,7 @@ class PharmacistContainer extends Component{
             anchorOrigin: { horizontal: 'left',
                           vertical: 'bottom' },
             targetOrigin:{ horizontal: 'left', 
-                          vertical: 'top' },
-                          
-            personalCode: ''
+                          vertical: 'top' }
         }
     }
 
@@ -72,16 +69,6 @@ class PharmacistContainer extends Component{
           targetOrigin: targetOrigin,
         });
     };
-
-    handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            this.setState({
-                personalCode: e.target.value,
-            });
-          console.log('do validate');
-          
-        }
-    }
     
     render(){
 
@@ -96,6 +83,7 @@ class PharmacistContainer extends Component{
                 <Col md="12">
                 <AppBar className="helloUser"
                         showMenuIconButton={false} iconElementRight={<FlatButton
+                        className="userPopoverMenu"
                         onClick={this.handleClick}
                         label={"Sveiki, "+ this.state.userName} />
                     }>
@@ -128,14 +116,7 @@ class PharmacistContainer extends Component{
                 </Drawer>
                 </Col>
                 <Col md="10">
-                    <div>
-                        <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '15', marginTop: '25'}} />
-                        <TextField hintText="Paciento asmens kodas" 
-                                   underlineShow={true} 
-                                   onKeyPress={this.handleKeyPress}/>
-                    </div>
                     <PharmacistWindowNavigation/>
-                    <PharmacistsPrescriptionsTable personalCode={this.state.personalCode}/>
                 </Col>
             </Row>
             </Container> 

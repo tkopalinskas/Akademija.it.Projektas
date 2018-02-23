@@ -26,7 +26,7 @@ const textStyles = {
     },
   };
 
-class AdminPasswordChangeComponent extends Component {
+class PasswordChangeComponent extends Component {
 
     constructor(){
         super()
@@ -131,7 +131,7 @@ class AdminPasswordChangeComponent extends Component {
                     onChange={(event, newValue) => this.setState({ confirmPassword: newValue })}
                 />
                 <br />
-                <RaisedButton className="submitButton" label="Siųsti" primary={true} onClick={(event) => this.handleClick(event)} />
+                <RaisedButton className="submitButton" id="submitForm" label="Siųsti" primary={true} onClick={(event) => this.handleClick(event)} />
                 </Col>
             </Row>
             </Container>
@@ -140,4 +140,4 @@ class AdminPasswordChangeComponent extends Component {
         )
     }
 }
-export default AdminPasswordChangeComponent;
+export default PasswordChangeComponent;
