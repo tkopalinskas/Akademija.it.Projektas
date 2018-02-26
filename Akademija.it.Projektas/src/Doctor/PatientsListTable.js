@@ -9,14 +9,12 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-/* import InformationModal from './InformationModal' */
-//import Search from 'material-ui/svg-icons/action/search';
-//import TextField from 'material-ui/TextField';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router-dom';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
+import NewPrescription from './NewPrescription';
 
 const styles ={
   marginLeft: 0,
@@ -36,6 +34,7 @@ class PatientsListTable extends Component {
             enableSelectAll: false,
             deselectOnClickaway: true,
             height: '300px',
+            showModal: false,
 
             patients: [],
             firstName: '',
@@ -73,6 +72,10 @@ class PatientsListTable extends Component {
       }
     }
 
+    openPrescriptionModal = () => {
+      this.setState({ showModal: !this.state.showModal });
+    };
+
       render() {
         /*delete console.log before release */
         console.log("personal", this.state.personalCode)
@@ -92,7 +95,7 @@ class PatientsListTable extends Component {
                             <MenuItem value={"ligos įrašai"} primaryText="Ligos įrašai" 
                                       containerElement={<Link to="/doctor/patient/medicalRecords" />} />
                             <MenuItem value={"naujas ligos įrašas"} primaryText="Naujas ligos įrašas" />
-                            <MenuItem value={"naujas receptas"} primaryText="Naujas receptas" />
+                            <MenuItem value={"naujas receptas"} primaryText="Naujas receptas" onClick={this.openPrescriptionModal}/>
                     </DropDownMenu>
                  {/*  <FlatButton label="Daugiau" primary={true} /* onClick={this.openModal} */  }/>
                 </TableRowColumn>
@@ -188,14 +191,17 @@ class PatientsListTable extends Component {
                                       containerElement={<Link to="/doctor/prescriptions" />}/>
                             <MenuItem value={"ligos įrašai"} primaryText="Ligos įrašai" 
                                       containerElement={<Link to="/doctor/medicalRecords" />}/>
-                            <MenuItem value={"naujas ligos įrašas"} primaryText="Naujas ligos įrašas" />
-                            <MenuItem value={"naujas receptas"} primaryText="Naujas receptas" />
+                            <MenuItem value={"naujas ligos įrašas"} primaryText="Naujas ligos įrašas"  />
+                            <MenuItem value={"naujas receptas"} primaryText="Naujas receptas" onClick={this.openPrescriptionModal}/>
                         </DropDownMenu>
                     {/*<FlatButton label="Daugiau" primary={true} /* onClick={this.openModal}  />*/}
                     </TableRowColumn>
                   </TableRow> 
               </TableBody>
             </Table> 
+            <NewPrescription
+                        open={this.state.showModal}
+                        closeAction={this.openPrescriptionModal} />
         </div>
         </MuiThemeProvider>
     );

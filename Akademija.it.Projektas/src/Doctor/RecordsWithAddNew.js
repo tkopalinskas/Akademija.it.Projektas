@@ -5,6 +5,7 @@ import MedicalRecordsTable from '../Patient/MedicalRecordsTable';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 
+
 class RecordsWithAddNew extends Component{
 
     constructor(){
@@ -36,8 +37,9 @@ class RecordsWithAddNew extends Component{
                         <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '25', marginTop: '25'}} />
                         <TextField hintText="Pacientų paieška" underlineShow={true} onKeyPress={this.handleKeyPress}/>
                     </div>
-                    <RaisedButton className="addNewRecord" id="addRecord" label="Naujas įrašas" primary={true} onClick={(event) => this.handleClick(event)} />
+                    <RaisedButton className="addNewRecord" id="addRecord" label="Naujas įrašas" primary={true} onClick={this.openModal} />
                     <MedicalRecordsTable/>
+                    
                 </div>
             </MuiThemeProvider>
         )

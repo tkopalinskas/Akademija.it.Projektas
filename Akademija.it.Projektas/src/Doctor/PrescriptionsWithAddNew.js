@@ -4,19 +4,21 @@ import RaisedButton from 'material-ui/RaisedButton';
 import PrescriptionsTable from '../Patient/PrescriptionsTable';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
+import NewPrescription from './NewPrescription';
 
 class PrescriptionsWithAddNew extends Component{
 
     constructor(){
         super();
         this.state={
-            personalCode: ''
+            personalCode: '',
+            showModal: false,
         }
     }
-    
-    handleClick(event) {
-        
-    }
+
+    openPrescriptionModal = () => {
+        this.setState({ showModal: !this.state.showModal });
+    };
 
     handleKeyPress = (e) => {
         if (e.key === 'Enter') {
@@ -36,8 +38,11 @@ class PrescriptionsWithAddNew extends Component{
                         <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '25', marginTop: '25'}} />
                         <TextField hintText="Pacientų paieška" underlineShow={true} onKeyPress={this.handleKeyPress}/>
                     </div>
-                    <RaisedButton className="addNewPrescription" id="addPrescription" label="Naujas receptas" primary={true} onClick={(event) => this.handleClick(event)} />
+                    <RaisedButton className="addNewPrescription" id="addPrescription" label="Naujas receptas" primary={true} onClick={this.openPrescriptionModal} />
                     <PrescriptionsTable/>
+                    <NewPrescription
+                        open={this.state.showModal}
+                        closeAction={this.openPrescriptionModal} />
                 </div>
             </MuiThemeProvider>
         )

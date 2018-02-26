@@ -5,6 +5,7 @@ import PasswordChangeComponent from '../PasswordChange/PasswordChangeComponent';
 import PatientsListTable from './PatientsListTable';
 import PrescriptionsWithAddNew from './PrescriptionsWithAddNew';
 import RecordsWithAddNew from './RecordsWithAddNew';
+import PatientFromDatabase from './PatientFromDatabase';
 
 class DoctorWindowNavigation extends Component{
     render(){
@@ -14,6 +15,7 @@ class DoctorWindowNavigation extends Component{
                     <Route exact path="/" name="home" component={App} /> 
                     <Route path="/doctor/changePassword" name="changeDoctorsPassword" component={PasswordChangeComponent} />
                     <Route path="/doctor/patientsList" name="patientsList" component={PatientsListTable} />
+                    <Route path="/doctor/findPatient" name="patientfromDatabase" component={PatientFromDatabase} />
                     <Route path="/doctor/medicalRecords" name="medicalRecords" component={RecordsWithAddNew} />
                     <Route path="/doctor/prescriptions" name="prescription" component={PrescriptionsWithAddNew} />
                 </Switch>

@@ -37,10 +37,10 @@ static propTypes ={
                             <FontIcon className="goBackArrow"   /><ArrowBack/>
                                         </IconButton>}
                     />
-                    <Link to="/admin/register/newadmin" style={{textDecoration: 'none'}}><MenuItem className="registerAdmin">Registruoti administratorių</MenuItem></Link>
-                    <Link to="/admin/register/newpatient" style={{textDecoration: 'none'}}><MenuItem className="registerPatient">Registruoti pacientą</MenuItem></Link>
-                    <Link to="/admin/register/newdoctor" style={{textDecoration: 'none'}}><MenuItem className="registerDoctor">Registruoti gydytoją</MenuItem></Link>
-                    <Link to="/admin/register/newpharmacist" style={{textDecoration: 'none'}}><MenuItem className="registerPharmacist">Registruoti vaistininką</MenuItem></Link>
+                    <Link to="/admin/register/newadmin" style={{textDecoration: 'none'}} id="registerNewAdmin"><MenuItem className="registerAdmin">Registruoti administratorių</MenuItem></Link>
+                    <Link to="/admin/register/newpatient" style={{textDecoration: 'none'}}id="registerNewPatient"><MenuItem className="registerPatient">Registruoti pacientą</MenuItem></Link>
+                    <Link to="/admin/register/newdoctor" style={{textDecoration: 'none'}}id="registerNewDoctor"><MenuItem className="registerDoctor">Registruoti gydytoją</MenuItem></Link>
+                    <Link to="/admin/register/newpharmacist" style={{textDecoration: 'none'}}id="registerNewPharmacist"><MenuItem className="registerPharmacist">Registruoti vaistininką</MenuItem></Link>
                 </Drawer>
             </div>
             

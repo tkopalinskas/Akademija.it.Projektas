@@ -69,6 +69,14 @@ class DoctorContainer extends Component{
         });
     };
 
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            this.setState({
+                personalCode: e.target.value,
+            });
+          console.log('do validate');
+        }
+    }
     
     render(){
         return(
@@ -105,15 +113,24 @@ class DoctorContainer extends Component{
                 <Drawer open={this.state.open} width={170}>
                         <AppBar showMenuIconButton={false} >
                         </AppBar>
-                    <MenuItem style={{whiteSpace: "normal"}}
+                    <MenuItem style={{whiteSpace: 'normal'}} 
+                              /* primaryText="Pacientų sąrašas" */
                               containerElement={<Link to="/doctor/patientsList" />}
-                              leftIcon={
+                               leftIcon={
                                 <FontIcon className="patientsList">Pacientų sąrašas</FontIcon>
-                    }/>       
-                    {/*<MenuItem containerElement={<Link to="/patient/prescriptions" />}
-                              leftIcon={
-                                <FontIcon className="material-icons">Receptai</FontIcon>
-                    }/>        */}
+                    } /><br/> 
+                    <br/>
+                    <br/>
+                    <br/>      
+                    <MenuItem style={{whiteSpace: 'normal'}}
+                            /* primaryText="Paieška duombazėje" */
+                              containerElement={<Link to="/doctor/findPatient" />}
+                               leftIcon={
+                                <FontIcon className="material-icons">Rasti pacientą duombazėje</FontIcon>
+                    } />
+                    {/* <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '15', marginTop: '0'}} /> 
+                    <TextField hintText="Paieška duombazėje" underlineShow={true} onKeyPress={this.handleKeyPress}/>
+                  </MenuItem><br/>        */}
                 </Drawer>
                 </Col>
                 <Col md="10">
