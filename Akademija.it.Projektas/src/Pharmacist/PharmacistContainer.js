@@ -109,10 +109,11 @@ class PharmacistContainer extends Component{
                 <Drawer open={this.state.open} width={170}>
                         <AppBar showMenuIconButton={false}>
                         </AppBar>      
-                    <MenuItem /* containerElement={<Link to="/pharmacist/prescriptions" />} */
-                              leftIcon={
+                    <MenuItem primaryText="Receptai"
+                            /* containerElement={<Link to="/pharmacist/prescriptions" />} */
+                              /* leftIcon={
                                 <FontIcon className="listOfPatientsPrescriptions">Receptai</FontIcon>
-                    }/>       
+                    } *//>       
                 </Drawer>
                 </Col>
                 <Col md="10">

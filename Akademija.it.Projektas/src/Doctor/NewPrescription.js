@@ -106,7 +106,7 @@ class NewPrescription extends Component {
             axios.post(API + "/prescription/", information)
                 .then((response)=>{
                 console.log("registration  successful");
-                alert("Registracija sėkminga!"); 
+                alert("Receptas įrašytas!"); 
                 this.props.closeAction();    
             })
                 .catch((error)=>{
@@ -126,13 +126,13 @@ class NewPrescription extends Component {
 
         const actions = [
             <FlatButton
-                label="Cancel"
+                label="Atgal"
                 primary={true}
                 onClick={this.props.closeAction}
             />,
             <FlatButton
                 type="submit"
-                label="Submit"
+                label="Siųsti"
                 primary={true}
                 onClick={this.addNewPrescription}
             />,
@@ -150,7 +150,7 @@ class NewPrescription extends Component {
                     >
                         <TextField
                             className="activeIngredient"
-                            id="inputactiveIngredient"
+                            id="inputActiveIngredient"
                             hintText="Veiklioji medžiaga"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}

@@ -3,7 +3,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import DatePicker from 'material-ui/DatePicker';
 import {API} from "./HostUrl";
 import axios from 'axios';
 
@@ -28,7 +27,14 @@ class RegisterPatient extends Component {
       repeatedPassword: '',
       dateOfBirth: '',
       personalId: '',
-      doctorsFullName: ''
+      doctorsFullName: '',
+      firstDigit: '',
+      secondGroup: '',
+      year: '',
+      month:'',
+      day:''
+      
+      
     };
   }
   validFirstNameEntered(){
@@ -64,8 +70,39 @@ validUserNameEntered(){
     }
 }
 
-dateOfBirthAndPersonalIdMatch() {
-            return true;
+getPersonalId=(event, newValue)=>{
+  this.personalId=this.setState({ personalId: newValue });
+  console.log('get id', this.state.personalId)  
+}
+generateDateOfBirth=() =>{
+  var personalCodeString = this.state.personalId
+  var reg = new RegExp(/(\d{1})(\d{2})(\d{2})(\d{2})(\d{4})/);
+  var match = reg.exec(personalCodeString)
+  
+  const firstDigit=  match[1];
+  const secondGroup= match[2];
+  const month= match[3];
+  const day= match[4];
+  /* const pidToDate=pid=> {
+    const first = pid[0];
+    const month = pid.slice(1, 2)
+    if(first === '3' || first === '4')
+    return '19'
+
+    date = first + month+ '-';
+    new Date(date).toLocaleDateString('lt-LT')
+  } */
+
+  let year=null;
+  if((firstDigit==='3')||(firstDigit==='4')){
+     year='19'+secondGroup;
+  }else{
+     year='20'+secondGroup;
+  } 
+
+  let newDateOfBirth = new Date(year+'-'+month+'-'+day).toLocaleDateString('lt-LT');
+  this.setState({dateOfBirth: newDateOfBirth});
+    return true;
 }
 
 validPersonalIdEntered(){
@@ -111,10 +148,9 @@ dataIsValid(){
 
   handleClick(event) {
     var apiUrl=API;
-
+this.generateDateOfBirth()
 
     if (this.dataIsValid()){
-      
       console.log("data is valid: " + this.dataIsValid());
       
       //set values
@@ -127,7 +163,7 @@ dataIsValid(){
         personalId : this.state.personalId,
         doctorsFullName: this.state.doctorsFullName
       }
-
+      console.log('info',information)
       axios.post(apiUrl +  '/admin/patient', information)
       .then((response)=>{
         console.log("registration  successful");
@@ -146,6 +182,12 @@ dataIsValid(){
   }
    
   render() {
+    console.log('metai pradzia', this.state.firstDigit);
+    console.log('metai', this.state.year);
+    console.log('menuo', this.state.month);
+    console.log('diena', this.state.day);
+    console.log('like', this.state.theRest);
+    console.log('dateofbirth', this.state.dateOfBirth);
     return (
       <div>
         <MuiThemeProvider>
@@ -182,11 +224,19 @@ dataIsValid(){
               type="numbers"
               floatingLabelText="Asmens kodas"
               floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
-              onChange={(event, newValue) => this.setState({ personalId: newValue })}
+              onChange={this.getPersonalId}
             />
             <br />
-            <DatePicker className="dateOfBirth" id="inputDateOfBirth" hintText="Gimimo data"
-              onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
+            {/*fix this*/}
+            <TextField
+              className="dateOfBirth"
+              id="autoInputDateOfBirth"
+              disabled={true}
+              hintText="Gimimo data"
+              type="numbers"
+              floatingLabelText={this.state.dateOfBirth}
+              floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
+              //onChange={(event, dateOfBirth) =>this.setState({floatingLabelText: dateOfBirth})}  
             />
             <br />
             <TextField

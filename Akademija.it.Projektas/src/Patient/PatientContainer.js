@@ -105,14 +105,16 @@ class PatientContainer extends Component{
                 <Drawer open={this.state.open} width={170}>
                         <AppBar showMenuIconButton={false}>
                         </AppBar>
-                    <MenuItem containerElement={<Link to="/patient/medicalRecords" />}
-                              leftIcon={
+                    <MenuItem primaryText="Ligos įrašai"
+                              containerElement={<Link to="/patient/medicalRecords" />}
+                              /* leftIcon={
                                 <FontIcon className="medicalRecords">Ligos įrašai</FontIcon>
-                    }/><br/>       
-                    <MenuItem containerElement={<Link to="/patient/prescriptions" />}
-                              leftIcon={
+                    } *//><br/>       
+                    <MenuItem primaryText="Receptai"
+                              containerElement={<Link to="/patient/prescriptions" />}
+                              /* leftIcon={
                                 <FontIcon className="prescriptions">Receptai</FontIcon>
-                    }/><br/>       
+                    } *//><br/>       
                 </Drawer>
                 </Col>
                 <Col md="10">

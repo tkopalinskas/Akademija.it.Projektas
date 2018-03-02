@@ -154,7 +154,7 @@ class RegisterPharmacist extends Component {
     }
 
     handleChange= (event, index, value) => {
-        this.setState({ typeOfWorkplace: value, value: value });
+        this.setState({ typeOfWorkplace: event.target.value, value: value });
     }
 
     render() {
@@ -197,15 +197,15 @@ class RegisterPharmacist extends Component {
                             onChange={(event, newValue) => this.setState({ workplace: newValue })}
                         />
                         <br/>
-                        <DropDownMenu className="typeOfWorkplace"
+                        <select className="typeOfWorkplace"
                                       id="inputTypeOfWorkplace"
                                       value={this.state.value} onChange={this.handleChange}>
-                            <MenuItem value={""} primaryText={"Pasirinkite įmonės tipą"} />
-                            <MenuItem value={"UAB"} primaryText="UAB" />
-                            <MenuItem value={"AB"} primaryText="AB" />
-                            <MenuItem value={"MB"} primaryText="MB" />
-                            <MenuItem value={"Všį"} primaryText="Všį" />
-                        </DropDownMenu>
+                            <option id="noTypeOfWorkplace" value={""}>Pasirinkite įmonės tipą</option>
+                            <option id="UAB" value={"UAB"}>UAB</option>
+                            <option id="AB" value={"AB"}>AB</option>
+                            <option id="MB" value={"MB"}>MB</option>
+                            <option id="VSI" value={"Všį"}>Všį</option>
+                        </select>
                         <br />
                         <TextField
                             className="userName"

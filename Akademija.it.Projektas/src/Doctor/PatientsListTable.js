@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 import NewPrescription from './NewPrescription';
+import NewMedicalRecord from './NewMedicalRecord';
 
 const styles ={
   marginLeft: 0,
@@ -40,12 +41,13 @@ class PatientsListTable extends Component {
             firstName: '',
             lastName: '',
             personalCode: '',
-            illnessTLKCode: '',
-            /* description: '', */
+            /* illnessTLKCode: '', */
             routeToComponent: '',
             value: ''
         }
     }
+
+    /*received all doctor's patients from database */
     componentWillMount(){
         axios
             .get("http://localhost:8081/doctor/patientsList")
@@ -58,27 +60,51 @@ class PatientsListTable extends Component {
             });
     } 
 
+    /* sets a route value to a selected one */
     handleChange= (event, index, value) => {
-        this.setState({ routeToComponent: value, value: value });
-        
-    }
+      this.setState({value: event.target.value }) 
+      
+       switch (event.target.value){
+        case "naujas receptas":
+          this.openPrescriptionModal();
+          break;
+        case "naujas ligos įrašas":
+          this.openMedicalRecordModal();
+          break;
+        case "receptai":
+          window.location.assign("http://localhost:3000/#/doctor/prescriptions");
+          break;
+        case "ligos įrašai":
+          window.location.assign("http://localhost:3000/#/doctor/medicalRecords");
+          break;
+        default: return null;
+      } 
+    };
 
+    /* gets a personal code value when enter key is hit */
     handleKeyPress = (e) => {
       if (e.key === 'Enter') {
           this.setState({
               personalCode: e.target.value,
           });
-        console.log('do validate');
+        console.log('get personal');
       }
-    }
+    };
 
+    /* opens a prescription form */
     openPrescriptionModal = () => {
       this.setState({ showModal: !this.state.showModal });
     };
 
+    /* opens a medical record form */
+    openMedicalRecordModal = () => {
+      this.setState({ showModal: !this.state.showModal });
+    };
+
       render() {
-        /*delete console.log before release */
+        /*IMPORTANT!!!! delete console.log before release */
         console.log("personal", this.state.personalCode)
+        console.log("value", this.state.value)
 
         var allPatients = this.state.patients.map((patient, index) => (
           <TableRow key={index}/*  onClick={this.openModal} */>
@@ -87,24 +113,33 @@ class PatientsListTable extends Component {
               <TableRowColumn>{patient.personalCode}</TableRowColumn>
               {/* <TableRowColumn>{patient.illnessTLKCode}</TableRowColumn> */}
               <TableRowColumn>
-                    <DropDownMenu className="routeToComponent" /* onClick={this.openModal} */
-                                      value={this.state.value} onChange={this.handleChange}>
-                            <MenuItem value={""} primaryText="Daugiau informacijos" />
-                            <MenuItem value={"receptai"} primaryText="Receptai" 
-                                      containerElement={<Link to="/doctor/patient/prescriptions" />}/>
-                            <MenuItem value={"ligos įrašai"} primaryText="Ligos įrašai" 
-                                      containerElement={<Link to="/doctor/patient/medicalRecords" />} />
-                            <MenuItem value={"naujas ligos įrašas"} primaryText="Naujas ligos įrašas" />
-                            <MenuItem value={"naujas receptas"} primaryText="Naujas receptas" onClick={this.openPrescriptionModal}/>
-                    </DropDownMenu>
-                 {/*  <FlatButton label="Daugiau" primary={true} /* onClick={this.openModal} */  }/>
-                </TableRowColumn>
+                <select className="routeToComponent" 
+                        value={this.state.value} onChange={this.handleChange}>
+                  <option id="moreOptions" value={""} >Daugiau informacijos </option>
+                  <option id="prescriptions" value={"receptai"} >Receptai</option>
+                  <option id="medicalRecords" value={"ligos įrašai"} >Ligos įrašai</option>
+                  <option id="newMedicalRecord" value={"naujas ligos įrašas"} >Naujas ligos įrašas</option>
+                  <option id="newPrescription" value={"naujas receptas"} >Naujas receptas</option>
+                </select>
+              </TableRowColumn>
           </TableRow>
       ))
 
       if (!this.state.patients) {
           return null;
       }
+
+      /* picks which form to open, depending on value selected from dropdown */
+      var newAdditionModal;
+        if (this.state.value==="naujas receptas"){
+            newAdditionModal=<NewPrescription  
+                                open={this.state.showModal}
+                                closeAction={this.openPrescriptionModal}/>
+        }else{
+            newAdditionModal=<NewMedicalRecord
+                                open={this.state.showModal}
+                                closeAction={this.openMedicalRecordModal}/>
+        }    
 
         return (
         <MuiThemeProvider>
@@ -125,15 +160,6 @@ class PatientsListTable extends Component {
                 adjustForCheckbox={this.state.showCheckboxes}
                 enableSelectAll={this.state.enableSelectAll}
               >
-                {/* <TableRow>
-                    <TableHeaderColumn colSpan="4" tooltip="Paieška" style={{ textAlign: 'left' }}>
-                        <div>
-                            <Search style={{ color: '#9E9E9E', marginRight: '15', }} />
-                            <TextField hintText="Paieška" underlineShow={false} />
-                        </div>
-                    </TableHeaderColumn>
-                </TableRow>
-             */}
                 <TableRow>
                   <TableHeaderColumn colSpan="4" tooltip="Pacientai" style={{textAlign: 'center'}}>
                   Pacientai
@@ -184,24 +210,19 @@ class PatientsListTable extends Component {
                     <TableRowColumn>personalCode</TableRowColumn>
                     {/* <TableRowColumn>illnessTLKCode</TableRowColumn> */}
                     <TableRowColumn>
-                        <DropDownMenu className="routeToComponent" /* onClick={this.openModal} */
-                            value={this.state.value} onChange={this.handleChange}>
-                            <MenuItem value={""} primaryText="Daugiau" />
-                            <MenuItem value={"receptai"} primaryText="Receptai" 
-                                      containerElement={<Link to="/doctor/prescriptions" />}/>
-                            <MenuItem value={"ligos įrašai"} primaryText="Ligos įrašai" 
-                                      containerElement={<Link to="/doctor/medicalRecords" />}/>
-                            <MenuItem value={"naujas ligos įrašas"} primaryText="Naujas ligos įrašas"  />
-                            <MenuItem value={"naujas receptas"} primaryText="Naujas receptas" onClick={this.openPrescriptionModal}/>
-                        </DropDownMenu>
-                    {/*<FlatButton label="Daugiau" primary={true} /* onClick={this.openModal}  />*/}
+                      <select className="routeToComponent" 
+                              value={this.state.value} onChange={this.handleChange}>
+                        <option id="moreOptions" value={""} >Daugiau informacijos </option>
+                        <option id="prescriptions" value={"receptai"} >Receptai</option> 
+                        <option id="medicalRecords" value={"ligos įrašai"} >Ligos įrašai</option>
+                        <option id="newMedicalRecord" value={"naujas ligos įrašas"} >Naujas ligos įrašas</option>
+                        <option id="newPrescription" value={"naujas receptas"} >Naujas receptas</option>
+                      </select>
                     </TableRowColumn>
                   </TableRow> 
               </TableBody>
             </Table> 
-            <NewPrescription
-                        open={this.state.showModal}
-                        closeAction={this.openPrescriptionModal} />
+            {newAdditionModal}
         </div>
         </MuiThemeProvider>
     );

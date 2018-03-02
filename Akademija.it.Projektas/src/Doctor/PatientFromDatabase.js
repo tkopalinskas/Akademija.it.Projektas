@@ -15,6 +15,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 import NewPrescription from './NewPrescription';
+import NewMedicalRecord from './NewMedicalRecord';
 
 const styles ={
     marginLeft: 0,
@@ -58,6 +59,7 @@ class PatientFromDatabase extends Component{
              }); 
     }
 
+    /* gets a personal code value when enter key is hit */
     handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             this.setState({
@@ -66,29 +68,68 @@ class PatientFromDatabase extends Component{
           console.log('do validate');
         }
     }
+
+    /* sets a route value to a selected one */
+    handleChange= (event, index, value) => {
+        this.setState({value: event.target.value })
+        if (event.target.value==="naujas receptas"){
+            this.openPrescriptionModal();
+        }else{
+            this.openMedicalRecordModal();
+        }
+    };
+
+    /* opens a prescription form */
     openPrescriptionModal = () => {
         this.setState({ showModal: !this.state.showModal });
     };
+
+    /* opens a medical record form */
+    openMedicalRecordModal = () => {
+        this.setState({ showModal: !this.state.showModal });
+    };
+
 
     render(){
         /*IMPORTANT!!!*/
         /* delete all console.logs before release! */
         console.log("a.k.", this.state.personalCode)
+        console.log('route', this.state.value)
 
         var patientFromDatabase = this.state.patients.map((patient, index) => (
             <TableRow key={index}  onClick={this.openPrescriptionModal} >
                 <TableRowColumn>{patient.firstName}</TableRowColumn>
                 <TableRowColumn>{patient.lastName}</TableRowColumn>
                 <TableRowColumn>{patient.personalCode}</TableRowColumn>
-                <TableRowColumn><FlatButton label="Naujas įrašas" primary={true}  onClick={()=>this.openPrescriptionModal(patient.personalCode)} /></TableRowColumn>
+                <TableRowColumn>
+                    <select className="routeToComponent" /* onClick={this.openModal} */
+                            value={this.state.value} onChange={this.handleChange}>
+                        <option id="moreOptions" value={""} >Daugiau</option>
+                        <option id="newMedicalRecord" value={"naujas ligos įrašas"}>Naujas ligos įrašas </option>
+                        <option id="newPrescription" value={"naujas receptas"}>Naujas receptas </option>
+                    </select>
+                </TableRowColumn>
             </TableRow>
         ))
     
         if (!this.state.patients) {
             alert('Tokio paciento nėra!')
             return null;
-           
-        }
+        } 
+
+        /* picks which form to open, depending on value selected from dropdown */
+        var newAdditionModal;
+        if (this.state.value==="naujas receptas"){
+            newAdditionModal=<NewPrescription  
+                                open={this.state.showModal}
+                                closeAction={this.openPrescriptionModal}/>
+        }else{
+            newAdditionModal=<NewMedicalRecord
+                                open={this.state.showModal}
+                                closeAction={this.openMedicalRecordModal}/>
+        }    
+
+        
         return(
             <MuiThemeProvider>
                 <div>
@@ -151,19 +192,17 @@ class PatientFromDatabase extends Component{
                         <TableRowColumn>lastName</TableRowColumn>
                         <TableRowColumn>personalCode</TableRowColumn>
                         <TableRowColumn>
-                            <DropDownMenu className="routeToComponent" /* onClick={this.openModal} */
+                            <select className="routeToComponent" /* onClick={this.openModal} */
                                 value={this.state.value} onChange={this.handleChange}>
-                                <MenuItem value={""} primaryText="Daugiau" />
-                                <MenuItem value={"naujas ligos įrašas"} primaryText="Naujas ligos įrašas"  />
-                                <MenuItem value={"naujas receptas"} primaryText="Naujas receptas" onClick={this.openPrescriptionModal}/>
-                            </DropDownMenu>
+                                <option id="moreOptions" value={""} >Daugiau</option>
+                                <option id="newMedicalRecord" value={"naujas ligos įrašas"}>Naujas ligos įrašas </option>
+                                <option id="newPrescription" value={"naujas receptas"}>Naujas receptas </option>
+                            </select>
                         </TableRowColumn>
                         </TableRow> 
                     </TableBody>
                 </Table> 
-                <NewPrescription
-                        open={this.state.showModal}
-                        closeAction={this.openPrescriptionModal} />
+                {newAdditionModal}
                 </div>
             </MuiThemeProvider>
             
