@@ -72,7 +72,10 @@ validUserNameEntered(){
 
 getPersonalId=(event, newValue)=>{
   this.personalId=this.setState({ personalId: newValue });
-  console.log('get id', this.state.personalId)  
+  console.log('get id', this.state.personalId) 
+  if(this.state.personalId.length===11){
+     
+  }
 }
 generateDateOfBirth=() =>{
   var personalCodeString = this.state.personalId
@@ -102,7 +105,7 @@ generateDateOfBirth=() =>{
 
   let newDateOfBirth = new Date(year+'-'+month+'-'+day).toLocaleDateString('lt-LT');
   this.setState({dateOfBirth: newDateOfBirth});
-    return true;
+     //return newDateOfBirth
 }
 
 validPersonalIdEntered(){
@@ -111,7 +114,7 @@ validPersonalIdEntered(){
         return true;
     }
     else{
-      alert("Asmens kodas privalomas!")
+      alert("Asmens kodas privalomas! Asmens kodą sudaro 11 skaitmenų")
     }
 }
 
@@ -134,13 +137,32 @@ validPassword(){
     }
 }
 
+handleDateGeneration(event){
+  if(this.state.dateOfBirth!==''&&
+  this.state.dateOfBirth!=null){
+    return true;
+  }else{
+    this.generateDateOfBirth();
+  }
+  event.preventDefault();
+}
+
+dateOfBirthIsGenerated(){
+  if(this.state.dateOfBirth!==null && this.state.dateOfBirth!==''){
+    return true;
+  }else{
+    alert('Paspauskite mygtuką "Generuoti gimimo datą"')
+  }
+}
+
 dataIsValid(){
     if (this.validPersonalIdEntered()&&
     this.bothPasswordsMatch()&&
     this.validFirstNameEntered()&&
     this.validLastNameEntered()&&
     this.validUserNameEntered()&&
-    this.validPassword()){
+    this.validPassword()&&
+    this.dateOfBirthIsGenerated()){
         return true;
     }
 }
@@ -148,11 +170,10 @@ dataIsValid(){
 
   handleClick(event) {
     var apiUrl=API;
-this.generateDateOfBirth()
 
     if (this.dataIsValid()){
       console.log("data is valid: " + this.dataIsValid());
-      
+      //this.generateDateOfBirth()
       //set values
       var information={
         firstName : this.state.firstName,
@@ -238,6 +259,7 @@ this.generateDateOfBirth()
               floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
               //onChange={(event, dateOfBirth) =>this.setState({floatingLabelText: dateOfBirth})}  
             />
+            <RaisedButton label="Generuoti gimimo datą" onClick={(event)=>this.handleDateGeneration(event)}/>
             <br />
             <TextField
               className="userName"
