@@ -6,5 +6,8 @@ import java.util.List;
 
 public interface PatientRepository extends JpaRepository<Patient, Long> {
     List<Patient> findByUserName(String userName);
+    List<Patient> findAllByDoctorIsNull();
+    List<Patient> findAllByDoctorUserName(String userName);
 
+    Patient findAllByUserName(String userName);
 }

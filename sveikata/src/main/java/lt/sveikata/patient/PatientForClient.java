@@ -13,7 +13,7 @@ public class PatientForClient {
 	private String role;
 	private String userName;
 	private boolean isSuspended;
-//	private String doctorsFullName;
+	private String doctorsFullName;
 
 	private Doctor doctor;
 
@@ -80,6 +80,14 @@ public class PatientForClient {
 
 	public void setSuspended(boolean suspended) {
 		isSuspended = suspended;
+	}
+
+	public String getDoctorsFullName() {
+		return doctorsFullName;
+	}
+
+	public void setDoctorsFullName(String doctorsFullName) {
+		this.doctorsFullName = doctorsFullName;
 	}
 }
 

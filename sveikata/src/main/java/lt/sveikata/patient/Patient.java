@@ -65,6 +65,8 @@ public class Patient extends User {
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
+
+
 	
 }
 

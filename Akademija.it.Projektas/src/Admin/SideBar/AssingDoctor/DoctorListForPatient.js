@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {
     Table,
     TableBody,
     TableHeader,
     TableHeaderColumn,
     TableRow,
+    TableRowColumn,
 } from 'material-ui/Table';
 import TextField from 'material-ui/TextField';
 import Search from 'material-ui/svg-icons/action/search';
@@ -25,34 +25,57 @@ class ListOfPatietns extends Component {
             enableSelectAll: false,
             deselectOnClickaway: true,
             showCheckboxes: true,
-            height: '480px',
+            height: '400px',
             showModal: false,
             disabled: true,
+            selected:[],
+            familyDoctors: []
 
         };
     }
+    componentWillMount = () => {
+        axios.get("http://localhost:8081/admin/familyDoctors")
+            .then((responce) => { this.setState({ familyDoctors: responce.data }); console.log(this.state.familyDoctors) })
+            .catch((error) => { console.log(error) });
+    };
+    
+    isSelected = (index) => {
+        return this.state.selected.indexOf(index) !== -1;
+    };
+
+
+    handleRowSelection = (selectedRows) => {
+        this.setState({
+            selected: selectedRows,
+        });
+        
+        this.props.callBackFromParentDoctor(this.state.familyDoctors[selectedRows], this.state.selected)
+    };
+
 
     render() {
+
+        var familyDoctorsComponent = this.state.familyDoctors.map((familyDoctor, index) => (
+            <TableRow key={index} selected={this.isSelected(index)}>
+                <TableRowColumn>{familyDoctor.firstName + " " + familyDoctor.lastName}</TableRowColumn>
+                <TableRowColumn>{familyDoctor.userName}</TableRowColumn>
+            </TableRow>
+        )
+        );
+
+        console.log(this.state)
         return (
             <Table
                 height={this.state.height}
                 fixedHeader={this.state.fixedHeader}
                 selectable={this.state.selectable}
-                style={{
-                    width: "40%",
-                    float: 'left'
-                }}
+                onRowSelection={this.handleRowSelection}
             >
                 <TableHeader
                     displaySelectAll={this.state.showCheckboxes}
                     adjustForCheckbox={this.state.showCheckboxes}
                     enableSelectAll={this.state.enableSelectAll}
                 >
-                    <TableRow>
-                        <TableHeaderColumn>
-                            <h3> Pacientai be Daktarų</h3>
-                        </TableHeaderColumn>
-                    </TableRow>
                     <TableRow>
                         <TableHeaderColumn colSpan="2" tooltip="Search" style={{ textAlign: 'left' }}>
                             <div>
@@ -70,6 +93,7 @@ class ListOfPatietns extends Component {
                     displayRowCheckbox={this.state.showCheckboxes}
                     deselectOnClickaway={this.state.deselectOnClickaway}
                 >
+                    {familyDoctorsComponent}
                 </TableBody>
             </Table>
         );

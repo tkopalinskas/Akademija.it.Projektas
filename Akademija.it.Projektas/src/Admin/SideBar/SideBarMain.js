@@ -29,7 +29,6 @@ class SideBarMain extends Component {
         return (
             <div>
                 <Drawer open={this.state.open}
-                /* width={170} */
                 onRequestChange={this.state.closeAction}
                 className="drawerStyles">
                 
@@ -44,9 +43,6 @@ class SideBarMain extends Component {
                     open={this.state.showRegisterOptions}
                     closeAction={this.handleToggle.bind(this, 'showRegisterOptions')} 
                     />
-                {/* <DrAndPatient
-                    open={this.state.showPatientGetDoctor}
-                    closeAction={this.handleToggle.bind(this, 'showPatientGetDoctor')} /> */}
                 <UserList
                     open={this.state.showUserManagementOptions}
                     closeAction={this.handleToggle.bind(this, 'showUserManagementOptions')} />

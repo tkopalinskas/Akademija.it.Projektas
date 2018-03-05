@@ -230,6 +230,7 @@ class RegisterDoctor extends Component {
                             <MenuItem value={"gydytojas"} primaryText="Gydytojas" />
                             <MenuItem value={"chirurgas"} primaryText="Chirurgas" />
                             <MenuItem value={"fizioterapeutas"} primaryText="Fizioterapeutas" />
+                            <MenuItem value={"Šeimos Gyditojas"} primaryText="Šeimos Gyditojas" />
                             <MenuItem value={"kita"} primaryText="Kita" />
                         </DropDownMenu>
                         {/* <br/>

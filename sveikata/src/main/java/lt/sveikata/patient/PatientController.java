@@ -4,13 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping(value="/admin")
 public class PatientController {
@@ -23,8 +19,12 @@ public class PatientController {
 	}
 
 	@RequestMapping(value = "/patient/{userName}", method = RequestMethod.GET)
-	public List<PatientForClient> giveAllPatients(@PathVariable final String userName){
+	public PatientForClient giveAllPatients(@PathVariable final String userName){
 		return getPatientService().receiveAllPatients(userName);
+	}
+	@RequestMapping(value = "/patientsWithoutDoctors", method = RequestMethod.GET)
+	public List<PatientForClient> giveAllPatientsWithoutDoctors(){
+		return getPatientService().recieveAllPatientsWithoutDoctors();
 	}
 
 	@RequestMapping(value = "/patient", method = RequestMethod.POST)
@@ -38,6 +38,13 @@ public class PatientController {
 //	public void deletePatientFromDatabase(@PathVariable final Long id) {
 //		patientService.deletePatient(id);
 //	}
+
+	@RequestMapping(value="/patientDoctorAssign/{patientUsername}/{doctorUserName}", method = RequestMethod.PUT)
+	@ResponseStatus(HttpStatus.CREATED)
+	public void assignDoctorToPatient( @PathVariable String patientUsername, @PathVariable  String doctorUserName){
+
+		patientService.assignDoctor(patientUsername, doctorUserName);
+	}
 
 	@RequestMapping(value = "/admin/findUser/manageUser/{personalId}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.CREATED)

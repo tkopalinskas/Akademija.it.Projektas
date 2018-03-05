@@ -11,7 +11,7 @@ import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Search from 'material-ui/svg-icons/action/search';
 import axios from 'axios'
-import InformationModal from './InformationModal'
+import InformationModal from './PharmacistInformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
 // const styles = {
