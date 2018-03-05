@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 import React, { Component } from 'react';
 import App from '../App';
-import PharmacistPasswordChangeComponent from './PasswordChange/PharmacistPasswordChangeComponent';
+import PasswordChangeComponent from '../PasswordChange/PasswordChangeComponent';
 import PharmacistsPrescriptionsTable from './PharmacistsPrescriptionsTable';
 
 class PharmacistWindowNavigation extends Component{
@@ -10,8 +10,8 @@ class PharmacistWindowNavigation extends Component{
             <main>
                 <Switch>
                     <Route exact path="/" name="home" component={App} /> 
-                    <Route path="/pharmacist/changePassword" name="changePharmacistsPassword" component={PharmacistPasswordChangeComponent} />
-                    <Route path="/pharmacist/prescriptions" name="patientsprescriptions" component={PharmacistsPrescriptionsTable} />
+                    <Route path="/pharmacist/changePassword" name="changePharmacistsPassword" component={PasswordChangeComponent} />
+                    <Route path="/pharmacist" name="patientsprescriptions" component={PharmacistsPrescriptionsTable} />
                 </Switch>
             </main>
         )

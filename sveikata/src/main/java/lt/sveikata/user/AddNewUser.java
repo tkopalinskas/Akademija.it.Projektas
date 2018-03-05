@@ -13,6 +13,7 @@ import javax.persistence.*;
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long id;
+	@Column(unique = true)
 	private String userName;
 	private String password;
 	private boolean isSuspended=false;

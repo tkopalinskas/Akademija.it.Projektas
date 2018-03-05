@@ -3,7 +3,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import DatePicker from 'material-ui/DatePicker';
 import {API} from "./HostUrl";
 import axios from 'axios';
 
@@ -28,7 +27,15 @@ class RegisterPatient extends Component {
       repeatedPassword: '',
       dateOfBirth: '',
       personalId: '',
-      doctorsFullName: ''
+      doctorsFullName: '',
+      firstDigit: '',
+      secondGroup: '',
+      year: '',
+      month:'',
+      day:'',
+      disabled: true
+      
+      
     };
   }
   validFirstNameEntered(){
@@ -64,8 +71,44 @@ validUserNameEntered(){
     }
 }
 
-dateOfBirthAndPersonalIdMatch() {
-            return true;
+getPersonalId=(event, newValue)=>{
+  this.personalId=this.setState({ 
+    personalId: newValue,
+    disabled: false });
+  console.log('get id', this.state.personalId) 
+  if(this.state.personalId.length===11){
+     
+  }
+}
+generateDateOfBirth=() =>{
+  var personalCodeString = this.state.personalId
+  var reg = new RegExp(/(\d{1})(\d{2})(\d{2})(\d{2})(\d{4})/);
+  var match = reg.exec(personalCodeString)
+  
+  const firstDigit=  match[1];
+  const secondGroup= match[2];
+  const month= match[3];
+  const day= match[4];
+  /* const pidToDate=pid=> {
+    const first = pid[0];
+    const month = pid.slice(1, 2)
+    if(first === '3' || first === '4')
+    return '19'
+
+    date = first + month+ '-';
+    new Date(date).toLocaleDateString('lt-LT')
+  } */
+
+  let year=null;
+  if((firstDigit==='3')||(firstDigit==='4')){
+     year='19'+secondGroup;
+  }else{
+     year='20'+secondGroup;
+  } 
+
+  let newDateOfBirth = new Date(year+'-'+month+'-'+day).toLocaleDateString('lt-LT');
+  this.setState({dateOfBirth: newDateOfBirth});
+     //return newDateOfBirth
 }
 
 validPersonalIdEntered(){
@@ -74,7 +117,7 @@ validPersonalIdEntered(){
         return true;
     }
     else{
-      alert("Asmens kodas privalomas!")
+      alert("Asmens kodas privalomas! Asmens kodą sudaro 11 skaitmenų")
     }
 }
 
@@ -97,13 +140,32 @@ validPassword(){
     }
 }
 
+handleDateGeneration(event){
+  if(this.state.dateOfBirth!==''&&
+  this.state.dateOfBirth!=null){
+    return true;
+  }else{
+    this.generateDateOfBirth();
+  }
+  event.preventDefault();
+}
+
+dateOfBirthIsGenerated(){
+  if(this.state.dateOfBirth!==null && this.state.dateOfBirth!==''){
+    return true;
+  }else{
+    alert('Paspauskite mygtuką "Generuoti gimimo datą"')
+  }
+}
+
 dataIsValid(){
     if (this.validPersonalIdEntered()&&
     this.bothPasswordsMatch()&&
     this.validFirstNameEntered()&&
     this.validLastNameEntered()&&
     this.validUserNameEntered()&&
-    this.validPassword()){
+    this.validPassword()&&
+    this.dateOfBirthIsGenerated()){
         return true;
     }
 }
@@ -112,11 +174,9 @@ dataIsValid(){
   handleClick(event) {
     var apiUrl=API;
 
-
     if (this.dataIsValid()){
-      
       console.log("data is valid: " + this.dataIsValid());
-      
+      //this.generateDateOfBirth()
       //set values
       var information={
         firstName : this.state.firstName,
@@ -127,7 +187,7 @@ dataIsValid(){
         personalId : this.state.personalId,
         doctorsFullName: this.state.doctorsFullName
       }
-
+      console.log('info',information)
       axios.post(apiUrl +  '/admin/patient', information)
       .then((response)=>{
         console.log("registration  successful");
@@ -146,13 +206,20 @@ dataIsValid(){
   }
    
   render() {
+    console.log('metai pradzia', this.state.firstDigit);
+    console.log('metai', this.state.year);
+    console.log('menuo', this.state.month);
+    console.log('diena', this.state.day);
+    console.log('like', this.state.theRest);
+    console.log('dateofbirth', this.state.dateOfBirth);
     return (
       <div>
         <MuiThemeProvider>
-          <div>
+          <div className="registerPatient">
           <h2> Registruoti pacientą </h2>
             <TextField
               className="firstName"
+              id="inputFirstName"
               hintText="Nuo 3 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
@@ -163,6 +230,7 @@ dataIsValid(){
             <br />
             <TextField
               className="lastName"
+              id="inputLastName"
               hintText="Nuo 3 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
@@ -173,21 +241,35 @@ dataIsValid(){
             <br />
             <TextField
               className="personalCode"
+              id="inputPersonalCode"
               hintText="Asmens kodą sudaro 11 skaitmenų"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
               type="numbers"
               floatingLabelText="Asmens kodas"
               floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
-              onChange={(event, newValue) => this.setState({ personalId: newValue })}
+              onChange={this.getPersonalId}
             />
             <br />
-            <DatePicker className="dateOfBirth" hintText="Gimimo data"
-              onChange={(event, newValue) => this.setState({ dateOfBirth: newValue })}
+            {/*fix this*/}
+            <TextField
+              className="dateOfBirth"
+              id="autoInputDateOfBirth"
+              disabled={true}
+              hintText="Gimimo data"
+              type="numbers"
+              floatingLabelText={this.state.dateOfBirth}
+              floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
+              //onChange={(event, dateOfBirth) =>this.setState({floatingLabelText: dateOfBirth})}  
             />
+            <RaisedButton 
+            label="Generuoti gimimo datą" 
+            onClick={(event)=>this.handleDateGeneration(event)}
+            disabled={this.state.disabled}/>
             <br />
             <TextField
               className="userName"
+              id="inputUserName"
               hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
@@ -198,6 +280,7 @@ dataIsValid(){
             <br />
             <TextField
               className="password"
+              id="inputPassword"
               type="password"
               hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
@@ -209,6 +292,7 @@ dataIsValid(){
             <br />
             <TextField
               className="repeatedPassword"
+              id="inputRepeatedPassword"
               type="password"
               hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
@@ -218,7 +302,7 @@ dataIsValid(){
               onChange={(event, newValue) => this.setState({ repeatedPassword: newValue })}
             />
             <br />
-            <RaisedButton className="submitButton" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
           </div>
         </MuiThemeProvider>
       </div>

@@ -3,16 +3,14 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FontIcon from 'material-ui/FontIcon';
+//import FontIcon from 'material-ui/FontIcon';
 import { Link } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
-import PharmacistWindowNavigation from './PharmacistWindowNavigation';
+import DoctorWindowNavigation from './DoctorWindowNavigation';
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
-/* import Search from 'material-ui/svg-icons/action/search';
-import TextField from 'material-ui/TextField'; */
 
 const rowStyle={
     margin: 0,
@@ -22,18 +20,19 @@ const containerStyle={
     padding: 0,
 }
 
-class PharmacistContainer extends Component{
+class DoctorContainer extends Component{
     constructor(){
         super();
         this.state ={
             userName: 'user',
+            medicalRecords: [],
             prescriptions: [],
             open: true,
             leftDrop: false,
             anchorOrigin: { horizontal: 'left',
                           vertical: 'bottom' },
             targetOrigin:{ horizontal: 'left', 
-                          vertical: 'top' }
+                          vertical: 'top' },              
         }
     }
 
@@ -69,12 +68,17 @@ class PharmacistContainer extends Component{
           targetOrigin: targetOrigin,
         });
     };
+
+    /* handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            this.setState({
+                personalCode: e.target.value,
+            });
+          console.log('do validate');
+        }
+    } */
     
     render(){
-
-        /*remove before release */
-        console.log(this.state.personalCode);
-
         return(
             <MuiThemeProvider>
             <div>
@@ -93,7 +97,7 @@ class PharmacistContainer extends Component{
                         onRequestClose={this.handleRequestClose}
                     >
                             <MenuItem className="changePassword"
-                                      containerElement={<Link to="/pharmacist/changePassword" />}
+                                      containerElement={<Link to="/doctor/changePassword" />}
                                       primaryText="Pakeisti slaptažodį"/>   
                             <MenuItem className="logOut"
                                       containerElement={<Link to="/" />}
@@ -107,17 +111,27 @@ class PharmacistContainer extends Component{
                 <Row style={rowStyle}>
                 <Col md="2">
                 <Drawer open={this.state.open} width={170}>
-                        <AppBar showMenuIconButton={false}>
-                        </AppBar>      
-                    <MenuItem primaryText="Receptai"
-                            /* containerElement={<Link to="/pharmacist/prescriptions" />} */
-                              /* leftIcon={
-                                <FontIcon className="listOfPatientsPrescriptions">Receptai</FontIcon>
-                    } *//>       
+                        <AppBar showMenuIconButton={false} >
+                        </AppBar>
+                    <MenuItem style={{whiteSpace: 'normal'}} 
+                              primaryText="Pacientų sąrašas" 
+                              containerElement={<Link to="/doctor/patientsList" />}
+                               /* leftIcon={
+                                <FontIcon className="patientsList">Pacientų sąrašas</FontIcon>
+                    } */ /><br/>     
+                    <MenuItem /* style={{whiteSpace: 'normal'}} */
+                              primaryText="Paieška duombazėje" 
+                              containerElement={<Link to="/doctor/findPatient" />}
+                               /* leftIcon={
+                                <FontIcon className="material-icons">Rasti pacientą duombazėje</FontIcon>
+                    } */ />
+                    {/* <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '15', marginTop: '0'}} /> 
+                    <TextField hintText="Paieška duombazėje" underlineShow={true} onKeyPress={this.handleKeyPress}/>
+                  </MenuItem><br/>        */}
                 </Drawer>
                 </Col>
                 <Col md="10">
-                    <PharmacistWindowNavigation/>
+                    <DoctorWindowNavigation/>
                 </Col>
             </Row>
             </Container> 
@@ -127,4 +141,4 @@ class PharmacistContainer extends Component{
         );
     }
 }
-export default PharmacistContainer;
+export default DoctorContainer;

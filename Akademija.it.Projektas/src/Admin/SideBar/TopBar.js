@@ -38,6 +38,7 @@ class TopBar extends Component {
                         className="helloUser"
                         showMenuIconButton={false}
                         iconElementRight={<FlatButton
+                            className="userPopoverMenu"
                             onClick={this.handleClick}
                             label="Vardas Pavarde" />
                         }

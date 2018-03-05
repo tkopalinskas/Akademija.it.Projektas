@@ -9,7 +9,7 @@ import ListofAdmins from './DropdownLists/ListofAdmins';
 import ListofDoctors from './DropdownLists/ListofDoctors';
 import ListofPatients from './DropdownLists/ListofPatients';
 import ListofPharmacists from './DropdownLists/ListofPharmacists';
-import AdminPasswordChangeComponent from './PasswordChange/AdminPasswordChangeComponent';
+import PasswordChangeComponent from '../PasswordChange/PasswordChangeComponent';
 
 class AdminRouting extends Component {
 
@@ -25,7 +25,7 @@ class AdminRouting extends Component {
                     <Route exact path="/admin/alldoctors" component={ListofDoctors} />
                     <Route exact path="/admin/allpatients" component={ListofPatients} />
                     <Route exact path="/admin/allpharmacists" component={ListofPharmacists} />
-                    <Route exact path="/admin/changePassword" component={AdminPasswordChangeComponent}/>
+                    <Route exact path="/admin/changePassword" component={PasswordChangeComponent}/>
                     <Route exact path="/admin/assigndoctor" component={DoctorAssignmentToPatient} />
                 </Switch>
             </main>

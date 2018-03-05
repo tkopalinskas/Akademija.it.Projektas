@@ -11,6 +11,8 @@ import {
 } from 'material-ui/Table';
 import InformationModal from './SinglePrescriptionInformation'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
+import Search from 'material-ui/svg-icons/action/search';
+import TextField from 'material-ui/TextField';
 
 const styles ={
   marginLeft: 0,
@@ -19,11 +21,12 @@ const styles ={
 }
 
 class PharmacistsPrescriptionsTable extends Component {
-    constructor() {
-      super();
+    constructor(props) {
+      super(props);
         this.state = {
           fixedHeader: true,
           showRowHover: true,
+          showCheckboxes: false,
           selectable: true,
           multiSelectable: false,
           enableSelectAll: false,
@@ -39,14 +42,23 @@ class PharmacistsPrescriptionsTable extends Component {
             description: '',
             number: '',
 
+            personalCode: '',
           validPrescriptionInfo:[]
       }
   }
 
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+        this.setState({
+            personalCode: e.target.value,
+        });
+      console.log('do validate');
+    }
+}
   /*get single prescription*/
     openModal = (number) => {
       console.log(number);
-      axios.get(`http://localhost:8081/pharmacist/prescriptions/`+ {number})
+      axios.get('http://localhost:8081/pharmacist/'+ number)
           .then((response) => { this.setState({ validPrescriptionInfo: response.data }) })
                   this.setState({ showModal: !this.state.showModal })
           .catch((error) => {
@@ -55,9 +67,9 @@ class PharmacistsPrescriptionsTable extends Component {
   }
 
   /*get valid patient's prescriptions*/
-    /* componentWillMount() {
+    componentWillMount=(personalCode)=> {
        axios
-            .get("http://localhost:8081/pharmacist/prescriptions")
+            .get('http://localhost:8081/pharmacist' + personalCode)
             .then((response) => {
                 console.log(response);
                 this.setState({validPrescriptions: response.data});
@@ -67,10 +79,11 @@ class PharmacistsPrescriptionsTable extends Component {
             }); 
             console.log(this.state)
     }
- */
+ 
     render() {
 
-      console.log(this.state.validPrescriptionInfo);
+       console.log("personal",this.state.personalCode); 
+      /* console.log(this.state.validPrescriptionInfo); */
 
       var allPrescriptions = this.state.validPrescriptions.map((prescription, index) => (
         <TableRow key={index}  onClick={this.openModal} >
@@ -79,7 +92,7 @@ class PharmacistsPrescriptionsTable extends Component {
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn>{prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn>{prescription.description}<FlatButton label="Info" primary={true} onClick={this.openModal(prescription.number)} /></TableRowColumn>
+            <TableRowColumn>{prescription.description}<FlatButton label="Info" primary={true} /* onClick={this.openModal(prescription.number)} */ /></TableRowColumn>
         </TableRow>
     ))
 
@@ -90,6 +103,12 @@ class PharmacistsPrescriptionsTable extends Component {
       return (
         <MuiThemeProvider>
         <div>
+        <div>
+                    <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '15', marginTop: '25'}} />
+                    <TextField hintText="Paciento asmens kodas" 
+                        underlineShow={true} 
+                        onKeyPress={this.handleKeyPress}/>
+                </div>
           <Table
             height={this.state.height}
             style={styles}
@@ -103,7 +122,7 @@ class PharmacistsPrescriptionsTable extends Component {
                 enableSelectAll={this.state.enableSelectAll}
               >
               <TableRow>
-                <TableHeaderColumn colSpan="3" tooltip="Receptai" style={{textAlign: 'center'}}>
+                <TableHeaderColumn colSpan="5" tooltip="Receptai" style={{textAlign: 'center'}}>
                   Receptai
                 </TableHeaderColumn>
               </TableRow>

@@ -128,11 +128,12 @@ class RegisterAdmin extends Component {
     return (
       <div >
         <MuiThemeProvider>
-          <div
+          <div className="registerAdmin"
            open={this.props.open}>
            <h2> Registruoti administratorių </h2>
             <TextField
               className="firstName"
+              id="inputFirstName"
               hintText="Nuo 3 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
@@ -143,6 +144,7 @@ class RegisterAdmin extends Component {
             <br />
             <TextField
               className="lastName"
+              id="inputLastName"
               hintText="Nuo 3 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
@@ -153,6 +155,7 @@ class RegisterAdmin extends Component {
             <br />
             <TextField
               className="userName"
+              id="inputUserName"
               hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
               errorStyle={textStyles.errorStyle}
@@ -163,6 +166,7 @@ class RegisterAdmin extends Component {
             <br />
             <TextField
               className="password"
+              id="inputPassword"
               type="password"
               hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
@@ -174,6 +178,7 @@ class RegisterAdmin extends Component {
             <br />
             <TextField
               className="repeatedPassword"
+              id="inputRepeatedPassword"
               type="password"
               hintText="Nuo 6 iki 30 simbolių"
               errorText="Privalomas laukas"
@@ -183,7 +188,7 @@ class RegisterAdmin extends Component {
               onChange={(event, newValue) => this.setState({ repeatedPassword: newValue })}
             />
             <br />
-            <RaisedButton className="submitButton" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
+            <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
             
           </div>
         </MuiThemeProvider>

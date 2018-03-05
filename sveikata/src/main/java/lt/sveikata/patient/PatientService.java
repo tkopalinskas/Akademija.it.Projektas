@@ -47,8 +47,9 @@ public class PatientService {
 		patientForClient.setSuspended(patient.isSuspended());
 		patientForClient.setDateOfBirth(patient.getDateOfBirth());
 		patientForClient.setUserName(patient.getUserName());
-		patientForClient.setDoctorsFullName(patient.getDoctor().getFirstName() + " " + patient.getDoctor().getLastName());
-
+		if(patient.getDoctor() != null) {
+			patientForClient.setDoctorsFullName(patient.getDoctor().getFirstName() + " " + patient.getDoctor().getLastName());
+		}
 		return patientForClient;
 	}
 

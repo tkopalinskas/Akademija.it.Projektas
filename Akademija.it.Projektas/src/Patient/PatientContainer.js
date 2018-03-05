@@ -4,7 +4,6 @@ import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FontIcon from 'material-ui/FontIcon';
-//import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 import { Link } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
@@ -80,6 +79,7 @@ class PatientContainer extends Component{
                 <Col md="12">
                 <AppBar className="helloUser"
                         showMenuIconButton={false} iconElementRight={<FlatButton
+                        className="userPopoverMenu"
                         onClick={this.handleClick}
                         label={"Sveiki, "+ this.state.userName} />
                     }>
@@ -103,19 +103,18 @@ class PatientContainer extends Component{
                 <Row style={rowStyle}>
                 <Col md="2">
                 <Drawer open={this.state.open} width={170}>
-                        <AppBar showMenuIconButton={false} 
-                       /*  iconElementLeft={<div>
-                            <FontIcon className="muidocs-icon-action-home" /><ArrowBack onClick={this.props.closeAction} />
-                                        </div>} */>
+                        <AppBar showMenuIconButton={false}>
                         </AppBar>
-                    <MenuItem containerElement={<Link to="/patient/medicalRecords" />}
-                              leftIcon={
-                                <FontIcon className="material-icons">Ligos įrašai</FontIcon>
-                    }/>       
-                    <MenuItem containerElement={<Link to="/patient/prescriptions" />}
-                              leftIcon={
-                                <FontIcon className="material-icons">Receptai</FontIcon>
-                    }/>       
+                    <MenuItem primaryText="Ligos įrašai"
+                              containerElement={<Link to="/patient/medicalRecords" />}
+                              /* leftIcon={
+                                <FontIcon className="medicalRecords">Ligos įrašai</FontIcon>
+                    } *//><br/>       
+                    <MenuItem primaryText="Receptai"
+                              containerElement={<Link to="/patient/prescriptions" />}
+                              /* leftIcon={
+                                <FontIcon className="prescriptions">Receptai</FontIcon>
+                    } *//><br/>       
                 </Drawer>
                 </Col>
                 <Col md="10">

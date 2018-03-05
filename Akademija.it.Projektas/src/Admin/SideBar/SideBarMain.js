@@ -30,14 +30,14 @@ class SideBarMain extends Component {
             <div>
                 <Drawer open={this.state.open}
                 onRequestChange={this.state.closeAction}
-                className="drawerStyles">
+                className="menu">
                 
                 
                     <AppBar title={<span>Meniu</span>}
                         showMenuIconButton={false} />
-                    <MenuItem onClick={this.handleToggle.bind(this, "showRegisterOptions")}>Naujų vartotojų  registracija</MenuItem>
-                    <Link to="/admin/assigndoctor" style={{textDecoration: 'none'}}><MenuItem>Priskirti pacientą daktarui</MenuItem></Link>
-                    <MenuItem onClick={this.handleToggle.bind(this, "showUserManagementOptions")}>Vartotojų sarašas</MenuItem>
+                    <MenuItem className="newUserRegistration" onClick={this.handleToggle.bind(this, "showRegisterOptions")}>Naujų vartotojų  registracija</MenuItem>
+                    <Link to="/admin/assigndoctor" style={{textDecoration: 'none'}}><MenuItem className="doctorAssignmentToPatientMenu">Priskirti pacientą daktarui</MenuItem></Link>
+                    <MenuItem className="usersLists" onClick={this.handleToggle.bind(this, "showUserManagementOptions")}>Vartotojų sarašas</MenuItem>
                 </Drawer>
                 <RegisterBar
                     open={this.state.showRegisterOptions}

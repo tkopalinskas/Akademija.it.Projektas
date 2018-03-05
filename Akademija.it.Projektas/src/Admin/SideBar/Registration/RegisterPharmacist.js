@@ -154,7 +154,7 @@ class RegisterPharmacist extends Component {
     }
 
     handleChange= (event, index, value) => {
-        this.setState({ typeOfWorkplace: value, value: value });
+        this.setState({ typeOfWorkplace: event.target.value, value: value });
     }
 
     render() {
@@ -162,10 +162,11 @@ class RegisterPharmacist extends Component {
             <div>
                 <MuiThemeProvider>
                     {/* pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu */}
-                    <div>
+                    <div className="registerPharmacist">
                     <h2> Registruoti vaistininką </h2>
                         <TextField
                             className="firstName"
+                            id="inputFirstName"
                             hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -176,6 +177,7 @@ class RegisterPharmacist extends Component {
                         <br />
                         <TextField
                             className="lastName"
+                            id="inputLastName"
                             hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -186,6 +188,7 @@ class RegisterPharmacist extends Component {
                         <br />
                         <TextField
                             className="workplace"
+                            id="inputWorkplace"
                             hintText="Nuo 2 iki 50 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -194,17 +197,19 @@ class RegisterPharmacist extends Component {
                             onChange={(event, newValue) => this.setState({ workplace: newValue })}
                         />
                         <br/>
-                        <DropDownMenu className="typeOfWorkplace"
+                        <select className="typeOfWorkplace"
+                                      id="inputTypeOfWorkplace"
                                       value={this.state.value} onChange={this.handleChange}>
-                            <MenuItem value={""} primaryText={"Pasirinkite įmonės tipą"} />
-                            <MenuItem value={"UAB"} primaryText="UAB" />
-                            <MenuItem value={"AB"} primaryText="AB" />
-                            <MenuItem value={"MB"} primaryText="MB" />
-                            <MenuItem value={"Všį"} primaryText="Všį" />
-                        </DropDownMenu>
+                            <option id="noTypeOfWorkplace" value={""}>Pasirinkite įmonės tipą</option>
+                            <option id="UAB" value={"UAB"}>UAB</option>
+                            <option id="AB" value={"AB"}>AB</option>
+                            <option id="MB" value={"MB"}>MB</option>
+                            <option id="VSI" value={"Všį"}>Všį</option>
+                        </select>
                         <br />
                         <TextField
                             className="userName"
+                            id="inputUserName"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -215,6 +220,7 @@ class RegisterPharmacist extends Component {
                         <br />
                         <TextField
                             className="password"
+                            id="inputPassword"
                             type="password"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
@@ -226,6 +232,7 @@ class RegisterPharmacist extends Component {
                         <br />
                         <TextField
                             className="repeatedPassword"
+                            id="inputRepeatedPassword"
                             type="password"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
@@ -235,7 +242,7 @@ class RegisterPharmacist extends Component {
                             onChange={(event, newValue) => this.setState({ repeatedPassword: newValue })}
                         />
                         <br />
-                        <RaisedButton className="submitButton" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
+                        <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
                     </div>
                 </MuiThemeProvider>
             </div>

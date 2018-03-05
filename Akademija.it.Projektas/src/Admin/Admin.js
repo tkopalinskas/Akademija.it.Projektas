@@ -18,14 +18,14 @@ class Admin extends React.Component {
     render() {
         return (           
             <MuiThemeProvider>
-                <div>
+                <div className="adminPanel">
                     <TopBar />
-                    <div>
+                    <div className="sideBar">
                     <Row style={rowStyle}>
-                        <Col md="3">
+                        <Col xs="3" md="3">
                             <SideBarMain />
                         </Col>
-                        <Col md="9">
+                        <Col xs="9" md="9">
                             <AdminRouting />
                         </Col>
                     </Row>

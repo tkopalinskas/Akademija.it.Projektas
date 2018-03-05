@@ -3,8 +3,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
 import {API} from "./HostUrl";
 import axios from 'axios';
 
@@ -25,12 +23,14 @@ class RegisterDoctor extends Component {
             firstName: '',
             lastName: '',
             specialization: '',
-            /*otherSpecialization: '',*/
+            otherSpecialization: '',
             userName: '',
             password: '',
             repeatedPassword: '',
             value: ''
         };
+        this.handleChange = this.handleChange.bind(this);
+   
     }
 
     validFirstNameEntered(){
@@ -67,8 +67,8 @@ class RegisterDoctor extends Component {
     }
 
     specializationIsSelected() {
-        if(this.state.specialization!=='')/*||
-    this.otherSpecializationIsSelected()*/{
+        if((this.state.specialization!=='') && (this.state.specialization!=="kita")
+    /* this.otherSpecializationIsSelected()*/) {
             return true;
         }
         else{
@@ -76,18 +76,14 @@ class RegisterDoctor extends Component {
         }
     }
 
-   /*  otherSpecializationIsSelected(){
-        if(this.state.specialization==="kita"&&
-        this.state.otherSpecialization!==''){
+    /* otherSpecializationIsSelected(){
+        if(this.state.specialization!=="kita"/* &&
+        this.otherSpecialization!=='' *//* ){
             return true;
+        }else{
+            alert("Jei pasirinkote kitą specializaciją, turite įrašyti jos pavadinimą į laukelį.")
         }
-    } */
-
-    /* postCorrectSpecialization(){
-        if(this.state.specialization==="kita"){
-            this.setState.specialization= this.state.otherSpecialization
-        }
-    } */
+    }  */ 
 
     bothPasswordsMatch(){
         if (this.state.password===this.state.repeatedPassword){
@@ -114,7 +110,8 @@ class RegisterDoctor extends Component {
         this.validFirstNameEntered()&&
         this.validLastNameEntered()&&
         this.validUserNameEntered()&&
-        this.validPassword()){
+        this.validPassword() /* && */
+        /* this.otherSpecializationIsSelected() */ ){
             return true;
         }
     }
@@ -161,8 +158,13 @@ class RegisterDoctor extends Component {
        
 
     handleChange= (event, index, value) => {
-        this.setState({ specialization: value, value: value });
+        this.setState({ specialization: event.target.value , value: value });
         
+    }
+
+    getOtherSpecialization=(event)=>{
+        var otherSpecialization=event.target.value;
+        this.specialization=this.setState({specialization: otherSpecialization})
     }
 
     render() {
@@ -170,10 +172,11 @@ class RegisterDoctor extends Component {
             <div>
                 <MuiThemeProvider>
                     {/*pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu*/}
-                    <div>
+                    <div className="registerDoctor">
                     <h2> Registruoti gydytoją </h2>
                         <TextField
                             className="firstName"
+                            id="inputFirstName"
                             hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -184,6 +187,7 @@ class RegisterDoctor extends Component {
                         <br />
                         <TextField
                             className="lastName"
+                            id="inputLastName"
                             hintText="Nuo 3 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -194,6 +198,7 @@ class RegisterDoctor extends Component {
                         <br />
                         <TextField
                             className="userName"
+                            id="inputUserName"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle}
@@ -204,6 +209,7 @@ class RegisterDoctor extends Component {
                         <br/>
                         <TextField
                             className="password"
+                            id="inputPassword"
                             type="password"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
@@ -215,6 +221,7 @@ class RegisterDoctor extends Component {
                         <br/>
                         <TextField
                             className="repeatedPassword"
+                            id="inputRepeatedPassword"
                             type="password"
                             hintText="Nuo 6 iki 30 simbolių"
                             errorText="Privalomas laukas"
@@ -223,24 +230,26 @@ class RegisterDoctor extends Component {
                             floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
                             onChange={(event, newValue) => this.setState({ repeatedPassword: newValue })}
                         />
-                        <br/>                       
-                        <DropDownMenu className="specialization"
+                        <br/>                          
+                       <select className="specialization"
+                                      id="inputSpecialization"
                                       value={this.state.value} onChange={this.handleChange}>
-                            <MenuItem value={""} primaryText="Specializacija" />
-                            <MenuItem value={"gydytojas"} primaryText="Gydytojas" />
-                            <MenuItem value={"chirurgas"} primaryText="Chirurgas" />
-                            <MenuItem value={"fizioterapeutas"} primaryText="Fizioterapeutas" />
-                            <MenuItem value={"Šeimos Gyditojas"} primaryText="Šeimos Gyditojas" />
-                            <MenuItem value={"kita"} primaryText="Kita" />
-                        </DropDownMenu>
-                        {/* <br/>
+                            <option id="noSpecialization" value={""} >Specializacija </option>
+                            <option id="generalPractitioner" value={"šeimos gydytojas"} >Šeimos gydytojas </option>
+                            <option id="surgeon" value={"chirurgas"} >Chirurgas </option>
+                            <option id="physiotherapist" value={"fizioterapeutas"} >Fizioterapeutas </option>
+                            <option id="other" value={"kita"} >Kita </option>
+                        </select>                 
+                         <br/>
                         <TextField
+                            className="otherSpecialization"
+                            id="inputOtherSpecialization"
                             hintText="Įveskite kitą specializaciją"
                             floatingLabelText="Kita specializacija"
-                            onChange={(event, newValue) => this.setState({ otherSpecialization: newValue })}
-                        /> */}
+                            onChange={this.getOtherSpecialization}
+                        /> 
                         <br />
-                        <RaisedButton className="submitButton" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
+                        <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
                     </div>
                 </MuiThemeProvider>
             </div>

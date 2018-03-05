@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.NotBlank;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User  {
 
+	@Column(unique = true)
 	private String userName;
 	@NotBlank
 	private String password;
