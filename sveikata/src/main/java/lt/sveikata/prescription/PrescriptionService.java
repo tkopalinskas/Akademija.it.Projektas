@@ -7,9 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lt.sveikata.patient.Patient;
+import lt.sveikata.patient.PatientForClient;
+import lt.sveikata.patient.PatientRepository;
+
 @Transactional
 @Service
 public class PrescriptionService {
+	
+	@Autowired
+	private PatientRepository patientRepository;
 
 	@Autowired
 	private PrescriptionRepository prescriptionRepository;
@@ -21,7 +28,7 @@ public class PrescriptionService {
 			PrescriptionForClient prescr = new PrescriptionForClient();
 			// prescr.setDoctorsFullName(prescription.getDoctorsFullName());
 			prescr.setPrescriptionDate(prescription.getPrescriptionDate());
-			prescr.setPatientsPersonalCode(prescription.getPatientsPersonalCode());
+			prescr.setPersonalId(prescription.getPersonalId());
 			prescr.setValidUntil(prescription.getValidUntil());
 			prescr.setActiveIngredient(prescription.getActiveIngredient());
 			prescr.setAmountPerDose(prescription.getAmountPerDose());
@@ -34,14 +41,18 @@ public class PrescriptionService {
 		return prescriptionsForClient;
 	}
 
-	/* receives a list of all prescriptions from database */
-	public List<PrescriptionForClient> receiveAllPrescriptionsForPharmacist() {
-		List<Prescription> prescriptionsFromDatabase = getPrescriptionRepository().findAll();
+	/* receives a list of patients prescriptions from database */
+	public List<PrescriptionForClient> receiveAllPrescriptionsForPharmacist(long personalId) {
+		Patient patientFromDatabase = getPatientRepository().findByPersonalId(personalId);
+		PatientForClient patientForClient = new PatientForClient();
+		patientForClient.setPersonalId(patientFromDatabase.getPersonalId());
+		
+		List<Prescription> prescriptionsFromDatabase = getPrescriptionRepository().findByPersonalId(personalId);
 		List<PrescriptionForClient> prescriptionsForClientPharmacist = prescriptionsFromDatabase.stream().map((prescription) -> {
 			PrescriptionForClient prescr = new PrescriptionForClient();
 			// prescr.setDoctorsFullName(prescription.getDoctorsFullName());
 			prescr.setPrescriptionDate(prescription.getPrescriptionDate());
-			prescr.setPatientsPersonalCode(prescription.getPatientsPersonalCode());
+			prescr.setPersonalId(prescription.getPersonalId());
 			prescr.setValidUntil(prescription.getValidUntil());
 			prescr.setActiveIngredient(prescription.getActiveIngredient());
 			prescr.setAmountPerDose(prescription.getAmountPerDose());
@@ -67,7 +78,7 @@ public class PrescriptionService {
 		Prescription prescr = new Prescription();
 		// prescr.setDoctorsFullName(newPrescription.getDoctorsFullName());
 		prescr.setPrescriptionDate(newPrescription.getPrescriptionDate());
-		prescr.setPatientsPersonalCode(newPrescription.getPatientsPersonalCode());
+		prescr.setPersonalId(newPrescription.getPersonalId());
 		prescr.setValidUntil(newPrescription.getValidUntil());
 		prescr.setActiveIngredient(newPrescription.getActiveIngredient());
 		prescr.setAmountPerDose(newPrescription.getAmountPerDose());
@@ -113,5 +124,12 @@ public class PrescriptionService {
 
 	public void setPrescriptionRepository(PrescriptionRepository prescriptionRepository) {
 		this.prescriptionRepository = prescriptionRepository;
+	}
+	public PatientRepository getPatientRepository() {
+		return patientRepository;
+	}
+
+	public void setPatientRepository(PatientRepository patientRepository) {
+		this.patientRepository = patientRepository;
 	}
 }

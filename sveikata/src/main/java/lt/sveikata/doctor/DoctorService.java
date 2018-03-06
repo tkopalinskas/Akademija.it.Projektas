@@ -49,7 +49,7 @@ public class DoctorService {
 		return doctorsForClient;
 	}
 	public List<DoctorForClient> recieveAllFamilyDoctors(){
-		List<Doctor> familyDoctorsFromDataBase = getDoctorRepository().findAllBySpecialization("Šeimos Gyditojas");
+		List<Doctor> familyDoctorsFromDataBase = getDoctorRepository().findAllBySpecialization("Šeimos gydytojas");
 		List<DoctorForClient> familtyDoctorsForClients = familyDoctorsFromDataBase.stream().map((doctor) -> {
 			DoctorForClient fdfc = new DoctorForClient();
 			fdfc.setFirstName(doctor.getFirstName());

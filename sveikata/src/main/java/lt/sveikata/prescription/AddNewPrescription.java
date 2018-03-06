@@ -15,7 +15,7 @@ public class AddNewPrescription {
 	private long id;
 	private String doctorsFullName;
 	private String prescriptionDate;
-	private String patientsPersonalCode;
+	private Long personalId;
 	private String validUntil;
 	private String activeIngredient;
 	private String amountPerDose;
@@ -33,6 +33,7 @@ public class AddNewPrescription {
 	}
 
 	public String getDoctorsFullName() {
+
 		return doctorsFullName;
 	}
 
@@ -48,12 +49,12 @@ public class AddNewPrescription {
 		this.prescriptionDate = prescriptionDate;
 	}
 
-	public String getPatientsPersonalCode() {
-		return patientsPersonalCode;
+	public Long getPersonalId() {
+		return personalId;
 	}
 
-	public void setPatientsPersonalCode(String patientsPersonalCode) {
-		this.patientsPersonalCode = patientsPersonalCode;
+	public void setPersonalId(Long personalId) {
+		this.personalId = personalId;
 	}
 
 	public String getValidUntil() {

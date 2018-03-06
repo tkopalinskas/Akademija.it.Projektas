@@ -5,7 +5,7 @@ import lt.sveikata.doctor.Doctor;
 
 public class PatientForClient {
 	
-	private long personalId;
+	private Long personalId;
 
 	private String firstName;
 	private String lastName;
@@ -42,11 +42,11 @@ public class PatientForClient {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public long getPersonalId() {
+	public Long getPersonalId() {
 		return personalId;
 	}
 
-	public void setPersonalId(long personalId) {
+	public void setPersonalId(Long personalId) {
 		this.personalId = personalId;
 	}
 

@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping(value = "/admin")
+@CrossOrigin(origins="*")
 public class DoctorController {
 
 	
@@ -40,12 +40,6 @@ public class DoctorController {
 //	@ResponseStatus(HttpStatus.NO_CONTENT)
 //	public void deleteDoctorFromDatabase(@PathVariable final Long id) {
 //		doctorService.deleteDoctor(id);
-//	}
-
-//	@RequestMapping(value = "doctor/{doctorUserName}", method=RequestMethod.PUT)
-//	@ResponseStatus(HttpStatus.CREATED)
-//	public void findDoctor(@PathVariable final String doctorUserName){
-//		doctorService.findDoctor(doctorUserName);
 //	}
 
 	@RequestMapping(value = "/admin/findUser/manageUser/{id}", method = RequestMethod.PUT)

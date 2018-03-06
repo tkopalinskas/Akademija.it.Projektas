@@ -3,7 +3,6 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FontIcon from 'material-ui/FontIcon';
 import { Link } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
@@ -11,8 +10,6 @@ import PharmacistWindowNavigation from './PharmacistWindowNavigation';
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
-/* import Search from 'material-ui/svg-icons/action/search';
-import TextField from 'material-ui/TextField'; */
 
 const rowStyle={
     margin: 0,
@@ -73,7 +70,7 @@ class PharmacistContainer extends Component{
     render(){
 
         /*remove before release */
-        console.log(this.state.personalCode);
+        console.log(this.state.personalId);
 
         return(
             <MuiThemeProvider>

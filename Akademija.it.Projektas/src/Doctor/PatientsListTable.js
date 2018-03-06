@@ -9,9 +9,6 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import { Link } from 'react-router-dom';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 import NewPrescription from './NewPrescription';
@@ -40,7 +37,7 @@ class PatientsListTable extends Component {
             patients: [],
             firstName: '',
             lastName: '',
-            personalCode: '',
+            personalId: '',
             /* illnessTLKCode: '', */
             routeToComponent: '',
             value: ''
@@ -72,10 +69,10 @@ class PatientsListTable extends Component {
           this.openMedicalRecordModal();
           break;
         case "receptai":
-          window.location.assign("http://localhost:3000/#/doctor/prescriptions");
+          window.location.assign("http://localhost:8081/#/doctor/patient/prescriptions");
           break;
         case "ligos įrašai":
-          window.location.assign("http://localhost:3000/#/doctor/medicalRecords");
+          window.location.assign("http://localhost:8081/#/doctor/patient/medicalRecords");
           break;
         default: return null;
       } 
@@ -85,7 +82,7 @@ class PatientsListTable extends Component {
     handleKeyPress = (e) => {
       if (e.key === 'Enter') {
           this.setState({
-              personalCode: e.target.value,
+              personalId: e.target.value,
           });
         console.log('get personal');
       }
@@ -103,14 +100,14 @@ class PatientsListTable extends Component {
 
       render() {
         /*IMPORTANT!!!! delete console.log before release */
-        console.log("personal", this.state.personalCode)
+        console.log("personal", this.state.personalId)
         console.log("value", this.state.value)
 
         var allPatients = this.state.patients.map((patient, index) => (
           <TableRow key={index}/*  onClick={this.openModal} */>
               <TableRowColumn>{patient.firstName}</TableRowColumn>
               <TableRowColumn>{patient.lastName}</TableRowColumn>
-              <TableRowColumn>{patient.personalCode}</TableRowColumn>
+              <TableRowColumn>{patient.personalId}</TableRowColumn>
               {/* <TableRowColumn>{patient.illnessTLKCode}</TableRowColumn> */}
               <TableRowColumn>
                 <select className="routeToComponent" 
@@ -207,7 +204,7 @@ class PatientsListTable extends Component {
                     <TableRow >
                     <TableRowColumn>firstName</TableRowColumn>
                     <TableRowColumn>lastName</TableRowColumn>
-                    <TableRowColumn>personalCode</TableRowColumn>
+                    <TableRowColumn>personalId</TableRowColumn>
                     {/* <TableRowColumn>illnessTLKCode</TableRowColumn> */}
                     <TableRowColumn>
                       <select className="routeToComponent" 

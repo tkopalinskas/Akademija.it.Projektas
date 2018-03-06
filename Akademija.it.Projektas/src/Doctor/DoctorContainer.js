@@ -72,7 +72,7 @@ class DoctorContainer extends Component{
     /* handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             this.setState({
-                personalCode: e.target.value,
+                personalId: e.target.value,
             });
           console.log('do validate');
         }

@@ -37,6 +37,7 @@ public class PharmacistService {
 		List<PharmacistForClient> pharmacistsForClient = pharmacistsFromDatabase.stream().map((pharmacist) -> {
 			PharmacistForClient phfc = new PharmacistForClient();
 			phfc.setRole(pharmacist.getRole());
+			phfc.setUserName(pharmacist.getUserName());
 			phfc.setFirstName(pharmacist.getFirstName());
 			phfc.setLastName(pharmacist.getLastName());
 			phfc.setWorkplace(pharmacist.getWorkplace());

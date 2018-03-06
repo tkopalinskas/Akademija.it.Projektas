@@ -9,9 +9,6 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton/FlatButton';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 import NewPrescription from './NewPrescription';
@@ -46,26 +43,25 @@ class PatientFromDatabase extends Component{
         }
     }
 
-    /*get patients from database */
-    componentWillMount(personalCode) {
-        axios
-             .get("http://localhost:8081/doctor"  + personalCode )
+    /* gets a personal code value and patients from database when enter key is hit */
+    handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            let personalId=e.target.value;
+
+            this.setState({
+                personalCode: personalId,
+            }); 
+          
+          axios
+             .get("http://localhost:8081/doctor/findPatient/"  + personalId )
              .then((response) => {
                  console.log(response);
                  this.setState({patients: response.data});
              })
              .catch((error) => {
                  console.log(error);
+                 alert('Tokio paciento nėra!')
              }); 
-    }
-
-    /* gets a personal code value when enter key is hit */
-    handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            this.setState({
-                personalCode: e.target.value,
-            });
-          console.log('do validate');
         }
     }
 
@@ -94,26 +90,8 @@ class PatientFromDatabase extends Component{
         /*IMPORTANT!!!*/
         /* delete all console.logs before release! */
         console.log("a.k.", this.state.personalCode)
-        console.log('route', this.state.value)
-
-        var patientFromDatabase = this.state.patients.map((patient, index) => (
-            <TableRow key={index}  onClick={this.openPrescriptionModal} >
-                <TableRowColumn>{patient.firstName}</TableRowColumn>
-                <TableRowColumn>{patient.lastName}</TableRowColumn>
-                <TableRowColumn>{patient.personalCode}</TableRowColumn>
-                <TableRowColumn>
-                    <select className="routeToComponent" /* onClick={this.openModal} */
-                            value={this.state.value} onChange={this.handleChange}>
-                        <option id="moreOptions" value={""} >Daugiau</option>
-                        <option id="newMedicalRecord" value={"naujas ligos įrašas"}>Naujas ligos įrašas </option>
-                        <option id="newPrescription" value={"naujas receptas"}>Naujas receptas </option>
-                    </select>
-                </TableRowColumn>
-            </TableRow>
-        ))
     
         if (!this.state.patients) {
-            alert('Tokio paciento nėra!')
             return null;
         } 
 
@@ -186,20 +164,33 @@ class PatientFromDatabase extends Component{
                         deselectOnClickaway={this.state.deselectOnClickaway}
                         showRowHover={this.state.showRowHover}
                     >
-                        { patientFromDatabase}
-                        <TableRow >
+                        <TableRow onClick={this.openPrescriptionModal} >
+                            <TableRowColumn>{this.state.patients.firstName}</TableRowColumn>
+                            <TableRowColumn>{this.state.patients.lastName}</TableRowColumn>
+                            <TableRowColumn>{this.state.patients.personalId}</TableRowColumn>
+                            <TableRowColumn>
+                                <select className="routeToComponent" /* onClick={this.openModal} */
+                                        value={this.state.value} onChange={this.handleChange}>
+                                    <option id="moreOptions" value={""} >Daugiau</option>
+                                    <option id="newMedicalRecord" value={"naujas ligos įrašas"}>Naujas ligos įrašas </option>
+                                    <option id="newPrescription" value={"naujas receptas"}>Naujas receptas </option>
+                                </select>
+                            </TableRowColumn>
+                        </TableRow>
+
+                        {/* <TableRow >
                         <TableRowColumn>firstName</TableRowColumn>
                         <TableRowColumn>lastName</TableRowColumn>
-                        <TableRowColumn>personalCode</TableRowColumn>
+                        <TableRowColumn>personalId</TableRowColumn>
                         <TableRowColumn>
                             <select className="routeToComponent" /* onClick={this.openModal} */
-                                value={this.state.value} onChange={this.handleChange}>
+                                /* value={this.state.value} onChange={this.handleChange}>
                                 <option id="moreOptions" value={""} >Daugiau</option>
                                 <option id="newMedicalRecord" value={"naujas ligos įrašas"}>Naujas ligos įrašas </option>
                                 <option id="newPrescription" value={"naujas receptas"}>Naujas receptas </option>
                             </select>
                         </TableRowColumn>
-                        </TableRow> 
+                        </TableRow>  */} 
                     </TableBody>
                 </Table> 
                 {newAdditionModal}
