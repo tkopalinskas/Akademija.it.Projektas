@@ -32,7 +32,8 @@ class RegisterPatient extends Component {
       secondGroup: '',
       year: '',
       month:'',
-      day:''
+      day:'',
+      disabled: true
       
       
     };
@@ -71,7 +72,9 @@ validUserNameEntered(){
 }
 
 getPersonalId=(event, newValue)=>{
-  this.personalId=this.setState({ personalId: newValue });
+  this.personalId=this.setState({ 
+    personalId: newValue,
+    disabled: false });
   console.log('get id', this.state.personalId) 
 }
 
@@ -251,7 +254,10 @@ dataIsValid(){
               floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
               //onChange={(event, dateOfBirth) =>this.setState({floatingLabelText: dateOfBirth})}  
             />
-            <RaisedButton label="Generuoti gimimo datą" onClick={(event)=>this.handleDateGeneration(event)}/>
+            <RaisedButton 
+            label="Generuoti gimimo datą" 
+            onClick={(event)=>this.handleDateGeneration(event)}
+            disabled={this.state.disabled}/>
             <br />
             <TextField
               className="userName"

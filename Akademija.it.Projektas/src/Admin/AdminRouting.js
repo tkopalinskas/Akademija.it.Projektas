@@ -4,7 +4,7 @@ import RegisterAdmin from './SideBar/Registration/RegisterAdmin';
 import RegisterDoctor from './SideBar/Registration/RegisterDoctor';
 import RegisterPatient from './SideBar/Registration/RegisterPatient';
 import RegisterPharmacist from './SideBar/Registration/RegisterPharmacist';
-import DoctorAssignmentToPatient from './SideBar/DrAndPatient'
+import DoctorAssignmentToPatient from './SideBar/DrAndPatientSteppterComponent'
 import ListofAdmins from './DropdownLists/ListofAdmins';
 import ListofDoctors from './DropdownLists/ListofDoctors';
 import ListofPatients from './DropdownLists/ListofPatients';

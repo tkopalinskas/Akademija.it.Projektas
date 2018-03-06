@@ -4,13 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/admin")
@@ -29,6 +23,11 @@ public class DoctorController {
 	@RequestMapping(value = "/doctor/{userName}", method = RequestMethod.GET)
 	public List<DoctorForClient> giveAllDoctors(@PathVariable final String userName){
 		return getDoctorService().receiveAllDoctors(userName);
+	}
+
+	@RequestMapping(value = "/familyDoctors", method = RequestMethod.GET)
+	public List<DoctorForClient> giveAllFamilyDoctors(){
+		return getDoctorService().recieveAllFamilyDoctors();
 	}
 
 	@RequestMapping(value = "/doctor", method = RequestMethod.POST)

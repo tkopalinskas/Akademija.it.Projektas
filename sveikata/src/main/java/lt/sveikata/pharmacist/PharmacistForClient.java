@@ -2,6 +2,8 @@ package lt.sveikata.pharmacist;
 
 import lt.sveikata.user.UserForClient;
 
+import java.util.Optional;
+
 public class PharmacistForClient {
 
 	private String firstName;
@@ -11,6 +13,8 @@ public class PharmacistForClient {
 	private boolean isSuspended;
 	private String role;
 	private String userName;
+
+
 
 	public String getFirstName() {
 		return firstName;

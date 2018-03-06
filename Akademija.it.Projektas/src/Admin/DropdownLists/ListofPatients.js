@@ -11,7 +11,7 @@ import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Search from 'material-ui/svg-icons/action/search';
 import axios from 'axios'
-import InformationModal from './InformationModal'
+import InformationModal from './PatientInformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
 // const styles = {
@@ -59,6 +59,10 @@ export default class ListofPatients extends Component {
         axios.get(`http://localhost:8081/admin/patient/${userName}`)
             .then((response) => { this.setState({ userInfo: response.data }) })
             .then(this.setState({ showModal: !this.state.showModal }))
+    }
+
+    closeModal = () => {
+        this.setState({ showModal: false});
     }
 
     componentWillMount = () => {
@@ -124,7 +128,7 @@ export default class ListofPatients extends Component {
                     <InformationModal
                         open={this.state.showModal}
                         userInfo={this.state.userInfo}
-                        closeAction={this.openModal} />
+                        closeAction={this.closeModal} />
                 </div>
             </MuiThemeProvider>
         );

@@ -1,19 +1,5 @@
 import React, { Component } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-<<<<<<< HEAD
-=======
-/* import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-} from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import Search from 'material-ui/svg-icons/action/search';
-import axios from 'axios'
-import Row from 'muicss/lib/react/row'; */
->>>>>>> 1373d39072f670958b12775b856449002404bdfc
 import {
     Step,
     Stepper,
@@ -147,8 +133,7 @@ class DoctorAssignmentToPatient extends Component {
 
         return (
             <MuiThemeProvider>
-                <div className="doctorAssignmentToPatient" 
-                     style={{ width: '100%', maxWidth: 700, margin: 'auto' }} >
+                <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }} >
 
                     <Stepper activeStep={stepIndex}>
                         <Step completed={visited.indexOf(0) !== -1} active={stepIndex === 0}>
@@ -193,7 +178,3 @@ class DoctorAssignmentToPatient extends Component {
     }
 }
 export default DoctorAssignmentToPatient;
-
-
-// WEBPACK FOOTER //
-// src/Admin/SideBar/DrAndPatientSteppterComponent.js
