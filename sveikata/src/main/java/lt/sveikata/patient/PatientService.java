@@ -18,7 +18,8 @@ public class PatientService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-
+	//list of all patients
+	
 	public List<PatientForClient> receiveAllPatients() {
 		List<Patient> patientsFromDatabase = getPatientRepository().findAll();
 		List<PatientForClient> patientsForClient = patientsFromDatabase.stream().map((patient) -> {
@@ -32,6 +33,8 @@ public class PatientService {
 		return patientsForClient;
 	}
 
+	//list of patients found by username??????
+	
 	public List<PatientForClient> receiveAllPatients(String userName) {
 		List<Patient> patientsFromDatabase = getPatientRepository().findByUserName(userName);
 		List<PatientForClient> patientsForClient = patientsFromDatabase.stream().map((patient) -> {
@@ -47,13 +50,20 @@ public class PatientService {
 		return patientsForClient;
 	}
 
-	public PatientRepository getPatientRepository() {
-		return patientRepository;
+	//single patient found by personal id	
+	
+	public PatientForClient receivePatientFromDatabase (long personalId) {
+		Patient patientFromDatabase = getPatientRepository().findByPersonalId(personalId);
+		PatientForClient patientForClient = new PatientForClient();
+		//patientForClient.setRole(patientFromDatabase.getRole());
+		patientForClient.setFirstName(patientFromDatabase.getFirstName());
+		patientForClient.setLastName(patientFromDatabase.getLastName());
+		//patientForClient.setDoctor(patientFromDatabase.getDoctor());
+		patientForClient.setPersonalId(patientFromDatabase.getPersonalId());
+	return patientForClient;
 	}
-
-	public void setPatientRepository(PatientRepository patientRepository) {
-		this.patientRepository = patientRepository;
-	}
+	
+	//add new patient to database
 
 	public void addNewPatient(AddNewPatient newPatient) {
 		Patient pat = new Patient();
@@ -69,6 +79,7 @@ public class PatientService {
 
 	}
 
+	//update patient info
 
 	public void updatePatient(Patient patient, Long personalId) {
 		Patient pat = patientRepository.findOne(personalId);
@@ -81,4 +92,11 @@ public class PatientService {
 		patientRepository.save(pat);
 	}
 	
+	public PatientRepository getPatientRepository() {
+		return patientRepository;
+	}
+
+	public void setPatientRepository(PatientRepository patientRepository) {
+		this.patientRepository = patientRepository;
+	}
 }

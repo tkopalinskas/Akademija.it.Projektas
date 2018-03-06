@@ -23,7 +23,7 @@ class RecordsWithAddNew extends Component{
     constructor(){
         super();
         this.state={
-            personalCode: '',
+            personalId: '',
             showModal: false,
         }
     }
@@ -36,14 +36,14 @@ class RecordsWithAddNew extends Component{
     handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             this.setState({
-                personalCode: e.target.value,
+                personalId: e.target.value,
             });
           console.log('do validate');
         }
     };
 
     render(){
-        console.log("personal", this.state.personalCode)
+        console.log("personal", this.state.personalId)
         return(
             <MuiThemeProvider>
                 <div>
@@ -59,7 +59,7 @@ class RecordsWithAddNew extends Component{
                         <RaisedButton className="addNewRecord" id="addRecord" label="Naujas įrašas" primary={true} onClick={this.openMedicalRecordModal} />
                     </Col>
                     <Col md="2">
-                        <Link to="/doctor/Prescriptions"><RaisedButton className="linkToPrescriptions" id="prescriptionsTable" label="Receptai" primary={true}/></Link>
+                        <Link to="/doctor/patient/prescriptions"><RaisedButton className="linkToPrescriptions" id="prescriptionsTable" label="Receptai" primary={true}/></Link>
                     </Col>
                     <Col md="12">
                         <MedicalRecordsTable/>

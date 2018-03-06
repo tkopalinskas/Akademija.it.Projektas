@@ -73,10 +73,8 @@ validUserNameEntered(){
 getPersonalId=(event, newValue)=>{
   this.personalId=this.setState({ personalId: newValue });
   console.log('get id', this.state.personalId) 
-  if(this.state.personalId.length===11){
-     
-  }
 }
+
 generateDateOfBirth=() =>{
   var personalCodeString = this.state.personalId
   var reg = new RegExp(/(\d{1})(\d{2})(\d{2})(\d{2})(\d{4})/);
@@ -86,15 +84,6 @@ generateDateOfBirth=() =>{
   const secondGroup= match[2];
   const month= match[3];
   const day= match[4];
-  /* const pidToDate=pid=> {
-    const first = pid[0];
-    const month = pid.slice(1, 2)
-    if(first === '3' || first === '4')
-    return '19'
-
-    date = first + month+ '-';
-    new Date(date).toLocaleDateString('lt-LT')
-  } */
 
   let year=null;
   if((firstDigit==='3')||(firstDigit==='4')){
@@ -105,12 +94,13 @@ generateDateOfBirth=() =>{
 
   let newDateOfBirth = new Date(year+'-'+month+'-'+day).toLocaleDateString('lt-LT');
   this.setState({dateOfBirth: newDateOfBirth});
-     //return newDateOfBirth
 }
 
 validPersonalIdEntered(){
+    var reg = new RegExp(/(\d{11})/)
+    var match = reg.exec(this.state.personalId);
     if(this.state.personalId!==''&&
-    this.state.personalId.length===11){
+    match!==null){
         return true;
     }
     else{
@@ -139,7 +129,8 @@ validPassword(){
 
 handleDateGeneration(event){
   if(this.state.dateOfBirth!==''&&
-  this.state.dateOfBirth!=null){
+  this.state.dateOfBirth!=null&&
+  this.validPersonalIdEntered){
     return true;
   }else{
     this.generateDateOfBirth();
@@ -148,9 +139,10 @@ handleDateGeneration(event){
 }
 
 dateOfBirthIsGenerated(){
-  if(this.state.dateOfBirth!==null && this.state.dateOfBirth!==''){
+  if(this.state.dateOfBirth!==null && this.state.dateOfBirth!==''&&
+  this.validPersonalIdEntered){
     return true;
-  }else{
+  }else{ 
     alert('Paspauskite mygtuką "Generuoti gimimo datą"')
   }
 }
@@ -173,7 +165,7 @@ dataIsValid(){
 
     if (this.dataIsValid()){
       console.log("data is valid: " + this.dataIsValid());
-      //this.generateDateOfBirth()
+
       //set values
       var information={
         firstName : this.state.firstName,

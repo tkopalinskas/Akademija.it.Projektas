@@ -51,11 +51,26 @@ class NewMedicalRecord extends Component {
     }
 
     validIllnessTLKCode(){
-        if(this.state.illnessTLKCode!==''){
+        var reg = null;
+        var withoutDecimal=new RegExp(/([A-Z]{1})(\d{2})/);
+        var withDecimal=new RegExp(/([A-Z]{1})(\d{2}\.\d{1,2})/);
+
+        if (withoutDecimal!==null){
+            reg=withoutDecimal
+        }else if(withDecimal!=null){
+            reg=withDecimal
+        }
+
+        var match = reg.exec(this.state.illnessTLKCode)
+
+        if(this.state.illnessTLKCode!==''&&
+        match!==null){
             return true;
         }
-        else{
-          alert("Įveskite ligos TLK kodą!")
+        else if (match===null){
+            alert("Neteisingai įvestas ligos kodas. Ligos kodai sudaromi iš vienos didžiosios lotyniškos raidės ir dviejų skaitmenų. Patikslinant diagnozę, po taško dar gali būti rašomi vienas arba du skaitmenys.")
+        }else{
+            alert("Įveskite ligos TLK kodą!")
         }
     }
 
@@ -89,7 +104,7 @@ class NewMedicalRecord extends Component {
                 }
             
 
-            axios.post(API + "/medicalRecord/", information)
+            axios.post(API + "/doctor/patient/addNewRecord/", information)
                 .then((response)=>{
                 console.log("registration  successful");
                 alert("Ligos istorija įrašyta!"); 

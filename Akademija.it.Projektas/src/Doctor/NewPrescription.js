@@ -103,7 +103,7 @@ class NewPrescription extends Component {
                 }
             
 
-            axios.post(API + "/prescription/", information)
+            axios.post(API + "/doctor/patient/addNewPrescription/", information)
                 .then((response)=>{
                 console.log("registration  successful");
                 alert("Receptas įrašytas!"); 
