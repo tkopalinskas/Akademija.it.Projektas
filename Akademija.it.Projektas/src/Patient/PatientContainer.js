@@ -70,6 +70,15 @@ class PatientContainer extends Component{
 
     
     render(){
+
+    let userData = window.sessionStorage.getItem('userData');
+       if(userData==null)
+            window.location.href="/#/";
+       else{
+           let user = JSON.parse(userData);
+           if(user.role!='PATIENT')
+                window.location.href="/#/";
+       }
         return(
             <MuiThemeProvider>
             <div>

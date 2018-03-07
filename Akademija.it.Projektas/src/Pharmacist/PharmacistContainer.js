@@ -69,6 +69,15 @@ class PharmacistContainer extends Component{
     
     render(){
 
+    let userData = window.sessionStorage.getItem('userData');
+       if(userData==null)
+            window.location.href="/#/";
+       else{
+           let user = JSON.parse(userData);
+           if(user.role!='PHARMACIST')
+                window.location.href="/#/";
+       }
+
         /*remove before release */
         console.log(this.state.personalId);
 
