@@ -23,23 +23,20 @@ public class PrescriptionService {
 
 	/* receives a list of all prescriptions from database */
 	public List<PrescriptionForClient> receiveAllPrescriptions() {
-		List<Prescription> prescriptionsFromDatabase = getPrescriptionRepository().findAll();
+		List<Prescription> prescriptionsFromDatabase = getPrescriptionRepository().findAllByOrderByPrescriptionDate();
 		List<PrescriptionForClient> prescriptionsForClient = prescriptionsFromDatabase.stream().map((prescription) -> {
 			PrescriptionForClient prescr = new PrescriptionForClient();
-			// prescr.setDoctorsFullName(prescription.getDoctorsFullName());
 			prescr.setPrescriptionDate(prescription.getPrescriptionDate());
-			prescr.setPersonalId(prescription.getPersonalId());
 			prescr.setValidUntil(prescription.getValidUntil());
 			prescr.setActiveIngredient(prescription.getActiveIngredient());
-			prescr.setAmountPerDose(prescription.getAmountPerDose());
-			prescr.setUnits(prescription.getUnits());
-			prescr.setDescription(prescription.getDescription());
 			prescr.setNumber(prescription.getNumber());
 			prescr.setTimesUsed(prescription.getTimesUsed());
 			return prescr;
 		}).collect(Collectors.toList());
 		return prescriptionsForClient;
 	}
+
+
 
 	/* receives a list of patients prescriptions from database */
 	public List<PrescriptionForClient> receiveAllPrescriptionsForPharmacist(long personalId) {

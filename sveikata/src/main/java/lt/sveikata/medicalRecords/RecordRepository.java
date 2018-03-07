@@ -2,6 +2,8 @@ package lt.sveikata.medicalRecords;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RecordRepository extends JpaRepository<Record, Long>{
+import java.util.List;
 
+public interface RecordRepository extends JpaRepository<Record, Long>{
+        List<Record> findAllByOrderByDateOfVisitDesc();
 }
