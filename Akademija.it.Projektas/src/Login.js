@@ -2,7 +2,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import { browserHistory } from 'react-router';
 import axios from 'axios';
 
@@ -55,14 +54,6 @@ context)=>{
   //   </form>
 }
 
-=======
-//import { Link } from 'react-router-dom';
-
-const style={
-  margin: 15,
-};
-
->>>>>>> 88e3f9f05edb8950df2f755bc17cf19d71909ddc
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -70,7 +61,6 @@ class Login extends Component {
     this.state={
       userName: '',
       password: ''
-<<<<<<< HEAD
  
     }
   }
@@ -126,62 +116,4 @@ class Login extends Component {
        </div>
     )
   }}
-=======
-    }
-  }
-  handleClick=(event)=> {
-    console.log(this.state);
-    event.preventDefault();
-   
-  }
-
-  render(){
-
-    return (
-      <div>
-        <MuiThemeProvider>
-          <div className='login'>
-            <TextField
-              className="userName"
-              id="inputUserName"
-              hintText="Įveskite prisijungimo vardą"
-              floatingLabelText="Prisijungimo vardas"
-              onChange={(event, newValue) => this.setState({ userName: newValue })}
-            />
-            <br />
-            <TextField
-              className="password"
-              id="inputPassword"
-              type="password"
-              hintText="Įveskite slaptažodį"
-              floatingLabelText="Slaptažodis"
-              onChange={(event, newValue) => this.setState({ password: newValue })}
-            />
-            <br />
-
-            <RaisedButton className="loginButton" id="login" label="Prisijungti" primary={true} style={style} onClick={(event) => this.handleClick(event)} />
-
-            <br />
-
-            {/*sita linka BUTINA istrint, kai bus 
-            padaryta passwordo validacija!! */}
-            
-            {/* <div>
-              <Link to="/admin" ><RaisedButton label="Button will be removed. Admin Console" primary={true} style={style} /></Link>
-            </div> */}
-          </div>
-        </MuiThemeProvider>
-      </div>
-    );
-  }
-}
-
-// handleSubmit= (event)=>{
-//   event.preventDefault() ;
-//   const {username, password} = this.state;
-//   const {login} = this.props;
-//   login (userName, password)
-// }
-
->>>>>>> 88e3f9f05edb8950df2f755bc17cf19d71909ddc
 export default Login;
