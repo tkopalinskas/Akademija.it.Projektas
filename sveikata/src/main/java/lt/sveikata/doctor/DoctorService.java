@@ -8,6 +8,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.print.Doc;
+
 @Transactional
 @Service
 public class DoctorService {
@@ -41,9 +43,22 @@ public class DoctorService {
 			dfc.setSpecialization(doctor.getSpecialization());
 			dfc.setSuspended(doctor.isSuspended());
 			dfc.setRole(doctor.getRole());
+			dfc.setUserName(doctor.getUserName());
 			return dfc;
 		}).collect(Collectors.toList());
 		return doctorsForClient;
+	}
+	public List<DoctorForClient> recieveAllFamilyDoctors(){
+		List<Doctor> familyDoctorsFromDataBase = getDoctorRepository().findAllBySpecialization("Šeimos gydytojas");
+		List<DoctorForClient> familtyDoctorsForClients = familyDoctorsFromDataBase.stream().map((doctor) -> {
+			DoctorForClient fdfc = new DoctorForClient();
+			fdfc.setFirstName(doctor.getFirstName());
+			fdfc.setLastName(doctor.getLastName());
+			fdfc.setUserName(doctor.getUserName());
+			fdfc.setSpecialization(doctor.getSpecialization());
+			return fdfc;
+		}).collect(Collectors.toList());
+		return familtyDoctorsForClients;
 	}
 
 	public DoctorRepository getDoctorRepository() {
@@ -68,6 +83,10 @@ public class DoctorService {
 		doctorRepository.save(doc);
 
 	}
+//	public Object findDoctor(String doctorUserName){
+//		Doctor doc = doctorRepository.findOneByUserName(doctorUserName);
+//		return doc;
+//	}
 
 	public void updateDoctor(Doctor doctor, Long id) {
 		Doctor doc = doctorRepository.findOne(id);

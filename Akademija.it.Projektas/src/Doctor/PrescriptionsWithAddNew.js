@@ -23,7 +23,7 @@ class PrescriptionsWithAddNew extends Component{
     constructor(){
         super();
         this.state={
-            personalCode: '',
+            personalId: '',
             showModal: false,
         }
     }
@@ -37,14 +37,14 @@ class PrescriptionsWithAddNew extends Component{
     handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             this.setState({
-                personalCode: e.target.value,
+                personalId: e.target.value,
             });
           console.log('get personal');
         }
     };
 
     render(){
-        console.log("personal", this.state.personalCode)
+        console.log("personal", this.state.personalId)
         return(
             <MuiThemeProvider>
                 <div>
@@ -60,7 +60,7 @@ class PrescriptionsWithAddNew extends Component{
                         <RaisedButton className="addNewPrescription" id="addPrescription" label="Naujas receptas" primary={true} onClick={this.openPrescriptionModal} />
                     </Col>
                     <Col md="2">
-                        <Link to="/doctor/medicalRecords"><RaisedButton className="linkToMedicalRecords" id="medicalRecordsTable" label="Ligos įrašai" primary={true}/></Link>
+                        <Link to="/doctor/patient/medicalRecords"><RaisedButton className="linkToMedicalRecords" id="medicalRecordsTable" label="Ligos įrašai" primary={true}/></Link>
                     </Col>
                     <Col md="12">
                         <PrescriptionsTable/>

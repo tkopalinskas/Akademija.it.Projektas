@@ -18,6 +18,10 @@ export default class InformationModal extends React.Component {
         this.setState({ disabled: !this.state.disabled })
     }
 
+    componentWillMount = ()=>{
+        this.setState({disabled: true})
+    }
+
 
     render() {
 
@@ -45,10 +49,13 @@ export default class InformationModal extends React.Component {
                 <h3> {User.firstName + " " + User.lastName}</h3>
                 <span>
                     <p>{"Rolė: " + User.role}</p>
+                    <p>Slapyvardis: {User.userName}</p>
+                    <p>Specializacija: {User.specialization}</p>
                     <p>{"Užbanintas: " + User.suspended}</p>
                 </span>
             </div>
         ));
+
 
         console.log(this.props.userInfo);
 
@@ -61,7 +68,7 @@ export default class InformationModal extends React.Component {
                         open={this.props.open}
                     >
 
-                        {user}
+                     {user}
                         <Checkbox
                             label="Suspend User"
                             onCheck={this.handleToggle}

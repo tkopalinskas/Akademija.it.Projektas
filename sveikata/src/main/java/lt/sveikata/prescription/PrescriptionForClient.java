@@ -4,7 +4,7 @@ public class PrescriptionForClient {
 
 	private String doctorsFullName;
 	private String prescriptionDate;
-	private String patientsPersonalCode;
+	private long personalId;
 	private String validUntil;
 	private String activeIngredient;
 	private String amountPerDose;
@@ -29,12 +29,12 @@ public class PrescriptionForClient {
 		this.prescriptionDate = prescriptionDate;
 	}
 
-	public String getPatientsPersonalCode() {
-		return patientsPersonalCode;
+	public long getPersonalId() {
+		return personalId;
 	}
 
-	public void setPatientsPersonalCode(String patientsPersonalCode) {
-		this.patientsPersonalCode = patientsPersonalCode;
+	public void setPersonalId(long personalId) {
+		this.personalId = personalId;
 	}
 
 	public String getValidUntil() {

@@ -3,7 +3,6 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FontIcon from 'material-ui/FontIcon';
 import { Link } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
@@ -71,6 +70,15 @@ class PatientContainer extends Component{
 
     
     render(){
+
+    let userData = window.sessionStorage.getItem('userData');
+       if(userData==null)
+            window.location.href="/#/";
+       else{
+           let user = JSON.parse(userData);
+           if(user.role!='PATIENT')
+                window.location.href="/#/";
+       }
         return(
             <MuiThemeProvider>
             <div>

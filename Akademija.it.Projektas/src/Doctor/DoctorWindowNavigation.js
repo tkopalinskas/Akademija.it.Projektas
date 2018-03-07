@@ -16,8 +16,8 @@ class DoctorWindowNavigation extends Component{
                     <Route path="/doctor/changePassword" name="changeDoctorsPassword" component={PasswordChangeComponent} />
                     <Route path="/doctor/patientsList" name="patientsList" component={PatientsListTable} />
                     <Route path="/doctor/findPatient" name="patientfromDatabase" component={PatientFromDatabase} />
-                    <Route path="/doctor/medicalRecords" name="medicalRecords" component={RecordsWithAddNew} />
-                    <Route path="/doctor/prescriptions" name="prescription" component={PrescriptionsWithAddNew} />
+                    <Route path="/doctor/patient/medicalRecords" name="medicalRecords" component={RecordsWithAddNew} />
+                    <Route path="/doctor/patient/prescriptions" name="prescription" component={PrescriptionsWithAddNew} />
                 </Switch>
             </main>
         )

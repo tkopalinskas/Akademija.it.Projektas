@@ -12,7 +12,7 @@ import lt.sveikata.patient.PatientForClient;
 import lt.sveikata.prescription.Prescription;
 import lt.sveikata.user.UserForClient;
 
-public class DoctorForClient extends UserForClient{
+public class DoctorForClient {
 
 
 	private String firstName;

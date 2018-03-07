@@ -13,7 +13,7 @@ public class AddNewPatient extends AddNewUser{
 
 
 	@Column(unique = true)
-	private long personalId;
+	private Long personalId;
 	@NotNull
 	private String firstName;
 	@NotNull
@@ -52,11 +52,11 @@ public class AddNewPatient extends AddNewUser{
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public long getPersonalId() {
+	public Long getPersonalId() {
 		return personalId;
 	}
 
-	public void setPersonalId(long personalId) {
+	public void setPersonalId(Long personalId) {
 		this.personalId = personalId;
 	}
 

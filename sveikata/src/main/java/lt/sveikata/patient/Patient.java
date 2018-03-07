@@ -12,7 +12,7 @@ import lt.sveikata.user.User;
 public class Patient extends User {
 
 	@Column(unique = true)
-	private long personalId;
+	private Long personalId;
 	@NotNull
 	private String firstName;
 	@NotNull
@@ -50,11 +50,11 @@ public class Patient extends User {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public long getPersonalId() {
+	public Long getPersonalId() {
 		return personalId;
 	}
 
-	public void setPersonalId(long personalId) {
+	public void setPersonalId(Long personalId) {
 		this.personalId = personalId;
 	}
 
@@ -65,6 +65,8 @@ public class Patient extends User {
 	public void setDoctor(Doctor doctor) {
 		this.doctor = doctor;
 	}
+
+
 	
 }
 

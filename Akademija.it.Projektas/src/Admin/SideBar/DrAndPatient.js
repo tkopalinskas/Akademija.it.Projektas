@@ -1,23 +1,17 @@
 import React, { Component } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-/* import {
-    Table,
-    TableBody,
-    TableHeader,
-    TableHeaderColumn,
-    TableRow,
-} from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import Search from 'material-ui/svg-icons/action/search';
-import axios from 'axios'
-import Row from 'muicss/lib/react/row'; */
 import {
     Step,
     Stepper,
-    StepButton,
+    StepLabel,
 } from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import Snackbar from 'material-ui/Snackbar';
+import PatientListWithoutDoctor from './AssingDoctor/PatientListWithoutDoctor'
+import DoctorListForPatient from './AssingDoctor/DoctorListForPatient';
+import Confirmation from './AssingDoctor/Confirmation';
+import axios from 'axios';
 
 
 
@@ -39,14 +33,54 @@ class DoctorAssignmentToPatient extends Component {
             showModal: false,
             disabled: true,
             stepIndex: 0,
-
+            visited: [],
+            patientInfromationFromList: null,
+            doctorInformationFromList: null,
+            open: false,
+            disabled2: true,
         };
+    }
+    componentWillMount() {
+        const { stepIndex, visited } = this.state;
+        this.setState({ visited: visited.concat(stepIndex) });
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        const { stepIndex, visited } = nextState;
+        if (visited.indexOf(stepIndex) === -1) {
+            this.setState({ visited: visited.concat(stepIndex) });
+        }
+    }
+
+    patientCallback = (patientDataFromList) => {
+        if (!patientDataFromList) {
+            return;
+        } else {
+            this.setState({
+                patientInfromationFromList: patientDataFromList,
+                disabled2: false
+            });
+        }
+    }
+
+    familyDoctorCallback = (doctorDataFromList) => {
+        if (!doctorDataFromList) {
+            return;
+        } else {
+            this.setState({
+                doctorInformationFromList: doctorDataFromList,
+                disabled2: false
+            })
+        }
     }
 
     handleNext = () => {
         const { stepIndex } = this.state;
         if (stepIndex < 2) {
-            this.setState({ stepIndex: stepIndex + 1 });
+            this.setState({
+                stepIndex: stepIndex + 1,
+                disabled2: true
+            })
         }
     };
 
@@ -57,47 +91,65 @@ class DoctorAssignmentToPatient extends Component {
         }
     };
 
+    handleRequestClose = () => {
+        this.setState({ open: false })
+    }
+
+    handleSubmit = () => {
+
+
+        axios.put(`http://localhost:8081/admin/patientDoctorAssign/${this.state.patientInfromationFromList.userName}/${this.state.doctorInformationFromList.userName}`)
+            .then((response) => {
+                console.log("registration  successful");
+                this.setState({ open: !this.state.open });
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        console.log(this.state);
+    }
+
     getStepContent(stepIndex) {
         switch (stepIndex) {
             case 0:
-                return 'Pasirinkite Pacientą';
+                return <PatientListWithoutDoctor
+                    callbackFromParentPatient={this.patientCallback} />;
             case 1:
-                return 'Pasirinkite Daktarą';
+                return <DoctorListForPatient
+                    callBackFromParentDoctor={this.familyDoctorCallback} />;
             case 2:
-                return 'Patvirtinkite';
+                return <Confirmation
+                    patient={this.state.patientInfromationFromList}
+                    doctor={this.state.doctorInformationFromList} />;
             default:
                 return 'You\'re a long way from home sonny jim!';
         }
     }
 
     render() {
-        const { stepIndex } = this.state;
+        const { stepIndex, visited } = this.state;
         const contentStyle = { margin: '0 16px' };
+        console.log(this.state.disabled2)
 
         return (
             <MuiThemeProvider>
                 <div className="doctorAssignmentToPatient" 
                      style={{ width: '100%', maxWidth: 700, margin: 'auto' }} >
 
-                    <Stepper linear={false} activeStep={stepIndex}>
-                        <Step>
-                            <StepButton onClick={() => this.setState({ stepIndex: 0 })}>
-                                Select campaign settings
-            </StepButton>
+                    <Stepper activeStep={stepIndex}>
+                        <Step completed={visited.indexOf(0) !== -1} active={stepIndex === 0}>
+                            <StepLabel>Pasirinkite</StepLabel>
                         </Step>
-                        <Step>
-                            <StepButton onClick={() => this.setState({ stepIndex: 1 })}>
-                                Create an ad group
-            </StepButton>
+                        <Step completed={visited.indexOf(1) !== -1} active={stepIndex === 1}>
+                            <StepLabel>Pasirinkite Daktarą</StepLabel>
+
                         </Step>
-                        <Step>
-                            <StepButton onClick={() => this.setState({ stepIndex: 2 })}>
-                                Create an ad
-            </StepButton>
+                        <Step completed={visited.indexOf(2) !== -1} active={stepIndex === 2}>
+                            <StepLabel>Patvirtinkite</StepLabel>
                         </Step>
                     </Stepper>
                     <div style={contentStyle}>
-                        <p>{this.getStepContent(stepIndex)}</p>
+                        <div>{this.getStepContent(stepIndex)}</div>
                         <div style={{ marginTop: 12 }}>
                             <FlatButton
                                 label="Back"
@@ -106,52 +158,18 @@ class DoctorAssignmentToPatient extends Component {
                                 style={{ marginRight: 12 }}
                             />
                             <RaisedButton
-                                label="Next"
-                                disabled={stepIndex === 2}
+                                label={stepIndex === 2 ? 'Submit' : 'Next'}
                                 primary={true}
-                                onClick={this.handleNext}
+                                onClick={stepIndex === 2 ? this.handleSubmit : this.handleNext}
+                                disabled={stepIndex === 2 ? false : this.state.disabled2}
                             />
-                            {/* <Row>
-                        
-                        <Table
-                            height={this.state.height}
-                            fixedHeader={this.state.fixedHeader}
-                            selectable={this.state.selectable}
-                            style={{
-                                width: "40%",
-                                float: 'right'
-                            }}
-                        >
-                            <TableHeader
-                                displaySelectAll={this.state.showCheckboxes}
-                                adjustForCheckbox={this.state.showCheckboxes}
-                                enableSelectAll={this.state.enableSelectAll}
-                            >
-                                <TableRow>
-                                    <TableHeaderColumn>
-                                        <h3> Daktarai </h3>
-                                    </TableHeaderColumn>
-                                </TableRow>
-                                <TableRow>
-                                    <TableHeaderColumn colSpan="2" tooltip="Search" style={{ textAlign: 'left' }}>
-                                        <div>
-                                            <Search style={{ color: '#9E9E9E', marginRight: '15', }} />
-                                            <TextField hintText="Search" underlineShow={false} />
-                                        </div>
-                                    </TableHeaderColumn>
-                                </TableRow>
-                                <TableRow>
-                                    <TableHeaderColumn>Vardas</TableHeaderColumn>
-                                    <TableHeaderColumn>Slapyvardis</TableHeaderColumn>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody
-                                displayRowCheckbox={this.state.showCheckboxes}
-                                deselectOnClickaway={this.state.deselectOnClickaway}
-                            >
-                            </TableBody>
-                        </Table>
-                    </Row> */}
+                            <Snackbar
+                                open={this.state.open}
+                                message="Daktaras priskirtas pacientui"
+                                autoHideDuration={4000}
+                                onRequestClose={this.handleRequestClose}
+                                style={{ backgroundColor: '#ffd699' }}
+                            />
                         </div>
                     </div>
 
@@ -161,3 +179,7 @@ class DoctorAssignmentToPatient extends Component {
     }
 }
 export default DoctorAssignmentToPatient;
+
+
+// WEBPACK FOOTER //
+// src/Admin/SideBar/DrAndPatientSteppterComponent.js

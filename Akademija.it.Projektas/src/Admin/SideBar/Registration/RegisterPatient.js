@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {orange500, blue500} from 'material-ui/styles/colors';
+import { orange500, blue500 } from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import {API} from "./HostUrl";
+import { API } from "./HostUrl";
 import axios from 'axios';
 
 const textStyles = {
@@ -17,9 +17,9 @@ const textStyles = {
 
 class RegisterPatient extends Component {
 
-  constructor(props){ 
+  constructor(props) {
     super(props);
-    this.state={
+    this.state = {
       firstName: '',
       lastName: '',
       userName: '',
@@ -31,189 +31,186 @@ class RegisterPatient extends Component {
       firstDigit: '',
       secondGroup: '',
       year: '',
-      month:'',
-      day:''
-      
-      
+      month: '',
+      day: '',
+      disabled: true
+
+
     };
   }
-  validFirstNameEntered(){
-    if(this.state.firstName!==''&&
-    this.state.firstName.length>=3&&
-    this.state.firstName.length<=30){
-        return true;
+  validFirstNameEntered() {
+    if (this.state.firstName !== '' &&
+      this.state.firstName.length >= 3 &&
+      this.state.firstName.length <= 30) {
+      return true;
     }
-    else{
+    else {
       alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
-}
+  }
 
-validLastNameEntered(){
-    if(this.state.lastName!==''&&
-    this.state.lastName.length>=3&&
-    this.state.lastName.length<=30){
-        return true;
+  validLastNameEntered() {
+    if (this.state.lastName !== '' &&
+      this.state.lastName.length >= 3 &&
+      this.state.lastName.length <= 30) {
+      return true;
     }
-    else{
+    else {
       alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
-}
+  }
 
-validUserNameEntered(){
-    if(this.state.userName!==''&&
-    this.state.userName.length>=6&&
-    this.state.userName.length<=30){
-        return true;
+  validUserNameEntered() {
+    if (this.state.userName !== '' &&
+      this.state.userName.length >= 6 &&
+      this.state.userName.length <= 30) {
+      return true;
     }
-    else{
+    else {
       alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
-}
-
-getPersonalId=(event, newValue)=>{
-  this.personalId=this.setState({ personalId: newValue });
-  console.log('get id', this.state.personalId) 
-  if(this.state.personalId.length===11){
-     
   }
-}
-generateDateOfBirth=() =>{
-  var personalCodeString = this.state.personalId
-  var reg = new RegExp(/(\d{1})(\d{2})(\d{2})(\d{2})(\d{4})/);
-  var match = reg.exec(personalCodeString)
+
+  getPersonalId = (event, newValue) => {
+    this.personalId = this.setState({
+      personalId: newValue,
+      disabled: false
+    });
+    console.log('get id', this.state.personalId)
+  }
+
   
-  const firstDigit=  match[1];
-  const secondGroup= match[2];
-  const month= match[3];
-  const day= match[4];
-  /* const pidToDate=pid=> {
-    const first = pid[0];
-    const month = pid.slice(1, 2)
-    if(first === '3' || first === '4')
-    return '19'
 
-    date = first + month+ '-';
-    new Date(date).toLocaleDateString('lt-LT')
-  } */
-
-  let year=null;
-  if((firstDigit==='3')||(firstDigit==='4')){
-     year='19'+secondGroup;
-  }else{
-     year='20'+secondGroup;
-  } 
-
-  let newDateOfBirth = new Date(year+'-'+month+'-'+day).toLocaleDateString('lt-LT');
-  this.setState({dateOfBirth: newDateOfBirth});
-     //return newDateOfBirth
-}
-
-validPersonalIdEntered(){
-    if(this.state.personalId!==''&&
-    this.state.personalId.length===11){
-        return true;
+  validPersonalIdEntered() {
+    var reg = new RegExp(/(\d{11})/)
+    var match = reg.exec(this.state.personalId);
+    if (this.state.personalId !== '' &&
+      match !== null) {
+      return true;
     }
-    else{
+    else {
       alert("Asmens kodas privalomas! Asmens kodą sudaro 11 skaitmenų")
     }
-}
+  }
 
-bothPasswordsMatch(){
-    if (this.state.password===this.state.repeatedPassword){
-        return true;
+  bothPasswordsMatch() {
+    if (this.state.password === this.state.repeatedPassword) {
+      return true;
     }
-    else{
+    else {
       alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
     }
-}
+  }
 
-validPassword(){
-    if(this.state.password.length>=6&&
-    this.state.password.length<=30){
-        return true;
+  validPassword() {
+    if (this.state.password.length >= 6 &&
+      this.state.password.length <= 30) {
+      return true;
     }
-    else{
+    else {
       alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
     }
-}
-
-handleDateGeneration(event){
-  if(this.state.dateOfBirth!==''&&
-  this.state.dateOfBirth!=null){
-    return true;
-  }else{
-    this.generateDateOfBirth();
   }
-  event.preventDefault();
-}
+  generateDateOfBirth = () => {
+    var personalCodeString = this.state.personalId
+    var reg = new RegExp(/(\d{1})(\d{2})(\d{2})(\d{2})(\d{4})/);
+    var match = reg.exec(personalCodeString)
 
-dateOfBirthIsGenerated(){
-  if(this.state.dateOfBirth!==null && this.state.dateOfBirth!==''){
-    return true;
-  }else{
-    alert('Paspauskite mygtuką "Generuoti gimimo datą"')
-  }
-}
+    const firstDigit = match[1];
+    const secondGroup = match[2];
+    const month = match[3];
+    const day = match[4];
 
-dataIsValid(){
-    if (this.validPersonalIdEntered()&&
-    this.bothPasswordsMatch()&&
-    this.validFirstNameEntered()&&
-    this.validLastNameEntered()&&
-    this.validUserNameEntered()&&
-    this.validPassword()&&
-    this.dateOfBirthIsGenerated()){
-        return true;
+    let year = null;
+    if ((firstDigit === '3') || (firstDigit === '4')) {
+      year = '19' + secondGroup;
+    } else {
+      year = '20' + secondGroup;
     }
-}
+
+    let newDateOfBirth = new Date(year + '-' + month + '-' + day).toLocaleDateString('lt-LT');
+    this.setState({ dateOfBirth: newDateOfBirth });
+  }
+
+  handleDateGeneration(event) {
+    if (this.state.dateOfBirth !== '' &&
+      this.state.dateOfBirth != null &&
+      this.validPersonalIdEntered) {
+      return true;
+    } else {
+      this.generateDateOfBirth();
+    }
+    event.preventDefault();
+  }
+
+  dateOfBirthIsGenerated() {
+    if (this.state.dateOfBirth !== null && this.state.dateOfBirth !== '' &&
+      this.validPersonalIdEntered && this.state.dateOfBirth !=='Invalid Date') {
+      return true;
+    } else {
+      alert('Paspauskite mygtuką "Generuoti gimimo datą"')
+    }
+  }
+
+  dataIsValid() {
+    if (this.validPersonalIdEntered() &&
+      this.bothPasswordsMatch() &&
+      this.validFirstNameEntered() &&
+      this.validLastNameEntered() &&
+      this.validUserNameEntered() &&
+      this.validPassword() &&
+      this.dateOfBirthIsGenerated()) {
+      return true;
+    }
+  }
 
 
   handleClick(event) {
-    var apiUrl=API;
+    var apiUrl = API;
 
-    if (this.dataIsValid()){
+    if (this.dataIsValid()) {
       console.log("data is valid: " + this.dataIsValid());
-      //this.generateDateOfBirth()
+
       //set values
-      var information={
-        firstName : this.state.firstName,
-        lastName : this.state.lastName,
+      var information = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
         userName: this.state.userName,
-        password : this.state.password,
-        dateOfBirth : this.state.dateOfBirth,
-        personalId : this.state.personalId,
+        password: this.state.password,
+        dateOfBirth: this.state.dateOfBirth,
+        personalId: this.state.personalId,
         doctorsFullName: this.state.doctorsFullName
       }
-      console.log('info',information)
-      axios.post(apiUrl +  '/admin/patient', information)
-      .then((response)=>{
-        console.log("registration  successful");
-        alert("Registracija sėkminga!");     
-      })
-      .catch((error)=>{
-        console.log(error);
-      })
+      this.refs.form.reset();
+      this.setState({dateOfBirth:''})
+
+      console.log('info', information)
+      axios.post(apiUrl + '/admin/patient', information)
+        .then((response) => {
+          console.log("registration  successful");
+          alert("Registracija sėkminga!");
+        })
+        .catch((error) => {
+          console.log(error);
+        })
       console.log(this.state);
       event.preventDefault();
       return true;
-    }else{
+    } else {
+      this.setState({dateOfBirth:''})
       console.log("some data is wrong");
       return false;
     }
   }
-   
+
   render() {
-    console.log('metai pradzia', this.state.firstDigit);
-    console.log('metai', this.state.year);
-    console.log('menuo', this.state.month);
-    console.log('diena', this.state.day);
-    console.log('like', this.state.theRest);
-    console.log('dateofbirth', this.state.dateOfBirth);
+
     return (
       <div>
         <MuiThemeProvider>
-          <div className="registerPatient">
-          <h2> Registruoti pacientą </h2>
+          <form className="registerPatient"
+          ref="form">
+            <h2> Registruoti pacientą </h2>
             <TextField
               className="firstName"
               id="inputFirstName"
@@ -257,9 +254,12 @@ dataIsValid(){
               type="numbers"
               floatingLabelText={this.state.dateOfBirth}
               floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
-              //onChange={(event, dateOfBirth) =>this.setState({floatingLabelText: dateOfBirth})}  
+            //onChange={(event, dateOfBirth) =>this.setState({floatingLabelText: dateOfBirth})}  
             />
-            <RaisedButton label="Generuoti gimimo datą" onClick={(event)=>this.handleDateGeneration(event)}/>
+            <RaisedButton
+              label="Generuoti gimimo datą"
+              onClick={(event) => this.handleDateGeneration(event)}
+              disabled={this.state.disabled} />
             <br />
             <TextField
               className="userName"
@@ -297,7 +297,7 @@ dataIsValid(){
             />
             <br />
             <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
-          </div>
+          </form>
         </MuiThemeProvider>
       </div>
     );
