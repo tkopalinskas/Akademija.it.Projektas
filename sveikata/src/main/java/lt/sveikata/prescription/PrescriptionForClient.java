@@ -10,8 +10,16 @@ public class PrescriptionForClient {
 	private String amountPerDose;
 	private String units;
 	private String description;
-	private long number;
 	private int timesUsed;
+	private Long number;
+
+	public Long getNumber() {
+		return number;
+	}
+
+	public void setNumber(Long number) {
+		this.number = number;
+	}
 
 	public String getDoctorsFullName() {
 		return doctorsFullName;
@@ -75,14 +83,6 @@ public class PrescriptionForClient {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public long getNumber() {
-		return number;
-	}
-
-	public void setNumber(long number) {
-		this.number = number;
 	}
 
 	public int getTimesUsed() {

@@ -34,14 +34,14 @@ public class PrescriptionService {
 			prescr.setAmountPerDose(prescription.getAmountPerDose());
 			prescr.setUnits(prescription.getUnits());
 			prescr.setDescription(prescription.getDescription());
-			prescr.setNumber(prescription.getNumber());
 			prescr.setTimesUsed(prescription.getTimesUsed());
+			prescr.setNumber(prescription.getNumber());
 			return prescr;
 		}).collect(Collectors.toList());
 		return prescriptionsForClient;
 	}
 
-	/* receives a list of patients prescriptions from database */
+	/* receives a list of patient's prescriptions from database */
 	public List<PrescriptionForClient> receiveAllPrescriptionsForPharmacist(long personalId) {
 		Patient patientFromDatabase = getPatientRepository().findByPersonalId(personalId);
 		PatientForClient patientForClient = new PatientForClient();
@@ -58,8 +58,8 @@ public class PrescriptionService {
 			prescr.setAmountPerDose(prescription.getAmountPerDose());
 			prescr.setUnits(prescription.getUnits());
 			prescr.setDescription(prescription.getDescription());
-			prescr.setNumber(prescription.getNumber());
 			prescr.setTimesUsed(prescription.getTimesUsed());
+			prescr.setNumber(prescription.getNumber());
 			return prescr;
 		}).collect(Collectors.toList());
 		return prescriptionsForClientPharmacist;
@@ -67,8 +67,6 @@ public class PrescriptionService {
 	
 	/* receives info about a single prescription found by it's number */
 	public Prescription receivePrescriptionInfo(long number) {
-		// PrescriptionForClient prescription =
-		// prescriptionRepository.findPrescriptionByNumber(number);
 		Prescription prescription = prescriptionRepository.findByNumber(number);
 		return prescription;
 	}
@@ -84,7 +82,6 @@ public class PrescriptionService {
 		prescr.setAmountPerDose(newPrescription.getAmountPerDose());
 		prescr.setUnits(newPrescription.getUnits());
 		prescr.setDescription(newPrescription.getDescription());
-		prescr.setNumber(newPrescription.getNumber() + 1);
 		prescr.setTimesUsed(newPrescription.getTimesUsed());
 		prescriptionRepository.save(prescr);
 	}
@@ -115,6 +112,7 @@ public class PrescriptionService {
 		prescriptionForClient.setTimesUsed(prescription.getTimesUsed());
 		prescriptionForClient.setActiveIngredient(prescription.getActiveIngredient());
 		prescriptionForClient.setDescription(prescription.getDescription());
+		prescriptionForClient.setNumber(prescription.getNumber());
 		return prescriptionForClient;
 	}
 

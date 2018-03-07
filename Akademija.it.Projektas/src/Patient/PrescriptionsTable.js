@@ -75,7 +75,7 @@ class PrescriptionsTable extends Component {
     render() {
 
       var allPrescriptions = this.state.prescriptions.map((prescription, index) => (
-        <TableRow key={index}  onClick={this.openModal} >
+        <TableRow key={index}  /* onClick={this.openModal} */ >
             {/* <TableRowColumn>{prescription.number}</TableRowColumn> */}
             <TableRowColumn>{prescription.validUntil}</TableRowColumn>
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>

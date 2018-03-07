@@ -1,5 +1,7 @@
 package lt.sveikata.patient;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,11 @@ public class PatientControllerForDoctor {
 	
 	@Autowired
 	private PatientService patientService;
+	
+	@RequestMapping(value = "/patientsList", method = RequestMethod.GET)
+	public List<PatientForClient> giveAllPatients() {
+		return getPatientService().receiveAllPatients();
+	}
 
 	@RequestMapping(value = "/findPatient/{personalId}", method = RequestMethod.GET)
 	public PatientForClient giveAllPatients(@PathVariable("personalId") Long personalId) {

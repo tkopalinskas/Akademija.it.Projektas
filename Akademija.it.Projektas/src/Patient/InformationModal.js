@@ -18,10 +18,10 @@ class InformationModal extends Component {
         this.setState({ open: true });
     }; */
 
-    handleClose = () => {
+    /* handleClose = () => {
         this.setState({ open: false });
         console.log("open", this.open)
-    };
+    }; */
 
     /* handleToggle = () => {
         this.setState({ disabled: !this.state.disabled })
@@ -30,9 +30,9 @@ class InformationModal extends Component {
 
     render() {
 
-        // if (!this.state.prescriptionInfo){
-        //     return null;
-        // }
+         if (!this.state.prescriptionInfo){
+             return null;
+         }
 
         const actions =
             (<FlatButton
@@ -58,7 +58,8 @@ class InformationModal extends Component {
         }
         console.log(this.props.prescriptionInfo);
         console.log(singlePrescription);
-        console.log("open", this.open);
+        console.log("open", this.state.open);
+        console.log("numbs:", this.state.number)
 
         return (
             <MuiThemeProvider>

@@ -136,8 +136,6 @@ class RegisterDoctor extends Component {
             password : this.state.password,
             }
 
-            this.refs.form.reset();
-
             
             axios.post(apiUrl + '/admin/doctor', information)
             .then((response)=>{
@@ -156,7 +154,6 @@ class RegisterDoctor extends Component {
             console.log("some data is wrong");
             return false;
         }
-        
       }
        
 
@@ -174,8 +171,8 @@ class RegisterDoctor extends Component {
         return (
             <div>
                 <MuiThemeProvider>
-                    <form className="registerDoctor"
-                    ref= "form">
+                    {/*pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu*/}
+                    <div className="registerDoctor">
                     <h2> Registruoti gydytoją </h2>
                         <TextField
                             className="firstName"
@@ -238,7 +235,7 @@ class RegisterDoctor extends Component {
                                       id="inputSpecialization"
                                       value={this.state.value} onChange={this.handleChange}>
                             <option id="noSpecialization" value={""} >Specializacija </option>
-                            <option id="generalPractitioner" value={"Šeimos gydytojas"} >Šeimos gydytojas </option>
+                            <option id="generalPractitioner" value={"šeimos gydytojas"} >Šeimos gydytojas </option>
                             <option id="surgeon" value={"chirurgas"} >Chirurgas </option>
                             <option id="physiotherapist" value={"fizioterapeutas"} >Fizioterapeutas </option>
                             <option id="other" value={"kita"} >Kita </option>
@@ -253,7 +250,7 @@ class RegisterDoctor extends Component {
                         /> 
                         <br />
                         <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
-                    </form>
+                    </div>
                 </MuiThemeProvider>
             </div>
         );

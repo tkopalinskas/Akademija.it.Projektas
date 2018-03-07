@@ -21,19 +21,18 @@ public class AddNewPrescription {
 	private String amountPerDose;
 	private String units;
 	private String description;
-	private long number=0;
 	private int timesUsed=0;
+	private long number=0;
 
-	public long getId() {
-		return id;
+	public long getNumber() {
+		return number;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setNumber(long number) {
+		this.number = number;
 	}
 
 	public String getDoctorsFullName() {
-
 		return doctorsFullName;
 	}
 
@@ -95,14 +94,6 @@ public class AddNewPrescription {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public long getNumber() {
-		return number;
-	}
-
-	public void setNumber(long number) {
-		this.number = number;
 	}
 
 	public int getTimesUsed() {
