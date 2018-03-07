@@ -72,7 +72,7 @@ public class UserService implements UserDetailsService  {
 		new String[] { "ROLE_" + user.getRole() }) );
 
 	}
-	
+
 
 	public User  getUser(String userName){
 		return userRepository.findByUserName(userName);

@@ -79,6 +79,7 @@ class DoctorContainer extends Component{
     } */
     
     render(){
+<<<<<<< HEAD
 
     let userData = window.sessionStorage.getItem('userData');
        if(userData==null)
@@ -88,6 +89,8 @@ class DoctorContainer extends Component{
            if(user.role!='DOCTOR')
                 window.location.href="/#/";
        }
+=======
+>>>>>>> 88e3f9f05edb8950df2f755bc17cf19d71909ddc
         return(
             <MuiThemeProvider>
             <div>
