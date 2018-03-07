@@ -72,6 +72,9 @@ class RegisterPatient extends Component {
   }
 
   getPersonalId = (event, newValue) => {
+    if (newValue === '') {
+      this.setState({ disabled: true })
+    }
     this.personalId = this.setState({
       personalId: newValue,
       disabled: false
@@ -79,7 +82,7 @@ class RegisterPatient extends Component {
     console.log('get id', this.state.personalId)
   }
 
-  
+
 
   validPersonalIdEntered() {
     var reg = new RegExp(/(\d{11})/)
@@ -133,22 +136,17 @@ class RegisterPatient extends Component {
   }
 
   handleDateGeneration(event) {
-    if (this.state.dateOfBirth !== '' &&
-      this.state.dateOfBirth != null &&
-      this.validPersonalIdEntered) {
-      return true;
-    } else {
-      this.generateDateOfBirth();
-    }
+    this.setState({ dateOfBirth: '' })
+    this.generateDateOfBirth();
     event.preventDefault();
   }
 
   dateOfBirthIsGenerated() {
     if (this.state.dateOfBirth !== null && this.state.dateOfBirth !== '' &&
-      this.validPersonalIdEntered && this.state.dateOfBirth !=='Invalid Date') {
+      this.validPersonalIdEntered && this.state.dateOfBirth !== 'Invalid Date') {
       return true;
     } else {
-      alert('Paspauskite mygtuką "Generuoti gimimo datą"')
+      alert('Paspauskite mygtuką "Generuoti gimimo datą arba suveskite teisingą asmens kodą')
     }
   }
 
@@ -182,7 +180,7 @@ class RegisterPatient extends Component {
         doctorsFullName: this.state.doctorsFullName
       }
       this.refs.form.reset();
-      this.setState({dateOfBirth:''})
+      this.setState({ dateOfBirth: '' })
 
       console.log('info', information)
       axios.post(apiUrl + '/admin/patient', information)
@@ -197,7 +195,7 @@ class RegisterPatient extends Component {
       event.preventDefault();
       return true;
     } else {
-      this.setState({dateOfBirth:''})
+      this.setState({ dateOfBirth: '' })
       console.log("some data is wrong");
       return false;
     }
@@ -209,7 +207,7 @@ class RegisterPatient extends Component {
       <div>
         <MuiThemeProvider>
           <form className="registerPatient"
-          ref="form">
+            ref="form">
             <h2> Registruoti pacientą </h2>
             <TextField
               className="firstName"
