@@ -20,7 +20,7 @@ public class Prescription {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
-	private long prescriptionId;
+	private long id;
 	//private String doctorsFullName;
 	private String prescriptionDate;
 	private long personalId;
@@ -29,8 +29,8 @@ public class Prescription {
 	private String amountPerDose;
 	private String units;
 	private String description;
-	private long number;
 	private int timesUsed;
+	private long number;
 	
 	
 	@OneToMany(mappedBy="prescription")
@@ -46,12 +46,12 @@ public class Prescription {
 	private Doctor doctor;
 	
 
-	public long getPrescriptionId() {
-		return prescriptionId;
+	public long getNumber() {
+		return number;
 	}
 
-	public void setPrescriptionId(long prescriptionId) {
-		this.prescriptionId = prescriptionId;
+	public void setNumber(long number) {
+		this.number = number;
 	}
 
 	public String getPrescriptionDate() {
@@ -108,14 +108,6 @@ public class Prescription {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public long getNumber() {
-		return number;
-	}
-
-	public void setNumber(long number) {
-		this.number = number;
 	}
 
 	public int getTimesUsed() {

@@ -19,9 +19,11 @@ const textStyles = {
 class NewPrescription extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             open: false,
 
+            currentDate: '',
             activeIngredient: '',
             amountPerDose: '',
             units: '',
@@ -29,6 +31,10 @@ class NewPrescription extends Component {
             validUntil: '',
             description: ''
         };
+    }
+
+    componentDidMount(){
+        this.getCurrentDate();
     }
 
     validActiveIngredientEntered(){
@@ -69,6 +75,19 @@ class NewPrescription extends Component {
         }
     }
 
+    validExpirationDateEntered(){   
+        var reg = new RegExp(/(\d{4})(-)(\d{2})(-)(\d{2})/)
+        var match = reg.exec(this.state.validUntil);
+        //var expiration = new Date(this.state.validUntil) 
+        
+        if(/* expiration>this.dateForChecking && */
+            match!==null ){
+            return true
+        }else{
+            alert("Įvesta galiojimo data yra praeityje, arba neteisingas datos formatas. Teisingas datos formatas: metai-mėnuo-diena")
+        }
+    }
+
     validDescriptionEntered(){
         if(this.state.description!==''){
             return true;
@@ -78,12 +97,29 @@ class NewPrescription extends Component {
         }
     }
 
+    getCurrentDate(){
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = today.getMonth() + 1;
+        let day = today.getDate();
+        if (month<10){
+            month='0'+month;
+        }
+        if (day<10){
+            day='0'+day
+        }
+
+        let dateForChecking = year+'-'+month+'-'+day;
+        this.setState({currentDate: dateForChecking});
+    }
+
     dataIsValid(){
         if (this.validActiveIngredientEntered()&&
         this.validAmountPerDoseEntered()&&
         this.validUnitsEntered()&&
         this.validTotalAmountEntered()&&
-        this.validDescriptionEntered()){
+        this.validDescriptionEntered()&&
+        this.validExpirationDateEntered()){
             return true;
         }
   }
@@ -98,8 +134,8 @@ class NewPrescription extends Component {
                 units: this.state.units,
                 totalAmount: this.state.totalAmount,
                 validUntil: this.state.validUntil,
-                description: this.state.description
-                
+                description: this.state.description,
+                currentDate:this.state.currentDate
                 }
             
 
@@ -112,8 +148,10 @@ class NewPrescription extends Component {
                 .catch((error)=>{
                 console.log(error);
                 this.props.closeAction();
+                console.log("info on error", this.state)
             })
             console.log("ok");
+            console.log("info", this.state)
             event.preventDefault();
 
         }else{
@@ -123,6 +161,8 @@ class NewPrescription extends Component {
 
 
     render() {
+
+        console.log("date", this.state.currentDate);
 
         const actions = [
             <FlatButton

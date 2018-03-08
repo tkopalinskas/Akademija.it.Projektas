@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { orange500, blue500 } from 'material-ui/styles/colors';
+import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
-import { API } from "./HostUrl";
+import {API} from "./HostUrl";
 
 const textStyles = {
   errorStyle: {
@@ -17,7 +17,7 @@ const textStyles = {
 
 class RegisterAdmin extends Component {
 
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
       firstName: '',
@@ -30,108 +30,108 @@ class RegisterAdmin extends Component {
     }
   }
 
-  validFirstNameEntered() {
-    if (this.state.firstName !== '' &&
-      this.state.firstName.length >= 3 &&
-      this.state.firstName.length <= 30) {
-      return true;
+  validFirstNameEntered(){
+    if(this.state.firstName!==''&&
+    this.state.firstName.length>=3&&
+    this.state.firstName.length<=30){
+        return true;
     }
-    else {
+    else{
       alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
+}
+
+  validLastNameEntered(){
+      if(this.state.lastName!==''&&
+      this.state.lastName.length>=3&&
+      this.state.lastName.length<=30){
+          return true;
+      }
+      else{
+        alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+      }
   }
 
-  validLastNameEntered() {
-    if (this.state.lastName !== '' &&
-      this.state.lastName.length >= 3 &&
-      this.state.lastName.length <= 30) {
-      return true;
-    }
-    else {
-      alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
-    }
+  validUserNameEntered(){
+      if(this.state.userName!==''&&
+      this.state.userName.length>=6&&
+      this.state.userName.length<=30){
+          return true;
+      }
+      else{
+        alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
+      }
   }
 
-  validUserNameEntered() {
-    if (this.state.userName !== '' &&
-      this.state.userName.length >= 6 &&
-      this.state.userName.length <= 30) {
-      return true;
-    }
-    else {
-      alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
-    }
+  bothPasswordsMatch(){
+      if (this.state.password===this.state.repeatedPassword){
+          return true;
+      }
+      else{
+        alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
+      }
   }
 
-  bothPasswordsMatch() {
-    if (this.state.password === this.state.repeatedPassword) {
-      return true;
-    }
-    else {
-      alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
-    }
+  validPassword(){
+      if(this.state.password.length>=6&&
+      this.state.password.length<=30){
+          return true;
+      }
+      else{
+        alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
+      }
   }
 
-  validPassword() {
-    if (this.state.password.length >= 6 &&
-      this.state.password.length <= 30) {
-      return true;
-    }
-    else {
-      alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
-    }
-  }
-
-  dataIsValid() {
-    if (this.bothPasswordsMatch() &&
-      this.validFirstNameEntered() &&
-      this.validLastNameEntered() &&
-      this.validUserNameEntered() &&
-      this.validPassword()) {
-      return true;
-    }
-  }
-
+  dataIsValid(){
+      if (this.bothPasswordsMatch()&&
+      this.validFirstNameEntered()&&
+      this.validLastNameEntered()&&
+      this.validUserNameEntered()&&
+      this.validPassword()){
+          return true;
+      }
+}
+   
   handleClick(event) {
 
-    if (this.dataIsValid()) {
-
+    if (this.dataIsValid()){
+      
       console.log("data is valid: " + this.dataIsValid());
-
+      
       //set values
-      var information = {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        userName: this.state.userName,
-        password: this.state.password
+      var information= {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      userName: this.state.userName,
+      password: this.state.password
       }
       //send to back end
       this.refs.form.reset();
-      /*sugalvot kuo pakeisti alertus*/
-      axios.post(API + "/admin/admin", information)
-        .then((response) => {
+       /*sugalvot kuo pakeisti alertus*/
+      axios.post(API + "/admin/admin" , information)
+      .then((response)=>{
           console.log("registration  successful");
-          alert("Registracija sėkminga!");
-        })
-        .catch((error) => {
-          console.log(error);
-        })
+          alert("Registracija sėkminga!");     
+      })
+      .catch((error)=>{
+        console.log(error);
+      })
       console.log(this.state);
       event.preventDefault();
-    } else {
+    }else{
       console.log("some data is wrong");
     }
-  }
-
+}
+   
   render() {
     console.log(this.state.showAdminRegistration)
     return (
       <div >
         <MuiThemeProvider>
           <form className="registerAdmin"
-            ref="form"
-            open={this.props.open}>
-            <h2> Registruoti administratorių </h2>
+          ref="form"
+           open={this.props.open}>
+           <h2> Registruoti administratorių </h2>
             <TextField
               className="firstName"
               id="inputFirstName"
@@ -190,19 +190,12 @@ class RegisterAdmin extends Component {
             />
             <br />
             <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
-
+            
           </form>
         </MuiThemeProvider>
       </div>
     );
   }
 }
-/* RegisterAdmin.propTypes={
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  userName: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
-  repeatedPassword: PropTypes.string.isRequired
-}; */
 
 export default RegisterAdmin;

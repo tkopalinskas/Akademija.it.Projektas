@@ -82,7 +82,7 @@ class PharmacistsPrescriptionsTable extends Component {
   /*get single prescription*/
     openModal = (personalId, number) => {
       console.log(number);
-      axios.get('http://localhost:8081/pharmacist/'+ personalId + "/prescriptions" + number)
+      axios.get('http://localhost:8081/pharmacist/'+ personalId + "/prescriptions/" + number)
           .then((response) => { this.setState({ validPrescriptionInfo: response.data }) })
                   this.setState({ showModal: !this.state.showModal })
           .catch((error) => {

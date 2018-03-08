@@ -138,7 +138,6 @@ class RegisterDoctor extends Component {
 
             this.refs.form.reset();
 
-            
             axios.post(apiUrl + '/admin/doctor', information)
             .then((response)=>{
                 console.log("registration  successful");
@@ -156,7 +155,6 @@ class RegisterDoctor extends Component {
             console.log("some data is wrong");
             return false;
         }
-        
       }
        
 
@@ -174,8 +172,9 @@ class RegisterDoctor extends Component {
         return (
             <div>
                 <MuiThemeProvider>
+                    {/*pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu*/}
                     <form className="registerDoctor"
-                    ref= "form">
+                    ref="form">
                     <h2> Registruoti gydytoją </h2>
                         <TextField
                             className="firstName"
@@ -238,7 +237,7 @@ class RegisterDoctor extends Component {
                                       id="inputSpecialization"
                                       value={this.state.value} onChange={this.handleChange}>
                             <option id="noSpecialization" value={""} >Specializacija </option>
-                            <option id="generalPractitioner" value={"Šeimos gydytojas"} >Šeimos gydytojas </option>
+                            <option id="generalPractitioner" value={"šeimos gydytojas"} >Šeimos gydytojas </option>
                             <option id="surgeon" value={"chirurgas"} >Chirurgas </option>
                             <option id="physiotherapist" value={"fizioterapeutas"} >Fizioterapeutas </option>
                             <option id="other" value={"kita"} >Kita </option>

@@ -84,7 +84,7 @@ class PatientContainer extends Component{
        let user = JSON.parse(userData);
     
     //    console.log("UserName: ", JSON.parse(window.sessionStorage.getItem('userData').userName))
-       console.log(user.userName)
+    //    console.log(user.userName)
        
         return(
             <MuiThemeProvider>

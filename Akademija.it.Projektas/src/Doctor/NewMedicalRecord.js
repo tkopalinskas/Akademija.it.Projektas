@@ -23,6 +23,7 @@ class NewMedicalRecord extends Component {
         this.state = {
             open: false,
 
+            currentDate: '',
             illnessTLKCode: '',
             lengthOfVisit: '',
             description: '',
@@ -83,6 +84,20 @@ class NewMedicalRecord extends Component {
         }
     }
 
+    getCurrentDate(){
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = today.getMonth() + 1;
+        let day = today.getDate();
+        if (month<10){
+            month='0'+month;
+        }
+        if (day<10){
+            day='0'+day
+        }
+        this.setState({currentDate: year+'-'+month+'-'+day});
+    }
+
     dataIsValid(){
         if (this.validLengthOfVisit()&&
         this.validIllnessTLKCode()&&
@@ -93,6 +108,8 @@ class NewMedicalRecord extends Component {
 
     addNewMedicalRecord = (event)=>{
         if (this.dataIsValid()){
+
+            this.getCurrentDate();
       
             console.log("data is valid: " + this.dataIsValid());
             var information= {
@@ -100,7 +117,8 @@ class NewMedicalRecord extends Component {
                 illnessTLKCode: this.state.illnessTLKCode,
                 visitIsCompensated: this.state.visitIsCompensated,
                 visitIsRepeated: this.state.visitIsRepeated,
-                description: this.state.description   
+                description: this.state.description,
+                currentDate:this.state.currentDate   
                 }
             
 
@@ -113,8 +131,10 @@ class NewMedicalRecord extends Component {
                 .catch((error)=>{
                 console.log(error);
                 this.props.closeAction();
+                console.log("info on error", this.state)
             })
             console.log("ok");
+            console.log("info", this.state)
             event.preventDefault();
 
         }else{

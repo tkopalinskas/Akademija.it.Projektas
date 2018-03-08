@@ -177,7 +177,6 @@ class RegisterPatient extends Component {
         password: this.state.password,
         dateOfBirth: this.state.dateOfBirth,
         personalId: this.state.personalId,
-        doctorsFullName: this.state.doctorsFullName
       }
       this.refs.form.reset();
       this.setState({ dateOfBirth: '' })

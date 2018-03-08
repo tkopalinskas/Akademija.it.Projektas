@@ -79,15 +79,15 @@ class PrescriptionsTable extends Component {
 
   render() {
 
-    var allPrescriptions = this.state.prescriptions.map((prescription, index) => (
-      <TableRow key={index} onClick={this.openModal} >
-        {/* <TableRowColumn>{prescription.number}</TableRowColumn> */}
-        <TableRowColumn>{prescription.validUntil}</TableRowColumn>
-        <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
-        <TableRowColumn>{prescription.timesUsed}</TableRowColumn>
-        <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-        <TableRowColumn><FlatButton label="Info" primary={true} onClick={() => this.openModal(prescription.perscriptionId)} /></TableRowColumn>
-      </TableRow>
+      var allPrescriptions = this.state.prescriptions.map((prescription, index) => (
+        <TableRow key={index}  /* onClick={this.openModal} */ >
+            {/* <TableRowColumn>{prescription.number}</TableRowColumn> */}
+            <TableRowColumn>{prescription.validUntil}</TableRowColumn>
+            <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
+            <TableRowColumn>{prescription.timesUsed}</TableRowColumn>
+            <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
+            <TableRowColumn><FlatButton label="Info" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
+        </TableRow>
     ))
 
     if (!this.state.prescriptions) {
