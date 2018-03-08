@@ -18,14 +18,14 @@ export default class InformationModal extends React.Component {
         this.setState({ disabled: !this.state.disabled })
     }
 
-    componentWillMount = ()=>{
-        this.setState({disabled: true})
+    componentWillMount = () => {
+        this.setState({ disabled: true })
     }
 
-    translate = (suspend)=>{
-        if (suspend){
+    translate = (suspend) => {
+        if (suspend) {
             return "Taip"
-        } else{
+        } else {
             return "Ne"
         }
     }
