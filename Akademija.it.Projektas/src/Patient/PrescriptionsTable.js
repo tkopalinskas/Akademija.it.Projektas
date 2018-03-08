@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {
@@ -12,51 +12,53 @@ import {
 import PrescriptionInformationModal from './PrescriptionInformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
-const styles ={
+const styles = {
   marginLeft: 0,
   marginRight: 10
-  
+
 }
 
 class PrescriptionsTable extends Component {
-    constructor() {
-      super();
-        this.state = {
-          fixedHeader: true,
-          showRowHover: true,
-          showCheckboxes: false,
-          selectable: true,
-          multiSelectable: false,
-          enableSelectAll: false,
-          deselectOnClickaway: true,
-          height: '300px',
-          showModal: false,
+  constructor() {
+    super();
+    this.state = {
+      fixedHeader: true,
+      showRowHover: true,
+      showCheckboxes: false,
+      selectable: true,
+      multiSelectable: false,
+      enableSelectAll: false,
+      deselectOnClickaway: true,
+      height: '300px',
+      showModal: false,
 
-          prescriptions: [],           
-            validUntil: '',
-            prescriptionDate: '',
-            timesUsed: 0,
-            activeIngredient: '',
-            description: '',
-            number: '',
+      prescriptions: [],
+      validUntil: '',
+      prescriptionDate: '',
+      timesUsed: 0,
+      activeIngredient: '',
+      description: '',
+      number: '',
 
-          prescriptionInfo:[]
-      }
+      prescriptionInfo: []
+    }
   }
 
   /*gets single prescription*/
-    openModal = (number) => {
-      console.log("number:"+number);
-      axios.get("http://localhost:8081/patient/prescriptions/" + number)
+  openModal = (number) => {
+    console.log("number:" + number);
+    axios.get("http://localhost:8081/patient/prescriptions/" + number)
 
-          .then((response) => { this.setState({ prescriptionInfo: response.data }) 
-            this.setState({ showModal: !this.state.showModal })
-            console.log("perscription info", this.state.prescriptionInfo)
-            console.log(this.state.showModal)})
-            .catch((error) => {
-              console.log(error);
-              
-            })
+      .then((response) => {
+        this.setState({ prescriptionInfo: response.data })
+        this.setState({ showModal: !this.state.showModal })
+        console.log("perscription info", this.state.prescriptionInfo)
+        console.log(this.state.showModal)
+      })
+      .catch((error) => {
+        console.log(error);
+
+      })
   }
   /*closes prescription modal*/
   closeModal=()=>{
@@ -76,7 +78,7 @@ class PrescriptionsTable extends Component {
             }); 
     }
 
-    render() {
+  render() {
 
       var allPrescriptions = this.state.prescriptions.map((prescription, index) => (
         <TableRow key={index}  /* onClick={this.openModal} */ >
@@ -90,11 +92,11 @@ class PrescriptionsTable extends Component {
     ))
 
     if (!this.state.prescriptions) {
-        return null;
+      return null;
     }
-console.log(this.state.prescriptionInfo)
-      return (
-        <MuiThemeProvider>
+    console.log(this.state.prescriptionInfo)
+    return (
+      <MuiThemeProvider>
         <div>
           <Table
             height={this.state.height}
@@ -102,63 +104,63 @@ console.log(this.state.prescriptionInfo)
             fixedHeader={this.state.fixedHeader}
             selectable={this.state.selectable}
             multiSelectable={this.state.multiSelectable}
-            >
+          >
             <TableHeader
-                displaySelectAll={this.state.showCheckboxes}
-                adjustForCheckbox={this.state.showCheckboxes}
-                enableSelectAll={this.state.enableSelectAll}
-              >
+              displaySelectAll={this.state.showCheckboxes}
+              adjustForCheckbox={this.state.showCheckboxes}
+              enableSelectAll={this.state.enableSelectAll}
+            >
               <TableRow>
-                <TableHeaderColumn colSpan="5" tooltip="Receptai" style={{textAlign: 'center'}}>
+                <TableHeaderColumn colSpan="5" tooltip="Receptai" style={{ textAlign: 'center' }}>
                   Receptai
                 </TableHeaderColumn>
               </TableRow>
               <TableRow>
-                <TableHeaderColumn 
+                <TableHeaderColumn
                   className="validUntil"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
-                  }} 
+                  }}
                   tooltip="Galiojimo data">Galiojimo data</TableHeaderColumn>
-                <TableHeaderColumn 
+                <TableHeaderColumn
                   className="prescriptionDate"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
-                  }} 
+                  }}
                   tooltip="Išrašymo data">Išrašymo data</TableHeaderColumn>
-                <TableHeaderColumn 
+                <TableHeaderColumn
                   className="timesUsed"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
-                  }} 
+                  }}
                   tooltip="Recepto panaudojimų skaičius">Recepto panaudojimų skaičius</TableHeaderColumn>
-                <TableHeaderColumn 
+                <TableHeaderColumn
                   className="activeIngredient"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }}
                   tooltip="Veiklioji medžiaga">Veiklioji medžiaga</TableHeaderColumn>
-                <TableHeaderColumn 
+                <TableHeaderColumn
                   className="informationButton"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
-                  }} 
+                  }}
                   tooltip="Info">Informacija</TableHeaderColumn>
               </TableRow>
-              
+
             </TableHeader>
-        
+
             <TableBody
               displayRowCheckbox={this.state.showCheckboxes}
               deselectOnClickaway={this.state.deselectOnClickaway}
               showRowHover={this.state.showRowHover}
             >
-              { allPrescriptions}
+              {allPrescriptions}
               {/* <TableRow>
                 <TableRowColumn>validUntil</TableRowColumn>
                 <TableRowColumn>prescriptionDate</TableRowColumn>
@@ -167,15 +169,15 @@ console.log(this.state.prescriptionInfo)
                 <TableRowColumn>description<FlatButton label="Info" primary={true} onClick={this.openModal} /></TableRowColumn>
               </TableRow> */}
             </TableBody>
-            
+
           </Table>
           <PrescriptionInformationModal
-                        open={this.state.showModal}
-                        closeAction={this.closeModal}
-                        prescriptionInfo={this.state.prescriptionInfo} />
+            open={this.state.showModal}
+            closeAction={this.closeModal}
+            prescriptionInfo={this.state.prescriptionInfo} />
         </div>
-        </MuiThemeProvider>
-      );
-    }
-  };
+      </MuiThemeProvider>
+    );
+  }
+};
 export default PrescriptionsTable;

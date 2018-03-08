@@ -138,6 +138,8 @@ class RegisterPharmacist extends Component {
                 typeOfWorkplace: this.state.typeOfWorkplace
             }
 
+            this.refs.form.reset();
+
                 axios.post(apiUrl + '/admin/pharmacist', information)
                 .then((response)=>{
                     console.log("registration  successful");
@@ -162,7 +164,8 @@ class RegisterPharmacist extends Component {
             <div>
                 <MuiThemeProvider>
                     {/* pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu */}
-                    <div className="registerPharmacist">
+                    <form className="registerPharmacist"
+                    ref="form">
                     <h2> Registruoti vaistininką </h2>
                         <TextField
                             className="firstName"
@@ -243,7 +246,7 @@ class RegisterPharmacist extends Component {
                         />
                         <br />
                         <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
-                    </div>
+                    </form>
                 </MuiThemeProvider>
             </div>
         );

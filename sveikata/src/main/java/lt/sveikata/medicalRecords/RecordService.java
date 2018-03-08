@@ -16,7 +16,7 @@ public class RecordService {
 	private RecordRepository visitRepository;
 
 	public List<RecordForClient> receiveAllVisits() {
-		List<Record> visitsFromDatabase = getVisitRepository().findAll();
+		List<Record> visitsFromDatabase = getVisitRepository().findAllByOrderByDateOfVisitDesc();
 		List<RecordForClient> visitsForClient = visitsFromDatabase.stream().map((visit) -> {
 			RecordForClient vfc = new RecordForClient();
 			vfc.setRecordId(visit.getRecordId());

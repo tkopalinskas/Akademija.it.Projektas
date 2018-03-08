@@ -76,9 +76,16 @@ class PatientContainer extends Component{
             window.location.href="/#/";
        else{
            let user = JSON.parse(userData);
-           if(user.role!='PATIENT')
+           if(user.role!=='PATIENT')
                 window.location.href="/#/";
+       
        }
+
+       let user = JSON.parse(userData);
+    
+    //    console.log("UserName: ", JSON.parse(window.sessionStorage.getItem('userData').userName))
+    //    console.log(user.userName)
+       
         return(
             <MuiThemeProvider>
             <div>
@@ -89,7 +96,7 @@ class PatientContainer extends Component{
                         showMenuIconButton={false} iconElementRight={<FlatButton
                         className="userPopoverMenu"
                         onClick={this.handleClick}
-                        label={"Sveiki, "+ this.state.userName} />
+                        label={"Sveiki, "+ user.firstName +" "+ user.lastName} />
                     }>
                     <Popover
                         open={this.state.leftDrop}

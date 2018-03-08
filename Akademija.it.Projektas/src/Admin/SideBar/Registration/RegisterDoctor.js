@@ -136,7 +136,8 @@ class RegisterDoctor extends Component {
             password : this.state.password,
             }
 
-            
+            this.refs.form.reset();
+
             axios.post(apiUrl + '/admin/doctor', information)
             .then((response)=>{
                 console.log("registration  successful");
@@ -172,7 +173,8 @@ class RegisterDoctor extends Component {
             <div>
                 <MuiThemeProvider>
                     {/*pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu*/}
-                    <div className="registerDoctor">
+                    <form className="registerDoctor"
+                    ref="form">
                     <h2> Registruoti gydytoją </h2>
                         <TextField
                             className="firstName"
@@ -250,7 +252,7 @@ class RegisterDoctor extends Component {
                         /> 
                         <br />
                         <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
-                    </div>
+                    </form>
                 </MuiThemeProvider>
             </div>
         );

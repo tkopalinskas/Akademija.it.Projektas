@@ -2,6 +2,7 @@ package lt.sveikata.prescription;
 
 public class PrescriptionForClient {
 
+	private Long perscriptionId;
 	private String doctorsFullName;
 	private String prescriptionDate;
 	private long personalId;
@@ -92,5 +93,6 @@ public class PrescriptionForClient {
 	public void setTimesUsed(int timesUsed) {
 		this.timesUsed = timesUsed;
 	}
+
 
 }

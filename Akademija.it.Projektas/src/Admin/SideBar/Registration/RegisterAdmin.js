@@ -106,7 +106,7 @@ class RegisterAdmin extends Component {
       password: this.state.password
       }
       //send to back end
-      
+      this.refs.form.reset();
        /*sugalvot kuo pakeisti alertus*/
       axios.post(API + "/admin/admin" , information)
       .then((response)=>{
@@ -128,7 +128,8 @@ class RegisterAdmin extends Component {
     return (
       <div >
         <MuiThemeProvider>
-          <div className="registerAdmin"
+          <form className="registerAdmin"
+          ref="form"
            open={this.props.open}>
            <h2> Registruoti administratorių </h2>
             <TextField
@@ -190,7 +191,7 @@ class RegisterAdmin extends Component {
             <br />
             <RaisedButton className="submitButton" id="submitForm" label="Registruoti" primary={true} onClick={(event) => this.handleClick(event)} />
             
-          </div>
+          </form>
         </MuiThemeProvider>
       </div>
     );

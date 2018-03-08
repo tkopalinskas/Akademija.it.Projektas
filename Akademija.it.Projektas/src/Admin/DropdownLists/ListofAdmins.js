@@ -51,6 +51,10 @@ export default class ListofAdmins extends Component {
             .then(this.setState({ showModal: !this.state.showModal }))
     }
 
+    closeModal = () => {
+        this.setState({ showModal: false});
+    }
+
 
     componentWillMount = () => {
         axios.get("http://localhost:8081/admin/allAdmins")
@@ -114,7 +118,7 @@ export default class ListofAdmins extends Component {
                 </Table>
                 <InformationModal
                     open={this.state.showModal}
-                    closeAction={this.openModal}
+                    closeAction={this.closeModal}
                     userInfo={this.state.userInfo} />
             </div>
         );

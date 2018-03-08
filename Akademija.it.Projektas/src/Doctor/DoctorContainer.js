@@ -85,7 +85,7 @@ class DoctorContainer extends Component{
             window.location.href="/#/";
        else{
            let user = JSON.parse(userData);
-           if(user.role!='DOCTOR')
+           if(user.role!=='DOCTOR')
                 window.location.href="/#/";
        }
         return(

@@ -141,12 +141,6 @@ class MedicalRecordsTable extends Component {
                 showRowHover={this.state.showRowHover}
               >
                { allMedicalRecords}
-                  {/* <TableRow >
-                    <TableRowColumn>dateOfVisit</TableRowColumn>
-                    <TableRowColumn>illnessTLKCode</TableRowColumn>
-                    <TableRowColumn>doctorsFullName</TableRowColumn>
-                    <TableRowColumn>description<FlatButton label="Info" primary={true} /* onClick={this.openModal} */ /*/></TableRowColumn>
-                  </TableRow> */}
               </TableBody>
             </Table>
             <RecordInformationModal
