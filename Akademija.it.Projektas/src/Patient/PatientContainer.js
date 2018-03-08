@@ -96,7 +96,7 @@ class PatientContainer extends Component{
                         showMenuIconButton={false} iconElementRight={<FlatButton
                         className="userPopoverMenu"
                         onClick={this.handleClick}
-                        label={"Sveiki, "+ this.state.userName} />
+                        label={"Sveiki, "+ user.firstName +" "+ user.lastName} />
                     }>
                     <Popover
                         open={this.state.leftDrop}

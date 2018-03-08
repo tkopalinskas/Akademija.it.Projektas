@@ -18,8 +18,16 @@ export default class InformationModal extends React.Component {
         this.setState({ disabled: !this.state.disabled })
     }
 
-    componentWillMount = ()=>{
-        this.setState({disabled: true})
+    componentWillMount = () => {
+        this.setState({ disabled: true })
+    }
+
+    translate = (suspend) => {
+        if (suspend) {
+            return "Taip"
+        } else {
+            return "Ne"
+        }
     }
 
 
@@ -44,7 +52,7 @@ export default class InformationModal extends React.Component {
         ];
 
         //modal pagauna paduoda array su specifiniu userinfo per props
-        
+
 
         console.log(this.props.userInfo);
 
@@ -58,15 +66,15 @@ export default class InformationModal extends React.Component {
                     >
 
                         <div  >
-                <h3> {this.props.userInfo.firstName + " " + this.props.userInfo.lastName}</h3>
-                <span>
-                    <p>{"Rolė: " + this.props.userInfo.role}</p>
-                    <p>Slapyvardis: {this.props.userInfo.userName}</p>
-                    <p>Gimimo Data: {this.props.userInfo.dateOfBirth}</p>
-                    <p>Paskirtas Daktaras: {this.props.userInfo.doctorsFullName}</p>
-                    <p>{"Užbanintas: " + this.props.userInfo.suspended}</p>
-                </span>
-            </div>
+                            <h3> {this.props.userInfo.firstName + " " + this.props.userInfo.lastName}</h3>
+                            <span>
+                                <p>{"Rolė: " + this.props.userInfo.role}</p>
+                                <p>Slapyvardis: {this.props.userInfo.userName}</p>
+                                <p>Gimimo Data: {this.props.userInfo.dateOfBirth}</p>
+                                <p>Paskirtas Daktaras: {this.props.userInfo.doctorsFullName}</p>
+                                <p>Užbanintas:  {this.translate(this.props.userInfo.suspanded)} </p>
+                            </span>
+                        </div>
                         <Checkbox
                             label="Suspend User"
                             onCheck={this.handleToggle}

@@ -22,6 +22,13 @@ export default class InformationModal extends React.Component {
         this.setState({disabled: true})
     }
 
+    translate = (suspend)=>{
+        if (suspend){
+            return "Taip"
+        } else{
+            return "Ne"
+        }
+    }
 
     render() {
 
@@ -50,7 +57,7 @@ export default class InformationModal extends React.Component {
                 <span>
                     <p>{"Rolė: " + User.role}</p>
                     <p>Slapyvardis: {User.userName}</p>
-                    <p>{"Užbanintas: " + User.suspended}</p>
+                    <p>Užbanintas:  {this.translate(User.suspanded)} </p>
                 </span>
             </div>
         ));
