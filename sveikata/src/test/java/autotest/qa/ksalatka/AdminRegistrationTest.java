@@ -34,10 +34,10 @@ public class AdminRegistrationTest {
 
 	@Before
 	public void testSetup() {
-		driver.get("http://localhost:8081/#/admin");
-//		mainPage.inputUsername("test132");
-//		mainPage.inputPassword("adminpassword");
-//		mainPage.clickLogin();
+		driver.get("http://localhost:8081/#/");
+		mainPage.inputUsername("admin1");
+		mainPage.inputPassword("admin1");
+		mainPage.clickLogin();
 		mainPage.clickRegisterNewUser();
 
 	}
