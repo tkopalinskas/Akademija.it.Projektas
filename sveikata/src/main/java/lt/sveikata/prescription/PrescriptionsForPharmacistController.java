@@ -17,15 +17,15 @@ public class PrescriptionsForPharmacistController {
 	@Autowired
 	private PrescriptionService prescriptionService;
 
-	/* gets all prescriptions for pharmacist */
+	/* gets all specified patient's prescriptions for pharmacist */
 	@RequestMapping(value = "/{personalId}/prescriptions", method = RequestMethod.GET)
 	public List<PrescriptionForClient> giveValidPrescriptions(@PathVariable("personalId") Long personalId) {
 		return getPrescriptionService().receiveAllPrescriptionsForPharmacist(personalId);
 	}
 	
-	/*gets a specified prescription from database, searches by id*/
-	@RequestMapping(value = "/{personalId}/prescriptions/{number}", method = RequestMethod.GET)
-	public Prescription singlePrescription(@PathVariable("number") Long number) {
+	/*gets a specified prescription from database, searches by number*/
+	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)
+	public Prescription singlePrescription(/*@PathVariable Long personalIdersonalId,*/ @PathVariable Long number) {
 		return prescriptionService.receivePrescriptionInfo(number);
 	}
 

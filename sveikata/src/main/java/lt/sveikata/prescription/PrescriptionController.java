@@ -28,8 +28,8 @@ public class PrescriptionController {
 
 	/*gets a specified prescription from database, searches by number*/
 	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)
-	public Prescription singlePrescription(@PathVariable("number") final String Strnumber) {
-		long number = Long.parseLong(Strnumber);
+	public Prescription singlePrescription(@PathVariable("number") final Long number) {
+		//long number = Long.parseLong(Strnumber);
 		return prescriptionService.receivePrescriptionInfo(number);
 	}
 

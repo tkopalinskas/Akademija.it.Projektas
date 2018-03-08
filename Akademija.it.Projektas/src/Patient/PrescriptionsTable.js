@@ -9,7 +9,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import InformationModal from './InformationModal'
+import PrescriptionInformationModal from './PrescriptionInformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
 const styles ={
@@ -44,7 +44,7 @@ class PrescriptionsTable extends Component {
       }
   }
 
-  /*get single prescription*/
+  /*gets single prescription*/
     openModal = (number) => {
       console.log("number:"+number);
       axios.get("http://localhost:8081/patient/prescriptions/" + number)
@@ -58,8 +58,12 @@ class PrescriptionsTable extends Component {
               
             })
   }
+  /*closes prescription modal*/
+  closeModal=()=>{
+    this.setState({showModal: false})
+  }
 
-  /*get all patient's prescriptions*/
+  /*gets all patient's prescriptions*/
     componentWillMount() {
        axios
             .get("http://localhost:8081/patient/prescriptions")
@@ -165,9 +169,9 @@ console.log(this.state.prescriptionInfo)
             </TableBody>
             
           </Table>
-          <InformationModal
+          <PrescriptionInformationModal
                         open={this.state.showModal}
-                        closeAction={this.openModal}
+                        closeAction={this.closeModal}
                         prescriptionInfo={this.state.prescriptionInfo} />
         </div>
         </MuiThemeProvider>

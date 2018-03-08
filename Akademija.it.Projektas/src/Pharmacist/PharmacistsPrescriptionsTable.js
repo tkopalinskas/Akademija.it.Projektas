@@ -9,7 +9,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import PrescriptionInfoModal from './PrescriptionInfoModal'
+import SinglePrescriptionInformation from './SinglePrescriptionInformation'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
@@ -77,17 +77,26 @@ class PharmacistsPrescriptionsTable extends Component {
             console.log(error);
             alert("Pacientas neegzistuoja!");
       }); 
+      e.preventDefault();
     }
 }
-  /*get single prescription*/
-    openModal = (personalId, number) => {
-      console.log(number);
-      axios.get('http://localhost:8081/pharmacist/'+ personalId + "/prescriptions/" + number)
-          .then((response) => { this.setState({ validPrescriptionInfo: response.data }) })
-                  this.setState({ showModal: !this.state.showModal })
+  /*gets single prescription*/
+  openModal = (number) => {
+    console.log("number:"+number);
+    axios.get("http://localhost:8081/pharmacist/prescriptions/" + number)
+
+        .then((response) => { this.setState({ validPrescriptionInfo: response.data }) 
+          this.setState({ showModal: !this.state.showModal })
+          console.log("perscription info", this.state.validPrescriptionInfo)
+          console.log(this.state.showModal)})
           .catch((error) => {
             console.log(error);
-          }); 
+            
+          })
+}
+  /*closes prescription modal*/
+  closeModal=()=>{
+    this.setState({showModal: false})
   }
  
     render() {
@@ -97,13 +106,13 @@ class PharmacistsPrescriptionsTable extends Component {
        console.log("number", this.state.number)
 
       var allPrescriptions = this.state.validPrescriptions.map((prescription, index) => (
-        <TableRow key={index}  onClick={this.openModal} >
-            {/* <TableRowColumn>{prescription.number}</TableRowColumn> */}
+        <TableRow key={index} >
+            <TableRowColumn>{prescription.number}</TableRowColumn>
             <TableRowColumn>{prescription.validUntil}</TableRowColumn>
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn>{prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn>{/* {prescription.description} */}<FlatButton label="Info" primary={true} /* onClick={this.openModal(prescription.number)} */ /></TableRowColumn>
+            <TableRowColumn>{/* {prescription.description} */}<FlatButton label="Info" primary={true} onClick={this.openModal(prescription.number)} /></TableRowColumn>
         </TableRow>
     ))
 
@@ -188,10 +197,10 @@ class PharmacistsPrescriptionsTable extends Component {
               </TableRow>}
             </TableBody>
           </Table>
-          <PrescriptionInfoModal
-              open={this.state.showModal}
-              closeAction={this.openModal}
-              validPrescriptionInfo={this.state.validPrescriptionInfo} />
+          <SinglePrescriptionInformation
+                        open={this.state.showModal}
+                        closeAction={this.closeModal}
+                        validPrescriptionInfo={this.state.validPrescriptionInfo} />
           </Col>
           </Row>
           </Container> 

@@ -19,6 +19,7 @@ public class RecordService {
 		List<Record> visitsFromDatabase = getVisitRepository().findAll();
 		List<RecordForClient> visitsForClient = visitsFromDatabase.stream().map((visit) -> {
 			RecordForClient vfc = new RecordForClient();
+			vfc.setRecordId(visit.getRecordId());
 			vfc.setDateOfVisit(visit.getDateOfVisit());
 			vfc.setIllnessTLKCode(visit.getIllnessTLKCode());
 			vfc.setDoctorsFullName(visit.getDoctorsFullName());
@@ -29,6 +30,21 @@ public class RecordService {
 			return vfc;
 		}).collect(Collectors.toList());
 		return visitsForClient;
+	}
+	
+	/* receives info about a single prescription found by it's id */
+	public RecordForClient receiveRecordInfo(long recordId) {
+		Record record = visitRepository.findByRecordId(recordId);
+		RecordForClient recordForClient = new RecordForClient();
+		recordForClient.setRecordId(record.getRecordId());
+		recordForClient.setDateOfVisit(record.getDateOfVisit());
+		recordForClient.setIllnessTLKCode(record.getIllnessTLKCode());
+		// recordForClient.setDoctorsFullName(record.getDoctorsFullName());
+		recordForClient.setLengthOfVisit(record.getLengthOfVisit());
+		recordForClient.setCompensated(record.isCompensated());
+		recordForClient.setDescription(record.getDescription());
+		recordForClient.setVisitIsRepeated(record.isVisitIsRepeated());
+		return recordForClient;
 	}
 
 	public void addNewVisit(AddNewRecord newVisit) {

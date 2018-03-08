@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 //import Checkbox from 'material-ui/Checkbox';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-class InformationModal extends Component {
+class PrescriptionInformationModal extends Component {
 
     constructor(props) {
         console.log(props);
@@ -30,9 +30,9 @@ class InformationModal extends Component {
 
     render() {
 
-         if (!this.state.prescriptionInfo){
-             return null;
-         }
+        if (!this.props.prescriptionInfo){
+            return null;
+        }
 
         const actions =
             (<FlatButton
@@ -82,4 +82,4 @@ class InformationModal extends Component {
         );
     }
 }
-export default InformationModal;
+export default PrescriptionInformationModal;

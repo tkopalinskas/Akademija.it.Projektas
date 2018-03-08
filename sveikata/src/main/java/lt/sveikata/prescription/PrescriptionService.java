@@ -70,6 +70,12 @@ public class PrescriptionService {
 		Prescription prescription = prescriptionRepository.findByNumber(number);
 		return prescription;
 	}
+	
+	/* receives info about a single prescription found by it's number and personalId */
+	public Prescription receivePrescriptionInfo(long personalId, long number) {
+		Prescription prescription = prescriptionRepository.findByPersonalIdAndNumber(personalId, number);
+		return prescription;
+	}
 
 	/*saves all information about a new prescription into database*/
 	public void addNewPrescription(AddNewPrescription newPrescription) {

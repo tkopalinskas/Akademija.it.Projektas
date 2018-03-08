@@ -31,7 +31,7 @@ public class AddNewRecord {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
-	private long id;
+	private long recordId;
 	@NotNull
 	@Column
 	private String dateOfVisit;
@@ -45,12 +45,12 @@ public class AddNewRecord {
 	private boolean isCompensated;
 	private boolean visitIsRepeated;
 
-	public long getId() {
-		return id;
+	public long getRecordId() {
+		return recordId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setRecordId(long recordId) {
+		this.recordId = recordId;
 	}
 	
 	

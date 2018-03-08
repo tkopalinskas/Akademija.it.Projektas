@@ -90,9 +90,11 @@ generateDateOfBirth=() =>{
 
   let year=null;
   if((firstDigit==='3')||(firstDigit==='4')){
-     year='19'+secondGroup;
+    year='19'+secondGroup;
+  }else if((firstDigit==='1')||(firstDigit==='2')){
+    year='18'+secondGroup;
   }else{
-     year='20'+secondGroup;
+    year='20'+secondGroup;
   } 
 
   let newDateOfBirth = new Date(year+'-'+month+'-'+day).toLocaleDateString('lt-LT');
@@ -255,6 +257,7 @@ dataIsValid(){
               //onChange={(event, dateOfBirth) =>this.setState({floatingLabelText: dateOfBirth})}  
             />
             <RaisedButton 
+            id="generateDateOfBirthButton"
             label="Generuoti gimimo datą" 
             onClick={(event)=>this.handleDateGeneration(event)}
             disabled={this.state.disabled}/>
