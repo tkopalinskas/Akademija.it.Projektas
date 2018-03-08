@@ -1,10 +1,18 @@
 package lt.sveikata.prescription;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import lt.sveikata.doctor.Doctor;
+import lt.sveikata.patient.Patient;
 
 @Entity
 public class AddNewPrescription {
@@ -23,6 +31,19 @@ public class AddNewPrescription {
 	private String description;
 	private long number=0;
 	private int timesUsed=0;
+	
+	
+	@OneToMany(mappedBy="prescription")
+	private List<UsesFact>usesFact;
+	
+	
+	@ManyToOne
+	@JoinColumn(name ="patientId")
+	private Patient patient;
+	
+	@ManyToOne
+	@JoinColumn(name="doctorId")
+	private Doctor doctor;
 
 	public long getId() {
 		return id;
@@ -30,6 +51,24 @@ public class AddNewPrescription {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 
 	public String getDoctorsFullName() {

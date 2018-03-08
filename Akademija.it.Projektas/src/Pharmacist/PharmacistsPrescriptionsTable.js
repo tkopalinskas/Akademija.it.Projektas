@@ -54,7 +54,7 @@ class PharmacistsPrescriptionsTable extends Component {
             description: '',
             number: '',
 
-          personalCode: '',
+          personalId: '',
           validPrescriptionInfo:[]
       }
   }
@@ -64,11 +64,11 @@ class PharmacistsPrescriptionsTable extends Component {
     if (e.key === 'Enter') {
       let personalId=e.target.value;
         this.setState({
-            personalCode: personalId,
+            personalId: personalId,
         }); 
       
       axios
-        .get('http://localhost:8081/pharmacist/' + personalId +"/prescriptions")
+        .get('http://localhost:8081/pharmacist/patient-prescriptions/' + personalId)
         .then((response) => {
             console.log(response);
             this.setState({validPrescriptions: response.data});

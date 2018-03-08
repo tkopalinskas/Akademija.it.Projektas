@@ -21,10 +21,19 @@ public class PrescriptionController {
 	private PrescriptionService prescriptionService;
 
 	/*gets all prescriptions from database*/
-	@RequestMapping(value = "/prescriptions", method = RequestMethod.GET)
-	public List<PrescriptionForClient> giveAllPrescriptions() {
-		return getPrescriptionService().receiveAllPrescriptions();
-	}
+//	@RequestMapping(value = "/{patientId}/prescriptions", method = RequestMethod.GET)
+//	public List<Prescription> getAllPrescriptions(@PathVariable("patientId") Long patientId) {
+//		List<Prescription> prescriptions = prescriptionService.byUserId(patientId);
+//		return prescriptions;
+//	}
+	
+//	@RequestMapping(value = "/{userId}/prescriptions", method = RequestMethod.GET)
+//	@PreAuthorize("hasRole('PHARMACIST')")
+//	public List<Prescription> getPatientPrescriptions(@PathVariable("userId") Long userId) {
+//		 
+//		List<Prescription> prescriptions = prescriptionService.byPersonalId(userId);
+//		return prescriptions;
+//	}
 
 	/*gets a specified prescription from database, searches by number*/
 	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)

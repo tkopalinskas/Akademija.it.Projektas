@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import lt.sveikata.doctor.DoctorRepository;
+import lt.sveikata.prescription.Prescription;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -121,6 +122,11 @@ public class PatientService {
 //		pat.setNotSuspended(patient.isNotSuspended());
 		patientRepository.save(pat);
 	}
+	
+//	public List<Patient> byDoctorId(long doctorId){
+//		return patientRepository.getPatientById(doctorId);
+//	}
+
 	
 	public PatientRepository getPatientRepository() {
 		return patientRepository;

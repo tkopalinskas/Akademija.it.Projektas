@@ -35,7 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/","swagger-ui.html").permitAll()
 			.antMatchers("/console/**").permitAll()
 //			.antMatchers("/admin/**").hasRole("ADMIN")
-			.antMatchers("/patient/**").hasRole("PATIENT")
+//			.antMatchers("/patient/**").hasRole("PATIENT")
 			.antMatchers("/pharmacist/**").hasRole("PHARMACIST")
 			.antMatchers("/doctor/**").hasRole("DOCTOR")
 			.and()

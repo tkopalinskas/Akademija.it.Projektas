@@ -34,6 +34,7 @@ class PatientsListTable extends Component {
             height: '300px',
             showModal: false,
 
+
             patients: [],
             firstName: '',
             lastName: '',
@@ -45,6 +46,7 @@ class PatientsListTable extends Component {
     }
 
     /*received all doctor's patients from database */
+   
     componentWillMount(){
         axios
             .get("http://localhost:8081/doctor/patientsList")

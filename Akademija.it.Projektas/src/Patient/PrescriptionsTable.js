@@ -62,7 +62,7 @@ class PrescriptionsTable extends Component {
   /*get all patient's prescriptions*/
     componentWillMount() {
        axios
-            .get("http://localhost:8081/patient/prescriptions")
+            .get("http://localhost:8081/patient/")
             .then((response) => {
                 console.log(response);
                 this.setState({prescriptions: response.data});

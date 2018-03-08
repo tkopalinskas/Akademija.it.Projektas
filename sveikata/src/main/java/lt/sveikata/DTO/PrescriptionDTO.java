@@ -1,29 +1,19 @@
-package lt.sveikata.prescription;
+package lt.sveikata.DTO;
 
+
+
+import java.io.Serializable;
 import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import lt.sveikata.doctor.Doctor;
 import lt.sveikata.patient.Patient;
+import lt.sveikata.prescription.UsesFact;
 
-@Entity
-public class Prescription {
+public class PrescriptionDTO implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(unique = true)
 	private long prescriptionId;
-	//private String doctorsFullName;
+	// private String doctorsFullName;
 	private String prescriptionDate;
-	private Long personalId;
 	private String validUntil;
 	private String activeIngredient;
 	private String amountPerDose;
@@ -31,20 +21,10 @@ public class Prescription {
 	private String description;
 	private long number;
 	private int timesUsed;
+
+	private DoctorDTO doctor;
 	
-	
-	@OneToMany(mappedBy="prescription")
-	private List<UsesFact>usesFact;
-	
-	
-	@ManyToOne
-	@JoinColumn(name ="patientId")
-	private Patient patient;
-	
-	@ManyToOne
-	@JoinColumn(name="doctorId")
-	private Doctor doctor;
-	
+	private PatientDTO patient;
 
 	public long getPrescriptionId() {
 		return prescriptionId;
@@ -54,41 +34,12 @@ public class Prescription {
 		this.prescriptionId = prescriptionId;
 	}
 
-	
-	public Patient getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Patient patient) {
-		this.patient = patient;
-	}
-
-	public Doctor getDoctor() {
-		return doctor;
-	}
-
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
-	}
-
-	public void setPersonalId(Long personalId) {
-		this.personalId = personalId;
-	}
-
 	public String getPrescriptionDate() {
 		return prescriptionDate;
 	}
 
 	public void setPrescriptionDate(String prescriptionDate) {
 		this.prescriptionDate = prescriptionDate;
-	}
-
-	public long getPersonalId() {
-		return personalId;
-	}
-
-	public void setPersonalId(long personalId) {
-		this.personalId = personalId;
 	}
 
 	public String getValidUntil() {
@@ -146,6 +97,21 @@ public class Prescription {
 	public void setTimesUsed(int timesUsed) {
 		this.timesUsed = timesUsed;
 	}
-	
 
+	public DoctorDTO getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(DoctorDTO doctor) {
+		this.doctor = doctor;
+	}
+
+	public PatientDTO getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientDTO patient) {
+		this.patient = patient;
+	}
+	
 }

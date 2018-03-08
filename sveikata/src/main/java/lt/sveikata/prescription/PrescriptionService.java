@@ -73,6 +73,7 @@ public class PrescriptionService {
 		return prescription;
 	}
 
+
 	/*saves all information about a new prescription into database*/
 	public void addNewPrescription(AddNewPrescription newPrescription) {
 		Prescription prescr = new Prescription();
@@ -86,6 +87,7 @@ public class PrescriptionService {
 		prescr.setDescription(newPrescription.getDescription());
 		prescr.setNumber(newPrescription.getNumber() + 1);
 		prescr.setTimesUsed(newPrescription.getTimesUsed());
+		prescr.setPatient(newPrescription.getPatient());
 		prescriptionRepository.save(prescr);
 	}
 
@@ -117,7 +119,15 @@ public class PrescriptionService {
 		prescriptionForClient.setDescription(prescription.getDescription());
 		return prescriptionForClient;
 	}
+	
+	public List<Prescription> byPersonalId(long personalId){
+		return prescriptionRepository.getPatientPrescriptionsById(personalId);
+	}
 
+//	public Prescription getSinglePrescription(long number) {
+//		return prescriptionRepository.getSinglePrescription(number);
+//	}	
+	
 	public PrescriptionRepository getPrescriptionRepository() {
 		return prescriptionRepository;
 	}
