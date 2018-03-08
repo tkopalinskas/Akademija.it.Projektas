@@ -85,14 +85,14 @@ class Login extends Component {
              .then((resp)=>{
                let user = resp.data;
                window.sessionStorage.setItem("userData", JSON.stringify(user));
-               if(user.role=='PATIENT'){
+               if(user.role==='PATIENT'){
                  console.log("Redirecting to patient");
                  window.location.href = "/#/patient";
-               }else if(user.role=='ADMIN'){
+               }else if(user.role==='ADMIN'){
                 window.location.href = "/#/admin";
-               }else if(user.role=='PHARMACIST'){
+               }else if(user.role==='PHARMACIST'){
                 window.location.href = "/#/pharmacist";
-              }else if(user.role=='DOCTOR'){
+              }else if(user.role==='DOCTOR'){
                 window.location.href = "/#/doctor";
               }
                 console.log(resp);

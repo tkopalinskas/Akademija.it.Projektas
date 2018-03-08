@@ -52,7 +52,7 @@ class MedicalRecordsTable extends Component {
 
       render() {
         var allMedicalRecords = this.state.visits.map((records, index) => (
-          <TableRow key={index}/*  onClick={this.openModal} */>
+          <TableRow key={index}>
               <TableRowColumn>{records.dateOfVisit}</TableRowColumn>
               <TableRowColumn>{records.illnessTLKCode}</TableRowColumn>
               <TableRowColumn>{records.doctorsFullName}</TableRowColumn>
@@ -117,12 +117,6 @@ class MedicalRecordsTable extends Component {
                 showRowHover={this.state.showRowHover}
               >
                { allMedicalRecords}
-                  {/* <TableRow >
-                    <TableRowColumn>dateOfVisit</TableRowColumn>
-                    <TableRowColumn>illnessTLKCode</TableRowColumn>
-                    <TableRowColumn>doctorsFullName</TableRowColumn>
-                    <TableRowColumn>description<FlatButton label="Info" primary={true} /* onClick={this.openModal} */ /*/></TableRowColumn>
-                  </TableRow> */}
               </TableBody>
             </Table> 
         </div>
