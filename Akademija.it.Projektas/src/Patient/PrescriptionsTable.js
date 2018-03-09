@@ -11,6 +11,7 @@ import {
 } from 'material-ui/Table';
 import PrescriptionInformationModal from './PrescriptionInformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
+import {API} from "../Admin/SideBar/Registration/HostUrl";
 
 const styles = {
   marginLeft: 0,
@@ -35,8 +36,13 @@ class PrescriptionsTable extends Component {
       prescriptions: [],
       validUntil: '',
       prescriptionDate: '',
+      doctorsFullName:'',
       timesUsed: 0,
       activeIngredient: '',
+      amountPerDose:'',
+      units:'',
+      totalAmount:'',
+      totalUnits:'',
       description: '',
       number: '',
 
@@ -47,7 +53,7 @@ class PrescriptionsTable extends Component {
   /*gets single prescription*/
   openModal = (number) => {
     console.log("number:" + number);
-    axios.get("http://localhost:8081/patient/prescriptions/" + number)
+    axios.get(API+"/patient/prescriptions/" + number)
 
       .then((response) => {
         this.setState({ prescriptionInfo: response.data })
@@ -68,7 +74,7 @@ class PrescriptionsTable extends Component {
   /*gets all patient's prescriptions*/
     componentWillMount() {
        axios
-            .get("http://localhost:8081/patient/prescriptions")
+            .get(API+"/patient/prescriptions")
             .then((response) => {
                 console.log(response);
                 this.setState({prescriptions: response.data});
@@ -81,13 +87,13 @@ class PrescriptionsTable extends Component {
   render() {
 
       var allPrescriptions = this.state.prescriptions.map((prescription, index) => (
-        <TableRow key={index}  /* onClick={this.openModal} */ >
+        <TableRow key={index} >
             {/* <TableRowColumn>{prescription.number}</TableRowColumn> */}
             <TableRowColumn>{prescription.validUntil}</TableRowColumn>
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
-            <TableRowColumn>{prescription.timesUsed}</TableRowColumn>
+            <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn><FlatButton label="Info" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
+            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
         </TableRow>
     ))
 
@@ -136,7 +142,7 @@ class PrescriptionsTable extends Component {
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }}
-                  tooltip="Recepto panaudojimų skaičius">Recepto panaudojimų skaičius</TableHeaderColumn>
+                  tooltip="Recepto panaudojimų sąrašas">Recepto panaudojimų sąrašas ir skaičius</TableHeaderColumn>
                 <TableHeaderColumn
                   className="activeIngredient"
                   style={{

@@ -39,7 +39,7 @@ public class RecordService {
 		recordForClient.setRecordId(record.getRecordId());
 		recordForClient.setDateOfVisit(record.getDateOfVisit());
 		recordForClient.setIllnessTLKCode(record.getIllnessTLKCode());
-		// recordForClient.setDoctorsFullName(record.getDoctorsFullName());
+		recordForClient.setDoctorsFullName(record.getDoctorsFullName());
 		recordForClient.setLengthOfVisit(record.getLengthOfVisit());
 		recordForClient.setCompensated(record.isCompensated());
 		recordForClient.setDescription(record.getDescription());

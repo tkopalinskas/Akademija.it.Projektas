@@ -27,6 +27,7 @@ class NewPrescription extends Component {
             activeIngredient: '',
             amountPerDose: '',
             units: '',
+            totalUnits:'',
             totalAmount: '',
             validUntil: '',
             description: ''
@@ -228,10 +229,20 @@ class NewPrescription extends Component {
                             floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
                             onChange={(event, newValue) => this.setState({ totalAmount: newValue })}
                         /><br/>
+                         <TextField
+                            className="totalUnits"
+                            id="inputTotalUnits"
+                            hintText="Matavimo vienetai"
+                            errorText="Privalomas laukas"
+                            errorStyle={textStyles.errorStyle}
+                            floatingLabelText="Matavimo vienetai"
+                            floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
+                            onChange={(event, newValue) => this.setState({ totalUnits: newValue })}
+                        /><br/>
                         <TextField
                             className="validUntil"
                             id="inputValidUntil"
-                            hintText="METAI-MĖNUO-DIENA"
+                            hintText="YYYY-MM-DD"
                             /* errorText="Privalomas laukas"
                             errorStyle={textStyles.errorStyle} */
                             floatingLabelText="Galiojimo data"

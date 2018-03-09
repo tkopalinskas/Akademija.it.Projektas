@@ -43,10 +43,10 @@ class RecordInformationModal extends Component {
             />);
 
         var singleRecord = (
-                <div >
+                <div id="recordInfo">
                     <p> Apsilankymo data: {this.props.recordInfo.dateOfVisit}</p>
                     <p> Ligos TLK-10 kodas: {this.props.recordInfo.illnessTLKCode}</p>
-                    {/* <p> Gydytojas: {this.props.recordInfo.doctorsFullName}</p> */}
+                    <p> Gydytojas: {this.props.recordInfo.doctorsFullName}</p>
                     <p> Vizito trukmė: {this.props.recordInfo.lengthOfVisit}</p>
                     <p> {"Kompensuojamas TLK: " + this.translateCompensated(this.props.recordInfo.compensated)}</p>
                     <p> {"Pakartotinis vizitas: " + this.translateRepeated(this.props.recordInfo.visitIsRepeated)}</p>
@@ -66,6 +66,7 @@ class RecordInformationModal extends Component {
                         actions={actions}
                         modal={true}
                         open={this.props.open}
+                        autoScrollBodyContent={true}
                     >
                     {singleRecord}
                     </Dialog>

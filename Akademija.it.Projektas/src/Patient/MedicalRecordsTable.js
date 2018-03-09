@@ -9,8 +9,9 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RecordInformationModal from './RecordInformationModal'
+import RecordInformationModal from './RecordInformationModal';
 import FlatButton from 'material-ui/FlatButton/FlatButton';
+import {API} from "../Admin/SideBar/Registration/HostUrl";
 
 const styles ={
   marginLeft: 0,
@@ -45,7 +46,7 @@ class MedicalRecordsTable extends Component {
     }
   componentWillMount(){
     axios
-      .get("http://localhost:8081/patient/medicalRecords")
+      .get(API+"/patient/medicalRecords")
       .then((response) => {
           console.log(response);
           this.setState({visits: response.data});
@@ -58,7 +59,7 @@ class MedicalRecordsTable extends Component {
   /*gets single prescription*/
   openModal = (recordId) => {
     console.log("number:"+recordId);
-    axios.get("http://localhost:8081/patient/medicalRecords/" + recordId)
+    axios.get(API+"/patient/medicalRecords/" + recordId)
       .then((response) => { this.setState({ recordInfo: response.data }) 
       this.setState({ showModal: !this.state.showModal })
       console.log("record info", this.state.recordInfo)
@@ -76,11 +77,11 @@ class MedicalRecordsTable extends Component {
       render() {
         var allMedicalRecords = this.state.visits.map((records, index) => (
           <TableRow key={index}>
-              <TableRowColumn>{records.recordId}</TableRowColumn>
+              {/* <TableRowColumn>{records.recordId}</TableRowColumn> */}
               <TableRowColumn>{records.dateOfVisit}</TableRowColumn>
               <TableRowColumn>{records.illnessTLKCode}</TableRowColumn>
-              {/* <TableRowColumn>{records.doctorsFullName}</TableRowColumn> */}
-              <TableRowColumn><FlatButton label="Info" primary={true} onClick={()=>this.openModal(records.recordId)}  /></TableRowColumn>
+              <TableRowColumn>{records.doctorsFullName}</TableRowColumn> 
+              <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(records.recordId)}  /></TableRowColumn>
           </TableRow>
       ))
 

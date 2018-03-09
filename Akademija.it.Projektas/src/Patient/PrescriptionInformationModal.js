@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-//import Checkbox from 'material-ui/Checkbox';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class PrescriptionInformationModal extends Component {
@@ -13,20 +12,6 @@ class PrescriptionInformationModal extends Component {
             open: false
         };
     }
-
-    /* handleOpen = () => {
-        this.setState({ open: true });
-    }; */
-
-    /* handleClose = () => {
-        this.setState({ open: false });
-        console.log("open", this.open)
-    }; */
-
-    /* handleToggle = () => {
-        this.setState({ disabled: !this.state.disabled })
-    } */
-
 
     render() {
 
@@ -41,21 +26,19 @@ class PrescriptionInformationModal extends Component {
                 onClick={this.props.closeAction}
             />);
 
-        var singlePrescription = null;
-
-        if (this.props.prescriptionInfo.validUntil != null) {
-            console.log(this.props.prescriptionInfo)
-            singlePrescription = (
-                <div >
+            var singlePrescription = (
+                <div id="prescriptionInfo">
                     <p> Galiojimo data: {this.props.prescriptionInfo.validUntil}</p>
                     <p> Išrašymo data: {this.props.prescriptionInfo.prescriptionDate}</p>
-                    <p> Panaudojimų skaičius: {this.props.prescriptionInfo.timesUsed}</p>
-                    {/* <p> {this.props.prescriptionInfo.markAsUsed}</p> */}
+                    <p> Vaistą išrašęs gydytojas: {this.props.prescriptionInfo.doctorsFullName}</p>
+                    <p> Panaudojimų skaičius: {this.props.prescriptionInfo.timesUsed}</p>                   
                     <p> Veiklioji medžiaga: {this.props.prescriptionInfo.activeIngredient}</p>
+                    <p> Kiekis vienoje dozėje: {this.props.prescriptionInfo.amountPerDose} {this.props.prescriptionInfo.units}</p>
+                    <p> Visas vaisto kiekis: {this.props.prescriptionInfo.totalAmount} {this.props.prescriptionInfo.totalUnits}</p>
                     <p> Aprašymas: {this.props.prescriptionInfo.description}</p>
                 </div>
             )
-        }
+            
         console.log(this.props.prescriptionInfo);
         console.log(singlePrescription);
         console.log("open", this.state.open);
@@ -69,11 +52,8 @@ class PrescriptionInformationModal extends Component {
                         actions={actions}
                         modal={true}
                         open={this.props.open}
+                        autoScrollBodyContent={true}
                     >
-                        {/* <Checkbox
-                            label="Panaudoti receptą"
-                            onCheck={this.handleToggle}
-                        /> */}
                         {singlePrescription}
                     </Dialog>
 

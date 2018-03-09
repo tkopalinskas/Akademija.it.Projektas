@@ -2,7 +2,7 @@ package lt.sveikata.prescription;
 
 public class PrescriptionForClient {
 
-	private Long perscriptionId;
+	private Long prescriptionId;
 	private String doctorsFullName;
 	private String prescriptionDate;
 	private long personalId;
@@ -13,6 +13,8 @@ public class PrescriptionForClient {
 	private String description;
 	private int timesUsed;
 	private Long number;
+	private int totalAmount;
+	private int totalUnits;
 
 	public Long getNumber() {
 		return number;
@@ -92,6 +94,30 @@ public class PrescriptionForClient {
 
 	public void setTimesUsed(int timesUsed) {
 		this.timesUsed = timesUsed;
+	}
+
+	public Long getPrescriptionId() {
+		return prescriptionId;
+	}
+
+	public void setPrescriptionId(Long prescriptionId) {
+		this.prescriptionId = prescriptionId;
+	}
+
+	public int getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(int totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public int getTotalUnits() {
+		return totalUnits;
+	}
+
+	public void setTotalUnits(int totalUnits) {
+		this.totalUnits = totalUnits;
 	}
 
 

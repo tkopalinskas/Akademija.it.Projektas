@@ -25,7 +25,7 @@ public class PrescriptionsForPharmacistController {
 	
 	/*gets a specified prescription from database, searches by number*/
 	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)
-	public Prescription singlePrescription(/*@PathVariable Long personalIdersonalId,*/ @PathVariable Long number) {
+	public Prescription singlePrescription(@PathVariable Long number) {
 		return prescriptionService.receivePrescriptionInfo(number);
 	}
 
