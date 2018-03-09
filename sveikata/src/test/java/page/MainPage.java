@@ -43,6 +43,14 @@ public class MainPage extends AbstractPage{
 	private WebElement buttonRegisterNewAdmin;
 	@FindBy(className = "newUserRegistration")
 	private WebElement buttonCreateNewUser;
+	@FindBy(className = "userPopoverMenu")
+	private WebElement buttonMenu;
+	@FindBy(className = "logOut")
+	private WebElement buttonLogOut;
+	@FindBy(id = "generateDateOfBirthButton")
+	private WebElement buttonGenerateDate;
+	
+	
 	
 
 	public MainPage(WebDriver driver) {
@@ -89,6 +97,15 @@ public class MainPage extends AbstractPage{
 		}
 		public void clickRegisterNewUser() {
 			buttonCreateNewUser.click();
+		}
+		public void clickMenu() {
+			buttonMenu.click();
+		}
+		public void clickLogOut() {
+			buttonLogOut.click();
+		}
+		public void clickGenerateDate() {
+			buttonGenerateDate.click();
 		}
 	
 	
