@@ -33,9 +33,9 @@ public class PatientRegistrationTest {
 
 	@Before
 	public void testSetup() {
-		driver.get("http://localhost:3000/#/");
-		mainPage.inputUsername("AdminUserName");
-		mainPage.inputPassword("AdminPassword");
+		driver.get("http://localhost:8081/#/");
+		mainPage.inputUsername("admin1");
+		mainPage.inputPassword("admin1");
 		mainPage.clickLogin();
 		mainPage.clickRegisterNewUser();
 
@@ -54,8 +54,11 @@ public class PatientRegistrationTest {
 		mainPage.inputUsername(usernames);
 		mainPage.inputPassword("password");
 		mainPage.inputConfirmPassword("password");
-		//Input birth date
-		//Assert
+		mainPage.clickGenerateDate();
+		Alert alert = driver.switchTo().alert(); 
+		String text = alert.getText(); 		
+		Assert.assertTrue("Registration failed",text.contains("Registracija sėkminga!"));
+		alert.dismiss(); 
 
 	}
 
