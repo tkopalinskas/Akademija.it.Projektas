@@ -90,6 +90,7 @@ export default class ListofDoctors extends Component {
         return (
             <MuiThemeProvider>
                 <div>
+                <h2> Gydytojų sąrašas </h2>
                     <Table
                         height={this.state.height}
                         fixedHeader={this.state.fixedHeader}

@@ -35,7 +35,7 @@ public class AddNewPrescription {
 	private int timesUsed = 0;
 	private long number;
 	private int totalAmount;
-	private int totalUnits;
+	private String totalUnits;
 
 	public long getNumber() {
 		return number;
@@ -125,11 +125,11 @@ public class AddNewPrescription {
 		this.totalAmount = totalAmount;
 	}
 
-	public int getTotalUnits() {
+	public String getTotalUnits() {
 		return totalUnits;
 	}
 
-	public void setTotalUnits(int totalUnits) {
+	public void setTotalUnits(String totalUnits) {
 		this.totalUnits = totalUnits;
 	}
 

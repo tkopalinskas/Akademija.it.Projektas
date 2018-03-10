@@ -81,6 +81,7 @@ export default class ListofPharmacists extends Component {
         return (
             <MuiThemeProvider>
                 <div>
+                <h2> Vaistininkų sąrašas </h2>
                     <Table
                         height={this.state.height}
                         fixedHeader={this.state.fixedHeader}

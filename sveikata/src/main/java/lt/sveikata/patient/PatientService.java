@@ -101,16 +101,16 @@ public class PatientService {
 
 	// update patient info
 
-	public void updatePatient(Patient patient, Long personalId) {
-		Patient pat = patientRepository.findOne(personalId);
-		pat.setFirstName(patient.getFirstName());
-		pat.setLastName(patient.getLastName());
-		pat.setDateOfBirth(patient.getDateOfBirth());
-		pat.setPersonalId(patient.getPersonalId());
-		// pat.setDoctorsFullName(patient.getDoctorsFullName());
-		// pat.setNotSuspended(patient.isNotSuspended());
-		patientRepository.save(pat);
-	}
+//	public void updatePatient(Patient patient, Long personalId) {
+//		Patient pat = patientRepository.findOne(personalId);
+//		pat.setFirstName(patient.getFirstName());
+//		pat.setLastName(patient.getLastName());
+//		pat.setDateOfBirth(patient.getDateOfBirth());
+//		pat.setPersonalId(patient.getPersonalId());
+//		// pat.setDoctorsFullName(patient.getDoctorsFullName());
+//		// pat.setNotSuspended(patient.isNotSuspended());
+//		patientRepository.save(pat);
+//	}
 
 	public DoctorRepository getDoctorRepository() {
 		return doctorRepository;

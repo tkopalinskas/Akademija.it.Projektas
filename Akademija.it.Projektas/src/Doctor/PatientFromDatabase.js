@@ -113,7 +113,7 @@ class PatientFromDatabase extends Component{
                 <div>
                     <div>
                         <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '25', marginTop: '25'}} /> 
-                        <TextField hintText="Paieška duombazėje" underlineShow={true} onKeyPress={this.handleKeyPress}/>
+                        <TextField hintText="Įveskite paciento asmens kodą" underlineShow={true} onKeyPress={this.handleKeyPress}/>
                     </div>
                 <Table
                     height={this.state.height}
@@ -169,7 +169,7 @@ class PatientFromDatabase extends Component{
                             <TableRowColumn>{this.state.patients.lastName}</TableRowColumn>
                             <TableRowColumn>{this.state.patients.personalId}</TableRowColumn>
                             <TableRowColumn>
-                                <select className="routeToComponent" /* onClick={this.openModal} */
+                                <select className="routeToComponent"
                                         value={this.state.value} onChange={this.handleChange}>
                                     <option id="moreOptions" value={""} >Daugiau</option>
                                     <option id="newMedicalRecord" value={"naujas ligos įrašas"}>Naujas ligos įrašas </option>

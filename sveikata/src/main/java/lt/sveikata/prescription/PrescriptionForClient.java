@@ -16,7 +16,7 @@ public class PrescriptionForClient implements Serializable {
 	private int timesUsed;
 	private Long number;
 	private int totalAmount;
-	private int totalUnits;
+	private String totalUnits;
 
 	public Long getNumber() {
 		return number;
@@ -114,11 +114,11 @@ public class PrescriptionForClient implements Serializable {
 		this.totalAmount = totalAmount;
 	}
 
-	public int getTotalUnits() {
+	public String getTotalUnits() {
 		return totalUnits;
 	}
 
-	public void setTotalUnits(int totalUnits) {
+	public void setTotalUnits(String totalUnits) {
 		this.totalUnits = totalUnits;
 	}
 }

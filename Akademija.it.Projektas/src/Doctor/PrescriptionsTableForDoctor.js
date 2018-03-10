@@ -9,10 +9,8 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import SinglePrescriptionInformation from './SinglePrescriptionInformation'
+import PrescriptionInfoModal from './PrescriptionInfoModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
-import Search from 'material-ui/svg-icons/action/search';
-import TextField from 'material-ui/TextField';
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
@@ -33,7 +31,7 @@ const styles ={
   
 }
 
-class PharmacistsPrescriptionsTable extends Component {
+class PrescriptionsTableForDoctor extends Component {
     constructor(props) {
       super(props);
         this.state = {
@@ -47,7 +45,7 @@ class PharmacistsPrescriptionsTable extends Component {
           height: '300px',
           showModal: false,
 
-          validPrescriptions: [],           
+          patientsPrescriptions: [],           
             validUntil: '',
             prescriptionDate: '',
             doctorsFullName:'',
@@ -60,39 +58,31 @@ class PharmacistsPrescriptionsTable extends Component {
             description: '',
             number: '',
 
-          personalId: '',
-          validPrescriptionInfo:[]
+          personalCode: '',
+          prescriptionInfo:[]
       }
   }
 
-  /* search for a patient from database by personalId and get information*/
-  handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      let personalId=e.target.value;
-        this.setState({
-            personalId: personalId,
-        }); 
-      
-      axios
-        .get(API+"/pharmacist/" + personalId +"/prescriptions")
-        .then((response) => {
-            console.log(response);
-            this.setState({validPrescriptions: response.data});
-        })
-        .catch((error) => {
-            console.log(error);
-            alert("Pacientas neegzistuoja!");
-      }); e.preventDefault();  
-    }
-  }
+  /*gets all patient's prescriptions*/
+  componentWillMount() {
+    axios
+         .get(API+"/doctor/patient/prescriptions")
+         .then((response) => {
+             console.log(response);
+             this.setState({patientsPrescriptions: response.data});
+         })
+         .catch((error) => {
+             console.log(error);
+         }); 
+ }
   
   /*gets single prescription*/
   openModal = (number) => {
       console.log("number:"+number);
-      axios.get(API+"/pharmacist/prescriptions/" + number)
-          .then((response) => { this.setState({ validPrescriptionInfo: response.data }) 
+      axios.get(API+"/doctor/patient/prescriptions/" + number)
+          .then((response) => { this.setState({ prescriptionInfo: response.data }) 
             this.setState({ showModal: !this.state.showModal })
-            console.log("perscription info", this.state.validPrescriptionInfo)
+            console.log("perscription info", this.state.prescriptionInfo)
             console.log(this.state.showModal)
           })
           .catch((error) => {
@@ -107,17 +97,16 @@ class PharmacistsPrescriptionsTable extends Component {
  
     render() {
 
-      if (!this.state.validPrescriptions) {   
+      if (!this.state.patientsPrescriptions) {   
         return null;
       }
 
        console.log("personal",this.state.personalCode); 
-       console.log("info",this.state.validPrescriptionInfo); 
+       console.log("info",this.state.prescriptionInfo); 
        console.log("number", this.state.number)
 
-      var allPrescriptions = this.state.validPrescriptions.map((prescription, index) => (
+      var allPrescriptions = this.state.patientsPrescriptions.map((prescription, index) => (
         <TableRow key={index} >
-            {/* <TableRowColumn>{prescription.number}</TableRowColumn> */}
             <TableRowColumn>{prescription.validUntil}</TableRowColumn>
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
@@ -132,12 +121,6 @@ class PharmacistsPrescriptionsTable extends Component {
         <Container fluid={true} style={containerStyle}>
         <Row style={rowStyle}>
         <Col md="12">
-          <div>
-            <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '15', marginTop: '25'}} />
-            <TextField hintText="Įveskite paciento asmens kodą" 
-                      underlineShow={true} 
-                      onKeyPress={this.handleKeyPress}/>
-          </div>
           <Table
             height={this.state.height}
             style={styles}
@@ -152,7 +135,8 @@ class PharmacistsPrescriptionsTable extends Component {
               >
               <TableRow>
                 <TableHeaderColumn colSpan="5" tooltip="Receptai" style={{textAlign: 'center'}}>
-                Galiojantys paciento receptai</TableHeaderColumn>
+                  Receptai
+                </TableHeaderColumn>
               </TableRow>
               <TableRow>
                 <TableHeaderColumn 
@@ -202,10 +186,10 @@ class PharmacistsPrescriptionsTable extends Component {
               </TableRow>}
             </TableBody>
           </Table>
-          <SinglePrescriptionInformation
+          <PrescriptionInfoModal
                         open={this.state.showModal}
                         closeAction={this.closeModal}
-                        validPrescriptionInfo={this.state.validPrescriptionInfo} />
+                        prescriptionInfo={this.state.prescriptionInfo} />
           </Col>
           </Row>
           </Container> 
@@ -214,4 +198,4 @@ class PharmacistsPrescriptionsTable extends Component {
       );
     }
   };
-export default PharmacistsPrescriptionsTable;
+export default PrescriptionsTableForDoctor;

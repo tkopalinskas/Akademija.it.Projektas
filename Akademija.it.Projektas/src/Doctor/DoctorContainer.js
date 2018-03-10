@@ -3,7 +3,6 @@ import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import AppBar from 'material-ui/AppBar';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-//import FontIcon from 'material-ui/FontIcon';
 import { Link } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import Popover from 'material-ui/Popover';
@@ -68,15 +67,6 @@ class DoctorContainer extends Component{
           targetOrigin: targetOrigin,
         });
     };
-
-    /* handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            this.setState({
-                personalId: e.target.value,
-            });
-          console.log('do validate');
-        }
-    } */
     
     render(){
     let userData = window.sessionStorage.getItem('userData');
@@ -123,19 +113,11 @@ class DoctorContainer extends Component{
                         </AppBar>
                     <MenuItem style={{whiteSpace: 'normal'}} 
                               primaryText="Pacientų sąrašas" 
-                              containerElement={<Link to="/doctor/patientsList" />}
-                               /* leftIcon={
-                                <FontIcon className="patientsList">Pacientų sąrašas</FontIcon>
-                    } */ /><br/>     
+                              containerElement={<Link to="/doctor/patientsList" />}/><br/>     
                     <MenuItem /* style={{whiteSpace: 'normal'}} */
                               primaryText="Paieška duombazėje" 
                               containerElement={<Link to="/doctor/findPatient" />}
-                               /* leftIcon={
-                                <FontIcon className="material-icons">Rasti pacientą duombazėje</FontIcon>
-                    } */ />
-                    {/* <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '15', marginTop: '0'}} /> 
-                    <TextField hintText="Paieška duombazėje" underlineShow={true} onKeyPress={this.handleKeyPress}/>
-                  </MenuItem><br/>        */}
+                              />
                 </Drawer>
                 </Col>
                 <Col md="10">
