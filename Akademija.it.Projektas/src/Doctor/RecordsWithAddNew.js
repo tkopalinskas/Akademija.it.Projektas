@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import MedicalRecordsTable from '../Patient/MedicalRecordsTable';
+import RecordsTableForDoctor from './RecordsTableForDoctor';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 import { Link } from 'react-router-dom';
@@ -62,7 +62,7 @@ class RecordsWithAddNew extends Component{
                         <Link to="/doctor/patient/prescriptions"><RaisedButton className="linkToPrescriptions" id="prescriptionsTable" label="Receptai" primary={true}/></Link>
                     </Col>
                     <Col md="12">
-                        <MedicalRecordsTable/>
+                        <RecordsTableForDoctor/>
                         <NewMedicalRecord
                             open={this.state.showModal}
                             closeAction={this.openMedicalRecordModal} />

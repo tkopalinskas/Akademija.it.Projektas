@@ -74,7 +74,7 @@ class PharmacistContainer extends Component{
             window.location.href="/#/";
        else{
            let user = JSON.parse(userData);
-           if(user.role!='PHARMACIST')
+           if(user.role!=='PHARMACIST')
                 window.location.href="/#/";
        }
 
@@ -115,11 +115,7 @@ class PharmacistContainer extends Component{
                 <Drawer open={this.state.open} width={170}>
                         <AppBar showMenuIconButton={false}>
                         </AppBar>      
-                    <MenuItem primaryText="Receptai"
-                            /* containerElement={<Link to="/pharmacist/prescriptions" />} */
-                              /* leftIcon={
-                                <FontIcon className="listOfPatientsPrescriptions">Receptai</FontIcon>
-                    } *//>       
+                    <MenuItem primaryText="Receptai"/>       
                 </Drawer>
                 </Col>
                 <Col md="10">

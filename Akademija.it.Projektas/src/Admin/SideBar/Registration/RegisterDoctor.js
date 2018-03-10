@@ -116,10 +116,6 @@ class RegisterDoctor extends Component {
         }
     }
 
-   /*  reset(){
-        this.setState({firstName: ''})
-    } */
-
     handleClick(event) {
         var apiUrl= API;
     
@@ -142,8 +138,6 @@ class RegisterDoctor extends Component {
             .then((response)=>{
                 console.log("registration  successful");
                 alert("Registracija sėkminga!");  
-                /* this.reset();
-                    */
             })
             .catch((error)=>{
                 console.log(error);
@@ -172,7 +166,6 @@ class RegisterDoctor extends Component {
         return (
             <div>
                 <MuiThemeProvider>
-                    {/*pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu*/}
                     <form className="registerDoctor"
                     ref="form">
                     <h2> Registruoti gydytoją </h2>

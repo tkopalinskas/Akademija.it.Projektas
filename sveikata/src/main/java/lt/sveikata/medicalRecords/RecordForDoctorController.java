@@ -12,32 +12,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import lt.sveikata.prescription.Prescription;
-
 @RestController
-@RequestMapping(value = "/patient")
+@RequestMapping(value = "/doctor")
 @CrossOrigin(origins = "*")
-public class RecordController {
-
+public class RecordForDoctorController {
 	@Autowired
 	private RecordService visitService;
 
-	@RequestMapping(value = "/medicalRecords", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/medicalRecords", method = RequestMethod.GET)
 	public List<RecordForClient> giveAllVisits() {
 		return getVisitService().receiveAllVisits();
 	}
 
 	/* gets a specified record from database, searches by recordId */
-	@RequestMapping(value = "/medicalRecords/{recordId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/medicalRecords/{recordId}", method = RequestMethod.GET)
 	public RecordForClient singleRecord(@PathVariable("recordId") final Long recordId) {
 		return visitService.receiveRecordInfo(recordId);
 	}
 
-//	@RequestMapping(value = "/addNewRecord", method = RequestMethod.POST)
-//	@ResponseStatus(HttpStatus.CREATED)
-//	public void createVisit(@RequestBody final AddNewRecord newVisit) {
-//		visitService.addNewVisit(newVisit);
-//	}
+	@RequestMapping(value = "/addNewRecord", method = RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public void createVisit(@RequestBody final AddNewRecord newVisit) {
+		visitService.addNewVisit(newVisit);
+	}
 
 	public RecordService getVisitService() {
 		return visitService;

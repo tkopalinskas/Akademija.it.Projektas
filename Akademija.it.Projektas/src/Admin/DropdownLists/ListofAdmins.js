@@ -80,6 +80,7 @@ export default class ListofAdmins extends Component {
         }
         return (
             <div>
+                <h2> Administratorių sąrašas </h2>
                 <Table
                     height={this.state.height}
                     fixedHeader={this.state.fixedHeader}

@@ -3,8 +3,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
 import {API} from "./HostUrl";
 import axios from 'axios';
 
@@ -163,7 +161,6 @@ class RegisterPharmacist extends Component {
         return (
             <div>
                 <MuiThemeProvider>
-                    {/* pagalvoti, kaip padaryti, kad issaugojus i duombaze viskas resetintu */}
                     <form className="registerPharmacist"
                     ref="form">
                     <h2> Registruoti vaistininką </h2>

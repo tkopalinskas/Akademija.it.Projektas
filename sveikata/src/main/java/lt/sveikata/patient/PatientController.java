@@ -41,11 +41,11 @@ public class PatientController {
 		patientService.assignDoctor(patientUsername, doctorUserName);
 	}
 
-	@RequestMapping(value = "/admin/findUser/manageUser/{personalId}", method = RequestMethod.PUT)
-	@ResponseStatus(HttpStatus.CREATED)
-	public void updateExistingPatient(@RequestBody final Patient patient, @PathVariable final Long personalId) {
-		patientService.updatePatient(patient, personalId);
-	}
+//	@RequestMapping(value = "/admin/findUser/manageUser/{personalId}", method = RequestMethod.PUT)
+//	@ResponseStatus(HttpStatus.CREATED)
+//	public void updateExistingPatient(@RequestBody final Patient patient, @PathVariable final Long personalId) {
+//		patientService.updatePatient(patient, personalId);
+//	}
 
 	public PatientService getPatientService() {
 		return patientService;

@@ -104,11 +104,10 @@ class PatientsListTable extends Component {
         console.log("value", this.state.value)
 
         var allPatients = this.state.patients.map((patient, index) => (
-          <TableRow key={index}/*  onClick={this.openModal} */>
+          <TableRow key={index}>
               <TableRowColumn>{patient.firstName}</TableRowColumn>
               <TableRowColumn>{patient.lastName}</TableRowColumn>
               <TableRowColumn>{patient.personalId}</TableRowColumn>
-              {/* <TableRowColumn>{patient.illnessTLKCode}</TableRowColumn> */}
               <TableRowColumn>
                 <select className="routeToComponent" 
                         value={this.state.value} onChange={this.handleChange}>
@@ -181,12 +180,6 @@ class PatientsListTable extends Component {
                       wordWrap: "break-word"
                     }} 
                     tooltip="Asmens kodas">Asmens kodas</TableHeaderColumn>
-                  {/* <TableHeaderColumn 
-                    style={{
-                      whiteSpace: "normal",
-                      wordWrap: "break-word"
-                    }} 
-                    tooltip="Ligos TLK kodas">Ligos TLK kodas</TableHeaderColumn> */}
                   <TableHeaderColumn 
                     style={{
                       whiteSpace: "normal",
@@ -201,11 +194,10 @@ class PatientsListTable extends Component {
                 showRowHover={this.state.showRowHover}
               >
                { allPatients}
-                    <TableRow >
+                   {/*  <TableRow >
                     <TableRowColumn>firstName</TableRowColumn>
                     <TableRowColumn>lastName</TableRowColumn>
                     <TableRowColumn>personalId</TableRowColumn>
-                    {/* <TableRowColumn>illnessTLKCode</TableRowColumn> */}
                     <TableRowColumn>
                       <select className="routeToComponent" 
                               value={this.state.value} onChange={this.handleChange}>
@@ -216,7 +208,7 @@ class PatientsListTable extends Component {
                         <option id="newPrescription" value={"naujas receptas"} >Naujas receptas</option>
                       </select>
                     </TableRowColumn>
-                  </TableRow> 
+                  </TableRow>  */}
               </TableBody>
             </Table> 
             {newAdditionModal}

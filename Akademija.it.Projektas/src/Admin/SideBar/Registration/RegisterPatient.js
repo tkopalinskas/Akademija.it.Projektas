@@ -97,8 +97,11 @@ generateDateOfBirth=() =>{
     year='19'+secondGroup;
   }else if((firstDigit==='1')||(firstDigit==='2')){
     year='18'+secondGroup;
-  }else{
+  }else if((firstDigit==='5')||(firstDigit==='6')){
     year='20'+secondGroup;
+  }else{
+    alert("Patikrinkit ar teisingai įvedėte asmens kodą");
+    return this.setState({personalId:null})
   } 
 
   let newDateOfBirth = new Date(year+'-'+month+'-'+day).toLocaleDateString('lt-LT');
@@ -248,7 +251,6 @@ handleDateGeneration(event){
               onChange={this.getPersonalId}
             />
             <br />
-            {/*fix this*/}
             <TextField
               className="dateOfBirth"
               id="autoInputDateOfBirth"
@@ -256,8 +258,7 @@ handleDateGeneration(event){
               hintText="Gimimo data"
               type="numbers"
               floatingLabelText={this.state.dateOfBirth}
-              floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
-            //onChange={(event, dateOfBirth) =>this.setState({floatingLabelText: dateOfBirth})}  
+              floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}  
             />
             <RaisedButton
             id="generateDateOfBirthButton"
