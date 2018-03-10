@@ -61,6 +61,10 @@ export default class ListofDoctors extends Component {
             .then(this.setState({ showModal: !this.state.showModal }))
     }
 
+    closeModal = () => {
+        this.setState({ showModal: false});
+    }
+
     componentWillMount = () => {
         axios.get("http://localhost:8081/admin/allDoctors")
             .then((responce) => { this.setState({ doctorGet: responce.data }); console.log(this.state.doctorGet) })
@@ -123,7 +127,7 @@ export default class ListofDoctors extends Component {
                     </Table>
                     <InformationModal
                         open={this.state.showModal}
-                        closeAction={this.openModal}
+                        closeAction={this.closeModal}
                         userInfo={this.state.userInfo}
                     />
                 </div>

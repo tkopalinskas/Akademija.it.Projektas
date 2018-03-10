@@ -22,9 +22,9 @@ public class PrescriptionsForPharmacistController {
 	private PrescriptionService prescriptionService;
 	
 
-	private ModelMapper modelMapper = new ModelMapper();
+//	private ModelMapper modelMapper = new ModelMapper();
 
-	/* gets all prescriptions for pharmacist */
+	/* gets all specified patient's prescriptions for pharmacist */
 	@RequestMapping(value = "/{personalId}/prescriptions", method = RequestMethod.GET)
 	public List<PrescriptionForClient> giveValidPrescriptions(@PathVariable("personalId") Long personalId) {
 		return getPrescriptionService().receiveAllPrescriptionsForPharmacist(personalId);
@@ -36,15 +36,11 @@ public class PrescriptionsForPharmacistController {
 //		List<Prescription> prescriptions = prescriptionService.byPersonalId(personalId);
 //		return modelMapper.map(prescriptions, new TypeToken<List<PrescriptionForClient>>() {
 //		}.getType());
-		/**
-		 * if you will return a single object instead of a list/collection return
-		 * modelMapper.map(entityObject, EntityClass.class); example: return
-		 * modelMapper.map(doctor, Doctor.class);
-		 */
 //	}
+	
 	/*gets a specified prescription from database, searches by number*/
-	@RequestMapping(value = "/{personalId}/prescriptions/{number}", method = RequestMethod.GET)
-	public Prescription singlePrescription(@PathVariable("number") Long number) {
+	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)
+	public Prescription singlePrescription(@PathVariable Long number) {
 		return prescriptionService.receivePrescriptionInfo(number);
 	}
 

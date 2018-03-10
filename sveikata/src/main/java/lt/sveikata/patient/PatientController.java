@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value="/admin")
 @CrossOrigin(origins="*")
 public class PatientController {
+	
 	@Autowired
 	private PatientService patientService;
 

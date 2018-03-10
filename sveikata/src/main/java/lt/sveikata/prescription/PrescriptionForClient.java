@@ -1,37 +1,37 @@
 package lt.sveikata.prescription;
 
 import java.io.Serializable;
-
-
-import lt.sveikata.DTO.DoctorDTO;
-import lt.sveikata.DTO.PatientDTO;
-import lt.sveikata.doctor.Doctor;
-import lt.sveikata.patient.Patient;
-
-
 public class PrescriptionForClient implements Serializable {
 
+
 	private Long prescriptionId;
-	// private String doctorsFullName;
+	private String doctorsFullName;
 	private String prescriptionDate;
+	private long personalId;
 	private String validUntil;
 	private String activeIngredient;
 	private String amountPerDose;
 	private String units;
 	private String description;
-	private long number;
 	private int timesUsed;
+	private Long number;
+	private int totalAmount;
+	private int totalUnits;
 
-	private Doctor doctor;
-	
-	private Patient patient;
-
-	public Long getPrescriptionId() {
-		return prescriptionId;
+	public Long getNumber() {
+		return number;
 	}
 
-	public void setPrescriptionId(Long prescriptionId) {
-		this.prescriptionId = prescriptionId;
+	public void setNumber(Long number) {
+		this.number = number;
+	}
+
+	public String getDoctorsFullName() {
+		return doctorsFullName;
+	}
+
+	public void setDoctorsFullName(String doctorsFullName) {
+		this.doctorsFullName = doctorsFullName;
 	}
 
 	public String getPrescriptionDate() {
@@ -40,6 +40,14 @@ public class PrescriptionForClient implements Serializable {
 
 	public void setPrescriptionDate(String prescriptionDate) {
 		this.prescriptionDate = prescriptionDate;
+	}
+
+	public long getPersonalId() {
+		return personalId;
+	}
+
+	public void setPersonalId(long personalId) {
+		this.personalId = personalId;
 	}
 
 	public String getValidUntil() {
@@ -82,14 +90,6 @@ public class PrescriptionForClient implements Serializable {
 		this.description = description;
 	}
 
-	public long getNumber() {
-		return number;
-	}
-
-	public void setNumber(long number) {
-		this.number = number;
-	}
-
 	public int getTimesUsed() {
 		return timesUsed;
 	}
@@ -98,25 +98,27 @@ public class PrescriptionForClient implements Serializable {
 		this.timesUsed = timesUsed;
 	}
 
-	public Doctor getDoctor() {
-		return doctor;
+	public Long getPrescriptionId() {
+		return prescriptionId;
 	}
 
-	public void setDoctor(Doctor doctor) {
-		this.doctor = doctor;
+	public void setPrescriptionId(Long prescriptionId) {
+		this.prescriptionId = prescriptionId;
 	}
 
-	public Patient getPatient() {
-		return patient;
+	public int getTotalAmount() {
+		return totalAmount;
 	}
 
-	public void setPatient(Patient patient) {
-		this.patient = patient;
+	public void setTotalAmount(int totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
-	public void setPersonalId(long personalId) {
-		// TODO Auto-generated method stub
-		
+	public int getTotalUnits() {
+		return totalUnits;
 	}
-	
+
+	public void setTotalUnits(int totalUnits) {
+		this.totalUnits = totalUnits;
+	}
 }

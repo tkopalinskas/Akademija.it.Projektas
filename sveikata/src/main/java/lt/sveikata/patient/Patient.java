@@ -27,7 +27,6 @@ public class Patient extends User {
 //	private String doctorsFullName;
 
     @ManyToOne
-    (fetch=FetchType.LAZY)
     @JsonBackReference
     @JoinColumn(name="doctorId")
 	private Doctor doctor;

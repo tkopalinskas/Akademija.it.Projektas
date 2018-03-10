@@ -9,13 +9,14 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import PrescriptionInfoModal from './PrescriptionInfoModal'
+import SinglePrescriptionInformation from './SinglePrescriptionInformation'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
+import {API} from "../Admin/SideBar/Registration/HostUrl";
 
 const rowStyle={
     margin: 0,
@@ -49,8 +50,13 @@ class PharmacistsPrescriptionsTable extends Component {
           validPrescriptions: [],           
             validUntil: '',
             prescriptionDate: '',
+            doctorsFullName:'',
             timesUsed: 0,
             activeIngredient: '',
+            amountPerDose:'',
+            units:'',
+            totalAmount:'',
+            totalUnits:'',
             description: '',
             number: '',
 
@@ -68,7 +74,7 @@ class PharmacistsPrescriptionsTable extends Component {
         }); 
       
       axios
-        .get('http://localhost:8081/pharmacist/patient-prescriptions/' + personalId)
+        .get(API+"/pharmacist/" + personalId +"/prescriptions")
         .then((response) => {
             console.log(response);
             this.setState({validPrescriptions: response.data});
@@ -76,40 +82,49 @@ class PharmacistsPrescriptionsTable extends Component {
         .catch((error) => {
             console.log(error);
             alert("Pacientas neegzistuoja!");
-      }); 
+      }); e.preventDefault();  
     }
-}
-  /*get single prescription*/
-    openModal = (personalId, number) => {
-      console.log(number);
-      axios.get('http://localhost:8081/pharmacist/'+ personalId + "/prescriptions" + number)
-          .then((response) => { this.setState({ validPrescriptionInfo: response.data }) })
-                  this.setState({ showModal: !this.state.showModal })
+  }
+  
+  /*gets single prescription*/
+  openModal = (number) => {
+      console.log("number:"+number);
+      axios.get(API+"/pharmacist/prescriptions/" + number)
+          .then((response) => { this.setState({ validPrescriptionInfo: response.data }) 
+            this.setState({ showModal: !this.state.showModal })
+            console.log("perscription info", this.state.validPrescriptionInfo)
+            console.log(this.state.showModal)
+          })
           .catch((error) => {
-            console.log(error);
-          }); 
+              console.log(error);     
+          });     
+  }
+
+  /*closes prescription modal*/
+  closeModal=()=>{
+    this.setState({showModal: false})
   }
  
     render() {
+
+      if (!this.state.validPrescriptions) {   
+        return null;
+      }
 
        console.log("personal",this.state.personalCode); 
        console.log("info",this.state.validPrescriptionInfo); 
        console.log("number", this.state.number)
 
       var allPrescriptions = this.state.validPrescriptions.map((prescription, index) => (
-        <TableRow key={index}  onClick={this.openModal} >
+        <TableRow key={index} >
             {/* <TableRowColumn>{prescription.number}</TableRowColumn> */}
             <TableRowColumn>{prescription.validUntil}</TableRowColumn>
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
-            <TableRowColumn>{prescription.timesUsed}</TableRowColumn>
+            <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn>{/* {prescription.description} */}<FlatButton label="Info" primary={true} /* onClick={this.openModal(prescription.number)} */ /></TableRowColumn>
+            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
         </TableRow>
     ))
-
-    if (!this.state.validPrescriptions) {
-        return null;
-    }
 
       return (
         <MuiThemeProvider>
@@ -158,7 +173,7 @@ class PharmacistsPrescriptionsTable extends Component {
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }} 
-                  tooltip="Panaudojimų skaičius">Panaudojimų skaičius</TableHeaderColumn>
+                  tooltip="Panaudojimų skaičius">Panaudojimų sąrašas ir skaičius</TableHeaderColumn>
                 <TableHeaderColumn 
                   style={{
                     whiteSpace: "normal",
@@ -170,7 +185,7 @@ class PharmacistsPrescriptionsTable extends Component {
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }} 
-                  tooltip="Aprašymas">Aprašymas</TableHeaderColumn>
+                  tooltip="Informacija">Informacija</TableHeaderColumn>
               </TableRow>
             </TableHeader>
             <TableBody
@@ -188,10 +203,10 @@ class PharmacistsPrescriptionsTable extends Component {
               </TableRow>}
             </TableBody>
           </Table>
-          <PrescriptionInfoModal
-              open={this.state.showModal}
-              closeAction={this.openModal}
-              validPrescriptionInfo={this.state.validPrescriptionInfo} />
+          <SinglePrescriptionInformation
+                        open={this.state.showModal}
+                        closeAction={this.closeModal}
+                        validPrescriptionInfo={this.state.validPrescriptionInfo} />
           </Col>
           </Row>
           </Container> 

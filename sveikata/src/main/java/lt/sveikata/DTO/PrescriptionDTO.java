@@ -1,7 +1,5 @@
 package lt.sveikata.DTO;
 
-
-
 import java.io.Serializable;
 import java.util.List;
 

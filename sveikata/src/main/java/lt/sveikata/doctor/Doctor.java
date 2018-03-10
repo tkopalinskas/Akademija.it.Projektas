@@ -21,9 +21,6 @@ import lt.sveikata.user.User;
 @PrimaryKeyJoinColumn(name = "doctorId")
 public class Doctor  extends User{
 
-
-
-
 	private String firstName;
 	@NotNull
 	private String lastName;

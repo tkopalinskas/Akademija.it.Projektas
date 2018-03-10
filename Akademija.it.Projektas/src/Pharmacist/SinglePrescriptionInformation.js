@@ -1,30 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import Checkbox from 'material-ui/Checkbox';
+//import Checkbox from 'material-ui/Checkbox';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-class InformationModal extends Component {
+class SinglePrescriptionInformation extends Component {
+
     constructor(props) {
+        console.log(props);
         super(props);
         this.state = {
-            open: false,
-            disabled: true,
+            open: false
         };
     }
-    
-    handleOpen = () => {
-        this.setState({open: true});
-    };
-    
-    handleClose = () => {
-        this.setState({open: false});
-    };
-    
-    handleToggle=()=>{ 
-        this.setState({ disabled: !this.state.disabled })
-    }
-
 
     render() {
 
@@ -32,35 +20,37 @@ class InformationModal extends Component {
             return null;
         }
 
-        const actions = [
-            <FlatButton
-                label="Atsisakyti"
+        const actions =
+            (<FlatButton
+                label="Atgal"
                 primary={true}
                 onClick={this.props.closeAction}
-            />,
-            <FlatButton
-                label="Siųsti"
-                primary={true}
-                disabled={this.state.disabled}
-                onClick={this.props.closeAction}
-            />,
-        ];
+            />);
 
-//modal pagauna paduoda array su specifiniu userinfo per props 68 eilute ideda i modal
-           let prescription  = this.props.validPrescriptionInfo.map((prescription, index) => (
-                <div key={index} >
-                    <p> {prescription.validUntil}</p>
-                    <p> {prescription.prescriptionDate}</p>
-                    <p> {prescription.timesUsed}</p>
-                    <p> {prescription.markAsUsed}</p>
-                    <p> {prescription.activeIngredient}</p>
-                    <p> {prescription.description}</p>
+        var singlePrescription = null;
+
+        if (this.props.validPrescriptionInfo.validUntil != null) {
+            console.log(this.props.validPrescriptionInfo)
+            singlePrescription = (
+                <div >
+                    <p> Galiojimo data: {this.props.validPrescriptionInfo.validUntil}</p>
+                    <p> Išrašymo data: {this.props.validPrescriptionInfo.prescriptionDate}</p>
+                    <p> Vaistą išrašęs gydytojas: {this.props.validPrescriptionInfo.doctorsFullName}</p>
+                    <p> Panaudojimų skaičius: {this.props.validPrescriptionInfo.timesUsed}</p>
+                    {/* <p> {this.props.validPrescriptionInfo.markAsUsed}</p> */}
+                    <p> Veiklioji medžiaga: {this.props.validPrescriptionInfo.activeIngredient}</p>
+                    <p> Kiekis vienoje dozėje: {this.props.validPrescriptionInfo.amountPerDose} {this.props.validPrescriptionInfo.units}</p>
+                    <p> Visas vaisto kiekis: {this.props.validPrescriptionInfo.totalAmount} {this.props.validPrescriptionInfo.totalUnits}</p>
+                    <p> Aprašymas: {this.props.validPrescriptionInfo.description}</p>
                 </div>
-        )); 
+            )
+        }
+        console.log(this.props.validPrescriptionInfo);
+        console.log(singlePrescription);
+        console.log("open", this.state.open);
+        console.log("numbs:", this.state.number)
 
-        console.log(this.props.validPrescriptionInfo) ; 
-
-        return (     
+        return (
             <MuiThemeProvider>
                 <div>
                     <Dialog
@@ -68,16 +58,18 @@ class InformationModal extends Component {
                         actions={actions}
                         modal={true}
                         open={this.props.open}
+                        autoScrollBodyContent={true}
                     >
-                        <Checkbox
+                        {/* <Checkbox
                             label="Panaudoti receptą"
                             onCheck={this.handleToggle}
-                        />
-                        {prescription}
+                        /> */}
+                        {singlePrescription}
                     </Dialog>
+
                 </div>
-            </MuiThemeProvider>  
+            </MuiThemeProvider>
         );
     }
 }
-export default InformationModal;
+export default SinglePrescriptionInformation;

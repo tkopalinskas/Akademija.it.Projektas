@@ -14,16 +14,7 @@ import axios from 'axios'
 import InformationModal from './PharmacistInformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
-// const styles = {
-//     propContainer: {
-//         width: 200,
-//         overflow: 'hidden',
-//         margin: '20px auto 0',
-//     },
-//     propToggleHeader: {
-//         margin: '20px auto 10px',
-//     },
-// };
+
 
 export default class ListofPharmacists extends Component {
     constructor(props) {
@@ -59,6 +50,10 @@ export default class ListofPharmacists extends Component {
         axios.get(`http://localhost:8081/admin/pharmacist/${userName}`)
             .then((response) => { this.setState({ userInfo: response.data }) })
             .then(this.setState({ showModal: !this.state.showModal }))
+    }
+
+    closeModal = () => {
+        this.setState({ showModal: false});
     }
 
     componentWillMount = () => {
@@ -124,7 +119,7 @@ export default class ListofPharmacists extends Component {
                     <InformationModal
                         open={this.state.showModal}
                         userInfo={this.state.userInfo}
-                        closeAction={this.openModal} />
+                        closeAction={this.closeModal} />
                     </div>
                 </MuiThemeProvider>
         );

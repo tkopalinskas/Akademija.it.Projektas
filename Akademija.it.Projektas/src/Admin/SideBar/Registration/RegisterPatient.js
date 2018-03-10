@@ -38,40 +38,43 @@ class RegisterPatient extends Component {
 
     };
   }
-  validFirstNameEntered() {
-    if (this.state.firstName !== '' &&
-      this.state.firstName.length >= 3 &&
-      this.state.firstName.length <= 30) {
-      return true;
+  validFirstNameEntered(){
+    if(this.state.firstName!==''&&
+    this.state.firstName.length>=3&&
+    this.state.firstName.length<=30){
+        return true;
     }
-    else {
+    else{
       alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
-  }
+}
 
-  validLastNameEntered() {
-    if (this.state.lastName !== '' &&
-      this.state.lastName.length >= 3 &&
-      this.state.lastName.length <= 30) {
-      return true;
+validLastNameEntered(){
+    if(this.state.lastName!==''&&
+    this.state.lastName.length>=3&&
+    this.state.lastName.length<=30){
+        return true;
     }
-    else {
+    else{
       alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
-  }
+}
 
-  validUserNameEntered() {
-    if (this.state.userName !== '' &&
-      this.state.userName.length >= 6 &&
-      this.state.userName.length <= 30) {
-      return true;
+validUserNameEntered(){
+    if(this.state.userName!==''&&
+    this.state.userName.length>=6&&
+    this.state.userName.length<=30){
+        return true;
     }
-    else {
+    else{
       alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
-  }
+}
 
   getPersonalId = (event, newValue) => {
+    if (newValue === '') {
+      this.setState({ disabled: true })
+    }
     this.personalId = this.setState({
       personalId: newValue,
       disabled: false
@@ -79,19 +82,40 @@ class RegisterPatient extends Component {
     console.log('get id', this.state.personalId)
   }
 
+generateDateOfBirth=() =>{
+  var personalCodeString = this.state.personalId
+  var reg = new RegExp(/(\d{1})(\d{2})(\d{2})(\d{2})(\d{4})/);
+  var match = reg.exec(personalCodeString)
   
+  const firstDigit=  match[1];
+  const secondGroup= match[2];
+  const month= match[3];
+  const day= match[4];
+
+  let year=null;
+  if((firstDigit==='3')||(firstDigit==='4')){
+    year='19'+secondGroup;
+  }else if((firstDigit==='1')||(firstDigit==='2')){
+    year='18'+secondGroup;
+  }else{
+    year='20'+secondGroup;
+  } 
+
+  let newDateOfBirth = new Date(year+'-'+month+'-'+day).toLocaleDateString('lt-LT');
+  this.setState({dateOfBirth: newDateOfBirth});
+}
 
   validPersonalIdEntered() {
     var reg = new RegExp(/(\d{11})/)
     var match = reg.exec(this.state.personalId);
-    if (this.state.personalId !== '' &&
-      match !== null) {
-      return true;
+    if(this.state.personalId!==''&&
+    match!==null){
+        return true;
     }
-    else {
+    else{
       alert("Asmens kodas privalomas! Asmens kodą sudaro 11 skaitmenų")
     }
-  }
+}
 
   bothPasswordsMatch() {
     if (this.state.password === this.state.repeatedPassword) {
@@ -110,45 +134,25 @@ class RegisterPatient extends Component {
     else {
       alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
     }
+}
+
+handleDateGeneration(event){
+  if(this.state.dateOfBirth!==''&&
+  this.state.dateOfBirth!=null&&
+  this.validPersonalIdEntered){
+    return true;
+  }else{
+    this.generateDateOfBirth();
   }
-  generateDateOfBirth = () => {
-    var personalCodeString = this.state.personalId
-    var reg = new RegExp(/(\d{1})(\d{2})(\d{2})(\d{2})(\d{4})/);
-    var match = reg.exec(personalCodeString)
-
-    const firstDigit = match[1];
-    const secondGroup = match[2];
-    const month = match[3];
-    const day = match[4];
-
-    let year = null;
-    if ((firstDigit === '3') || (firstDigit === '4')) {
-      year = '19' + secondGroup;
-    } else {
-      year = '20' + secondGroup;
-    }
-
-    let newDateOfBirth = new Date(year + '-' + month + '-' + day).toLocaleDateString('lt-LT');
-    this.setState({ dateOfBirth: newDateOfBirth });
-  }
-
-  handleDateGeneration(event) {
-    if (this.state.dateOfBirth !== '' &&
-      this.state.dateOfBirth != null &&
-      this.validPersonalIdEntered) {
-      return true;
-    } else {
-      this.generateDateOfBirth();
-    }
-    event.preventDefault();
-  }
+  event.preventDefault();
+}
 
   dateOfBirthIsGenerated() {
     if (this.state.dateOfBirth !== null && this.state.dateOfBirth !== '' &&
-      this.validPersonalIdEntered && this.state.dateOfBirth !=='Invalid Date') {
+      this.validPersonalIdEntered && this.state.dateOfBirth !== 'Invalid Date') {
       return true;
     } else {
-      alert('Paspauskite mygtuką "Generuoti gimimo datą"')
+      alert('Paspauskite mygtuką "Generuoti gimimo datą arba suveskite teisingą asmens kodą')
     }
   }
 
@@ -179,10 +183,9 @@ class RegisterPatient extends Component {
         password: this.state.password,
         dateOfBirth: this.state.dateOfBirth,
         personalId: this.state.personalId,
-        doctorsFullName: this.state.doctorsFullName
       }
       this.refs.form.reset();
-      this.setState({dateOfBirth:''})
+      this.setState({ dateOfBirth: '' })
 
       console.log('info', information)
       axios.post(apiUrl + '/admin/patient', information)
@@ -197,7 +200,7 @@ class RegisterPatient extends Component {
       event.preventDefault();
       return true;
     } else {
-      this.setState({dateOfBirth:''})
+      this.setState({ dateOfBirth: '' })
       console.log("some data is wrong");
       return false;
     }
@@ -209,7 +212,7 @@ class RegisterPatient extends Component {
       <div>
         <MuiThemeProvider>
           <form className="registerPatient"
-          ref="form">
+            ref="form">
             <h2> Registruoti pacientą </h2>
             <TextField
               className="firstName"
@@ -257,6 +260,7 @@ class RegisterPatient extends Component {
             //onChange={(event, dateOfBirth) =>this.setState({floatingLabelText: dateOfBirth})}  
             />
             <RaisedButton
+            id="generateDateOfBirthButton"
               label="Generuoti gimimo datą"
               onClick={(event) => this.handleDateGeneration(event)}
               disabled={this.state.disabled} />

@@ -11,6 +11,7 @@ public class RecordForClient {
 	private String description;
 	private boolean isCompensated;
 	private boolean visitIsRepeated;
+	private long recordId;
 
 	public String getDateOfVisit() {
 		return dateOfVisit;
@@ -66,6 +67,14 @@ public class RecordForClient {
 
 	public void setVisitIsRepeated(boolean visitIsRepeated) {
 		this.visitIsRepeated = visitIsRepeated;
+	}
+
+	public long getRecordId() {
+		return recordId;
+	}
+
+	public void setRecordId(long recordId) {
+		this.recordId = recordId;
 	}
 
 }

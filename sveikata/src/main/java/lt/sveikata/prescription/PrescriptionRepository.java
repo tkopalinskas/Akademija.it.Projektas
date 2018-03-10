@@ -9,15 +9,19 @@ import org.springframework.data.repository.query.Param;
 import lt.sveikata.patient.Patient;
 
 public interface PrescriptionRepository extends JpaRepository<Prescription, Long>{
+
 	
+	List<Prescription> findAllByOrderByPrescriptionDate();
+
 	Prescription findByNumber(long number);
 	
 	List<Prescription> findByPersonalId(long personalId);
 	
+	//find by userId
 	@Query("SELECT prescription FROM Prescription prescription JOIN prescription.patient patient WHERE patient.userId = :patId")
 	List<Prescription> getPatientPrescriptionsByUserId(@Param("patId") Long id);
 	
-	
+	//find by userName
 	@Query("SELECT prescription FROM Prescription prescription JOIN prescription.patient patient WHERE patient.userName = :userName")
 	List<Prescription> getPatientPrescriptionsByUserName(@Param("userName") String userName);
 	

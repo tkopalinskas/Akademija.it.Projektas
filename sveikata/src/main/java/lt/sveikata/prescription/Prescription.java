@@ -21,7 +21,7 @@ public class Prescription {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long prescriptionId;
-//	private String doctorsFullName;
+	private String doctorsFullName;
 	private String prescriptionDate;
 	private long personalId;
 	private String validUntil;
@@ -48,7 +48,8 @@ public class Prescription {
 	private Doctor doctor;
 	
 
-	
+
+
 	public long getPrescriptionId() {
 		return prescriptionId;
 	}
@@ -145,13 +146,13 @@ public class Prescription {
 		this.timesUsed = timesUsed;
 	}
 
-//	public String getDoctorsFullName() {
-//		return doctorsFullName;
-//	}
-//
-//	public void setDoctorsFullName(String doctorsFullName) {
-//		this.doctorsFullName = doctorsFullName;
-//	}
+	public String getDoctorsFullName() {
+		return doctorsFullName;
+	}
+
+	public void setDoctorsFullName(String doctorsFullName) {
+		this.doctorsFullName = doctorsFullName;
+	}
 
 	public int getTotalAmount() {
 		return totalAmount;
@@ -168,7 +169,5 @@ public class Prescription {
 	public void setTotalUnits(int totalUnits) {
 		this.totalUnits = totalUnits;
 	}
-
-
 
 }
