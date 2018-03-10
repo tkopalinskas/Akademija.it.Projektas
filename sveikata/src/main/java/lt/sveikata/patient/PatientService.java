@@ -123,9 +123,9 @@ public class PatientService {
 		patientRepository.save(pat);
 	}
 	
-//	public List<Patient> byDoctorId(long doctorId){
-//		return patientRepository.getPatientById(doctorId);
-//	}
+	public List<Patient> byDoctorId(long doctorId){
+		return patientRepository.getPatientById(doctorId);
+	}
 
 	
 	public PatientRepository getPatientRepository() {

@@ -31,18 +31,18 @@ public class PatientControllerForDoctor {
 		return getPatientService().receivePatientFromDatabase(personalId);
 	}
 	
-//	@RequestMapping(value = "/patientsList/{doctorId}", method=RequestMethod.GET)
-//	public List<PatientDTO> getPatientList(@PathVariable("doctorId") Long doctorId) {
-//		
-//		List<Patient> patients = patientService.byDoctorId(doctorId);
-//		return modelMapper.map(patients, new TypeToken<List<PatientDTO>>() {
-//		}.getType());
-//		/**
-//		 * if you will return a single object instead of a list/collection return
-//		 * modelMapper.map(entityObject, EntityClass.class); example: return
-//		 * modelMapper.map(doctor, Doctor.class);
-//		 */
-//	}
+	@RequestMapping(value = "/patientsList/{doctorId}", method=RequestMethod.GET)
+	public List<PatientForClient> getPatientList(@PathVariable("doctorId") Long doctorId) {
+		
+		List<Patient> patients = patientService.byDoctorId(doctorId);
+		return modelMapper.map(patients, new TypeToken<List<PatientForClient>>() {
+		}.getType());
+		/**
+		 * if you will return a single object instead of a list/collection return
+		 * modelMapper.map(entityObject, EntityClass.class); example: return
+		 * modelMapper.map(doctor, Doctor.class);
+		 */
+	}
 
 	public PatientService getPatientService() {
 		return patientService;

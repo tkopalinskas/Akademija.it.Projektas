@@ -28,7 +28,7 @@ public class PrescriptionService {
 			PrescriptionForClient prescr = new PrescriptionForClient();
 			// prescr.setDoctorsFullName(prescription.getDoctorsFullName());
 			prescr.setPrescriptionDate(prescription.getPrescriptionDate());
-			prescr.setPersonalId(prescription.getPersonalId());
+//			prescr.setPersonalId(prescription.getPersonalId());
 			prescr.setValidUntil(prescription.getValidUntil());
 			prescr.setActiveIngredient(prescription.getActiveIngredient());
 			prescr.setAmountPerDose(prescription.getAmountPerDose());
@@ -87,7 +87,9 @@ public class PrescriptionService {
 		prescr.setDescription(newPrescription.getDescription());
 		prescr.setNumber(newPrescription.getNumber() + 1);
 		prescr.setTimesUsed(newPrescription.getTimesUsed());
-		prescr.setPatient(newPrescription.getPatient());
+//		prescr.setDoctor(newPrescription.getDoctor());
+//		prescr.setPatient(newPrescription.getPatient());
+//		prescr.setPatient(newPrescription.getPatient());
 		prescriptionRepository.save(prescr);
 	}
 
@@ -119,10 +121,14 @@ public class PrescriptionService {
 		prescriptionForClient.setDescription(prescription.getDescription());
 		return prescriptionForClient;
 	}
-	
-	public List<Prescription> byPersonalId(long personalId){
-		return prescriptionRepository.getPatientPrescriptionsById(personalId);
+	//get user prescriptions
+	public List<Prescription> getUserPrescriptionByUserName(String userName){
+		return prescriptionRepository.getPatientPrescriptionsByUserName(userName);
 	}
+	//get prescription by personalId
+//	public List<Prescription> byPersonalId(Long personalId){
+//		return prescriptionRepository.getPatientPrescriptionsById(personalId);
+//	}
 
 //	public Prescription getSinglePrescription(long number) {
 //		return prescriptionRepository.getSinglePrescription(number);

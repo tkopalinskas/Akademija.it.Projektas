@@ -70,7 +70,7 @@ class PatientContainer extends Component{
 
     
     render(){
-
+    
     let userData = window.sessionStorage.getItem('userData');
        if(userData==null)
             window.location.href="/#/";

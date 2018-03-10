@@ -2,11 +2,16 @@ package lt.sveikata.patient;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.EqualsAndHashCode;
 import lt.sveikata.doctor.Doctor;
 import lt.sveikata.user.User;
 
 @Entity
 @Table(name = "PATIENT")
+@EqualsAndHashCode(exclude = {"doctor"})
 @PrimaryKeyJoinColumn(name = "patientId")
 //@DiscriminatorValue("Patient")
 public class Patient extends User {
@@ -22,6 +27,8 @@ public class Patient extends User {
 //	private String doctorsFullName;
 
     @ManyToOne
+    (fetch=FetchType.LAZY)
+    @JsonBackReference
     @JoinColumn(name="doctorId")
 	private Doctor doctor;
 

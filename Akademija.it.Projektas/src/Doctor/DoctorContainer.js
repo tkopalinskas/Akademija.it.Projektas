@@ -78,8 +78,7 @@ class DoctorContainer extends Component{
         }
     } */
     
-    render(){
-
+    render(){;
     let userData = window.sessionStorage.getItem('userData');
        if(userData==null)
             window.location.href="/#/";
@@ -98,7 +97,7 @@ class DoctorContainer extends Component{
                         showMenuIconButton={false} iconElementRight={<FlatButton
                         className="userPopoverMenu"
                         onClick={this.handleClick}
-                        label={"Sveiki, "+ this.state.userName} />
+                        label={"Sveiki, " + this.state.userName} />
                     }>
                     <Popover
                         open={this.state.leftDrop}

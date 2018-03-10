@@ -61,8 +61,10 @@ class PrescriptionsTable extends Component {
 
   /*get all patient's prescriptions*/
     componentWillMount() {
+      let userData = window.sessionStorage.getItem('userData');
+      let user = JSON.parse(userData);
        axios
-            .get("http://localhost:8081/patient/")
+            .get("http://localhost:8081/patient/" + user.userName +"/prescriptions")
             .then((response) => {
                 console.log(response);
                 this.setState({prescriptions: response.data});

@@ -21,16 +21,18 @@ public class Prescription {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long prescriptionId;
-	//private String doctorsFullName;
+//	private String doctorsFullName;
 	private String prescriptionDate;
-	private Long personalId;
+	private long personalId;
 	private String validUntil;
 	private String activeIngredient;
 	private String amountPerDose;
 	private String units;
 	private String description;
-	private long number;
 	private int timesUsed;
+	private long number;
+	private int totalAmount;
+	private int totalUnits;
 	
 	
 	@OneToMany(mappedBy="prescription")
@@ -46,6 +48,7 @@ public class Prescription {
 	private Doctor doctor;
 	
 
+	
 	public long getPrescriptionId() {
 		return prescriptionId;
 	}
@@ -54,7 +57,6 @@ public class Prescription {
 		this.prescriptionId = prescriptionId;
 	}
 
-	
 	public Patient getPatient() {
 		return patient;
 	}
@@ -71,8 +73,12 @@ public class Prescription {
 		this.doctor = doctor;
 	}
 
-	public void setPersonalId(Long personalId) {
-		this.personalId = personalId;
+	public long getNumber() {
+		return number;
+	}
+
+	public void setNumber(long number) {
+		this.number = number;
 	}
 
 	public String getPrescriptionDate() {
@@ -131,14 +137,6 @@ public class Prescription {
 		this.description = description;
 	}
 
-	public long getNumber() {
-		return number;
-	}
-
-	public void setNumber(long number) {
-		this.number = number;
-	}
-
 	public int getTimesUsed() {
 		return timesUsed;
 	}
@@ -146,6 +144,31 @@ public class Prescription {
 	public void setTimesUsed(int timesUsed) {
 		this.timesUsed = timesUsed;
 	}
-	
+
+//	public String getDoctorsFullName() {
+//		return doctorsFullName;
+//	}
+//
+//	public void setDoctorsFullName(String doctorsFullName) {
+//		this.doctorsFullName = doctorsFullName;
+//	}
+
+	public int getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setTotalAmount(int totalAmount) {
+		this.totalAmount = totalAmount;
+	}
+
+	public int getTotalUnits() {
+		return totalUnits;
+	}
+
+	public void setTotalUnits(int totalUnits) {
+		this.totalUnits = totalUnits;
+	}
+
+
 
 }

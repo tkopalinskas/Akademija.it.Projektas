@@ -1,10 +1,19 @@
 package lt.sveikata.prescription;
 
-public class PrescriptionForClient {
+import java.io.Serializable;
 
-	private String doctorsFullName;
+
+import lt.sveikata.DTO.DoctorDTO;
+import lt.sveikata.DTO.PatientDTO;
+import lt.sveikata.doctor.Doctor;
+import lt.sveikata.patient.Patient;
+
+
+public class PrescriptionForClient implements Serializable {
+
+	private Long prescriptionId;
+	// private String doctorsFullName;
 	private String prescriptionDate;
-	private long personalId;
 	private String validUntil;
 	private String activeIngredient;
 	private String amountPerDose;
@@ -13,12 +22,16 @@ public class PrescriptionForClient {
 	private long number;
 	private int timesUsed;
 
-	public String getDoctorsFullName() {
-		return doctorsFullName;
+	private Doctor doctor;
+	
+	private Patient patient;
+
+	public Long getPrescriptionId() {
+		return prescriptionId;
 	}
 
-	public void setDoctorsFullName(String doctorsFullName) {
-		this.doctorsFullName = doctorsFullName;
+	public void setPrescriptionId(Long prescriptionId) {
+		this.prescriptionId = prescriptionId;
 	}
 
 	public String getPrescriptionDate() {
@@ -27,14 +40,6 @@ public class PrescriptionForClient {
 
 	public void setPrescriptionDate(String prescriptionDate) {
 		this.prescriptionDate = prescriptionDate;
-	}
-
-	public long getPersonalId() {
-		return personalId;
-	}
-
-	public void setPersonalId(long personalId) {
-		this.personalId = personalId;
 	}
 
 	public String getValidUntil() {
@@ -93,4 +98,25 @@ public class PrescriptionForClient {
 		this.timesUsed = timesUsed;
 	}
 
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public void setPersonalId(long personalId) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

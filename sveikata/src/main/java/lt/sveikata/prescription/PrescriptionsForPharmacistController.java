@@ -30,20 +30,18 @@ public class PrescriptionsForPharmacistController {
 		return getPrescriptionService().receiveAllPrescriptionsForPharmacist(personalId);
 	}
 	
-	/* Gets patient prescriptions */
-	@RequestMapping("/patient-prescriptions/{personalId}")
-	public List<PrescriptionDTO> getPatientPrescriptions(@PathVariable("personalId") Long personalId) {
-		
-		
-		List<Prescription> prescriptions = prescriptionService.byPersonalId(personalId);
-		return modelMapper.map(prescriptions, new TypeToken<List<PrescriptionDTO>>() {
-		}.getType());
+	/* Gets patient prescriptions.Same thing less code */
+//	@RequestMapping("/{personalId}/prescriptions")
+//	public List<PrescriptionForClient> getPatientPrescriptions(@PathVariable("personalId") Long personalId) {
+//		List<Prescription> prescriptions = prescriptionService.byPersonalId(personalId);
+//		return modelMapper.map(prescriptions, new TypeToken<List<PrescriptionForClient>>() {
+//		}.getType());
 		/**
 		 * if you will return a single object instead of a list/collection return
 		 * modelMapper.map(entityObject, EntityClass.class); example: return
 		 * modelMapper.map(doctor, Doctor.class);
 		 */
-	}
+//	}
 	/*gets a specified prescription from database, searches by number*/
 	@RequestMapping(value = "/{personalId}/prescriptions/{number}", method = RequestMethod.GET)
 	public Prescription singlePrescription(@PathVariable("number") Long number) {

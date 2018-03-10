@@ -2,6 +2,8 @@ package lt.sveikata.prescription;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import lt.sveikata.DTO.PrescriptionDTO;
+
 @RestController
 @RequestMapping(value = "/patient")
 @CrossOrigin(origins="*")
@@ -19,22 +23,25 @@ public class PrescriptionController {
 
 	@Autowired
 	private PrescriptionService prescriptionService;
-
-	/*gets all prescriptions from database*/
-//	@RequestMapping(value = "/{patientId}/prescriptions", method = RequestMethod.GET)
-//	public List<Prescription> getAllPrescriptions(@PathVariable("patientId") Long patientId) {
-//		List<Prescription> prescriptions = prescriptionService.byUserId(patientId);
-//		return prescriptions;
-//	}
 	
-//	@RequestMapping(value = "/{userId}/prescriptions", method = RequestMethod.GET)
-//	@PreAuthorize("hasRole('PHARMACIST')")
-//	public List<Prescription> getPatientPrescriptions(@PathVariable("userId") Long userId) {
-//		 
-//		List<Prescription> prescriptions = prescriptionService.byPersonalId(userId);
-//		return prescriptions;
-//	}
+//	@Autowired 
+//	private ModelMapper modelMapper;
+	
+	private ModelMapper modelMapper = new ModelMapper();
 
+	/*gets  all user prescriptions from database*/
+	@RequestMapping(value = "/{userName}/prescriptions", method = RequestMethod.GET)
+	public List<PrescriptionDTO> getPatientPrescriptions(@PathVariable("userName") String userName) {
+		List<Prescription> prescriptions = prescriptionService.getUserPrescriptionByUserName(userName);
+		return modelMapper.map(prescriptions, new TypeToken<List<PrescriptionDTO>>() {
+		}.getType());
+		/**
+		 * if you will return a single object instead of a list/collection return
+		 * modelMapper.map(entityObject, EntityClass.class); example: return
+		 * modelMapper.map(doctor, Doctor.class);
+		 */
+	}
+	
 	/*gets a specified prescription from database, searches by number*/
 	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)
 	public Prescription singlePrescription(@PathVariable("number") String Strnumber) {

@@ -22,7 +22,6 @@ public class DoctorForClient {
 	private String role;
 	private boolean isSuspended;
 
-	
 
 	private Set<RecordForClient> records;
 	
