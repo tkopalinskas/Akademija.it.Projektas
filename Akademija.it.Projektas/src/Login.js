@@ -3,17 +3,17 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
+import healthCare from './healthCare.png';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
 const style={
   margin: 15,
-  backgroundColor: '#1E88E5',
-  font: 'inherit',
-  border: '1px solid blue',
-  padding: '8px',
-  cursor: 'pointer'
+};
+
+const image = {
+  marginTop:50,
 };
 
 
@@ -25,7 +25,6 @@ context)=>{
     <TextField
       className="username"
       id="inputUserName"
-      hintText="Įveskite prisijungimo vardą"
       floatingLabelText="Prisijungimo vardas"
       type="username"
       onChange={onUsernameChange}
@@ -34,14 +33,15 @@ context)=>{
      <TextField
         className="password"
         id="inputPassword"
-      hintText="Įveskite slaptazodi"
-      floatingLabelText="Slaptazodis"
+      floatingLabelText="Slaptažodis"
       type="password"
       value = {pass}
       onChange={onPassChange}
     />
     <br/>
-    <input  type="submit" style={style}/>
+    <RaisedButton type="submit" style={style}
+     label="Prsisijungti">
+    </RaisedButton>
     </form>
     </MuiThemeProvider>
    
@@ -109,10 +109,15 @@ class Login extends Component {
 
     return (
       <div>
+        <div>
+        <img src={healthCare} style={image}/>
+        </div>
+      <div>
        <Form userName={this.state.userName} pass={this.state.pass}
         onUsernameChange={this.onUsernameChange}
         onPassChange={this.onPassChange}
         onSubmit={this.onSubmit}/>
+       </div>
        </div>
     )
   }}

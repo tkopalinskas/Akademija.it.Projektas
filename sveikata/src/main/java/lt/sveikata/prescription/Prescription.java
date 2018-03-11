@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lt.sveikata.doctor.Doctor;
 import lt.sveikata.patient.Patient;
 
@@ -40,15 +42,16 @@ public class Prescription {
 	
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name ="patientId")
 	private Patient patient;
 	
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name="doctorId")
 	private Doctor doctor;
 	
-
-
+	
 
 	public long getPrescriptionId() {
 		return prescriptionId;

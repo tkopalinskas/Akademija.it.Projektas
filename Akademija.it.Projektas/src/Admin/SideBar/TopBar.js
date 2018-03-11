@@ -6,8 +6,9 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-
+axios.defaults.withCredentials = true;
 
 class TopBar extends Component {
 
@@ -29,6 +30,15 @@ class TopBar extends Component {
         });
     };
 
+    logoutClick = () =>{
+      
+        axios.get('http://localhost:8081/logout')
+             .then((resp)=>{
+                 console.log('isilogina');
+               let user = resp.data;
+               window.sessionStorage.removeItem("userData");
+             } );
+    };
     render() {
         return (
 

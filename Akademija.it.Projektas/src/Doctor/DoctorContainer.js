@@ -10,6 +10,9 @@ import DoctorWindowNavigation from './DoctorWindowNavigation';
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const rowStyle={
     margin: 0,
@@ -43,6 +46,17 @@ class DoctorContainer extends Component{
             anchorEl: event.currentTarget,
         });
     };
+
+    logoutClick = () =>{
+      
+            axios.get('http://localhost:8081/logout')
+                 .then((resp)=>{
+                     console.log('isilogina');
+                   let user = resp.data;
+                   window.sessionStorage.removeItem("userData");
+                 } );
+        };
+    
 
     handleRequestClose = () => {
         this.setState({
@@ -99,6 +113,7 @@ class DoctorContainer extends Component{
                                       primaryText="Pakeisti slaptažodį"/>   
                             <MenuItem className="logOut"
                                       containerElement={<Link to="/" />}
+                                      onClick={this.logoutClick}
                                       primaryText="Atsijungti"/>
                     </Popover>
                 </AppBar>

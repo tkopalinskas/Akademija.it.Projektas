@@ -1,9 +1,11 @@
 package lt.sveikata.patient;
 
 
-import lt.sveikata.doctor.Doctor;
+import java.io.Serializable;
 
-public class PatientForClient {
+import lt.sveikata.doctor.DoctorForClient;
+
+public class PatientForClient implements Serializable{
 	
 	private Long personalId;
 
@@ -15,7 +17,9 @@ public class PatientForClient {
 	private boolean isSuspended;
 	private String doctorsFullName;
 
-	private Doctor doctor;
+	private DoctorForClient doctor;
+	
+	private PatientForClient patient;
 
 
 	public String getFirstName() {
@@ -50,11 +54,12 @@ public class PatientForClient {
 		this.personalId = personalId;
 	}
 
-	public Doctor getDoctor() {
+
+	public DoctorForClient getDoctor() {
 		return doctor;
 	}
 
-	public void setDoctor(Doctor doctor) {
+	public void setDoctor(DoctorForClient doctor) {
 		this.doctor = doctor;
 	}
 

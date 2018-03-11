@@ -44,7 +44,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.successHandler(new SimpleUrlAuthenticationSuccessHandler())
 			// esant blogiems user/pass
 			.failureHandler(new SimpleUrlAuthenticationFailureHandler()).loginPage("/").permitAll()
-			.loginProcessingUrl("/")
+			.and()
+			.logout().permitAll()
 			.and()
 			.csrf()
 			.disable()

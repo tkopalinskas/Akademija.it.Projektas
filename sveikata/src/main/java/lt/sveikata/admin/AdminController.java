@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,22 +22,27 @@ public class AdminController {
 	private AdminService adminService;
 	//private DoctorService doctorService;
 	
+
 	@RequestMapping(value = "/allAdmins", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ADMIN')") 
 	public List<AdminForClient> giveAllAdmins() {
 		return getAdminService().receiveAllAdmins();
 	}
 
 	@RequestMapping(value = "/admin/{userName}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ADMIN')") 
 	public List<AdminForClient> giveAllAdmins(@PathVariable final String userName) {
 		return getAdminService().receiveAllAdmins( userName); }
 
 	@RequestMapping(value = "/admin", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')") 
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createAdmin(@RequestBody final AddNewAdmin newAdmin) {
 		adminService.addNewAdmin(newAdmin);
 	}
 
 	@RequestMapping(value = "/admin/{id}/changePassword", method = RequestMethod.PUT)
+	@PreAuthorize("hasRole('ADMIN')") 
 	@ResponseStatus(HttpStatus.CREATED)
 	public void updateExistingAdmin(@RequestBody final Admin admin, @PathVariable final Long id) {
 		adminService.updateAdmin(admin, id);

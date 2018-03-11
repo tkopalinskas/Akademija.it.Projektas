@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 //import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,20 +30,23 @@ public class UserController {
 	@Autowired
 	private UserRepository userRepository;
 
-//	@PreAuthorize("hasRole('ADMIN')")
+	
 	@RequestMapping(value = "/allUsers", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<UserForClient> giveAllUser() {
 		return getUserService().receiveAllUsers();
 	}
-//	@PreAuthorize("hasRole('ADMIN')")
+
 	@RequestMapping(value = "/admin/addNewUser", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createUser(@RequestBody final AddNewUser newUser) {
 		userService.addNewUser(newUser);
 	}
-//	@PreAuthorize("hasRole('ADMIN')")
+
 	@PutMapping("/user/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id, @Valid @RequestBody User userDetails) {
+	@PreAuthorize("hasRole('ADMIN')")
+	public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id, @RequestBody User userDetails) {
 
 		User user = userRepository.findOne(id);
 		// if (user == null) {
@@ -60,8 +64,9 @@ public class UserController {
 //	public void deleteAdminFromDatabase(@PathVariable final Long id) {
 //		userService.deleteUser(id);
 //	}
-//	@PreAuthorize("hasRole('ADMIN')")
+
 	@RequestMapping(value = "/admin/findUser/manageUser/{id=7}", method = RequestMethod.PATCH)
+	@PreAuthorize("hasRole('ADMIN')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void updateExistingAdmin(@RequestBody final User user, @PathVariable final Long id) {
 		userService.updateUser(user, id);

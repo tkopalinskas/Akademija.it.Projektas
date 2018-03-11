@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lt.sveikata.doctor.Doctor;
 import lt.sveikata.patient.Patient;
 
@@ -34,10 +36,12 @@ public class Record {
 	private boolean visitIsRepeated;
 
 	@ManyToOne
+	 @JsonBackReference
 	@JoinColumn(name = "patientId")
 	private Patient patient;
 
 	@ManyToOne
+	 @JsonBackReference
 	@JoinColumn(name = "doctorId")
 	private Doctor doctor;
 

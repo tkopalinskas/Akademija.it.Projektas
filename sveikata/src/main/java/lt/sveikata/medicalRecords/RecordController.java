@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,12 +22,14 @@ public class RecordController {
 	private RecordService visitService;
 
 	@RequestMapping(value = "/medicalRecords", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('PATIENT')") 
 	public List<RecordForClient> giveAllVisits() {
 		return getVisitService().receiveAllVisits();
 	}
 
 	/* gets a specified record from database, searches by recordId */
 	@RequestMapping(value = "/medicalRecords/{recordId}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('PATIENT')") 
 	public RecordForClient singleRecord(@PathVariable("recordId") final Long recordId) {
 		return visitService.receiveRecordInfo(recordId);
 	}

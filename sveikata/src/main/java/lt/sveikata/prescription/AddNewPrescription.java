@@ -1,20 +1,12 @@
 package lt.sveikata.prescription;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-import lt.sveikata.DTO.DoctorDTO;
-import lt.sveikata.DTO.PatientDTO;
-import lt.sveikata.doctor.Doctor;
-import lt.sveikata.patient.Patient;
 
 @Entity
 public class AddNewPrescription {

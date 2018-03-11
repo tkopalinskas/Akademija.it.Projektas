@@ -3,6 +3,7 @@ package lt.sveikata.prescription;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,12 +19,14 @@ public class PrescriptionForDoctorController {
 
 	/* gets all specified patient's prescriptions for doctor */
 	@RequestMapping(value = "/patient/prescriptions", method = RequestMethod.GET)
+    @PreAuthorize("hasRole('DOCTOR')") 
 	public List<PrescriptionForClient> giveAllPrescriptions() {
 		return getPrescriptionService().receiveAllPrescriptions();
 	}
 
 	/* gets a specified prescription from database, searches by number */
 	@RequestMapping(value = "/patient/prescriptions/{number}", method = RequestMethod.GET)
+	 @PreAuthorize("hasRole('DOCTOR')") 
 	public Prescription singlePrescription(@PathVariable Long number) {
 		return prescriptionService.receivePrescriptionInfo(number);
 	}
