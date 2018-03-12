@@ -25,6 +25,7 @@ public class AddNewPrescription {
 	private String units;
 	private String description;
 	private int timesUsed = 0;
+	private boolean isValid=true;
 	private long number;
 	private int totalAmount;
 	private String totalUnits;
@@ -134,6 +135,14 @@ public class AddNewPrescription {
 
 	public void setTotalUnits(String totalUnits) {
 		this.totalUnits = totalUnits;
+	}
+
+	public boolean isValid() {
+		return isValid;
+	}
+
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
 	}
 
 }

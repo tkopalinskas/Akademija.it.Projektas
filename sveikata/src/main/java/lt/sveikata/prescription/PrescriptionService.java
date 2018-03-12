@@ -154,6 +154,7 @@ public class PrescriptionService {
 		prescriptionForClient.setTotalUnits(prescription.getTotalUnits());
 		prescriptionForClient.setDescription(prescription.getDescription());
 		prescriptionForClient.setNumber(prescription.getNumber());
+		prescriptionForClient.setPrescriptionId(prescription.getPrescriptionId());
 		return prescriptionForClient;
 	}
 	//get user prescriptions

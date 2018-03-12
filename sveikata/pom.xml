@@ -174,12 +174,12 @@
             <!-- 3.0.3 -->
             <version>3.0.5</version>
         </dependency>
+        <dependency>
+		    <groupId>org.modelmapper</groupId>
+		    <artifactId>modelmapper</artifactId>
+		    <version>0.7.4</version>
+		</dependency>
         
-        		<dependency>
-    <groupId>org.modelmapper</groupId>
-    <artifactId>modelmapper</artifactId>
-    <version>0.7.4</version>
-</dependency>
         <!-- Security -->
             
         <dependency>

@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lt.sveikata.doctor.Doctor;
 import lt.sveikata.patient.Patient;
+import lt.sveikata.prescriptionUses.UsesFact;
 
 @Entity
 public class Prescription {
@@ -35,23 +36,27 @@ public class Prescription {
 	private long number;
 	private int totalAmount;
 	private String totalUnits;
-	
-	
-	@OneToMany(mappedBy="prescription")
-	private List<UsesFact>usesFact;
-	
-	
+
+	@OneToMany(mappedBy = "prescription")
+	private List<UsesFact> usesFact;
+
 	@ManyToOne
 	@JsonBackReference
-	@JoinColumn(name ="patientId")
+	@JoinColumn(name = "patientId")
 	private Patient patient;
-	
+
 	@ManyToOne
 	@JsonBackReference
-	@JoinColumn(name="doctorId")
+	@JoinColumn(name = "doctorId")
 	private Doctor doctor;
-	
-	
+
+	public List<UsesFact> getUsesFact() {
+		return usesFact;
+	}
+
+	public void setUsesFact(List<UsesFact> usesFact) {
+		this.usesFact = usesFact;
+	}
 
 	public long getPrescriptionId() {
 		return prescriptionId;

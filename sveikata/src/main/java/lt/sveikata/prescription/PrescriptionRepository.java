@@ -16,6 +16,7 @@ public interface PrescriptionRepository extends JpaRepository<Prescription, Long
 	Prescription findByNumber(long number);
 	
 	List<Prescription> findByPersonalId(long personalId);
+	Prescription findByPrescriptionId(long prescriptionId);
 	
 	//find by userId
 	@Query("SELECT prescription FROM Prescription prescription JOIN prescription.patient patient WHERE patient.userId = :patId")
