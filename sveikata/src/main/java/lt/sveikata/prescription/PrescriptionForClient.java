@@ -17,6 +17,7 @@ public class PrescriptionForClient implements Serializable {
 	private Long number;
 	private int totalAmount;
 	private String totalUnits;
+	
 
 	public Long getNumber() {
 		return number;

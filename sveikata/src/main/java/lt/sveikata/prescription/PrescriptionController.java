@@ -51,13 +51,6 @@ public class PrescriptionController {
 		return prescriptionService.receivePrescriptionInfo(number);
 	}
 
-	/*adds a new prescription to database*/
-	@RequestMapping(value = "/addNewPrescription", method = RequestMethod.POST)
-	@PreAuthorize("hasRole('DOCTOR')") 
-	@ResponseStatus(HttpStatus.CREATED)
-	public void createPrescription(@RequestBody final AddNewPrescription newPrescription) {
-		prescriptionService.addNewPrescription(newPrescription);
-	}
 
 	/*will be used to mark a prescription as used or invalid. doesn't work yet*/
 	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.PUT)

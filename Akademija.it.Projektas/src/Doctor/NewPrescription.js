@@ -19,9 +19,11 @@ const textStyles = {
 class NewPrescription extends Component {
     constructor(props) {
         super(props);
-        
+        console.log("props");
+        console.log(props);
         this.state = {
             open: false,
+            personalId:props.personalId,
 
             currentDate: '',
             activeIngredient: '',
@@ -30,7 +32,10 @@ class NewPrescription extends Component {
             totalUnits:'',
             totalAmount: '',
             validUntil: '',
-            description: ''
+            description: '',
+
+        
+            
         };
     }
 
@@ -138,9 +143,20 @@ class NewPrescription extends Component {
                 description: this.state.description,
                 currentDate:this.state.currentDate
                 }
-            
-
-            axios.post(API + "/doctor/patient/addNewPrescription/", information)
+        console.log('infos:')
+        console.log(information);    
+       let userData = window.sessionStorage.getItem('userData');
+       let user = JSON.parse(userData);
+            //axios.post(,{,})
+            axios({
+                method:'POST',
+                url:API + "/doctor/" + user.userId + "/patient/" + this.state.personalId + "/addNewPrescription",
+                // headers:{'Content-type':'application/x-www-form-urlencoded'},
+                headers:{'Content-type':'application/json'},
+                data:information
+            })
+               
+               
                 .then((response)=>{
                 console.log("registration  successful");
                 alert("Receptas įrašytas!"); 

@@ -28,6 +28,17 @@ public class AddNewPrescription {
 	private long number;
 	private int totalAmount;
 	private String totalUnits;
+	
+	
+
+	public long getPrescriptionId() {
+		return prescriptionId;
+	}
+
+	public void setPrescriptionId(long prescriptionId) {
+		this.prescriptionId = prescriptionId;
+	}
+
 
 	public long getNumber() {
 		return number;
