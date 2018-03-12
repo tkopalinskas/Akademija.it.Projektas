@@ -65,15 +65,6 @@ public class Prescription {
 	public void setPrescriptionId(long prescriptionId) {
 		this.prescriptionId = prescriptionId;
 	}
-	
-
-	public long getPrescriptionId() {
-		return prescriptionId;
-	}
-
-	public void setPrescriptionId(long prescriptionId) {
-		this.prescriptionId = prescriptionId;
-	}
 
 	public Patient getPatient() {
 		return patient;
