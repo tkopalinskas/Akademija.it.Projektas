@@ -7,6 +7,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import lombok.EqualsAndHashCode;
 import lt.sveikata.medicalRecords.Record;
 import lt.sveikata.patient.Patient;
 import lt.sveikata.prescription.Prescription;
@@ -14,32 +17,32 @@ import lt.sveikata.user.User;
 
 @Entity
 @Table(name = "DOCTOR")
+@EqualsAndHashCode(exclude = {"patients"})
 @PrimaryKeyJoinColumn(name = "doctorId")
 public class Doctor  extends User{
-
-
-
 
 	private String firstName;
 	@NotNull
 	private String lastName;
 	private String specialization;
 
-	
+	@JsonManagedReference
 	@OneToMany(mappedBy="doctor")
 	private Set<Record> records;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy="doctor")
 	private Set<Prescription> prescriptions;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy="doctor")
 	private Set<Patient>patients;
 
 
-   public void addPatient(Patient patient) {
-	   this.patients.add(patient);
-	   patient.setDoctor(this);
-   }
+//   public void addPatient(Patient patient) {
+//	   this.patients.add(patient);
+//	   patient.setDoctor(this);
+//   }
    /*patient lenteleje bus doctor stulpelis - isorinis raktas i doctor.
     * Patient yra savininkas,todel kiekviena karta pridedat nauja pascienta, 
     * turi buti susiejamas gydytojas, kvieciant savininko metoda setDoctor();

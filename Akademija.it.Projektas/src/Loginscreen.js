@@ -24,7 +24,7 @@ class Loginscreen extends Component {
           {this.state.loginmessage}
         </div>
         <div className="col-sm-8">
-          Statistika
+          {/* Statistika */}
           </div>
       </div>
     );

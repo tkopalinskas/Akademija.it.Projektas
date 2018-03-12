@@ -1,25 +1,24 @@
 package lt.sveikata.prescription;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.hibernate.annotations.Type;
 
 @Entity
 public class AddNewPrescription {
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long prescriptionId;
 	private String doctorsFullName;
-	@Type(type = "date")
 	private String prescriptionDate;
 	private Long personalId;
-	@Type(type = "date")
 	private String validUntil;
 	private String activeIngredient;
 	private String amountPerDose;
@@ -30,6 +29,17 @@ public class AddNewPrescription {
 	private long number;
 	private int totalAmount;
 	private String totalUnits;
+	
+	
+
+	public long getPrescriptionId() {
+		return prescriptionId;
+	}
+
+	public void setPrescriptionId(long prescriptionId) {
+		this.prescriptionId = prescriptionId;
+	}
+
 
 	public long getNumber() {
 		return number;

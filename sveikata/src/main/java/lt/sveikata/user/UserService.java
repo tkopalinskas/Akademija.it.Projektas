@@ -27,6 +27,7 @@ public class UserService implements UserDetailsService  {
 		List<User> usersFromDatabase = getUserRepository().findAll();
 		List<UserForClient> usersForClient = usersFromDatabase.stream().map((user) -> {
 			UserForClient use = new UserForClient();
+			use.setId(user.getUserId());
 			use.setUserName(user.getUserName());
 			use.setSuspended(user.isSuspended());
 			return use;

@@ -33,6 +33,7 @@ class PatientsListTable extends Component {
             deselectOnClickaway: true,
             height: '300px',
             showModal: false,
+            personalId:'',
 
             patients: [],
             firstName: '',
@@ -45,9 +46,12 @@ class PatientsListTable extends Component {
     }
 
     /*received all doctor's patients from database */
+   
     componentWillMount(){
+      let userData = window.sessionStorage.getItem('userData');
+       let user = JSON.parse(userData);
         axios
-            .get("http://localhost:8081/doctor/patientsList")
+            .get("http://localhost:8081/doctor/patientsList/" + user.userId)
             .then((response) => {
                 console.log(response);
                 this.setState({patients: response.data});
@@ -59,8 +63,10 @@ class PatientsListTable extends Component {
 
     /* sets a route value to a selected one */
     handleChange= (event, index, value) => {
+      let patientID = event.target.getAttribute('data-patient-id');
       this.setState({value: event.target.value }) 
-      
+      this.setState({personalId:patientID});
+      console.log("patient id:"+patientID);
        switch (event.target.value){
         case "naujas receptas":
           this.openPrescriptionModal();
@@ -90,7 +96,9 @@ class PatientsListTable extends Component {
 
     /* opens a prescription form */
     openPrescriptionModal = () => {
+      
       this.setState({ showModal: !this.state.showModal });
+      
     };
 
     /* opens a medical record form */
@@ -103,14 +111,14 @@ class PatientsListTable extends Component {
         console.log("personal", this.state.personalId)
         console.log("value", this.state.value)
 
-        var allPatients = this.state.patients.map((patient, index) => (
+        var allPatients = this.state.patients.map((patient, index) => (          
           <TableRow key={index}>
               <TableRowColumn>{patient.firstName}</TableRowColumn>
               <TableRowColumn>{patient.lastName}</TableRowColumn>
               <TableRowColumn>{patient.personalId}</TableRowColumn>
               <TableRowColumn>
                 <select className="routeToComponent" 
-                        value={this.state.value} onChange={this.handleChange}>
+                        value={this.state.value} data-patient-id={patient.personalId} onChange={this.handleChange}>
                   <option id="moreOptions" value={""} >Daugiau informacijos </option>
                   <option id="prescriptions" value={"receptai"} >Receptai</option>
                   <option id="medicalRecords" value={"ligos įrašai"} >Ligos įrašai</option>
@@ -120,6 +128,7 @@ class PatientsListTable extends Component {
               </TableRowColumn>
           </TableRow>
       ))
+ 
 
       if (!this.state.patients) {
           return null;
@@ -128,9 +137,12 @@ class PatientsListTable extends Component {
       /* picks which form to open, depending on value selected from dropdown */
       var newAdditionModal;
         if (this.state.value==="naujas receptas"){
-            newAdditionModal=<NewPrescription  
+            newAdditionModal=<NewPrescription 
+                               
                                 open={this.state.showModal}
-                                closeAction={this.openPrescriptionModal}/>
+                                closeAction={this.openPrescriptionModal}
+                                personalId={this.state.personalId}
+                                />
         }else{
             newAdditionModal=<NewMedicalRecord
                                 open={this.state.showModal}

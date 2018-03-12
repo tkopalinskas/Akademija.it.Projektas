@@ -1,5 +1,6 @@
 package lt.sveikata.doctor;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.OneToMany;
@@ -10,9 +11,10 @@ import lt.sveikata.medicalRecords.RecordForClient;
 import lt.sveikata.patient.Patient;
 import lt.sveikata.patient.PatientForClient;
 import lt.sveikata.prescription.Prescription;
+import lt.sveikata.prescription.PrescriptionForClient;
 import lt.sveikata.user.UserForClient;
 
-public class DoctorForClient {
+public class DoctorForClient implements Serializable{
 
 
 	private String firstName;
@@ -22,15 +24,14 @@ public class DoctorForClient {
 	private String role;
 	private boolean isSuspended;
 
-	
 
-	private Set<RecordForClient> records;
-	
-
-	private Set<Prescription> prescriptions;
-	
-	private Set<PatientForClient>patients;
-
+//	private Set<RecordForClient> records;
+//	
+//
+//	private Set<PrescriptionForClient> prescriptions;
+//	
+//	private Set<PatientForClient>patients;
+//
 
 //   public void addPatient(Patient patient) {
 //	   this.patients.add(patient);
@@ -48,29 +49,29 @@ public class DoctorForClient {
 		return firstName;
 	}
 
-	public Set<RecordForClient> getRecords() {
-		return records;
-	}
-
-	public void setRecords(Set<RecordForClient> records) {
-		this.records = records;
-	}
-
-	public Set<Prescription> getPrescriptions() {
-		return prescriptions;
-	}
-
-	public void setPrescriptions(Set<Prescription> prescriptions) {
-		this.prescriptions = prescriptions;
-	}
-
-	public Set<PatientForClient> getPatients() {
-		return patients;
-	}
-
-	public void setPatients(Set<PatientForClient> patients) {
-		this.patients = patients;
-	}
+//	public Set<RecordForClient> getRecords() {
+//		return records;
+//	}
+//
+//	public void setRecords(Set<RecordForClient> records) {
+//		this.records = records;
+//	}
+//
+//	public Set<PrescriptionForClient> getPrescriptions() {
+//		return prescriptions;
+//	}
+//
+//	public void setPrescriptions(Set<PrescriptionForClient> prescriptions) {
+//		this.prescriptions = prescriptions;
+//	}
+//
+//	public Set<PatientForClient> getPatients() {
+//		return patients;
+//	}
+//
+//	public void setPatients(Set<PatientForClient> patients) {
+//		this.patients = patients;
+//	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,17 +21,20 @@ public class RecordForDoctorController {
 	private RecordService visitService;
 
 	@RequestMapping(value = "/patient/medicalRecords", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('DOCTOR')") 
 	public List<RecordForClient> giveAllVisits() {
 		return getVisitService().receiveAllVisits();
 	}
 
 	/* gets a specified record from database, searches by recordId */
 	@RequestMapping(value = "/patient/medicalRecords/{recordId}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('DOCTOR')") 
 	public RecordForClient singleRecord(@PathVariable("recordId") final Long recordId) {
 		return visitService.receiveRecordInfo(recordId);
 	}
 
 	@RequestMapping(value = "/addNewRecord", method = RequestMethod.POST)
+	@PreAuthorize("hasRole('DOCTOR')") 
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createVisit(@RequestBody final AddNewRecord newVisit) {
 		visitService.addNewVisit(newVisit);

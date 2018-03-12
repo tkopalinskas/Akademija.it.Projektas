@@ -10,6 +10,9 @@ import PatientWindowNavigation from './PatientWindowNavigation';
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const rowStyle={
     margin: 0,
@@ -68,9 +71,19 @@ class PatientContainer extends Component{
         });
     };
 
+    logoutClick = () =>{
+      
+        axios.get('http://localhost:8081/logout')
+             .then((resp)=>{
+                 console.log('isilogina');
+               let user = resp.data;
+               window.sessionStorage.removeItem("userData");
+             } );
+    };
+
     
     render(){
-
+    
     let userData = window.sessionStorage.getItem('userData');
        if(userData==null)
             window.location.href="/#/";
@@ -80,12 +93,6 @@ class PatientContainer extends Component{
                 window.location.href="/#/";
        
        }
-
-       let user = JSON.parse(userData);
-    
-    //    console.log("UserName: ", JSON.parse(window.sessionStorage.getItem('userData').userName))
-    //    console.log(user.userName)
-       
         return(
             <MuiThemeProvider>
             <div>
@@ -96,7 +103,7 @@ class PatientContainer extends Component{
                         showMenuIconButton={false} iconElementRight={<FlatButton
                         className="userPopoverMenu"
                         onClick={this.handleClick}
-                        label={"Sveiki, "+ user.firstName +" "+ user.lastName} />
+                        label={"Sveiki, " } />
                     }>
                     <Popover
                         open={this.state.leftDrop}
@@ -108,6 +115,7 @@ class PatientContainer extends Component{
                                       primaryText="Pakeisti slaptažodį"/>   
                             <MenuItem className="logOut"
                                       containerElement={<Link to="/" />}
+                                      onClick={this.logoutClick}
                                       primaryText="Atsijungti"/>
                     </Popover>
                 </AppBar>

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lt.sveikata.doctor.Doctor;
+import lt.sveikata.doctor.DoctorRepository;
 import lt.sveikata.patient.Patient;
 import lt.sveikata.patient.PatientForClient;
 import lt.sveikata.patient.PatientRepository;
@@ -20,6 +22,9 @@ public class PrescriptionService {
 
 	@Autowired
 	private PrescriptionRepository prescriptionRepository;
+	
+	@Autowired
+	private DoctorRepository doctorRepository;
 
 	/* receives a list of all prescriptions from database */
 	public List<PrescriptionForClient> receiveAllPrescriptions() {
@@ -69,12 +74,39 @@ public class PrescriptionService {
 		return prescription;
 	}
 
+
 	/*saves all information about a new prescription into database*/
-	public void addNewPrescription(AddNewPrescription newPrescription) {
+//	public void addNewPrescription(AddNewPrescription newPrescription) {
+//		Prescription prescr = new Prescription();
+//		// you are using this one
+//		//no
+//		prescr.setDoctorsFullName(newPrescription.getDoctorsFullName());
+//		prescr.setPrescriptionDate(newPrescription.getPrescriptionDate());
+//		prescr.setPersonalId(newPrescription.getPersonalId());
+//		prescr.setValidUntil(newPrescription.getValidUntil());
+//		prescr.setActiveIngredient(newPrescription.getActiveIngredient());
+//		prescr.setAmountPerDose(newPrescription.getAmountPerDose());
+//		prescr.setUnits(newPrescription.getUnits());
+//		prescr.setTotalAmount(newPrescription.getTotalAmount());
+//		prescr.setTotalUnits(newPrescription.getTotalUnits());
+//		prescr.setDescription(newPrescription.getDescription());
+//		prescr.setTimesUsed(newPrescription.getTimesUsed());
+//		prescriptionRepository.save(prescr);
+//	}
+	
+//	public void assignDoctor(String patientUsername, String doctorUserName) {
+//		Patient pat = patientRepository.findAllByUserName(patientUsername);
+//		pat.setDoctor(doctorRepository.findOneByUserName(doctorUserName));
+//		patientRepository.save(pat);
+//	}
+	
+	public void addPrescription(AddNewPrescription newPrescription, long personalId, long doctorId) {
 		Prescription prescr = new Prescription();
 		prescr.setDoctorsFullName(newPrescription.getDoctorsFullName());
-		prescr.setPrescriptionDate(newPrescription.getPrescriptionDate());
-		prescr.setPersonalId(newPrescription.getPersonalId());
+		prescr.setPrescriptionDate(newPrescription.getPrescriptionDate());	
+		Patient patient = patientRepository.findByPersonalId(newPrescription.getPersonalId());
+		prescr.setPatient(patient);
+//		prescr.setPersonalId(newPrescription.getPersonalId());
 		prescr.setValidUntil(newPrescription.getValidUntil());
 		prescr.setActiveIngredient(newPrescription.getActiveIngredient());
 		prescr.setAmountPerDose(newPrescription.getAmountPerDose());
@@ -84,6 +116,11 @@ public class PrescriptionService {
 		prescr.setDescription(newPrescription.getDescription());
 		prescr.setTimesUsed(newPrescription.getTimesUsed());
 		prescriptionRepository.save(prescr);
+		Doctor doc = doctorRepository.findOneByUserId(doctorId);
+		prescr.setDoctor(doc);
+		Patient pat = patientRepository.findByPersonalId(personalId);
+		prescr.setPatient(pat);
+//		pat.getPrescription().add(prescr);
 	}
 
 	/*saves new information about specified prescription into database*/
@@ -120,7 +157,19 @@ public class PrescriptionService {
 		prescriptionForClient.setPrescriptionId(prescription.getPrescriptionId());
 		return prescriptionForClient;
 	}
+	//get user prescriptions
+	public List<Prescription> getUserPrescriptionByUserName(String userName){
+		return prescriptionRepository.getPatientPrescriptionsByUserName(userName);
+	}
+	//get prescription by personalId
+//	public List<Prescription> byPersonalId(Long personalId){
+//		return prescriptionRepository.getPatientPrescriptionsById(personalId);
+//	}
 
+//	public Prescription getSinglePrescription(long number) {
+//		return prescriptionRepository.getSinglePrescription(number);
+//	}	
+	
 	public PrescriptionRepository getPrescriptionRepository() {
 		return prescriptionRepository;
 	}

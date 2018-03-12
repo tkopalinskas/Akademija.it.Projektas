@@ -61,7 +61,7 @@ class PharmacistsPrescriptionsTable extends Component {
             number: '',
             prescriptionId:'',
 
-          personalCode: '',
+          personalId: '',
           validPrescriptionInfo:[]
       }
   }
@@ -71,7 +71,7 @@ class PharmacistsPrescriptionsTable extends Component {
     if (e.key === 'Enter') {
       let personalId=e.target.value;
         this.setState({
-            personalCode: personalId,
+            personalId: personalId,
         }); 
         /* let userData = window.sessionStorage.getItem('userData');
         let user = JSON.parse(userData); */

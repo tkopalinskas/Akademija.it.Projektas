@@ -3,12 +3,12 @@ package lt.sveikata.patient;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lt.sveikata.doctor.DoctorRepository;
+import lt.sveikata.prescription.Prescription;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import lt.sveikata.doctor.DoctorRepository;
 
 @Transactional
 @Service
@@ -124,6 +124,11 @@ public class PatientService {
 		Patient pat = patientRepository.findAllByUserName(patientUsername);
 		pat.setDoctor(doctorRepository.findOneByUserName(doctorUserName));
 		patientRepository.save(pat);
+	}
+
+	//get patients list by doctorId
+	public List<Patient> byDoctorId(long doctorId){
+		return patientRepository.getPatientById(doctorId);
 	}
 
 	public PatientRepository getPatientRepository() {

@@ -1,7 +1,6 @@
 package lt.sveikata.prescription;
 
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lt.sveikata.doctor.Doctor;
 import lt.sveikata.patient.Patient;
@@ -40,10 +41,12 @@ public class Prescription {
 	private List<UsesFact> usesFact;
 
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "patientId")
 	private Patient patient;
 
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "doctorId")
 	private Doctor doctor;
 
@@ -61,6 +64,31 @@ public class Prescription {
 
 	public void setPrescriptionId(long prescriptionId) {
 		this.prescriptionId = prescriptionId;
+	}
+	
+
+	public long getPrescriptionId() {
+		return prescriptionId;
+	}
+
+	public void setPrescriptionId(long prescriptionId) {
+		this.prescriptionId = prescriptionId;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 
 	public long getNumber() {
