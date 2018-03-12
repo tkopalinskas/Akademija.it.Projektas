@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField/TextField';
 import axios from 'axios';
 import {API} from "../Admin/SideBar/Registration/HostUrl";
+import swal from 'sweetalert';
 
 const textStyles = {
     errorStyle: {
@@ -99,7 +100,9 @@ class NewPrescription extends Component {
             return true;
         }
         else{
-          alert("Įveskite vaisto naudojimo aprašymą!")
+          //alert("Įveskite vaisto naudojimo aprašymą!")
+          swal("Title", "Įveskite vaisto naudojimo aprašymą!", "error");
+
         }
     }
 

@@ -161,9 +161,9 @@ public class PrescriptionService {
 		return prescriptionRepository.getPatientPrescriptionsByUserName(userName);
 	}
 	//get prescription by personalId
-//	public List<Prescription> byPersonalId(Long personalId){
-//		return prescriptionRepository.getPatientPrescriptionsById(personalId);
-//	}
+	public List<Prescription> byPersonalId(Long personalId){
+		return prescriptionRepository.getPatientPrescriptionsById(personalId);
+	}
 
 //	public Prescription getSinglePrescription(long number) {
 //		return prescriptionRepository.getSinglePrescription(number);

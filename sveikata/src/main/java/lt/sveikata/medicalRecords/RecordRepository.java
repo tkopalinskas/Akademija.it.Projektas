@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import lt.sveikata.prescription.Prescription;
+
 import java.util.List;
 	
 public interface RecordRepository extends JpaRepository<Record, Long>{
@@ -12,6 +14,8 @@ public interface RecordRepository extends JpaRepository<Record, Long>{
 //	List<Record>getPatientRecordsByUserId(@Param("patId") Long id);
 	
        Record findByRecordId(long recordId); 
+       
+ 
        List<Record> findAllByOrderByDateOfVisitDesc();
 }
 

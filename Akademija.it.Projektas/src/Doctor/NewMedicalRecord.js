@@ -22,6 +22,7 @@ class NewMedicalRecord extends Component {
         super(props);
         this.state = {
             open: false,
+            personalId:props.personalId,
 
             currentDate: '',
             illnessTLKCode: '',
@@ -122,12 +123,16 @@ class NewMedicalRecord extends Component {
                 }
             
 
-            axios.post(API + "/doctor/patient/addNewRecord/", information)
-                .then((response)=>{
-                console.log("registration  successful");
-                alert("Ligos istorija įrašyta!"); 
-                this.props.closeAction();    
-            })
+                let userData = window.sessionStorage.getItem('userData');
+                let user = JSON.parse(userData);
+                     //axios.post(,{,})
+                     axios({
+                         method:'POST',
+                         url:API + "/doctor/" + user.userId + "/patient/" + this.state.personalId + "/addNewRecord",
+                         // headers:{'Content-type':'application/x-www-form-urlencoded'},
+                         headers:{'Content-type':'application/json'},
+                         data:information
+                     })
                 .catch((error)=>{
                 console.log(error);
                 this.props.closeAction();

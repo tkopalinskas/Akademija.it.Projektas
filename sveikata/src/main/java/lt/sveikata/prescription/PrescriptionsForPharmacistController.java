@@ -21,22 +21,22 @@ public class PrescriptionsForPharmacistController {
 	private PrescriptionService prescriptionService;
 	
 
-//	private ModelMapper modelMapper = new ModelMapper();
+	private ModelMapper modelMapper = new ModelMapper();
 
 	/* gets all specified patient's prescriptions for pharmacist */
-	@RequestMapping(value = "/{personalId}/prescriptions", method = RequestMethod.GET)
-	 @PreAuthorize("hasRole('PHARMACIST')") 
-	public List<PrescriptionForClient> giveValidPrescriptions(@PathVariable("personalId") Long personalId) {
-		return getPrescriptionService().receiveAllPrescriptionsForPharmacist(personalId);
-	}
+//	@RequestMapping(value = "/{personalId}/prescriptions", method = RequestMethod.GET)
+//	 @PreAuthorize("hasRole('PHARMACIST')") 
+//	public List<PrescriptionForClient> giveValidPrescriptions(@PathVariable("personalId") Long personalId) {
+//		return getPrescriptionService().receiveAllPrescriptionsForPharmacist(personalId);
+//	}
 	
 	/* Gets patient prescriptions.Same thing less code */
-//	@RequestMapping("/{personalId}/prescriptions")
-//	public List<PrescriptionForClient> getPatientPrescriptions(@PathVariable("personalId") Long personalId) {
-//		List<Prescription> prescriptions = prescriptionService.byPersonalId(personalId);
-//		return modelMapper.map(prescriptions, new TypeToken<List<PrescriptionForClient>>() {
-//		}.getType());
-//	}
+	@RequestMapping("/{personalId}/prescriptions")
+	public List<PrescriptionForClient> getPatientPrescriptions(@PathVariable("personalId") Long personalId) {
+		List<Prescription> prescriptions = prescriptionService.byPersonalId(personalId);
+		return modelMapper.map(prescriptions, new TypeToken<List<PrescriptionForClient>>() {
+		}.getType());
+	}
 	
 	/*gets a specified prescription from database, searches by number*/
 	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)

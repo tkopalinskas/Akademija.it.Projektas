@@ -8,15 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lt.sveikata.doctor.Doctor;
+import lt.sveikata.doctor.DoctorRepository;
+import lt.sveikata.patient.Patient;
+import lt.sveikata.patient.PatientRepository;
+import lt.sveikata.prescription.AddNewPrescription;
+import lt.sveikata.prescription.Prescription;
+
 @Transactional
 @Service
 public class RecordService {
 
 	@Autowired
-	private RecordRepository visitRepository;
+	private RecordRepository recordRepository;
+	
+	@Autowired
+	private PatientRepository patientRepository;
+	
+	@Autowired
+	private DoctorRepository doctorRepository;
 
 	public List<RecordForClient> receiveAllVisits() {
-		List<Record> visitsFromDatabase = getVisitRepository().findAllByOrderByDateOfVisitDesc();
+		List<Record> visitsFromDatabase = getRecordRepository().findAllByOrderByDateOfVisitDesc();
 		List<RecordForClient> visitsForClient = visitsFromDatabase.stream().map((visit) -> {
 			RecordForClient vfc = new RecordForClient();
 			vfc.setRecordId(visit.getRecordId());
@@ -34,7 +47,7 @@ public class RecordService {
 	
 	/* receives info about a single prescription found by it's id */
 	public RecordForClient receiveRecordInfo(long recordId) {
-		Record record = visitRepository.findByRecordId(recordId);
+		Record record = recordRepository.findByRecordId(recordId);
 		RecordForClient recordForClient = new RecordForClient();
 		recordForClient.setRecordId(record.getRecordId());
 		recordForClient.setDateOfVisit(record.getDateOfVisit());
@@ -48,24 +61,32 @@ public class RecordService {
 	}
 
 	public void addNewVisit(AddNewRecord newVisit) {
+	
+	}
+	
+	public void addNewRecord(AddNewRecord newRecord, long personalId, long doctorId) {
 		Record vis = new Record();
-		vis.setDateOfVisit(newVisit.getDateOfVisit());
-		vis.setIllnessTLKCode(newVisit.getIllnessTLKCode());
-		vis.setDoctorsFullName(newVisit.getDoctorsFullName());
-		vis.setLengthOfVisit(newVisit.getLengthOfVisit());
-		vis.setDescription(newVisit.getDescription());
-		vis.setCompensated(newVisit.isCompensated());
-		vis.setVisitIsRepeated(newVisit.isVisitIsRepeated());
-		visitRepository.save(vis);
-
+		vis.setDateOfVisit(newRecord.getDateOfVisit());
+		vis.setIllnessTLKCode(newRecord.getIllnessTLKCode());
+		vis.setDoctorsFullName(newRecord.getDoctorsFullName());
+		vis.setLengthOfVisit(newRecord.getLengthOfVisit());
+		vis.setDescription(newRecord.getDescription());
+		vis.setCompensated(newRecord.isCompensated());
+		vis.setVisitIsRepeated(newRecord.isVisitIsRepeated());
+		Patient patient = patientRepository.findByPersonalId(personalId);
+		vis.setPatient(patient);
+		Doctor doc = doctorRepository.findOneByUserId(doctorId);
+		vis.setDoctor(doc);
+		recordRepository.save(vis);
 	}
 
-	public RecordRepository getVisitRepository() {
-		return visitRepository;
+
+	public RecordRepository getRecordRepository() {
+		return recordRepository;
 	}
 
-	public void setVisitRepository(RecordRepository visitRepository) {
-		this.visitRepository = visitRepository;
+	public void setVisitRepository(RecordRepository recordtRepository) {
+		this.recordRepository = recordRepository;
 	}
 
 	// public LocalDate getCurrentDate() {
@@ -75,17 +96,5 @@ public class RecordService {
 	// public void setCurrentDate(LocalDate dateOfVisit) {
 	// dateOfVisit=LocalDate.now();
 	// this.dateOfVisit = dateOfVisit;
-	// }
-
-	//
-	// public void updateVisit(Record visit, Long id) {
-	// Record vis = visitRepository.findOne(id);
-	// //vis.setDateOfVisit(Calendar.getInstance());
-	// vis.setIllnessTLKCode(visit.getIllnessTLKCode());
-	// vis.setLengthOfVisit(visit.getLengthOfVisit());
-	// vis.setDescription(visit.getDescription());
-	// vis.setCompensated(visit.isCompensated());
-	// vis.setVisitIsRepeated(visit.isVisitIsRepeated());
-	// visitRepository.save(visit);
 	// }
 }

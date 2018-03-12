@@ -142,11 +142,13 @@ class PatientsListTable extends Component {
                                 open={this.state.showModal}
                                 closeAction={this.openPrescriptionModal}
                                 personalId={this.state.personalId}
+                                //perduoti ID
                                 />
-        }else{
+        }else if(this.state.value==="naujas ligos įrašas"){
             newAdditionModal=<NewMedicalRecord
                                 open={this.state.showModal}
-                                closeAction={this.openMedicalRecordModal}/>
+                                closeAction={this.openMedicalRecordModal}
+                                personalId={this.state.personalId}/>
         }    
 
         return (

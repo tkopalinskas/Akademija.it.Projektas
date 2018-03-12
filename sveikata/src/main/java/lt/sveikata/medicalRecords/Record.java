@@ -24,8 +24,7 @@ public class Record {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long recordId;
-	@NotNull
-	@Column
+
 	//@Type(type = "date")
 	private String dateOfVisit;
 	private String illnessTLKCode;
@@ -108,5 +107,22 @@ public class Record {
 	public void setVisitIsRepeated(boolean visitIsRepeated) {
 		this.visitIsRepeated = visitIsRepeated;
 	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+	
 
 }
