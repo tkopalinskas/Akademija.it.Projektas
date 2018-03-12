@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class AddNewPrescription {
 
@@ -14,14 +16,17 @@ public class AddNewPrescription {
 	@Column(unique = true)
 	private long prescriptionId;
 	private String doctorsFullName;
+	@Type(type = "date")
 	private String prescriptionDate;
 	private Long personalId;
+	@Type(type = "date")
 	private String validUntil;
 	private String activeIngredient;
 	private String amountPerDose;
 	private String units;
 	private String description;
 	private int timesUsed = 0;
+	private boolean isValid=true;
 	private long number;
 	private int totalAmount;
 	private String totalUnits;
@@ -120,6 +125,14 @@ public class AddNewPrescription {
 
 	public void setTotalUnits(String totalUnits) {
 		this.totalUnits = totalUnits;
+	}
+
+	public boolean isValid() {
+		return isValid;
+	}
+
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
 	}
 
 }

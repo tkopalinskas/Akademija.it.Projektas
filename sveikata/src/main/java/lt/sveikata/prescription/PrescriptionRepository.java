@@ -8,4 +8,5 @@ public interface PrescriptionRepository extends JpaRepository<Prescription, Long
 	List<Prescription> findAllByOrderByPrescriptionDate();
 	Prescription findByNumber(long number);
 	List<Prescription> findByPersonalId(long personalId);
+	Prescription findByPrescriptionId(long prescriptionId);
 }

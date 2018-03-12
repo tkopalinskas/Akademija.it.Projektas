@@ -1,10 +1,14 @@
 package lt.sveikata.pharmacist;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import lt.sveikata.prescriptionUses.UsesFact;
 import lt.sveikata.user.User;
 
 @Entity
@@ -19,6 +23,9 @@ public class Pharmacist extends User {
 	@NotNull
 	private String workplace;
 	private String typeOfWorkplace;
+	
+	@OneToMany(mappedBy = "pharmacist")
+	private List<UsesFact> usesFact;
 
 	public String getFirstName() {
 		return firstName;

@@ -51,7 +51,7 @@ class PharmacistsPrescriptionsTable extends Component {
             validUntil: '',
             prescriptionDate: '',
             doctorsFullName:'',
-            timesUsed: 0,
+            timesUsed:'',
             activeIngredient: '',
             amountPerDose:'',
             units:'',
@@ -59,6 +59,7 @@ class PharmacistsPrescriptionsTable extends Component {
             totalUnits:'',
             description: '',
             number: '',
+            prescriptionId:'',
 
           personalCode: '',
           validPrescriptionInfo:[]
@@ -72,9 +73,10 @@ class PharmacistsPrescriptionsTable extends Component {
         this.setState({
             personalCode: personalId,
         }); 
-      
+        /* let userData = window.sessionStorage.getItem('userData');
+        let user = JSON.parse(userData); */
       axios
-        .get(API+"/pharmacist/" + personalId +"/prescriptions")
+        .get(API+"/pharmacist/" +personalId +"/prescriptions")
         .then((response) => {
             console.log(response);
             this.setState({validPrescriptions: response.data});
@@ -87,7 +89,11 @@ class PharmacistsPrescriptionsTable extends Component {
   }
   
   /*gets single prescription*/
-  openModal = (number) => {
+  openModal = (/* event, index, */ number) => {
+   /*  let prescriptionID = window.sessionStorage.getItem('prescription-id');
+    this.setState({prescriptionId : JSON.parse(prescriptionID)}); */
+   /*  this.setState({prescriptionId:prescriptionID}); */
+     /*  console.log("prescription id:"+prescriptionID); */
       console.log("number:"+number);
       axios.get(API+"/pharmacist/prescriptions/" + number)
           .then((response) => { this.setState({ validPrescriptionInfo: response.data }) 
@@ -122,7 +128,7 @@ class PharmacistsPrescriptionsTable extends Component {
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
+            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} /* data-prescription-id={prescription.prescriptionId} */ onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
         </TableRow>
     ))
 
