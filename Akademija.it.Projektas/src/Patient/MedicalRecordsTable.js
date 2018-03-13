@@ -64,11 +64,10 @@ class MedicalRecordsTable extends Component {
     
   /*gets single prescription*/
   openModal = (recordId) => {
-    console.log("number:"+recordId);
+    console.log("recordID:"+recordId);
     axios.get(API+"/patient/medicalRecords/" + recordId)
       .then((response) => { this.setState({ recordInfo: response.data }) 
       this.setState({ showModal: !this.state.showModal })
-      console.log(this.state.showModal)
     })
       .catch((error) => {
         console.log(error);
@@ -87,7 +86,8 @@ class MedicalRecordsTable extends Component {
               <TableRowColumn>{records.illnessTLKCode}</TableRowColumn>
               <TableRowColumn>{records.doctor.firstName}</TableRowColumn> 
               <TableRowColumn>{records.doctor.lastName}</TableRowColumn> 
-              <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(records.recordId)}  /></TableRowColumn>
+              <TableRowColumn><FlatButton id="moreButton" label="Daugiau" 
+              primary={true} onClick={()=>this.openModal(records.recordId)}  /></TableRowColumn>
           </TableRow>
       ))
 
@@ -159,7 +159,8 @@ class MedicalRecordsTable extends Component {
             <RecordInformationModal
                         open={this.state.showModal}
                         closeAction={this.closeModal}
-                        recordInfo={this.state.recordInfo} /> 
+                        recordInfo={this.state.recordInfo}
+                        recordId={this.state.recordId} /> 
         </div>
         </MuiThemeProvider>
     );

@@ -64,7 +64,6 @@ class PatientsListTable extends Component {
       let patientID = event.target.getAttribute('data-patient-id');
       this.setState({value: event.target.value }) 
       this.setState({personalId:patientID});
-/*       console.log("patient id:"+patientID) */;
        switch (event.target.value){
         case "naujas receptas":
           this.openPrescriptionModal();
@@ -73,10 +72,10 @@ class PatientsListTable extends Component {
           this.openMedicalRecordModal();
           break;
         case "receptai":
-          window.location.assign("http://localhost:8081/#/doctor/patient/prescriptions");
+          window.location.assign("http://localhost:8081/#/doctor/patient/prescriptions/" + patientID);
           break;
         case "ligos įrašai":
-          window.location.assign("http://localhost:8081/#/doctor/patient/medicalRecords");
+          window.location.assign("http://localhost:8081/#/doctor/patient/medicalRecords/" + patientID);
           break;
         default: return null;
       } 
@@ -144,7 +143,7 @@ class PatientsListTable extends Component {
                                 open={this.state.showModal}
                                 closeAction={this.openMedicalRecordModal}
                                 personalId={this.state.personalId}/>
-        }    
+        }
 
         return (
         <MuiThemeProvider>

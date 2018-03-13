@@ -21,10 +21,10 @@ public class RecordService {
 
 	@Autowired
 	private RecordRepository recordRepository;
-	
+
 	@Autowired
 	private PatientRepository patientRepository;
-	
+
 	@Autowired
 	private DoctorRepository doctorRepository;
 
@@ -44,26 +44,17 @@ public class RecordService {
 		}).collect(Collectors.toList());
 		return visitsForClient;
 	}
-	
-	/* receives info about a single prescription found by it's id */
-	public RecordForClient receiveRecordInfo(long recordId) {
+
+	/* receives info about a single prescription found by it's number */
+	public Record receiveRecordInfo(long recordId) {
 		Record record = recordRepository.findByRecordId(recordId);
-		RecordForClient recordForClient = new RecordForClient();
-//		recordForClient.setRecordId(record.getRecordId());
-		recordForClient.setDateOfVisit(record.getDateOfVisit());
-		recordForClient.setIllnessTLKCode(record.getIllnessTLKCode());
-		recordForClient.setDoctorsFullName(record.getDoctorsFullName());
-		recordForClient.setLengthOfVisit(record.getLengthOfVisit());
-		recordForClient.setCompensated(record.isCompensated());
-		recordForClient.setDescription(record.getDescription());
-		recordForClient.setVisitIsRepeated(record.isVisitIsRepeated());
-		return recordForClient;
+		return record;
 	}
 
 	public void addNewVisit(AddNewRecord newVisit) {
-	
+
 	}
-	
+
 	public void addNewRecord(AddNewRecord newRecord, long personalId, long doctorId) {
 		Record vis = new Record();
 		vis.setDateOfVisit(newRecord.getDateOfVisit());
@@ -80,7 +71,7 @@ public class RecordService {
 		recordRepository.save(vis);
 	}
 
-	public List<Record> getRecordsByUserId(long patientId){
+	public List<Record> getRecordsByUserId(long patientId) {
 		return recordRepository.getPatientRecordByUserId(patientId);
 	}
 
@@ -92,12 +83,4 @@ public class RecordService {
 		this.recordRepository = recordRepository;
 	}
 
-	// public LocalDate getCurrentDate() {
-	// return dateOfVisit;
-	// }
-	//
-	// public void setCurrentDate(LocalDate dateOfVisit) {
-	// dateOfVisit=LocalDate.now();
-	// this.dateOfVisit = dateOfVisit;
-	// }
 }

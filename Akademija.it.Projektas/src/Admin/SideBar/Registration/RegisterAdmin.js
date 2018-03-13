@@ -7,6 +7,7 @@ import axios from 'axios';
 import {API} from "./HostUrl";
 import swal from 'sweetalert';
 
+
 const textStyles = {
   errorStyle: {
     color: orange500,
@@ -39,9 +40,9 @@ class RegisterAdmin extends Component {
     else{
       swal({
         text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-        icon: "success",
+        icon: "error",
        button: "Gerai",
-    }); 
+    });
     }
 }
 
@@ -54,9 +55,9 @@ class RegisterAdmin extends Component {
       else{
         swal({
           text: "Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-          icon: "success",
+          icon: "error",
          button: "Gerai",
-      }); 
+      });
       }
   }
 
@@ -69,9 +70,9 @@ class RegisterAdmin extends Component {
       else{
         swal({
           text: "Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
-          icon: "success",
+          icon: "error",
          button: "Gerai",
-      }); 
+      });
       }
   }
 
@@ -81,10 +82,10 @@ class RegisterAdmin extends Component {
       }
       else{
         swal({
-          text: "Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
-          icon: "success",
+          text:"Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
+          icon: "error",
          button: "Gerai",
-      }); 
+      });
       }
   }
 
@@ -96,9 +97,9 @@ class RegisterAdmin extends Component {
       else{
         swal({
           text: "Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.",
-          icon: "success",
+          icon: "error",
          button: "Gerai",
-      }); 
+      });
       }
   }
 
@@ -134,15 +135,15 @@ class RegisterAdmin extends Component {
             text: "Registracija sėkminga!",
             icon: "success",
            button: "Gerai",
-        });    
+        });
           this.refs.form.reset();  
       })
       .catch((error)=>{
         console.log(error);
         if(error.response.status === 500){ 
           swal({
-            text:  "Toks vartotojo vardas jau egzistuoja. Sukurkite naują.",
-            icon: "success",
+            text: "Toks vartotojo vardas jau egzistuoja. Sukurkite naują.",
+            icon: "error",
            button: "Gerai",
         });
           console.log("error status",error.response.status)

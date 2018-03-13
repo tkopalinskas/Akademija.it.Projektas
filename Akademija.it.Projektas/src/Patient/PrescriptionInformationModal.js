@@ -39,7 +39,6 @@ class PrescriptionInformationModal extends Component {
                 </div>
             )
         
-
         return (
             <MuiThemeProvider>
                 <div>

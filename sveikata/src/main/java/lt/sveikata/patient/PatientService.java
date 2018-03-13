@@ -50,9 +50,6 @@ public class PatientService {
 		patientForClient.setSuspended(patient.isSuspended());
 		patientForClient.setDateOfBirth(patient.getDateOfBirth());
 		patientForClient.setUserName(patient.getUserName());
-		if(patient.getDoctor() !=null) {
-			patientForClient.setDoctorsFullName(patient.getDoctor().getFirstName() + " " + patient.getDoctor().getLastName());
-		}
 		return patientForClient;
 	}
 
@@ -91,35 +88,21 @@ public class PatientService {
 		pat.setLastName(newPatient.getLastName());
 		pat.setDateOfBirth(newPatient.getDateOfBirth());
 		pat.setPersonalId(newPatient.getPersonalId());
-		// pat.setDoctorsFullName(newPatient.getDoctorsFullName());
 		pat.setUserName(newPatient.getUserName());
 		pat.setPassword(passwordEncoder.encode(newPatient.getPassword()));
 		pat.setRole("PATIENT");
 		patientRepository.save(pat);
 
 	}
-	
+
 	public Patient getByUserId(long userId) {
 		Patient pat = patientRepository.findByUserId(userId);
 		pat.getFirstName();
 		pat.getLastName();
-		
+
 		return pat;
-		
+
 	}
-
-	// update patient info
-
-//	public void updatePatient(Patient patient, Long personalId) {
-//		Patient pat = patientRepository.findOne(personalId);
-//		pat.setFirstName(patient.getFirstName());
-//		pat.setLastName(patient.getLastName());
-//		pat.setDateOfBirth(patient.getDateOfBirth());
-//		pat.setPersonalId(patient.getPersonalId());
-//		// pat.setDoctorsFullName(patient.getDoctorsFullName());
-//		// pat.setNotSuspended(patient.isNotSuspended());
-//		patientRepository.save(pat);
-//	}
 
 	public DoctorRepository getDoctorRepository() {
 		return doctorRepository;
@@ -135,8 +118,8 @@ public class PatientService {
 		patientRepository.save(pat);
 	}
 
-	//get patients list by doctorId
-	public List<Patient> byDoctorId(long doctorId){
+	// get patients list by doctorId
+	public List<Patient> byDoctorId(long doctorId) {
 		return patientRepository.getPatientById(doctorId);
 	}
 

@@ -18,13 +18,12 @@ public class UsesService {
 
 	@Autowired
 	private UsesRepository usesRepository;
-	
+
 	@Autowired
 	private PrescriptionRepository prescriptionRepository;
-	
+
 	@Autowired
 	private PharmacistRepository pharmacistRepository;
-	
 
 	/* receives a list of all prescription uses from database */
 	public List<UsesFactsForClient> receiveAllUses() {
@@ -38,20 +37,19 @@ public class UsesService {
 		return usesForClient;
 	}
 
-	/* adds a new fact of prescription use*/
+	/* adds a new fact of prescription use */
 	public void addNewUse(AddNewUse newUse, long prescriptionId, long pharmacistId) {
 		UsesFact usesFact = new UsesFact();
 		usesFact.setPrescriptionUsesDate(newUse.getPrescriptionUsesDate());
-		usesFact.setTimesUsed(newUse.getTimesUsed()+1);
+		usesFact.setTimesUsed(newUse.getTimesUsed() + 1);
 		Prescription prescription = prescriptionRepository.findByPrescriptionId(prescriptionId);
 		usesFact.setPrescription(prescription);
 		Pharmacist pharm = pharmacistRepository.findOneByUserId(pharmacistId);
 		usesFact.setPharmacist(pharm);
-		//usesFact.setPharmacistsFullName(newUse.getPharmacistsFullName());
+		// usesFact.setPharmacistsFullName(newUse.getPharmacistsFullName());
 		// usesFact.setValid(newUse.getIsValid());
 		usesRepository.save(usesFact);
-		
-		
+
 	}
 
 	public UsesRepository getUsesRepository() {

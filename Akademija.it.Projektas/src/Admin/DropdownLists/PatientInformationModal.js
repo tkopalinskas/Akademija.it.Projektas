@@ -52,12 +52,8 @@ export default class InformationModal extends React.Component {
                 label="Siųsti"
                 primary={true}
                 disabled={this.state.disabled}
-            // onClick={this.props.closeAction}
             />,
         ];
-
-        //modal pagauna paduoda array su specifiniu userinfo per props
-
 
         console.log(this.props.userInfo);
 
@@ -81,7 +77,7 @@ export default class InformationModal extends React.Component {
                             </span>
                         </div>
                         <Checkbox
-                            label="Suspend User"
+                            label="Suspenduoti vartotoją"
                             onCheck={this.handleToggle}
                         />
                     </Dialog>

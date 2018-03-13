@@ -7,6 +7,7 @@ import { API } from "./HostUrl";
 import axios from 'axios';
 import swal from 'sweetalert';
 
+
 const textStyles = {
   errorStyle: {
     color: orange500,
@@ -48,7 +49,7 @@ class RegisterPatient extends Component {
     else{
       swal({
         text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-        icon: "success",
+        icon: "error",
        button: "Gerai",
     });
     }
@@ -63,7 +64,7 @@ validLastNameEntered(){
     else{
       swal({
         text: "Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-        icon: "success",
+        icon: "error",
        button: "Gerai",
     });
     }
@@ -77,8 +78,8 @@ validUserNameEntered(){
     }
     else{
       swal({
-        text: "Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
-        icon: "success",
+        text:"Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
+        icon: "error",
        button: "Gerai",
     });
     }
@@ -114,7 +115,7 @@ generateDateOfBirth=() =>{
   }else{
     swal({
       text: "Patikrinkit ar teisingai įvedėte asmens kodą",
-      icon: "success",
+      icon: "error",
      button: "Gerai",
   });
     return this.setState({personalId:null})
@@ -134,7 +135,7 @@ generateDateOfBirth=() =>{
     else{
       swal({
         text: "Asmens kodas privalomas! Asmens kodą sudaro 11 skaitmenų",
-        icon: "success",
+        icon: "error",
        button: "Gerai",
     });
     }
@@ -147,7 +148,7 @@ generateDateOfBirth=() =>{
     else {
       swal({
         text: "Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
-        icon: "success",
+        icon: "error",
        button: "Gerai",
     });
     }
@@ -161,7 +162,7 @@ generateDateOfBirth=() =>{
     else {
       swal({
         text: "Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.",
-        icon: "success",
+        icon: "error",
        button: "Gerai",
     });
     }
@@ -184,8 +185,8 @@ handleDateGeneration(event){
       return true;
     } else {
       swal({
-        text: 'Paspauskite mygtuką "Generuoti gimimo datą" arba suveskite teisingą asmens kodą',
-        icon: "success",
+        text:'Paspauskite mygtuką "Generuoti gimimo datą arba suveskite teisingą asmens kodą',
+        icon: "error",
        button: "Gerai",
     });
     }
@@ -203,14 +204,11 @@ handleDateGeneration(event){
     }
   }
 
-
   handleClick(event) {
     var apiUrl = API;
 
     if (this.dataIsValid()) {
-      console.log("data is valid: " + this.dataIsValid());
-
-      //set values
+  
       var information = {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
@@ -224,9 +222,8 @@ handleDateGeneration(event){
 
       axios.post(apiUrl + '/admin/patient', information)
         .then((response) => {
-          console.log("registration  successful");
           swal({
-            text: "Registracija sėkminga!",
+            text:"Registracija sėkminga!" ,
             icon: "success",
            button: "Gerai",
         });
@@ -237,8 +234,8 @@ handleDateGeneration(event){
           console.log(error);
           if(error.response.status === 500){ 
             swal({
-              text: "Toks vartotojo vardas jau egzistuoja. Sukurkite naują.",
-              icon: "success",
+              text:"Toks vartotojo vardas jau egzistuoja. Sukurkite naują.",
+              icon: "error",
              button: "Gerai",
           });
             console.log("error status",error.response.status)
@@ -248,7 +245,7 @@ handleDateGeneration(event){
       return true;
     } else {
       this.setState({ dateOfBirth: '' })
-      console.log("some data is wrong");
+      console.log("Neteisingi duomenys");
       return false;
     }
   }

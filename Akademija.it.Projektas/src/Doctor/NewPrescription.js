@@ -17,7 +17,7 @@ const textStyles = {
     },
 };
 let date = new Date()
-let dateOfToday = date.getFullYear() + "-" + date.getDate() + "-" + (date.getMonth()+1)
+let dateOfToday = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()
 
 class NewPrescription extends Component {
     constructor(props) {
@@ -127,21 +127,6 @@ class NewPrescription extends Component {
           };
         }
 
-        getCurrentDate(){
-            let today = new Date()
-            let year = today.getFullYear();
-            let month = today.getMonth() + 1;
-            let day = today.getDate();
-            if (month<10){
-                month='0'+month;
-            }
-            if (day<10){
-                day='0'+day
-            }
-    
-            let dateForChecking = (year+'-'+month+'-'+day); 
-            this.setState({currentDate: dateForChecking});
-        }
 
     dataIsValid(){
         if (this.validActiveIngredientEntered()&&

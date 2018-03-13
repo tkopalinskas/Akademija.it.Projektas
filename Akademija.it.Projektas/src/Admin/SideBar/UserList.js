@@ -17,9 +17,6 @@ class UserList extends Component {
             showUserManagementOptions: false,
         };
     }
-
-
-
     render() {
 
         return (

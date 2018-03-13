@@ -33,14 +33,14 @@ public class RecordForDoctorController {
 	/* gets a specified record from database, searches by recordId */
 	@RequestMapping(value = "/patient/medicalRecords/{recordId}", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('DOCTOR')") 
-	public RecordForClient singleRecord(@PathVariable("recordId") final Long recordId) {
+	public Record singleRecord(@PathVariable("recordId") final Long recordId) {
 		return recordService.receiveRecordInfo(recordId);
 	}
 
 	/*adds a new record to database*/
 	@RequestMapping(value = "{doctorId}/patient/{personalId}/addNewRecord", method = RequestMethod.POST,
  consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@PreAuthorize("hasRole('DOCTOR')") 
+	@PreAuthorize("hasRole('DOCTOR')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public 	@ResponseBody void createPrescrition(@RequestBody final AddNewRecord newRecord,
 			@PathVariable Long personalId,

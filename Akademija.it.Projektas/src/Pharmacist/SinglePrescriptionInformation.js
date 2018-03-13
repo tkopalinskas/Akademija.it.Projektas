@@ -10,6 +10,7 @@ import axios from 'axios';
 import {API} from "../Admin/SideBar/Registration/HostUrl";
 import swal from 'sweetalert';
 
+
 const textStyles = {
     errorStyle: {
       color: orange500,
@@ -48,9 +49,9 @@ class SinglePrescriptionInformation extends Component {
         else{
             swal({
                 text: "Įveskite perkamą vaisto kiekį.",
-                icon: "success",
-                button: "Gerai",
-            }); 
+                icon: "error",
+               button: "Gerai",
+            });
         }
     }
 
@@ -68,8 +69,8 @@ class SinglePrescriptionInformation extends Component {
         }else{
             swal({
                 text: "Patikrinkite, ar įvedėte visą informaciją ir pažymėjote langelį",
-                icon: "success",
-                button: "Gerai",
+                icon: "error",
+               button: "Gerai",
             });
         }
     }
@@ -133,11 +134,11 @@ class SinglePrescriptionInformation extends Component {
             console.log(this.state)
             event.preventDefault();
         }else{
-            console.log("data is wrong");
+            console.log("Neteisingi duomenys");
             swal({
                 text: "Nepavyko panaudoti recepto. Bandykite dar kartą.",
-                icon: "success",
-                button: "Gerai",
+                icon: "error",
+               button: "Gerai",
             });
         }
     }
@@ -147,7 +148,6 @@ class SinglePrescriptionInformation extends Component {
     }
 
     render() {
-
 
         if (!this.props.validPrescriptionInfo){
             return null;
@@ -170,7 +170,6 @@ class SinglePrescriptionInformation extends Component {
         var singlePrescription = null;
 
         if (this.props.validPrescriptionInfo.validUntil != null) {
-            console.log(this.props.validPrescriptionInfo)
             singlePrescription = (
                 <div >
                     <p> Galiojimo data: {this.props.validPrescriptionInfo.validUntil}</p>
@@ -185,7 +184,6 @@ class SinglePrescriptionInformation extends Component {
                 </div>
             )
         }
-
 
         return (
             <MuiThemeProvider>

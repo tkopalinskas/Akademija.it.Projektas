@@ -25,6 +25,10 @@ export default class InformationModal extends React.Component {
     translate = (suspend) => {
         if (suspend) {
             return "Taip"
+            .get("http://localhost:8081/user/" + this.props.userInfo.userId +"/suspend")
+            .then((response) => {
+                this.setState({prescriptions: response.data});
+            })
         } else {
             return "Ne"
         }
@@ -78,7 +82,7 @@ export default class InformationModal extends React.Component {
 
                      {user}
                         <Checkbox
-                            label="Suspend User"
+                            label="Suspenduoti vartotoją"
                             onCheck={this.handleToggle}
                         />
                     </Dialog>

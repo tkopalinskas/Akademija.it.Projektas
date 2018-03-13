@@ -44,22 +44,20 @@ class PrescriptionsTable extends Component {
       totalAmount:'',
       totalUnits:'',
       description: '',
-      number: '',
+    prescriptionId: '',
 
       prescriptionInfo: []
     }
   }
 
   /*gets single prescription*/
-  openModal = (number) => {
-    console.log("number:" + number);
-    axios.get(API+"/patient/prescriptions/" + number)
+  openModal = (prescriptionId) => {
+    // console.log("number:" + prescriptionId);
+    axios.get(API+"/patient/prescriptions/" + prescriptionId)
 
       .then((response) => {
         this.setState({ prescriptionInfo: response.data })
         this.setState({ showModal: !this.state.showModal })
-        console.log("perscription info", this.state.prescriptionInfo)
-        console.log(this.state.showModal)
       })
       .catch((error) => {
         console.log(error);
@@ -94,7 +92,8 @@ class PrescriptionsTable extends Component {
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
+            <TableRowColumn><FlatButton id="moreButton" label="Daugiau"
+             primary={true} onClick={()=>this.openModal(prescription.prescriptionId)} /></TableRowColumn>
         </TableRow>
     ))
 
@@ -174,7 +173,8 @@ class PrescriptionsTable extends Component {
           <PrescriptionInformationModal
             open={this.state.showModal}
             closeAction={this.closeModal}
-            prescriptionInfo={this.state.prescriptionInfo} />
+            prescriptionInfo={this.state.prescriptionInfo} 
+            prescriptionId={this.state.prescriptionId}/>
         </div>
       </MuiThemeProvider>
     );

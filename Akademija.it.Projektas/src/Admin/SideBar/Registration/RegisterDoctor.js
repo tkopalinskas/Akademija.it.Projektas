@@ -8,6 +8,7 @@ import axios from 'axios';
 import swal from 'sweetalert';
 
 
+
 const textStyles = {
     errorStyle: {
       color: orange500,
@@ -43,7 +44,7 @@ class RegisterDoctor extends Component {
         else{
             swal({
                 text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-                icon: "success",
+                icon: "error",
                button: "Gerai",
             });
         }
@@ -57,10 +58,11 @@ class RegisterDoctor extends Component {
         }
         else{
             swal({
-                text: "Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-                icon: "success",
+                text:"Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai." ,
+                icon: "error",
                button: "Gerai",
             });
+          
         }
     }
 
@@ -73,7 +75,7 @@ class RegisterDoctor extends Component {
         else{
             swal({
                 text: "Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
-                icon: "success",
+                icon: "error",
                button: "Gerai",
             });
         }
@@ -86,7 +88,7 @@ class RegisterDoctor extends Component {
         else{
             swal({
                 text: "Pasirinkite specializaciją! Jei specializacijos nėra sąraše, pasirinkite 'kita' ir įrašykite specializaciją į laukelį.",
-                icon: "success",
+                icon: "error",
                button: "Gerai",
             });
         }
@@ -99,7 +101,7 @@ class RegisterDoctor extends Component {
         else{
             swal({
                 text: "Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
-                icon: "success",
+                icon: "error",
                button: "Gerai",
             });
         }
@@ -113,7 +115,7 @@ class RegisterDoctor extends Component {
         else{
             swal({
                 text: "Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.",
-                icon: "success",
+                icon: "error",
                button: "Gerai",
             });
         }
@@ -155,7 +157,7 @@ class RegisterDoctor extends Component {
                     text: "Registracija sėkminga!",
                     icon: "success",
                    button: "Gerai",
-                });  
+                });
                 this.refs.form.reset();
             })
             .catch((error)=>{
@@ -163,21 +165,20 @@ class RegisterDoctor extends Component {
                 if(error.response.status === 500){ 
                     swal({
                         text: "Toks vartotojo vardas jau egzistuoja. Sukurkite naują.",
-                        icon: "success",
+                        icon: "error",
                        button: "Gerai",
-                    }); 
+                    });
                     console.log("error status",error.response.status)
                 } 
             })
             event.preventDefault();
             return true;
         }else{
-            console.log("some data is wrong");
+            console.log("Netinkami duomenys");
             return false;
         }
       }
        
-
     handleChange= (event, index, value) => {
         this.setState({ specialization: event.target.value , value: value });
         

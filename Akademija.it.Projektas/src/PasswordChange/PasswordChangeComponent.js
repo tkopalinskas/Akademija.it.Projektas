@@ -45,9 +45,9 @@ class PasswordChangeComponent extends Component {
         else{
             swal({
                 text: "Naujasis slaptažodis nesutampa su pakartotu naujuoju slaptažodžiu! Bandykite įvesti iš naujo.",
-                icon: "success",
+                icon: "error",
                button: "Gerai",
-            }); 
+            });
         }
     }
 
@@ -59,9 +59,9 @@ class PasswordChangeComponent extends Component {
         else{
             swal({
                 text: "Netinka slaptažodžio ilgis",
-                icon: "success",
+                icon: "error",
                button: "Gerai",
-            }); 
+            });
         }
     }
 
@@ -79,38 +79,21 @@ class PasswordChangeComponent extends Component {
 
             let userData = window.sessionStorage.getItem('userData');
             let user = JSON.parse(userData);
-            // let userRole='';
             let passwordInfo={
                 password: this.state.newPassword
             }
-            // switch(user.role){
-            //     case 'ADMIN':
-            //         userRole='/ADMIN';
-            //         break;
-            //     case'PATIENT':
-            //         userRole='/patient';
-            //         break;
-            //     case 'PHARMACIST':
-            //         userRole='/pharmacist';
-            //         break;
-            //     case 'DOCTOR':
-            //        userRole='/doctor';
-            //        break;
-            //     default:
-            //         return null;   
-            // }
-
             axios({method:'PUT',
                 url: API + user.role +"/"+ user.userId+"/changePassword", 
                 headers:{'Content-type':'application/json'},
                 data: passwordInfo})
             .then((response)=>{
                 console.log("password change successful!");
+
                 swal({
                     text: "Slaptažodis pakeistas!",
                     icon: "success",
-                    button: "Gerai",
-                }); 
+                   button: "Gerai",
+                });
             })
             .catch((error)=>{
                 console.log(error);
@@ -118,7 +101,7 @@ class PasswordChangeComponent extends Component {
             
         }
         else{
-            console.log("wrong password");
+            console.log("Neteisingi duomenys");
         } 
         event.preventDefault();
     }

@@ -44,7 +44,6 @@ export default class ListofAdmins extends Component {
     handleChange = (event) => {
         this.setState({ height: event.target.value });
     };
-    //Atidaro modal ir paduoda jam array su specifiniu username. 140 eilute nusiuncia i paty modala kaip state
     openModal = (userName) => {
         axios.get(`http://localhost:8081/admin/admin/${userName}`)
             .then((response) => { this.setState({ userInfo: response.data }) })
@@ -58,7 +57,8 @@ export default class ListofAdmins extends Component {
 
     componentWillMount = () => {
         axios.get("http://localhost:8081/admin/allAdmins")
-            .then((response) => { this.setState({ adminGet: response.data }); console.log(this.state.adminGet) })
+            .then((response) => { this.setState({ adminGet: response.data }); 
+         })
             .catch((error) => { console.log(error) });
     };
 

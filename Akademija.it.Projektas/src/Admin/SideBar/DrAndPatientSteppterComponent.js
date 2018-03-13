@@ -100,7 +100,6 @@ class DoctorAssignmentToPatient extends Component {
 
         axios.put(`http://localhost:8081/admin/patientDoctorAssign/${this.state.patientInfromationFromList.userName}/${this.state.doctorInformationFromList.userName}`)
             .then((response) => {
-                console.log("registration  successful");
                 this.setState({ open: !this.state.open });
             })
             .catch((error) => {

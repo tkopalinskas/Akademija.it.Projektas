@@ -29,11 +29,7 @@ public class UsesFact {
 	@JsonBackReference(value="prescriptionId")
 	@JoinColumn(name = "prescriptionId")
 	private Prescription prescription;
-	//
-	// @ManyToOne
-	// @JsonBackReference
-	// @JoinColumn(name ="prescriptionId")
-	// private Prescription prescription;
+
 
 	@ManyToOne
 	@JsonBackReference(value="pharmacistId")

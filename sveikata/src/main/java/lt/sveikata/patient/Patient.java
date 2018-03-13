@@ -18,7 +18,6 @@ import lt.sveikata.user.User;
 @Table(name = "PATIENT")
 @EqualsAndHashCode(exclude = {"doctor"})
 @PrimaryKeyJoinColumn(name = "patientId")
-//@DiscriminatorValue("Patient")
 public class Patient extends User {
 
 	@Column(unique = true)
@@ -29,7 +28,6 @@ public class Patient extends User {
 	private String lastName;
 	private String dateOfBirth;
 
-//	private String doctorsFullName;
 
     @ManyToOne
     @JsonBackReference(value="doctorId")

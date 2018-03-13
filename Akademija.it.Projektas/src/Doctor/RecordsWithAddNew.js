@@ -17,7 +17,7 @@ const rowStyle={
 const containerStyle={
     padding: 0,
 }
-
+const personId = window.location.href.substring(window.location.href.length - 11)
 class RecordsWithAddNew extends Component{
 
     constructor(){
@@ -36,7 +36,7 @@ class RecordsWithAddNew extends Component{
     handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             this.setState({
-                personalId: e.target.value,
+                personalId: personId,
             });
         }
     };
@@ -63,6 +63,7 @@ class RecordsWithAddNew extends Component{
                         <RecordsTableForDoctor/>
                         <NewMedicalRecord
                             open={this.state.showModal}
+                            personalId={personId}
                             closeAction={this.openMedicalRecordModal} />
                     </Col>
                     </Row>
