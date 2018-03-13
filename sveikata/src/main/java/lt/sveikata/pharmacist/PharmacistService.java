@@ -8,16 +8,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import lt.sveikata.user.User;
+
 @Transactional
 @Service
 public class PharmacistService {
 
 	@Autowired
 	private PharmacistRepository pharmacistRepository;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
 
 	public List<PharmacistForClient> receiveAllPharmacists() {
 		List<Pharmacist> pharmacistsFromDatabase = getPharmacistRepository().findAll();
@@ -48,14 +49,6 @@ public class PharmacistService {
 		return pharmacistsForClient;
 	}
 
-	public PharmacistRepository getPharmacistRepository() {
-		return pharmacistRepository;
-	}
-
-	public void setPharmacistRepository(PharmacistRepository pharmacistRepository) {
-		this.pharmacistRepository = pharmacistRepository;
-	}
-
 	public void addNewPharmacist(AddNewPharmacist newPharmacist) {
 		Pharmacist pharm = new Pharmacist();
 		pharm.setFirstName(newPharmacist.getFirstName());
@@ -69,15 +62,18 @@ public class PharmacistService {
 
 	}
 
-
-	public void updatePharmacist(Pharmacist pharmacist, Long id) {
-		Pharmacist pharm = pharmacistRepository.findOne(id);
-		pharm.setFirstName(pharmacist.getFirstName());
-		pharm.setLastName(pharmacist.getLastName());
-		pharm.setWorkplace(pharmacist.getWorkplace());
-		pharm.setTypeOfWorkplace(pharmacist.getTypeOfWorkplace());
-		pharm.setPassword(pharmacist.getPassword());
+	public void updatePharmacist(Pharmacist pharmacist, Long userId) {
+		Pharmacist pharm = pharmacistRepository.findOne(userId);
+		pharm.setPassword(passwordEncoder.encode(pharmacist.getPassword()));
 		pharmacistRepository.save(pharm);
+	}
+
+	public PharmacistRepository getPharmacistRepository() {
+		return pharmacistRepository;
+	}
+
+	public void setPharmacistRepository(PharmacistRepository pharmacistRepository) {
+		this.pharmacistRepository = pharmacistRepository;
 	}
 
 }

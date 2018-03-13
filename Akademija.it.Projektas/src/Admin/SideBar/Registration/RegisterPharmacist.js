@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {orange500, blue500} from 'material-ui/styles/colors';
+import { orange500, blue500 } from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
-import {API} from "./HostUrl";
+import { API } from "./HostUrl";
 import axios from 'axios';
 import swal from 'sweetalert';
 
@@ -11,18 +11,18 @@ import swal from 'sweetalert';
 
 const textStyles = {
     errorStyle: {
-      color: orange500,
+        color: orange500,
     },
     floatingLabelFocusStyle: {
-      color: blue500,
+        color: blue500,
     },
-  };
+};
 
 class RegisterPharmacist extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             firstName: '',
             lastName: '',
             userName: '',
@@ -34,142 +34,113 @@ class RegisterPharmacist extends Component {
         };
     }
 
-    validFirstNameEntered(){
-        if(this.state.firstName!==''&&
-        this.state.firstName.length>=3&&
-        this.state.firstName.length<=30){
+    validFirstNameEntered() {
+        if (this.state.firstName !== '' &&
+            this.state.firstName.length >= 3 &&
+            this.state.firstName.length <= 30) {
             return true;
         }
-        else{
-            swal({
-                text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-                icon: "error",
-               button: "Gerai",
-            });
+        else {
+            alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
         }
     }
 
-    validLastNameEntered(){
-        if(this.state.lastName!==''&&
-        this.state.lastName.length>=3&&
-        this.state.lastName.length<=30){
+    validLastNameEntered() {
+        if (this.state.lastName !== '' &&
+            this.state.lastName.length >= 3 &&
+            this.state.lastName.length <= 30) {
             return true;
         }
-        else{
-            swal({
-                text: "Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-                icon: "error",
-               button: "Gerai",
-            });
+        else {
+            alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
         }
     }
 
-    validUserNameEntered(){
-        if(this.state.userName!==''&&
-        this.state.userName.length>=6&&
-        this.state.userName.length<=30){
+    validUserNameEntered() {
+        if (this.state.userName !== '' &&
+            this.state.userName.length >= 6 &&
+            this.state.userName.length <= 30) {
             return true;
         }
-        else{
-            swal({
-                text: "Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
-                icon: "error",
-               button: "Gerai",
-            });
+        else {
+            alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
         }
     }
 
     typeOfWorkplaceIsSelected() {
-        if(this.state.typeOfWorkplace!==''){
+        if (this.state.typeOfWorkplace !== '') {
             return true;
         }
-        else{
-            swal({
-                text: "Pasirinkite įmonės tipą!",
-                icon: "error",
-               button: "Gerai",
-            });
+        else {
+            alert("Pasirinkite įmonės tipą!")
         }
     }
 
-    validWorkplaceEntered(){
-        if(this.state.workplace!==''&&
-        this.state.workplace.length>=2&&
-        this.state.workplace.length<=50){
+    validWorkplaceEntered() {
+        if (this.state.workplace !== '' &&
+            this.state.workplace.length >= 2 &&
+            this.state.workplace.length <= 50) {
             return true;
         }
-        else{
-            swal({
-                text: "Įmonės pavadinimas privalomas!",
-                icon: "error",
-               button: "Gerai",
-            });
-        }
-    } 
-
-    bothPasswordsMatch(){
-        if (this.state.password===this.state.repeatedPassword){
-            return true;
-        }
-        else{
-            swal({
-                text: "Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
-                icon: "error",
-               button: "Gerai",
-            });
+        else {
+            alert("Įmonės pavadinimas privalomas!")
         }
     }
 
-    validPassword(){
-        if(this.state.password.length>=6&&
-        this.state.password.length<=30){
+    bothPasswordsMatch() {
+        if (this.state.password === this.state.repeatedPassword) {
             return true;
         }
-        else{
-            swal({
-                text:"Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.",
-                icon: "error",
-               button: "Gerai",
-            });
+        else {
+            alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
         }
     }
 
-    dataIsValid(){
-        if (this.typeOfWorkplaceIsSelected()&&
-        this.validWorkplaceEntered()&& 
-        this.bothPasswordsMatch()&&
-        this.validFirstNameEntered()&&
-        this.validLastNameEntered()&&
-        this.validUserNameEntered()&&
-        this.validPassword()){
+    validPassword() {
+        if (this.state.password.length >= 6 &&
+            this.state.password.length <= 30) {
+            return true;
+        }
+        else {
+            alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
+        }
+    }
+
+    dataIsValid() {
+        if (this.typeOfWorkplaceIsSelected() &&
+            this.validWorkplaceEntered() &&
+            this.bothPasswordsMatch() &&
+            this.validFirstNameEntered() &&
+            this.validLastNameEntered() &&
+            this.validUserNameEntered() &&
+            this.validPassword()) {
             return true;
         }
     }
-    
+
 
     handleClick(event) {
-        var apiUrl=API;
+        var apiUrl = API;
 
 
-        if (this.dataIsValid()){
-      
+        if (this.dataIsValid()) {
+
             console.log("data is valid: " + this.dataIsValid());
-            
+
             //set values
-            var information={
-                firstName : this.state.firstName,
-                lastName : this.state.lastName,
+            var information = {
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
                 userName: this.state.userName,
                 password: this.state.password,
                 workplace: this.state.workplace,
                 typeOfWorkplace: this.state.typeOfWorkplace
             }
 
-            this.refs.form.reset();
-
                 axios.post(apiUrl + '/admin/pharmacist', information)
                 .then((response)=>{
-                    console.log("registration  successful");
+                    console.log("registration  successful"); 
+                    this.refs.form.reset();
                     swal({
                         text: "Registracija sėkminga!",
                         icon: "success",
@@ -178,25 +149,29 @@ class RegisterPharmacist extends Component {
                 })
                 .catch((error)=>{
                 console.log(error);
+                 if(error.response.status === 500){ 
+                    alert("Toks vartotojo vardas jau egzistuoja. Sukurkite naują.")
+                    console.log("error status",error.response.status)
+                   } 
                 })
-                console.log(this.state);
                 event.preventDefault();
         }else{
             console.log("some data is wrong");
         }
     }
 
-    handleChange= (event, index, value) => {
+    handleChange = (event, index, value) => {
         this.setState({ typeOfWorkplace: event.target.value, value: value });
     }
 
     render() {
+
         return (
             <div>
                 <MuiThemeProvider>
                     <form className="registerPharmacist"
-                    ref="form">
-                    <h2> Registruoti vaistininką </h2>
+                        ref="form">
+                        <h2> Registruoti vaistininką </h2>
                         <TextField
                             className="firstName"
                             id="inputFirstName"
@@ -229,10 +204,10 @@ class RegisterPharmacist extends Component {
                             floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
                             onChange={(event, newValue) => this.setState({ workplace: newValue })}
                         />
-                        <br/>
+                        <br />
                         <select className="typeOfWorkplace"
-                                      id="inputTypeOfWorkplace"
-                                      value={this.state.value} onChange={this.handleChange}>
+                            id="inputTypeOfWorkplace"
+                            value={this.state.value} onChange={this.handleChange}>
                             <option id="noTypeOfWorkplace" value={""}>Pasirinkite įmonės tipą</option>
                             <option id="UAB" value={"UAB"}>UAB</option>
                             <option id="AB" value={"AB"}>AB</option>

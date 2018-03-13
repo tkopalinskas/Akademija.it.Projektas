@@ -117,7 +117,6 @@ class PharmacistContainer extends Component{
                             <MenuItem className="logOut"
                                       containerElement={<Link to="/" />}
                                       onClick={this.logoutClick}
-                                      onClick={this.logoutClick}
                                       primaryText="Atsijungti"/>
                     </Popover>
                 </AppBar>

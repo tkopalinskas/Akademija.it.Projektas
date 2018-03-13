@@ -16,6 +16,8 @@ const textStyles = {
       color: blue500,
     },
 };
+let date = new Date()
+let dateOfToday = date.getFullYear() + "-" + date.getDate() + "-" + (date.getMonth()+1)
 
 class NewPrescription extends Component {
     constructor(props) {
@@ -25,8 +27,6 @@ class NewPrescription extends Component {
         this.state = {
             open: false,
             personalId:props.personalId,
-
-            currentDate: '',
             activeIngredient: '',
             amountPerDose: '',
             units: '',
@@ -37,9 +37,7 @@ class NewPrescription extends Component {
         };
     }
 
-    componentDidMount(){
-        this.getCurrentDate();
-    }
+
 
     validActiveIngredientEntered(){
         if(this.state.activeIngredient!==''){
@@ -169,7 +167,7 @@ class NewPrescription extends Component {
                 totalAmount: this.state.totalAmount,
                 validUntil: this.state.validUntil,
                 description: this.state.description,
-                currentDate:this.state.currentDate
+                prescriptionDate: dateOfToday
                 }
         console.log('infos:')
         console.log(information);    

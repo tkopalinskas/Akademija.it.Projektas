@@ -5,7 +5,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { API } from "./HostUrl";
 import axios from 'axios';
-import swal from 'sweetalert';
 
 const textStyles = {
   errorStyle: {
@@ -46,11 +45,7 @@ class RegisterPatient extends Component {
         return true;
     }
     else{
-      swal({
-        text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-        icon: "error",
-       button: "Gerai",
-    });
+      alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
 }
 
@@ -61,11 +56,7 @@ validLastNameEntered(){
         return true;
     }
     else{
-      swal({
-        text: "Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-        icon: "error",
-       button: "Gerai",
-    });
+      alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
 }
 
@@ -76,12 +67,7 @@ validUserNameEntered(){
         return true;
     }
     else{
-
-    swal({
-      text: "Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
-      icon: "error",
-     button: "Gerai",
-  });
+      alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
 }
 
@@ -93,7 +79,6 @@ validUserNameEntered(){
       personalId: newValue,
       disabled: false
     });
-    console.log('get id', this.state.personalId)
   }
 
 generateDateOfBirth=() =>{
@@ -114,11 +99,7 @@ generateDateOfBirth=() =>{
   }else if((firstDigit==='5')||(firstDigit==='6')){
     year='20'+secondGroup;
   }else{
-    swal({
-      text: "Patikrinkit ar teisingai įvedėte asmens kodą",
-      icon: "error",
-     button: "Gerai",
-  });
+    alert("Patikrinkit ar teisingai įvedėte asmens kodą");
     return this.setState({personalId:null})
   } 
 
@@ -134,11 +115,7 @@ generateDateOfBirth=() =>{
         return true;
     }
     else{
-      swal({
-        text: "Asmens kodas privalomas! Asmens kodą sudaro 11 skaitmenų",
-        icon: "error",
-       button: "Gerai",
-    });
+      alert("Asmens kodas privalomas! Asmens kodą sudaro 11 skaitmenų")
     }
 }
 
@@ -147,11 +124,7 @@ generateDateOfBirth=() =>{
       return true;
     }
     else {
-      swal({
-        text: "Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
-        icon: "error",
-       button: "Gerai",
-    });
+      alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
     }
   }
 
@@ -161,11 +134,7 @@ generateDateOfBirth=() =>{
       return true;
     }
     else {
-      swal({
-        text: "Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.",
-        icon: "error",
-       button: "Gerai",
-    });
+      alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
     }
 }
 
@@ -185,11 +154,7 @@ handleDateGeneration(event){
       this.validPersonalIdEntered && this.state.dateOfBirth !== 'Invalid Date') {
       return true;
     } else {
-      swal({
-        text: 'Paspauskite mygtuką "Generuoti gimimo datą arba suveskite teisingą asmens kodą',
-        icon: "error",
-       button: "Gerai",
-    });
+      alert('Paspauskite mygtuką "Generuoti gimimo datą arba suveskite teisingą asmens kodą')
     }
   }
 
@@ -221,23 +186,22 @@ handleDateGeneration(event){
         dateOfBirth: this.state.dateOfBirth,
         personalId: this.state.personalId,
       }
-      this.refs.form.reset();
+     
       this.setState({ dateOfBirth: '' })
 
-      console.log('info', information)
       axios.post(apiUrl + '/admin/patient', information)
         .then((response) => {
           console.log("registration  successful");
-          swal({
-            text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-            icon: "success",
-           button: "Gerai",
-        });
+          alert("Registracija sėkminga!");
+          this.refs.form.reset();
         })
         .catch((error) => {
           console.log(error);
+          if(error.response.status === 500){ 
+            alert("Toks vartotojo vardas jau egzistuoja. Sukurkite naują.")
+            console.log("error status",error.response.status)
+          } 
         })
-      console.log(this.state);
       event.preventDefault();
       return true;
     } else {
