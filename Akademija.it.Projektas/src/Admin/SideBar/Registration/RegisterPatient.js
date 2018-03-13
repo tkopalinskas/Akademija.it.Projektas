@@ -79,7 +79,6 @@ validUserNameEntered(){
       personalId: newValue,
       disabled: false
     });
-    console.log('get id', this.state.personalId)
   }
 
 generateDateOfBirth=() =>{
@@ -187,19 +186,21 @@ handleDateGeneration(event){
         dateOfBirth: this.state.dateOfBirth,
         personalId: this.state.personalId,
       }
-      this.refs.form.reset();
-      this.setState({ dateOfBirth: '' })
 
-      console.log('info', information)
       axios.post(apiUrl + '/admin/patient', information)
         .then((response) => {
           console.log("registration  successful");
           alert("Registracija sėkminga!");
+          this.refs.form.reset();
+          this.setState({ dateOfBirth: '' })
         })
         .catch((error) => {
           console.log(error);
+          if(error.response.status === 500){ 
+            alert("Toks vartotojo vardas jau egzistuoja. Sukurkite naują.")
+            console.log("error status",error.response.status)
+          } 
         })
-      console.log(this.state);
       event.preventDefault();
       return true;
     } else {

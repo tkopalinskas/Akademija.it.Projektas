@@ -3,8 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
-//import axios from 'axios';
-//import {API} from "../SideBar/Registration/HostUrl";
+import axios from 'axios';
+import {API} from "../Admin/SideBar/Registration/HostUrl";
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
@@ -63,23 +63,46 @@ class PasswordChangeComponent extends Component {
         }
     }
 
+
     handleClick(event){
- 
 
         if(this.dataIsValid()){
-/* 
-           axios.put(API + "/admin/{id}/changePassword", 
-           {password: this.state.password})
-           .then((response)=>{
-               console.log("password change successful!");
-               alert("Slaptažodis pakeistas!");
-           })
-           .catch((error)=>{
-               console.log(error);
-           }) */
-           alert("Slaptažodis pakeistas!");
-           /*galutiniam variante istrinti console.log, 
-        kad nesimatytu slaptazodzio konsolej*/   
+
+            let userData = window.sessionStorage.getItem('userData');
+            let user = JSON.parse(userData);
+            let userRole='';
+            let passwordForChanging={
+                password: this.state.newPassword
+            }
+            switch(user.role){
+                case 'ADMIN':
+                    userRole='/admin';
+                    break;
+                case'PATIENT':
+                    userRole='/patient';
+                    break;
+                case 'PHARMACIST':
+                    userRole='/pharmacist';
+                    break;
+                case 'DOCTOR':
+                   userRole='/doctor';
+                   break;
+                default:
+                    return null;   
+            }
+
+            axios({method:'PUT',
+                url:API + userRole +"/"+ user.userId+"/changePassword", 
+                headers:{'Content-type':'application/json'},
+                data: passwordForChanging})
+            .then((response)=>{
+                console.log("password change successful!");
+                alert("Slaptažodis pakeistas!");
+            })
+            .catch((error)=>{
+                console.log(error);
+            }) 
+            
         }
         else{
             console.log("wrong password");

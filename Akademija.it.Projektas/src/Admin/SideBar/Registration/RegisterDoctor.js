@@ -67,23 +67,13 @@ class RegisterDoctor extends Component {
     }
 
     specializationIsSelected() {
-        if((this.state.specialization!=='') && (this.state.specialization!=="kita")
-    /* this.otherSpecializationIsSelected()*/) {
+        if((this.state.specialization!=='') && (this.state.specialization!=="kita")) {
             return true;
         }
         else{
             alert("Pasirinkite specializaciją! Jei specializacijos nėra sąraše, pasirinkite 'kita' ir įrašykite specializaciją į laukelį.")
         }
     }
-
-    /* otherSpecializationIsSelected(){
-        if(this.state.specialization!=="kita"/* &&
-        this.otherSpecialization!=='' *//* ){
-            return true;
-        }else{
-            alert("Jei pasirinkote kitą specializaciją, turite įrašyti jos pavadinimą į laukelį.")
-        }
-    }  */ 
 
     bothPasswordsMatch(){
         if (this.state.password===this.state.repeatedPassword){
@@ -110,8 +100,7 @@ class RegisterDoctor extends Component {
         this.validFirstNameEntered()&&
         this.validLastNameEntered()&&
         this.validUserNameEntered()&&
-        this.validPassword() /* && */
-        /* this.otherSpecializationIsSelected() */ ){
+        this.validPassword() ){
             return true;
         }
     }
@@ -132,17 +121,19 @@ class RegisterDoctor extends Component {
             password : this.state.password,
             }
 
-            this.refs.form.reset();
-
             axios.post(apiUrl + '/admin/doctor', information)
             .then((response)=>{
                 console.log("registration  successful");
-                alert("Registracija sėkminga!");  
+                alert("Registracija sėkminga!"); 
+                this.refs.form.reset(); 
             })
             .catch((error)=>{
                 console.log(error);
+                if(error.response.status === 500){ 
+                    alert("Toks vartotojo vardas jau egzistuoja. Sukurkite naują.")
+                    console.log("error status",error.response.status)
+                } 
             })
-            console.log(this.state);
             event.preventDefault();
             return true;
         }else{

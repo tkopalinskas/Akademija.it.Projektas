@@ -23,7 +23,6 @@ class RegisterAdmin extends Component {
       firstName: '',
       lastName: '',
       userName: '',
-      //codeofUserRights: 1,
       password: '',
       repeatedPassword: '',
       showAdminRegistration: false,
@@ -105,18 +104,22 @@ class RegisterAdmin extends Component {
       userName: this.state.userName,
       password: this.state.password
       }
-      //send to back end
-      this.refs.form.reset();
-       /*sugalvot kuo pakeisti alertus*/
+
+      /*sugalvot kuo pakeisti alertus*/
+      //send to back end 
       axios.post(API + "/admin/admin" , information)
       .then((response)=>{
           console.log("registration  successful");
-          alert("Registracija sėkminga!");     
+          alert("Registracija sėkminga!");   
+          this.refs.form.reset();  
       })
       .catch((error)=>{
         console.log(error);
+        if(error.response.status === 500){ 
+          alert("Toks vartotojo vardas jau egzistuoja. Sukurkite naują.")
+          console.log("error status",error.response.status)
+        } 
       })
-      console.log(this.state);
       event.preventDefault();
     }else{
       console.log("some data is wrong");
@@ -124,7 +127,6 @@ class RegisterAdmin extends Component {
 }
    
   render() {
-    console.log(this.state.showAdminRegistration)
     return (
       <div >
         <MuiThemeProvider>

@@ -136,17 +136,19 @@ class RegisterPharmacist extends Component {
                 typeOfWorkplace: this.state.typeOfWorkplace
             }
 
-            this.refs.form.reset();
-
                 axios.post(apiUrl + '/admin/pharmacist', information)
                 .then((response)=>{
-                    console.log("registration  successful");
+                    console.log("registration  successful"); 
+                    this.refs.form.reset();
                     alert("Registracija sėkminga!");     
                 })
                 .catch((error)=>{
                 console.log(error);
+                 if(error.response.status === 500){ 
+                    alert("Toks vartotojo vardas jau egzistuoja. Sukurkite naują.")
+                    console.log("error status",error.response.status)
+                   } 
                 })
-                console.log(this.state);
                 event.preventDefault();
         }else{
             console.log("some data is wrong");

@@ -7,42 +7,31 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("*")
 @RestController
-@RequestMapping(value="/admin")
+@RequestMapping(value = "/admin")
 public class PharmacistController {
 
 	@Autowired
 	private PharmacistService pharmacistService;
 
 	@RequestMapping(value = "/allPharmacists", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('ADMIN')") 
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<PharmacistForClient> giveAllPharmacists() {
 		return getPharmacistService().receiveAllPharmacists();
 	}
 
 	@RequestMapping(value = "/pharmacist/{userName}", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('ADMIN')") 
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<PharmacistForClient> giveAllPharmacists(@PathVariable final String userName) {
-		return getPharmacistService().receiveAllPharmacists(userName); }
+		return getPharmacistService().receiveAllPharmacists(userName);
+	}
 
 	@RequestMapping(value = "/pharmacist", method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')") 
+	@PreAuthorize("hasRole('ADMIN')")
 	@ResponseStatus(HttpStatus.CREATED)
 	public void createPharmacist(@RequestBody final AddNewPharmacist newPharmacist) {
 		pharmacistService.addNewPharmacist(newPharmacist);
-	}
-
-//	@RequestMapping(/*value = "/admin/findUser/manageUser", */path = "/{id}", method = RequestMethod.DELETE)
-//	@ResponseStatus(HttpStatus.NO_CONTENT)
-//	public void deletePharmacistFromDatabase(@PathVariable final Long id) {
-//		pharmacistService.deletePharmacist(id);
-//	}
-
-	@RequestMapping(value = "/admin/manageUser/{id}", method = RequestMethod.PUT)
-	@ResponseStatus(HttpStatus.CREATED)
-	public void updateExistingPharmacist(@RequestBody final Pharmacist pharmacist, @PathVariable final Long id) {
-		pharmacistService.updatePharmacist(pharmacist, id);
 	}
 
 	public PharmacistService getPharmacistService() {
