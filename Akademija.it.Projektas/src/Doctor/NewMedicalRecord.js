@@ -22,7 +22,7 @@ const textStyles = {
 let user = JSON.parse(window.sessionStorage.getItem('userData'));
 
 let date = new Date()
-let dateOfToday = date.getFullYear() + "-" + date.getDate() + "-" + (date.getMonth()+1)
+let dateOfToday = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()
 
 
 class NewMedicalRecord extends Component {
@@ -136,9 +136,13 @@ class NewMedicalRecord extends Component {
             }
             console.log("information:", information)
 
+
+
+            //axios.post(,{,})
             axios({
                 method: 'POST',
                 url: API + "/doctor/" + user.userId + "/patient/" + this.state.personalId + "/addNewRecord",
+                // headers:{'Content-type':'application/x-www-form-urlencoded'},
                 headers: { 'Content-type': 'application/json' },
                 data: information
 
@@ -152,12 +156,16 @@ class NewMedicalRecord extends Component {
                     this.props.closeAction();
                     console.log("info on error", this.state)
                 })
+            console.log("ok");
+            console.log("info", this.state)
             event.preventDefault();
 
         } else {
-            console.log("Neteisingi duomenys");
+            console.log("some data is wrong");
         }
     }
+
+
 
     render() {
 
@@ -174,6 +182,8 @@ class NewMedicalRecord extends Component {
                 onClick={this.addNewMedicalRecord}
             />,
         ];
+
+
 
 
         return (

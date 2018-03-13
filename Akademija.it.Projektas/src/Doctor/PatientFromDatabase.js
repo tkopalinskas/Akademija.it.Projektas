@@ -87,6 +87,10 @@ class PatientFromDatabase extends Component{
 
 
     render(){
+        /*IMPORTANT!!!*/
+        /* delete all console.logs before release! */
+        console.log("a.k.", this.state.personalCode)
+    
         if (!this.state.patients) {
             return null;
         } 
@@ -173,6 +177,20 @@ class PatientFromDatabase extends Component{
                                 </select>
                             </TableRowColumn>
                         </TableRow>
+
+                        {/* <TableRow >
+                        <TableRowColumn>firstName</TableRowColumn>
+                        <TableRowColumn>lastName</TableRowColumn>
+                        <TableRowColumn>personalId</TableRowColumn>
+                        <TableRowColumn>
+                            <select className="routeToComponent" /* onClick={this.openModal} */
+                                /* value={this.state.value} onChange={this.handleChange}>
+                                <option id="moreOptions" value={""} >Daugiau</option>
+                                <option id="newMedicalRecord" value={"naujas ligos įrašas"}>Naujas ligos įrašas </option>
+                                <option id="newPrescription" value={"naujas receptas"}>Naujas receptas </option>
+                            </select>
+                        </TableRowColumn>
+                        </TableRow>  */} 
                     </TableBody>
                 </Table> 
                 {newAdditionModal}

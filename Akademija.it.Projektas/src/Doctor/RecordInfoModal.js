@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class RecordInfoModal extends Component {
 
     constructor(props) {
+        console.log(props);
         super(props);
         this.state = {
             open: false

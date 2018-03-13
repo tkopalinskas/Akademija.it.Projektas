@@ -52,11 +52,9 @@ class PatientsListTable extends Component {
         axios
             .get("http://localhost:8081/doctor/patientsList/" + user.userId)
             .then((response) => {
-                console.log(response);
                 this.setState({patients: response.data});
             })
             .catch((error) => {
-                console.log(error);
             });
     } 
 
@@ -65,7 +63,6 @@ class PatientsListTable extends Component {
       let patientID = event.target.getAttribute('data-patient-id');
       this.setState({value: event.target.value }) 
       this.setState({personalId:patientID});
-      console.log("patient id:"+patientID);
        switch (event.target.value){
         case "naujas receptas":
           this.openPrescriptionModal();
@@ -74,10 +71,10 @@ class PatientsListTable extends Component {
           this.openMedicalRecordModal();
           break;
         case "receptai":
-          window.location.assign("http://localhost:8081/#/doctor/patient/prescriptions");
+          window.location.assign("http://localhost:8081/#/doctor/patient/prescriptions/" + patientID);
           break;
         case "ligos įrašai":
-          window.location.assign("http://localhost:8081/#/doctor/patient/medicalRecords");
+          window.location.assign("http://localhost:8081/#/doctor/patient/medicalRecords/" + patientID);
           break;
         default: return null;
       } 
@@ -89,7 +86,6 @@ class PatientsListTable extends Component {
           this.setState({
               personalId: e.target.value,
           });
-        console.log('get personal');
       }
     };
 
@@ -106,7 +102,8 @@ class PatientsListTable extends Component {
     };
 
       render() {
-     
+        /*IMPORTANT!!!! delete console.log before release */
+
         var allPatients = this.state.patients.map((patient, index) => (          
           <TableRow key={index}>
               <TableRowColumn>{patient.firstName}</TableRowColumn>
@@ -139,14 +136,14 @@ class PatientsListTable extends Component {
                                 open={this.state.showModal}
                                 closeAction={this.openPrescriptionModal}
                                 personalId={this.state.personalId}
-                              
+                                //perduoti ID
                                 />
-        }else if(this.state.value==="naujas ligos įrašas"){
+        } if(this.state.value==="naujas ligos įrašas"){
             newAdditionModal=<NewMedicalRecord
                                 open={this.state.showModal}
                                 closeAction={this.openMedicalRecordModal}
                                 personalId={this.state.personalId}/>
-        }    
+        }
 
         return (
         <MuiThemeProvider>
@@ -205,6 +202,21 @@ class PatientsListTable extends Component {
                 showRowHover={this.state.showRowHover}
               >
                { allPatients}
+                   {/*  <TableRow >
+                    <TableRowColumn>firstName</TableRowColumn>
+                    <TableRowColumn>lastName</TableRowColumn>
+                    <TableRowColumn>personalId</TableRowColumn>
+                    <TableRowColumn>
+                      <select className="routeToComponent" 
+                              value={this.state.value} onChange={this.handleChange}>
+                        <option id="moreOptions" value={""} >Daugiau informacijos </option>
+                        <option id="prescriptions" value={"receptai"} >Receptai</option> 
+                        <option id="medicalRecords" value={"ligos įrašai"} >Ligos įrašai</option>
+                        <option id="newMedicalRecord" value={"naujas ligos įrašas"} >Naujas ligos įrašas</option>
+                        <option id="newPrescription" value={"naujas receptas"} >Naujas receptas</option>
+                      </select>
+                    </TableRowColumn>
+                  </TableRow>  */}
               </TableBody>
             </Table> 
             {newAdditionModal}
