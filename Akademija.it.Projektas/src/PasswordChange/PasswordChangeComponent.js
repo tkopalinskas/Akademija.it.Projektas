@@ -8,6 +8,7 @@ import {API} from "../Admin/SideBar/Registration/HostUrl";
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
+import swal from 'sweetalert';
 
 const rowStyle={
     margin: 0,
@@ -42,7 +43,11 @@ class PasswordChangeComponent extends Component {
             return true;
         }
         else{
-            alert("Naujasis slaptažodis nesutampa su pakartotu naujuoju slaptažodžiu! Bandykite įvesti iš naujo.");
+            swal({
+                text: "Naujasis slaptažodis nesutampa su pakartotu naujuoju slaptažodžiu! Bandykite įvesti iš naujo.",
+                icon: "success",
+               button: "Gerai",
+            }); 
         }
     }
 
@@ -52,7 +57,11 @@ class PasswordChangeComponent extends Component {
             return true;
         }
         else{
-            alert("Netinka slaptažodžio ilgis")
+            swal({
+                text: "Netinka slaptažodžio ilgis",
+                icon: "success",
+               button: "Gerai",
+            }); 
         }
     }
 
@@ -92,12 +101,16 @@ class PasswordChangeComponent extends Component {
             // }
 
             axios({method:'PUT',
-                url: "http://localhost:8081/" + user.role +"/"+ user.userId+"/changePassword", 
+                url: API + user.role +"/"+ user.userId+"/changePassword", 
                 headers:{'Content-type':'application/json'},
                 data: passwordInfo})
             .then((response)=>{
                 console.log("password change successful!");
-                alert("Slaptažodis pakeistas!");
+                swal({
+                    text: "Slaptažodis pakeistas!",
+                    icon: "success",
+                    button: "Gerai",
+                }); 
             })
             .catch((error)=>{
                 console.log(error);
@@ -107,7 +120,6 @@ class PasswordChangeComponent extends Component {
         else{
             console.log("wrong password");
         } 
-        console.log(this.state);
         event.preventDefault();
     }
 

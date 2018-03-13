@@ -41,7 +41,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+            swal({
+                text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
+                icon: "success",
+               button: "Gerai",
+            });  
         }
     }
 
@@ -52,7 +56,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+            swal({
+                text: "Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
+                icon: "success",
+               button: "Gerai",
+            });  
         }
     }
 
@@ -63,7 +71,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
+            swal({
+                text: "Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
+                icon: "success",
+               button: "Gerai",
+            });  
         }
     }
 
@@ -72,7 +84,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Pasirinkite įmonės tipą!")
+            swal({
+                text: "Pasirinkite įmonės tipą!",
+                icon: "success",
+               button: "Gerai",
+            });
         }
     }
 
@@ -83,7 +99,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Įmonės pavadinimas privalomas!")
+            swal({
+                text: "Įmonės pavadinimas privalomas!",
+                icon: "success",
+               button: "Gerai",
+            });
         }
     }
 
@@ -92,7 +112,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
+            swal({
+                text: "Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
+                icon: "success",
+               button: "Gerai",
+            });
         }
     }
 
@@ -102,7 +126,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
+            swal({
+                text: "Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.",
+                icon: "success",
+               button: "Gerai",
+            });
         }
     }
 

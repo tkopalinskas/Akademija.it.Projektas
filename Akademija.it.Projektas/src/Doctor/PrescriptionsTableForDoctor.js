@@ -109,7 +109,7 @@ class PrescriptionsTableForDoctor extends Component {
         <TableRow key={index} >
             <TableRowColumn>{prescription.validUntil}</TableRowColumn>
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
-            <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
+            {/* <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} *//*/>  {prescription.timesUsed}</TableRowColumn> */}
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
             <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
         </TableRow>
@@ -151,12 +151,12 @@ class PrescriptionsTableForDoctor extends Component {
                     wordWrap: "break-word"
                   }} 
                   tooltip="Išrašymo data">Išrašymo data</TableHeaderColumn>
-                <TableHeaderColumn 
+                {/* <TableHeaderColumn 
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }} 
-                  tooltip="Panaudojimų skaičius">Panaudojimų sąrašas ir skaičius</TableHeaderColumn>
+                  tooltip="Panaudojimų skaičius">Panaudojimų sąrašas ir skaičius</TableHeaderColumn> */}
                 <TableHeaderColumn 
                   style={{
                     whiteSpace: "normal",
@@ -177,13 +177,7 @@ class PrescriptionsTableForDoctor extends Component {
               showRowHover={this.state.showRowHover}
             >
               { allPrescriptions}
-              {<TableRow>
-                <TableRowColumn> {/* validUntil */} </TableRowColumn>
-                <TableRowColumn>{/* prescriptionDate */}</TableRowColumn>
-                <TableRowColumn>{/* timesUsed */}</TableRowColumn>
-                <TableRowColumn>{/* activeIngredient */}</TableRowColumn>
-                <TableRowColumn>{/* description */}{/* <FlatButton label="Info" primary={true} onClick={this.openModal} /> */}</TableRowColumn>
-              </TableRow>}
+              
             </TableBody>
           </Table>
           <PrescriptionInfoModal

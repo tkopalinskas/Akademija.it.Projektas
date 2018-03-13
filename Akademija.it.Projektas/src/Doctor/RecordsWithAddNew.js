@@ -38,12 +38,10 @@ class RecordsWithAddNew extends Component{
             this.setState({
                 personalId: e.target.value,
             });
-          console.log('do validate');
         }
     };
 
     render(){
-        console.log("personal", this.state.personalId)
         return(
             <MuiThemeProvider>
                 <div>

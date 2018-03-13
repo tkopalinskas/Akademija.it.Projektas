@@ -7,23 +7,13 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
+//import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Search from 'material-ui/svg-icons/action/search';
+//import Search from 'material-ui/svg-icons/action/search';
 import axios from 'axios'
 import InformationModal from './PatientInformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
 
-// const styles = {
-//     propContainer: {
-//         width: 200,
-//         overflow: 'hidden',
-//         margin: '20px auto 0',
-//     },
-//     propToggleHeader: {
-//         margin: '20px auto 10px',
-//     },
-// };
 
 export default class ListofPatients extends Component {
     constructor(props) {
@@ -78,7 +68,7 @@ export default class ListofPatients extends Component {
                 <TableRowColumn>{patients.firstName + " " + patients.lastName}</TableRowColumn>
                 <TableRowColumn>{patients.userName}</TableRowColumn>
                 <TableRowColumn>{patients.role}</TableRowColumn>
-                <TableRowColumn><FlatButton label="Info" primary={true} onClick ={() => this.openModal(patients.userName)} /></TableRowColumn>
+                <TableRowColumn><FlatButton label="Informacija" primary={true} onClick ={() => this.openModal(patients.userName)} /></TableRowColumn>
             </TableRow>
         ))
 
@@ -102,7 +92,7 @@ export default class ListofPatients extends Component {
                             adjustForCheckbox={this.state.showCheckboxes}
                             enableSelectAll={this.state.enableSelectAll}
                         >
-                            <TableRow>
+                            {/* <TableRow>
 
                                 <TableHeaderColumn colSpan="5" tooltip="Search" style={{ textAlign: 'left' }}>
                                     <div>
@@ -110,13 +100,13 @@ export default class ListofPatients extends Component {
                                         <TextField hintText="Search" underlineShow={false} />
                                     </div>
                                 </TableHeaderColumn>
-                            </TableRow>
+                            </TableRow> */}
                             <TableRow>
                                 <TableHeaderColumn>ID</TableHeaderColumn>
                                 <TableHeaderColumn>Vardas</TableHeaderColumn>
                                 <TableHeaderColumn>Slapyvardis</TableHeaderColumn>
                                 <TableHeaderColumn>Pareigos</TableHeaderColumn>
-                                <TableHeaderColumn>Daugiau info</TableHeaderColumn>
+                                <TableHeaderColumn>Daugiau</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
                         <TableBody

@@ -39,10 +39,10 @@ class PrescriptionInfoModal extends Component {
                 </div>
             )
             
-        console.log(this.props.prescriptionInfo);
+        /* console.log(this.props.prescriptionInfo);
         console.log(singlePrescription);
         console.log("open", this.state.open);
-        console.log("numbs:", this.state.number)
+        console.log("numbs:", this.state.number) */
 
         return (
             <MuiThemeProvider>

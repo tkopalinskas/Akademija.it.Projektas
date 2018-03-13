@@ -166,20 +166,20 @@ class DoctorAssignmentToPatient extends Component {
                         <div>{this.getStepContent(stepIndex)}</div>
                         <div style={{ marginTop: 12 }}>
                             <FlatButton
-                                label="Back"
+                                label="Atgal"
                                 disabled={stepIndex === 0}
                                 onClick={this.handlePrev}
                                 style={{ marginRight: 12 }}
                             />
                             <RaisedButton
-                                label={stepIndex === 2 ? 'Submit' : 'Next'}
+                                label={stepIndex === 2 ? 'Siųsti' : 'Kitas'}
                                 primary={true}
                                 onClick={stepIndex === 2 ? this.handleSubmit : this.handleNext}
                                 disabled={stepIndex === 2 ? false : this.state.disabled2}
                             />
                             <Snackbar
                                 open={this.state.open}
-                                message="Daktaras priskirtas pacientui"
+                                message="Gydytojas priskirtas pacientui"
                                 autoHideDuration={4000}
                                 onRequestClose={this.handleRequestClose}
                                 style={{ backgroundColor: '#ffd699' }}
@@ -193,7 +193,3 @@ class DoctorAssignmentToPatient extends Component {
     }
 }
 export default DoctorAssignmentToPatient;
-
-
-// WEBPACK FOOTER //
-// src/Admin/SideBar/DrAndPatientSteppterComponent.js

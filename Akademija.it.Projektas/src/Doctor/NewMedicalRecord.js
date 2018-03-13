@@ -21,10 +21,6 @@ const textStyles = {
 
 let user = JSON.parse(window.sessionStorage.getItem('userData'));
 
-let date = new Date()
-let dateOfToday = date.getFullYear() + "-" + date.getDate() + "-" + (date.getMonth()+1)
-
-
 class NewMedicalRecord extends Component {
     constructor(props) {
         super(props);
@@ -147,12 +143,9 @@ class NewMedicalRecord extends Component {
                 dateOfVisit:this.state.dateOfVisit   
                 }
             
-
-            //axios.post(,{,})
             axios({
                 method: 'POST',
                 url: API + "/doctor/" + user.userId + "/patient/" + this.state.personalId + "/addNewRecord",
-                // headers:{'Content-type':'application/x-www-form-urlencoded'},
                 headers: { 'Content-type': 'application/json' },
                 data: information
 

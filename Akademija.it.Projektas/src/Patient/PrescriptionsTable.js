@@ -90,7 +90,6 @@ class PrescriptionsTable extends Component {
 
       var allPrescriptions = this.state.prescriptions.map((prescription, index) => (
         <TableRow key={index} >
-            {/* <TableRowColumn>{prescription.number}</TableRowColumn> */}
             <TableRowColumn>{prescription.validUntil}</TableRowColumn>
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
@@ -102,7 +101,7 @@ class PrescriptionsTable extends Component {
     if (!this.state.prescriptions) {
       return null;
     }
-    console.log(this.state.prescriptionInfo)
+
     return (
       <MuiThemeProvider>
         <div>
@@ -169,13 +168,6 @@ class PrescriptionsTable extends Component {
               showRowHover={this.state.showRowHover}
             >
               {allPrescriptions}
-              {/* <TableRow>
-                <TableRowColumn>validUntil</TableRowColumn>
-                <TableRowColumn>prescriptionDate</TableRowColumn>
-                <TableRowColumn>timesUsed</TableRowColumn>
-                <TableRowColumn>activeIngredient</TableRowColumn>
-                <TableRowColumn>description<FlatButton label="Info" primary={true} onClick={this.openModal} /></TableRowColumn>
-              </TableRow> */}
             </TableBody>
 
           </Table>

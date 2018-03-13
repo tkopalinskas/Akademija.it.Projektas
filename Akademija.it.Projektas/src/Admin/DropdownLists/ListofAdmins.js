@@ -7,8 +7,8 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import Search from 'material-ui/svg-icons/action/search';
+//import TextField from 'material-ui/TextField';
+//import Search from 'material-ui/svg-icons/action/search';
 import axios from 'axios'
 import InformationModal from './AdminInformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
@@ -71,7 +71,7 @@ export default class ListofAdmins extends Component {
                 <TableRowColumn>{admins.firstName + " " + admins.lastName}</TableRowColumn>
                 <TableRowColumn>{admins.userName}</TableRowColumn>
                 <TableRowColumn>{admins.role}</TableRowColumn>
-                <TableRowColumn><FlatButton label="Info" primary={true} onClick={() => this.openModal(admins.userName)} /></TableRowColumn>
+                <TableRowColumn><FlatButton label="Informacija" primary={true} onClick={() => this.openModal(admins.userName)} /></TableRowColumn>
             </TableRow>
         ))
 
@@ -92,7 +92,7 @@ export default class ListofAdmins extends Component {
                         adjustForCheckbox={this.state.showCheckboxes}
                         enableSelectAll={this.state.enableSelectAll}
                     >
-                        <TableRow>
+                        {/* <TableRow>
 
                             <TableHeaderColumn colSpan="5" tooltip="Search" style={{ textAlign: 'left' }}>
                                 <div>
@@ -100,13 +100,13 @@ export default class ListofAdmins extends Component {
                                     <TextField hintText="Search" underlineShow={false} />
                                 </div>
                             </TableHeaderColumn>
-                        </TableRow>
+                        </TableRow> */}
                         <TableRow>
                             <TableHeaderColumn>ID</TableHeaderColumn>
                             <TableHeaderColumn>Vardas</TableHeaderColumn>
                             <TableHeaderColumn>Slapyvardis</TableHeaderColumn>
                             <TableHeaderColumn>Pareigos</TableHeaderColumn>
-                            <TableHeaderColumn>Daugiau info</TableHeaderColumn>
+                            <TableHeaderColumn>Daugiau</TableHeaderColumn>
                         </TableRow>
                     </TableHeader>
                     <TableBody

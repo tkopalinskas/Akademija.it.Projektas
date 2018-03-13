@@ -6,7 +6,6 @@ import RegisterBar from './RegisterBar';
 import UserList from './UserList';
 import './Drawer.css'
 import {Link} from 'react-router-dom'
-// import DrAndPatient from '.DrAndPatient'
 
 
 class SideBarMain extends Component {
@@ -35,8 +34,8 @@ class SideBarMain extends Component {
                 
                     <AppBar title={<span>Meniu</span>}
                         showMenuIconButton={false} />
-                    <MenuItem className="newUserRegistration" onClick={this.handleToggle.bind(this, "showRegisterOptions")}>Naujų vartotojų  registracija</MenuItem>
-                    <Link to="/admin/assigndoctor" style={{textDecoration: 'none'}}><MenuItem className="doctorAssignmentToPatientMenu">Priskirti pacientą daktarui</MenuItem></Link>
+                    <MenuItem className="newUserRegistration" onClick={this.handleToggle.bind(this, "showRegisterOptions")}>Naujų vartotojų registracija</MenuItem>
+                    <Link to="/admin/assigndoctor" style={{textDecoration: 'none'}}><MenuItem className="doctorAssignmentToPatientMenu">Priskirti pacientą gydytojui</MenuItem></Link>
                     <MenuItem className="usersLists" onClick={this.handleToggle.bind(this, "showUserManagementOptions")}>Vartotojų sarašas</MenuItem>
                 </Drawer>
                 <RegisterBar

@@ -75,7 +75,7 @@ class PharmacistContainer extends Component{
         axios.get('http://localhost:8081/logout')
              .then((resp)=>{
                  console.log('isilogina');
-               let user = resp.data;
+               //let user = resp.data;
                window.sessionStorage.removeItem("userData");
              } );
     };
@@ -91,8 +91,6 @@ class PharmacistContainer extends Component{
                 window.location.href="/#/";
        }
 
-        /*remove before release */
-        console.log(this.state.personalId);
 
         return(
             <MuiThemeProvider>

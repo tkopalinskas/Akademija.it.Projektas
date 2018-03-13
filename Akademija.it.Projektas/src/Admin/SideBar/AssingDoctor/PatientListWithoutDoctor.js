@@ -8,8 +8,8 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
-import Search from 'material-ui/svg-icons/action/search';
+//import TextField from 'material-ui/TextField';
+//import Search from 'material-ui/svg-icons/action/search';
 import axios from 'axios';
 
 class ListOfPatietns extends Component {
@@ -84,14 +84,14 @@ class ListOfPatietns extends Component {
                             adjustForCheckbox={this.state.showCheckboxes}
                             enableSelectAll={this.state.enableSelectAll}
                         >
-                            <TableRow>
+                            {/* <TableRow>
                                 <TableHeaderColumn colSpan="2" tooltip="Search" style={{ textAlign: 'left' }}>
                                     <div>
                                         <Search style={{ color: '#9E9E9E', marginRight: '15', }} />
                                         <TextField hintText="Search" underlineShow={false} />
                                     </div>
                                 </TableHeaderColumn>
-                            </TableRow>
+                            </TableRow> */}
                             <TableRow>
                                 <TableHeaderColumn>Vardas</TableHeaderColumn>
                                 <TableHeaderColumn>Slapyvardis</TableHeaderColumn>

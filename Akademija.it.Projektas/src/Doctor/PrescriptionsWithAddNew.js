@@ -39,12 +39,11 @@ class PrescriptionsWithAddNew extends Component{
             this.setState({
                 personalId: e.target.value,
             });
-          console.log('get personal');
         }
     };
 
     render(){
-        console.log("personal", this.state.personalId)
+
         return(
             <MuiThemeProvider>
                 <div>

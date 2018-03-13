@@ -63,7 +63,6 @@ class RecordsTableForDoctor extends Component {
     axios.get(API+"/doctor/patient/medicalRecords/" + recordId)
       .then((response) => { this.setState({ recordInfo: response.data }) 
       this.setState({ showModal: !this.state.showModal })
-      console.log("record info", this.state.recordInfo)
       console.log(this.state.showModal)
     })
       .catch((error) => {
@@ -78,7 +77,6 @@ class RecordsTableForDoctor extends Component {
       render() {
         var allMedicalRecords = this.state.visits.map((records, index) => (
           <TableRow key={index}>
-              {/* <TableRowColumn>{records.recordId}</TableRowColumn> */}
               <TableRowColumn>{records.dateOfVisit}</TableRowColumn>
               <TableRowColumn>{records.illnessTLKCode}</TableRowColumn>
               <TableRowColumn>{records.doctorsFullName}</TableRowColumn> 

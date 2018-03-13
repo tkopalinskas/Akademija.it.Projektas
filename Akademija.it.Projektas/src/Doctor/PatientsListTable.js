@@ -9,8 +9,8 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Search from 'material-ui/svg-icons/action/search';
-import TextField from 'material-ui/TextField';
+//import Search from 'material-ui/svg-icons/action/search';
+//import TextField from 'material-ui/TextField';
 import NewPrescription from './NewPrescription';
 import NewMedicalRecord from './NewMedicalRecord';
 
@@ -38,7 +38,6 @@ class PatientsListTable extends Component {
             firstName: '',
             lastName: '',
             personalId: '',
-            /* illnessTLKCode: '', */
             routeToComponent: '',
             value: ''
         }
@@ -65,7 +64,7 @@ class PatientsListTable extends Component {
       let patientID = event.target.getAttribute('data-patient-id');
       this.setState({value: event.target.value }) 
       this.setState({personalId:patientID});
-      console.log("patient id:"+patientID);
+/*       console.log("patient id:"+patientID) */;
        switch (event.target.value){
         case "naujas receptas":
           this.openPrescriptionModal();
@@ -89,7 +88,6 @@ class PatientsListTable extends Component {
           this.setState({
               personalId: e.target.value,
           });
-        console.log('get personal');
       }
     };
 
@@ -106,9 +104,6 @@ class PatientsListTable extends Component {
     };
 
       render() {
-        /*IMPORTANT!!!! delete console.log before release */
-        console.log("personal", this.state.personalId)
-        console.log("value", this.state.value)
 
         var allPatients = this.state.patients.map((patient, index) => (          
           <TableRow key={index}>
@@ -154,10 +149,10 @@ class PatientsListTable extends Component {
         return (
         <MuiThemeProvider>
           <div>
-            <div>
+            {/* <div>
               <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '25', marginTop: '25'}} />
               <TextField hintText="Pacientų paieška" underlineShow={true} onKeyPress={this.handleKeyPress}/>
-            </div>
+            </div> */}
             <Table
               height={this.state.height}
               style={styles}
@@ -208,21 +203,6 @@ class PatientsListTable extends Component {
                 showRowHover={this.state.showRowHover}
               >
                { allPatients}
-                   {/*  <TableRow >
-                    <TableRowColumn>firstName</TableRowColumn>
-                    <TableRowColumn>lastName</TableRowColumn>
-                    <TableRowColumn>personalId</TableRowColumn>
-                    <TableRowColumn>
-                      <select className="routeToComponent" 
-                              value={this.state.value} onChange={this.handleChange}>
-                        <option id="moreOptions" value={""} >Daugiau informacijos </option>
-                        <option id="prescriptions" value={"receptai"} >Receptai</option> 
-                        <option id="medicalRecords" value={"ligos įrašai"} >Ligos įrašai</option>
-                        <option id="newMedicalRecord" value={"naujas ligos įrašas"} >Naujas ligos įrašas</option>
-                        <option id="newPrescription" value={"naujas receptas"} >Naujas receptas</option>
-                      </select>
-                    </TableRowColumn>
-                  </TableRow>  */}
               </TableBody>
             </Table> 
             {newAdditionModal}

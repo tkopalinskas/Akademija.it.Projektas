@@ -93,7 +93,7 @@ class PatientContainer extends Component{
         axios.get('http://localhost:8081/logout')
              .then((resp)=>{
                  console.log('isilogina');
-               let user = resp.data;
+               //let user = resp.data;
                window.sessionStorage.removeItem("userData");
              } );
     };
@@ -147,14 +147,10 @@ class PatientContainer extends Component{
                         </AppBar>
                     <MenuItem primaryText="Ligos įrašai"
                               containerElement={<Link to="/patient/medicalRecords" />}
-                              /* leftIcon={
-                                <FontIcon className="medicalRecords">Ligos įrašai</FontIcon>
-                    } *//><br/>       
+                            /><br/>       
                     <MenuItem primaryText="Receptai"
                               containerElement={<Link to="/patient/prescriptions" />}
-                              /* leftIcon={
-                                <FontIcon className="prescriptions">Receptai</FontIcon>
-                    } *//><br/>       
+                             /><br/>       
                 </Drawer>
                 </Col>
                 <Col md="10">

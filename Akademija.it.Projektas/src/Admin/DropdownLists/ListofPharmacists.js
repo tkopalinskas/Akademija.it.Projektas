@@ -7,9 +7,9 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import TextField from 'material-ui/TextField';
+//import TextField from 'material-ui/TextField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Search from 'material-ui/svg-icons/action/search';
+//import Search from 'material-ui/svg-icons/action/search';
 import axios from 'axios'
 import InformationModal from './PharmacistInformationModal'
 import FlatButton from 'material-ui/FlatButton/FlatButton';
@@ -69,7 +69,7 @@ export default class ListofPharmacists extends Component {
                 <TableRowColumn>{pharmacists.firstName + " " + pharmacists.lastName}</TableRowColumn>
                 <TableRowColumn>{pharmacists.userName}</TableRowColumn>
                 <TableRowColumn>{pharmacists.role}</TableRowColumn>
-                <TableRowColumn><FlatButton label="Info" primary={true} onClick ={() => this.openModal(pharmacists.userName)} /></TableRowColumn>
+                <TableRowColumn><FlatButton label="Informacija" primary={true} onClick ={() => this.openModal(pharmacists.userName)} /></TableRowColumn>
             </TableRow>
         ))
 
@@ -93,7 +93,7 @@ export default class ListofPharmacists extends Component {
                             adjustForCheckbox={this.state.showCheckboxes}
                             enableSelectAll={this.state.enableSelectAll}
                         >
-                            <TableRow>
+                            {/* <TableRow>
 
                                 <TableHeaderColumn colSpan="5" tooltip="Search" style={{ textAlign: 'left' }}>
                                     <div>
@@ -101,13 +101,13 @@ export default class ListofPharmacists extends Component {
                                         <TextField hintText="Search" underlineShow={false} />
                                     </div>
                                 </TableHeaderColumn>
-                            </TableRow>
+                            </TableRow> */}
                             <TableRow>
                                 <TableHeaderColumn>ID</TableHeaderColumn>
                                 <TableHeaderColumn>Vardas</TableHeaderColumn>
                                 <TableHeaderColumn>Slapyvardis</TableHeaderColumn>
                                 <TableHeaderColumn>Pareigos</TableHeaderColumn>
-                                <TableHeaderColumn>Daugiau info</TableHeaderColumn>
+                                <TableHeaderColumn>Daugiau</TableHeaderColumn>
                             </TableRow>
                         </TableHeader>
                         <TableBody

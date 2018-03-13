@@ -35,7 +35,7 @@ class UserList extends Component {
                     <Link to="/admin/allpharmacists" style={{textDecoration: 'none'}} id="allPharmacists"><MenuItem className="pharmacistsList">Vaistininkų sąrašas</MenuItem></Link>
                     <Link to="/admin/alldoctors" style={{textDecoration: 'none'}} id="allDoctors"><MenuItem className="doctorsList">Gydytojų sąrašas</MenuItem></Link>
                     <Link to="/admin/allpatients" style={{textDecoration: 'none'}} id="allPatients"><MenuItem className="patientsList">Pacientų sąrašas</MenuItem></Link>
-                    <Link to="/admin/alladmins" style={{textDecoration: 'none'}} id="searchForUsers"><MenuItem className="search">Paieška</MenuItem></Link>
+                    {/* <Link to="/admin/alladmins" style={{textDecoration: 'none'}} id="searchForUsers"><MenuItem className="search">Paieška</MenuItem></Link> */}
                     
                 </Drawer>
             </div>

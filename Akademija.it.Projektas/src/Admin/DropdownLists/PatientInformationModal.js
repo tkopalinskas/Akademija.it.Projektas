@@ -44,12 +44,12 @@ export default class InformationModal extends React.Component {
 
         const actions = [
             <FlatButton
-                label="Cancel"
+                label="Atgal"
                 primary={true}
                 onClick={this.props.closeAction}
             />,
             <FlatButton
-                label="Submit"
+                label="Siųsti"
                 primary={true}
                 disabled={this.state.disabled}
             // onClick={this.props.closeAction}
@@ -75,9 +75,9 @@ export default class InformationModal extends React.Component {
                             <span>
                                 <p>{"Rolė: " + this.props.userInfo.role}</p>
                                 <p>Slapyvardis: {this.props.userInfo.userName}</p>
-                                <p>Gimimo Data: {this.props.userInfo.dateOfBirth}</p>
-                                <p>Paskirtas Daktaras: {this.props.userInfo.doctorsFullName}</p>
-                                <p>Užbanintas:  {this.translate(this.props.userInfo.suspanded)} </p>
+                                <p>Gimimo data: {this.props.userInfo.dateOfBirth}</p>
+                                <p>Paskirtas gydytojas: {this.props.userInfo.doctorsFullName}</p>
+                                <p>Suspenduotas:  {this.translate(this.props.userInfo.suspanded)} </p>
                             </span>
                         </div>
                         <Checkbox
