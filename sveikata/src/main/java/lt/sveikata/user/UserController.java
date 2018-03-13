@@ -59,18 +59,13 @@ public class UserController {
 		return ResponseEntity.ok(updatedUser);
 	}
 
-//	@RequestMapping(/*value = "/admin/findUser/manageUser", */path = "/{id}", method = RequestMethod.DELETE)
-//	@ResponseStatus(HttpStatus.NO_CONTENT)
-//	public void deleteAdminFromDatabase(@PathVariable final Long id) {
-//		userService.deleteUser(id);
-//	}
 
-	@RequestMapping(value = "/admin/findUser/manageUser/{id=7}", method = RequestMethod.PATCH)
-	@PreAuthorize("hasRole('ADMIN')")
-	@ResponseStatus(HttpStatus.CREATED)
-	public void updateExistingAdmin(@RequestBody final User user, @PathVariable final Long id) {
-		userService.updateUser(user, id);
-	}
+//	@RequestMapping(value = "/admin/findUser/manageUser/{id=7}", method = RequestMethod.PATCH)
+//	@PreAuthorize("hasRole('ADMIN')")
+//	@ResponseStatus(HttpStatus.CREATED)
+//	public void updateExistingAdmin(@RequestBody final User user, @PathVariable final Long id) {
+//		userService.updateUser(user, id);
+//	}
 
 	public UserService getUserService() {
 		return userService;

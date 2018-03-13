@@ -8,8 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lt.sveikata.user.User;
-
 @Transactional
 @Service
 public class PharmacistService {
@@ -62,6 +60,7 @@ public class PharmacistService {
 
 	}
 
+	/*change pharmacist's password*/
 	public void updatePharmacist(Pharmacist pharmacist, Long userId) {
 		Pharmacist pharm = pharmacistRepository.findOne(userId);
 		pharm.setPassword(passwordEncoder.encode(pharmacist.getPassword()));

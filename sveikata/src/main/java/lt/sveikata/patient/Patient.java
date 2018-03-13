@@ -32,15 +32,15 @@ public class Patient extends User {
 //	private String doctorsFullName;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value="doctorId")
     @JoinColumn(name="doctorId")
 	private Doctor doctor;
     
-	@JsonManagedReference
+	@JsonManagedReference(value="patient")
     @OneToMany(mappedBy="patient")
     private List<Prescription> prescription;
     
-	@JsonManagedReference
+	@JsonManagedReference(value="patient")
     @OneToMany(mappedBy="patient")
     private List<Record>records;
 

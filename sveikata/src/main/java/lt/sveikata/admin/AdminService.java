@@ -14,9 +14,10 @@ public class AdminService {
 
 	@Autowired
 	private AdminRepository adminRepository;
-
+	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
 
 	public List<AdminForClient> receiveAllAdmins() {
 		List<Admin> adminsFromDatabase = getAdminRepository().findAll();
@@ -66,8 +67,11 @@ public class AdminService {
 
 	}
 
+
 	public void updateAdmin(Admin admin, Long id) {
 		Admin adm = adminRepository.findOne(id);
+		adm.setFirstName(admin.getFirstName());
+		adm.setLastName(admin.getLastName());
 		adm.setPassword(passwordEncoder.encode(admin.getPassword()));
 		adminRepository.save(adm);
 	}

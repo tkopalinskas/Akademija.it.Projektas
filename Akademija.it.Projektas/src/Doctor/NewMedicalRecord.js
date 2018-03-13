@@ -26,7 +26,7 @@ class NewMedicalRecord extends Component {
             open: false,
             personalId:props.personalId,
 
-            currentDate: '',
+            dateOfVisit: '',
             illnessTLKCode: '',
             lengthOfVisit: '',
             description: '',
@@ -114,7 +114,7 @@ class NewMedicalRecord extends Component {
         if (day<10){
             day='0'+day
         }
-        this.setState({currentDate: year+'-'+month+'-'+day});
+        this.setState({dateOfVisit: year+'-'+month+'-'+day});
     }
 
     dataIsValid(){
@@ -137,7 +137,7 @@ class NewMedicalRecord extends Component {
                 visitIsCompensated: this.state.visitIsCompensated,
                 visitIsRepeated: this.state.visitIsRepeated,
                 description: this.state.description,
-                currentDate:this.state.currentDate   
+                dateOfVisit:this.state.dateOfVisit   
                 }
             
 

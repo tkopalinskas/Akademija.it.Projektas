@@ -26,15 +26,15 @@ public class Doctor  extends User{
 	private String lastName;
 	private String specialization;
 
-	@JsonManagedReference
+	@JsonManagedReference(value="doctor")
 	@OneToMany(mappedBy="doctor")
 	private Set<Record> records;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="doctor")
 	@OneToMany(mappedBy="doctor")
 	private Set<Prescription> prescriptions;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="doctor")
 	@OneToMany(mappedBy="doctor")
 	private Set<Patient>patients;
 
