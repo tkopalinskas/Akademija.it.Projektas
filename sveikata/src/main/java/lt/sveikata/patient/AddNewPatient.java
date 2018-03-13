@@ -20,13 +20,7 @@ public class AddNewPatient extends AddNewUser{
 	private String lastName;
 	private String dateOfBirth;
 
-  
-	private String doctorsFullName;
-
-  
-	// private List<Visit> listOfVisits;
-
-
+ 
 
 	public String getFirstName() {
 		return firstName;
@@ -60,16 +54,6 @@ public class AddNewPatient extends AddNewUser{
 		this.personalId = personalId;
 	}
 
-	public String getDoctorsFullName() {
-		return doctorsFullName;
-	}
 
-	public void setDoctorsFullName(String doctorsFullName) {
-		this.doctorsFullName = doctorsFullName;
-	}
-
-	// public List<Visit> getListOfVisits() {
-	// return listOfVisits;
-	// }
 
 }

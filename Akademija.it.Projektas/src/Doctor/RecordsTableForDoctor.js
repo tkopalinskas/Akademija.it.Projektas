@@ -19,6 +19,7 @@ const styles ={
   
 }
 
+
 class RecordsTableForDoctor extends Component {
     constructor(){
         super();
@@ -47,27 +48,26 @@ class RecordsTableForDoctor extends Component {
     }
   componentWillMount(){
     axios
-      .get(API+"/doctor/patient/medicalRecords")
+      .get(API+ `/doctor/patient/medicalRecords/`)
       .then((response) => {
-          console.log(response);
+
           this.setState({visits: response.data});
       })
       .catch((error) => {
-          console.log(error);
+
       });
   }
     
   /*gets single prescription*/
   openModal = (recordId) => {
-    console.log("number:"+recordId);
+
     axios.get(API+"/doctor/patient/medicalRecords/" + recordId)
       .then((response) => { this.setState({ recordInfo: response.data }) 
       this.setState({ showModal: !this.state.showModal })
-      console.log("record info", this.state.recordInfo)
-      console.log(this.state.showModal)
+
     })
       .catch((error) => {
-        console.log(error);
+
     })
   }
   /*closes prescription modal*/
@@ -89,6 +89,8 @@ class RecordsTableForDoctor extends Component {
       if (!this.state.visits) {
           return null;
       }
+
+
 
         return (
         <MuiThemeProvider>

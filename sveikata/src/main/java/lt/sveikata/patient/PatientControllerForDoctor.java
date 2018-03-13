@@ -12,31 +12,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping(value = "/doctor")
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class PatientControllerForDoctor {
-	
+
 	@Autowired
 	private PatientService patientService;
-	
-
 
 	private ModelMapper modelMapper = new ModelMapper();
 
-
 	@RequestMapping(value = "/findPatient/{personalId}", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('DOCTOR')") 
+	@PreAuthorize("hasRole('DOCTOR')")
 	public PatientForClient giveAllPatients(@PathVariable("personalId") Long personalId) {
 		return getPatientService().receivePatientFromDatabase(personalId);
 	}
-	
-	//get doctor patients list
-	@RequestMapping(value = "/patientsList/{doctorId}", method=RequestMethod.GET)
-	@PreAuthorize("hasRole('DOCTOR')") 
+
+	// get doctor patients list
+	@RequestMapping(value = "/patientsList/{doctorId}", method = RequestMethod.GET)
+	@PreAuthorize("hasRole('DOCTOR')")
 	public List<PatientForClient> getPatientList(@PathVariable("doctorId") Long doctorId) {
-		
+
 		List<Patient> patients = patientService.byDoctorId(doctorId);
 		return modelMapper.map(patients, new TypeToken<List<PatientForClient>>() {
 		}.getType());

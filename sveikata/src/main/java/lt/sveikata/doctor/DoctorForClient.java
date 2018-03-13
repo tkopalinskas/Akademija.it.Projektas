@@ -24,54 +24,10 @@ public class DoctorForClient implements Serializable{
 	private String role;
 	private boolean isSuspended;
 
-
-//	private Set<RecordForClient> records;
-//	
-//
-//	private Set<PrescriptionForClient> prescriptions;
-//	
-//	private Set<PatientForClient>patients;
-//
-
-//   public void addPatient(Patient patient) {
-//	   this.patients.add(patient);
-//	   patient.setDoctor(this);
-//   }
-//   /*patient lenteleje bus doctor stulpelis - isorinis raktas i doctor.
-//    * Patient yra savininkas,todel kiekviena karta pridedat nauja pascienta, 
-//    * turi buti susiejamas gydytojas, kvieciant savininko metoda setDoctor();
-//    */
-//	
-	
-	
    
 	public String getFirstName() {
 		return firstName;
 	}
-
-//	public Set<RecordForClient> getRecords() {
-//		return records;
-//	}
-//
-//	public void setRecords(Set<RecordForClient> records) {
-//		this.records = records;
-//	}
-//
-//	public Set<PrescriptionForClient> getPrescriptions() {
-//		return prescriptions;
-//	}
-//
-//	public void setPrescriptions(Set<PrescriptionForClient> prescriptions) {
-//		this.prescriptions = prescriptions;
-//	}
-//
-//	public Set<PatientForClient> getPatients() {
-//		return patients;
-//	}
-//
-//	public void setPatients(Set<PatientForClient> patients) {
-//		this.patients = patients;
-//	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;

@@ -22,7 +22,7 @@ const textStyles = {
 let user = JSON.parse(window.sessionStorage.getItem('userData'));
 
 let date = new Date()
-let dateOfToday = date.getFullYear() + "-" + date.getDate() + "-" + (date.getMonth()+1)
+let dateOfToday = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()
 
 
 class NewMedicalRecord extends Component {

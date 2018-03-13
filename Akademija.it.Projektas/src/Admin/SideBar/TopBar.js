@@ -34,13 +34,21 @@ class TopBar extends Component {
       
         axios.get('http://localhost:8081/logout')
              .then((resp)=>{
-                 console.log('isilogina');
                let user = resp.data;
                window.sessionStorage.removeItem("userData");
              } );
     };
     render() {
+        let userData = window.sessionStorage.getItem('userData');
+        if(userData==null)
+             window.location.href="/#/";
+        else{
+            let user = JSON.parse(userData);
+            if(user.role!=='ADMIN')
+                 window.location.href="/#/";
+        }
         return (
+            
 
             <MuiThemeProvider>
                 <div>

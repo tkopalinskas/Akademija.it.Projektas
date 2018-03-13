@@ -24,9 +24,7 @@ public class PrescriptionController {
 	@Autowired
 	private PrescriptionService prescriptionService;
 	
-//	@Autowired 
-//	private ModelMapper modelMapper;
-	
+
 	private ModelMapper modelMapper = new ModelMapper();
 
 	/*gets  all user prescriptions from database*/
@@ -36,16 +34,12 @@ public class PrescriptionController {
 		List<Prescription> prescriptions = prescriptionService.getUserPrescriptionByUserId(patientId);
 		return modelMapper.map(prescriptions, new TypeToken<List<PrescriptionForClient>>() {
 		}.getType());
-		/**
-		 * if you will return a single object instead of a list/collection return
-		 * modelMapper.map(entityObject, EntityClass.class); example: return
-		 * modelMapper.map(doctor, Doctor.class);
-		 */
+
 	}
 	
 	/*gets a specified prescription from database, searches by number*/
 	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)
-	//	@PreAuthorize("hasRole('PATIENT')")  uzdeti teises kieno?
+	//	@PreAuthorize("hasRole('PATIENT')") 
 	public Prescription singlePrescription(@PathVariable("number") final Long number) {
 		//long number = Long.parseLong(Strnumber);
 		return prescriptionService.receivePrescriptionInfo(number);
@@ -54,7 +48,7 @@ public class PrescriptionController {
 
 	/*will be used to mark a prescription as used or invalid. doesn't work yet*/
 	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.PUT)
-	//	@PreAuthorize("hasRole('PATIENT')")  uzdeti teises kieno?
+	//	@PreAuthorize("hasRole('PATIENT')")  
 	@ResponseStatus(HttpStatus.CREATED)
 	public void updateExistingPrescription(@RequestBody final Prescription prescription,
 			@PathVariable final Long number) {

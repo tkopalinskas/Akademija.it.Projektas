@@ -41,7 +41,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+            swal({
+                text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
+                icon: "error",
+               button: "Gerai",
+            });
         }
     }
 
@@ -52,7 +56,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+            swal({
+                text: "Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
+                icon: "error",
+               button: "Gerai",
+            });
         }
     }
 
@@ -63,7 +71,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
+            swal({
+                text:"Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
+                icon: "error",
+               button: "Gerai",
+            });
         }
     }
 
@@ -72,7 +84,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Pasirinkite įmonės tipą!")
+            swal({
+                text: "Pasirinkite įmonės tipą!",
+                icon: "error",
+               button: "Gerai",
+            });
         }
     }
 
@@ -83,7 +99,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Įmonės pavadinimas privalomas!")
+            swal({
+                text: "Įmonės pavadinimas privalomas!",
+                icon: "error",
+               button: "Gerai",
+            });
         }
     }
 
@@ -92,7 +112,12 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
+        
+            swal({
+                text: "Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
+                icon: "error",
+               button: "Gerai",
+            });
         }
     }
 
@@ -102,7 +127,11 @@ class RegisterPharmacist extends Component {
             return true;
         }
         else {
-            alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
+            swal({
+                text:"Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.",
+                icon: "error",
+               button: "Gerai",
+            });
         }
     }
 
@@ -124,10 +153,6 @@ class RegisterPharmacist extends Component {
 
 
         if (this.dataIsValid()) {
-
-            console.log("data is valid: " + this.dataIsValid());
-
-            //set values
             var information = {
                 firstName: this.state.firstName,
                 lastName: this.state.lastName,
@@ -139,7 +164,6 @@ class RegisterPharmacist extends Component {
 
                 axios.post(apiUrl + '/admin/pharmacist', information)
                 .then((response)=>{
-                    console.log("registration  successful"); 
                     this.refs.form.reset();
                     swal({
                         text: "Registracija sėkminga!",
@@ -150,13 +174,17 @@ class RegisterPharmacist extends Component {
                 .catch((error)=>{
                 console.log(error);
                  if(error.response.status === 500){ 
-                    alert("Toks vartotojo vardas jau egzistuoja. Sukurkite naują.")
+                    swal({
+                        text:"Toks vartotojo vardas jau egzistuoja. Sukurkite naują.",
+                        icon: "error",
+                       button: "Gerai",
+                    });
                     console.log("error status",error.response.status)
                    } 
                 })
                 event.preventDefault();
         }else{
-            console.log("some data is wrong");
+            console.log("Neteinsingi duomenys");
         }
     }
 

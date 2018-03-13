@@ -35,12 +35,12 @@ class ListOfPatietns extends Component {
 
         };
     }
-    //perduoti username, first, lastname i confirmation component
+
     componentWillMount = () => {
         axios.get("http://localhost:8081/admin/patientsWithoutDoctors")
             .then((responce) => { this.setState({ patientsWithoutDoctors: responce.data }); })
             .catch((error) => { console.log(error) });
-            // this.setState({selected:});
+    
     };
 
     isSelected = (index) => {

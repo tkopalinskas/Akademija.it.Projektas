@@ -15,7 +15,6 @@ public class PatientForClient implements Serializable{
 	private String role;
 	private String userName;
 	private boolean isSuspended;
-	private String doctorsFullName;
 
 	private DoctorForClient doctor;
 	
@@ -87,12 +86,13 @@ public class PatientForClient implements Serializable{
 		isSuspended = suspended;
 	}
 
-	public String getDoctorsFullName() {
-		return doctorsFullName;
+	public PatientForClient getPatient() {
+		return patient;
 	}
 
-	public void setDoctorsFullName(String doctorsFullName) {
-		this.doctorsFullName = doctorsFullName;
+	public void setPatient(PatientForClient patient) {
+		this.patient = patient;
 	}
+
 }
 

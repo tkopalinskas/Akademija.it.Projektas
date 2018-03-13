@@ -51,9 +51,6 @@ public class UserController {
 	public ResponseEntity<User> updateUser(@PathVariable(value = "userId") Long userId) {
 
 		User user = userRepository.findOne(userId);
-		// if (user == null) {
-		// return ResponseEntity.notFound().build();
-		// }
 		user.setRole("SUSPENDED");
 		user.setSuspended(true);
 

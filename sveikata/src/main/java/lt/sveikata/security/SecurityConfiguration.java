@@ -33,16 +33,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			authorizeRequests()
 		
 			.antMatchers("/","swagger-ui.html").permitAll()
-			.antMatchers("/console/**").permitAll()
-//			.antMatchers("/admin/**").hasRole("ADMIN")
-//			.antMatchers("/patient/**").hasRole("PATIENT")
+//			.antMatchers("/console/**").permitAll()
+			.antMatchers("/admin/**").hasRole("ADMIN")
+			.antMatchers("/patient/**").hasRole("PATIENT")
 			.antMatchers("/pharmacist/**").hasRole("PHARMACIST")
 			.antMatchers("/doctor/**").hasRole("DOCTOR")
 			.and()
 			.formLogin()
 
 			.successHandler(new SimpleUrlAuthenticationSuccessHandler())
-			// esant blogiems user/pass
 			.failureHandler(new SimpleUrlAuthenticationFailureHandler()).loginPage("/").permitAll()
 			.and()
 			.logout().permitAll()
@@ -50,7 +49,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.csrf()
 			.disable()
 			.exceptionHandling()
-			//.authenticationEntryPoint(securityEntryPoint)
 			.and()
 			.headers()
 			.frameOptions()

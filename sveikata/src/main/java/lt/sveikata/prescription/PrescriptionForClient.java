@@ -1,13 +1,11 @@
 package lt.sveikata.prescription;
 
 import java.io.Serializable;
+
 public class PrescriptionForClient implements Serializable {
 
-
 	private Long prescriptionId;
-	private String doctorsFullName;
 	private String prescriptionDate;
-	private long personalId;
 	private String validUntil;
 	private String activeIngredient;
 	private String amountPerDose;
@@ -17,7 +15,6 @@ public class PrescriptionForClient implements Serializable {
 	private Long number;
 	private int totalAmount;
 	private String totalUnits;
-	
 
 	public Long getNumber() {
 		return number;
@@ -27,28 +24,12 @@ public class PrescriptionForClient implements Serializable {
 		this.number = number;
 	}
 
-	public String getDoctorsFullName() {
-		return doctorsFullName;
-	}
-
-	public void setDoctorsFullName(String doctorsFullName) {
-		this.doctorsFullName = doctorsFullName;
-	}
-
 	public String getPrescriptionDate() {
 		return prescriptionDate;
 	}
 
 	public void setPrescriptionDate(String prescriptionDate) {
 		this.prescriptionDate = prescriptionDate;
-	}
-
-	public long getPersonalId() {
-		return personalId;
-	}
-
-	public void setPersonalId(long personalId) {
-		this.personalId = personalId;
 	}
 
 	public String getValidUntil() {

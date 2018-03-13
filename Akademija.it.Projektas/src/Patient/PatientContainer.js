@@ -47,7 +47,6 @@ class PatientContainer extends Component{
         axios
           .get("http://localhost:8081/admin/user/"+ user.userId +"/firstName_lastName")
           .then((response) => {
-            console.log(response);
             this.setState({userInfo: response.data});
         })
         .catch((error) => {
@@ -92,7 +91,6 @@ class PatientContainer extends Component{
       
         axios.get('http://localhost:8081/logout')
              .then((resp)=>{
-                 console.log('isilogina');
                let user = resp.data;
                window.sessionStorage.removeItem("userData");
              } );

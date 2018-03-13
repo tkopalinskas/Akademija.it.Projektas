@@ -1,6 +1,5 @@
 package lt.sveikata.doctor;
 
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
@@ -9,15 +8,12 @@ import lt.sveikata.user.AddNewUser;
 
 @Entity
 @DiscriminatorValue("NewDoctor")
-public class AddNewDoctor extends AddNewUser{
-
-
+public class AddNewDoctor extends AddNewUser {
 
 	private String firstName;
 	@NotNull
 	private String lastName;
 	private String specialization;
-	// private String workplace;
 
 	public String getFirstName() {
 		return firstName;

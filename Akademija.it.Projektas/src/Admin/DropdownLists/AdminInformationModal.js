@@ -27,7 +27,6 @@ export default class InformationModal extends React.Component {
             return "Taip"
             .get("http://localhost:8081/user/" + this.props.userInfo.userId +"/suspend")
             .then((response) => {
-                console.log(response + "Suspeded");
                 this.setState({prescriptions: response.data});
             })
         } else {
@@ -55,14 +54,13 @@ export default class InformationModal extends React.Component {
             />,
         ];
 
-        //modal pagauna paduoda array su specifiniu userinfo per props
         let user = this.props.userInfo.map((User, index) => (
             <div key={index} >
                 <h3> {User.firstName + " " + User.lastName}</h3>
                 <span>
                     <p>{"Rolė: " + User.role}</p>
                     <p>Slapyvardis: {User.userName}</p>
-                    <p>Užbanintas:  {this.translate(User.suspanded)} </p>
+                    <p>Syspenduotas:  {this.translate(User.suspanded)} </p>
                 </span>
             </div>
         ));

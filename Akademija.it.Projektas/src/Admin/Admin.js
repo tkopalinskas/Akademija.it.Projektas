@@ -13,14 +13,6 @@ const rowStyle = {
 
 class Admin extends React.Component {
 
- //    let userData = window.sessionStorage.getItem('userData');
-    //    if(userData==null)
-    //         window.location.href="/#/";
-    //    else{
-    //        let user = JSON.parse(userData);
-    //        if(user.role!='ADMIN')
-    //             window.location.href="/#/";
-    //    }
 
     render() {
         return (           
