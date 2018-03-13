@@ -8,6 +8,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lt.sveikata.prescriptionUses.UsesFact;
 import lt.sveikata.user.User;
 
@@ -24,6 +26,7 @@ public class Pharmacist extends User {
 	private String workplace;
 	private String typeOfWorkplace;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "pharmacist")
 	private List<UsesFact> usesFact;
 
@@ -58,6 +61,16 @@ public class Pharmacist extends User {
 	public void setTypeOfWorkplace(String typeOfWorkplace) {
 		this.typeOfWorkplace = typeOfWorkplace;
 	}
+
+	public List<UsesFact> getUsesFact() {
+		return usesFact;
+	}
+
+	public void setUsesFact(List<UsesFact> usesFact) {
+		this.usesFact = usesFact;
+	}
+	
+	
 
 }
 

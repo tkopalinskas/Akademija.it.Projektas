@@ -118,7 +118,8 @@ class PatientsListTable extends Component {
               <TableRowColumn>{patient.personalId}</TableRowColumn>
               <TableRowColumn>
                 <select className="routeToComponent" 
-                        value={this.state.value} data-patient-id={patient.personalId} onChange={this.handleChange}>
+                        value={this.state.value} data-patient-id={patient.personalId}
+                         onChange={this.handleChange}>
                   <option id="moreOptions" value={""} >Daugiau informacijos </option>
                   <option id="prescriptions" value={"receptai"} >Receptai</option>
                   <option id="medicalRecords" value={"ligos įrašai"} >Ligos įrašai</option>

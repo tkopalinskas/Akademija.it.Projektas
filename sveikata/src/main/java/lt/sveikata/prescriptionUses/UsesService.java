@@ -42,15 +42,15 @@ public class UsesService {
 	public void addNewUse(AddNewUse newUse, long prescriptionId, long pharmacistId) {
 		UsesFact usesFact = new UsesFact();
 		usesFact.setPrescriptionUsesDate(newUse.getPrescriptionUsesDate());
-//		usesFact.setTimesUsed(newUse.getTimesUsed()+1);
-		Prescription prescription = prescriptionRepository.findByPrescriptionId(newUse.getPrescriptionId());
+		usesFact.setTimesUsed(newUse.getTimesUsed()+1);
+		Prescription prescription = prescriptionRepository.findByPrescriptionId(prescriptionId);
 		usesFact.setPrescription(prescription);
-		
+		Pharmacist pharm = pharmacistRepository.findOneByUserId(pharmacistId);
+		usesFact.setPharmacist(pharm);
 		//usesFact.setPharmacistsFullName(newUse.getPharmacistsFullName());
 		// usesFact.setValid(newUse.getIsValid());
 		usesRepository.save(usesFact);
-		Pharmacist pharm = pharmacistRepository.findOneByUserId(pharmacistId);
-		usesFact.setPharmacist(pharm);
+		
 		
 	}
 

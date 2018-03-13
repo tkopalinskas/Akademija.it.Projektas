@@ -91,7 +91,8 @@ class NewPrescription extends Component {
             match!==null ){
             return true
         }else{
-            alert("Įvesta galiojimo data yra praeityje, arba neteisingas datos formatas. Teisingas datos formatas: metai-mėnuo-diena")
+           // alert("Įvesta galiojimo data yra praeityje, arba neteisingas datos formatas. Teisingas datos formatas: metai-mėnuo-diena")
+            swal("", "Įvesta galiojimo data yra praeityje, arba neteisingas datos formatas. Teisingas datos formatas: metai-mėnuo-diena", "error");
         }
     }
 
@@ -101,7 +102,7 @@ class NewPrescription extends Component {
         }
         else{
           //alert("Įveskite vaisto naudojimo aprašymą!")
-          swal("Title", "Įveskite vaisto naudojimo aprašymą!", "error");
+          swal("", "Įveskite vaisto naudojimo aprašymą!", "error");
 
         }
     }
@@ -162,7 +163,9 @@ class NewPrescription extends Component {
                
                 .then((response)=>{
                 console.log("registration  successful");
-                alert("Receptas įrašytas!"); 
+              //  alert("Receptas įrašytas!"); 
+                swal("", "Receptas įrašytas!", "success");
+                
                 this.props.closeAction();    
             })
                 .catch((error)=>{

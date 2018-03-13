@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lt.sveikata.doctor.Doctor;
 import lt.sveikata.patient.Patient;
@@ -37,6 +38,7 @@ public class Prescription {
 	private int totalAmount;
 	private String totalUnits;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "prescription")
 	private List<UsesFact> usesFact;
 

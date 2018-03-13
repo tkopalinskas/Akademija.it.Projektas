@@ -26,6 +26,7 @@ public class UsesFact {
 	private int timesUsed;
 
 	@ManyToOne
+	@JsonBackReference
 	@JoinColumn(name = "prescriptionId")
 	private Prescription prescription;
 	//
