@@ -106,10 +106,7 @@ class PatientsListTable extends Component {
     };
 
       render() {
-        /*IMPORTANT!!!! delete console.log before release */
-        console.log("personal", this.state.personalId)
-        console.log("value", this.state.value)
-
+     
         var allPatients = this.state.patients.map((patient, index) => (          
           <TableRow key={index}>
               <TableRowColumn>{patient.firstName}</TableRowColumn>
@@ -142,7 +139,7 @@ class PatientsListTable extends Component {
                                 open={this.state.showModal}
                                 closeAction={this.openPrescriptionModal}
                                 personalId={this.state.personalId}
-                                //perduoti ID
+                              
                                 />
         }else if(this.state.value==="naujas ligos įrašas"){
             newAdditionModal=<NewMedicalRecord
@@ -208,21 +205,6 @@ class PatientsListTable extends Component {
                 showRowHover={this.state.showRowHover}
               >
                { allPatients}
-                   {/*  <TableRow >
-                    <TableRowColumn>firstName</TableRowColumn>
-                    <TableRowColumn>lastName</TableRowColumn>
-                    <TableRowColumn>personalId</TableRowColumn>
-                    <TableRowColumn>
-                      <select className="routeToComponent" 
-                              value={this.state.value} onChange={this.handleChange}>
-                        <option id="moreOptions" value={""} >Daugiau informacijos </option>
-                        <option id="prescriptions" value={"receptai"} >Receptai</option> 
-                        <option id="medicalRecords" value={"ligos įrašai"} >Ligos įrašai</option>
-                        <option id="newMedicalRecord" value={"naujas ligos įrašas"} >Naujas ligos įrašas</option>
-                        <option id="newPrescription" value={"naujas receptas"} >Naujas receptas</option>
-                      </select>
-                    </TableRowColumn>
-                  </TableRow>  */}
               </TableBody>
             </Table> 
             {newAdditionModal}

@@ -51,7 +51,6 @@ class DoctorContainer extends Component{
       
             axios.get('http://localhost:8081/logout')
                  .then((resp)=>{
-                     console.log('isilogina');
                    let user = resp.data;
                    window.sessionStorage.removeItem("userData");
                  } );
@@ -129,7 +128,7 @@ class DoctorContainer extends Component{
                     <MenuItem style={{whiteSpace: 'normal'}} 
                               primaryText="Pacientų sąrašas" 
                               containerElement={<Link to="/doctor/patientsList" />}/><br/>     
-                    <MenuItem /* style={{whiteSpace: 'normal'}} */
+                    <MenuItem
                               primaryText="Paieška duombazėje" 
                               containerElement={<Link to="/doctor/findPatient" />}
                               />

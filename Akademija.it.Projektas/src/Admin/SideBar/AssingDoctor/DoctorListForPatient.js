@@ -35,7 +35,8 @@ class ListOfPatietns extends Component {
     }
     componentWillMount = () => {
         axios.get("http://localhost:8081/admin/familyDoctors")
-            .then((responce) => { this.setState({ familyDoctors: responce.data }); console.log(this.state.familyDoctors) })
+            .then((responce) => { this.setState({ familyDoctors: responce.data }); 
+          })
             .catch((error) => { console.log(error) });
     };
     

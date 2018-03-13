@@ -30,8 +30,6 @@ export default class InformationModal extends React.Component {
         }
     }
 
-
-
     render() {
 
         if (!this.props.userInfo) {
@@ -48,11 +46,8 @@ export default class InformationModal extends React.Component {
                 label="Submit"
                 primary={true}
                 disabled={this.state.disabled}
-            // onClick={this.props.closeAction}
             />,
         ];
-
-        //modal pagauna paduoda array su specifiniu userinfo per props
         let user = this.props.userInfo.map((User, index) => (
             <div key={index} >
                 <h3> {User.firstName + " " + User.lastName}</h3>
@@ -60,7 +55,7 @@ export default class InformationModal extends React.Component {
                     <p>{"Rolė: " + User.role}</p>
                     <p>Slapyvardis: {User.userName}</p>
                     <p>Darbo Vieta: "{User.typeOfWorkplace} {User.workplace}"</p>
-                    <p>Užbanintas:  {this.translate(User.suspanded)} </p>
+                    <p>Suspenduotas:  {this.translate(User.suspanded)} </p>
                 </span>
             </div>
         ));
@@ -79,7 +74,7 @@ export default class InformationModal extends React.Component {
                     {user}
                         
                         <Checkbox
-                            label="Suspend User"
+                            label="Suspenduoti vartotoją"
                             onCheck={this.handleToggle}
                         />
                     </Dialog>

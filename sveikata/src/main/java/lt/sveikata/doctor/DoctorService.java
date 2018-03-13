@@ -61,13 +61,6 @@ public class DoctorService {
 		return familtyDoctorsForClients;
 	}
 
-	public DoctorRepository getDoctorRepository() {
-		return doctorRepository;
-	}
-
-	public void setDoctorRepository(DoctorRepository doctorRepository) {
-		this.doctorRepository = doctorRepository;
-	}
 
 	public void addNewDoctor(AddNewDoctor newDoctor) {
 		Doctor doc = new Doctor();
@@ -83,10 +76,6 @@ public class DoctorService {
 		doctorRepository.save(doc);
 
 	}
-//	public Object findDoctor(String doctorUserName){
-//		Doctor doc = doctorRepository.findOneByUserName(doctorUserName);
-//		return doc;
-//	}
 
 	public void updateDoctor(Doctor doctor, Long id) {
 		Doctor doc = doctorRepository.findOne(id);
@@ -94,8 +83,15 @@ public class DoctorService {
 		doc.setLastName(doctor.getLastName());
 		doc.setSpecialization(doctor.getSpecialization());
 		doc.setPassword(doctor.getPassword());
-		// doc.setWorkplace(doctor.getWorkplace());
 		doctorRepository.save(doc);
 	}
+	public DoctorRepository getDoctorRepository() {
+		return doctorRepository;
+	}
+
+	public void setDoctorRepository(DoctorRepository doctorRepository) {
+		this.doctorRepository = doctorRepository;
+	}
+
 
 }

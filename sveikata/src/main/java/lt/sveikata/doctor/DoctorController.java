@@ -41,18 +41,6 @@ public class DoctorController {
 		doctorService.addNewDoctor(newDoctor);
 	}
 
-//	@RequestMapping(/*value = "/manageUser", */path = "/{id}", method = RequestMethod.DELETE)
-//	@ResponseStatus(HttpStatus.NO_CONTENT)
-//	public void deleteDoctorFromDatabase(@PathVariable final Long id) {
-//		doctorService.deleteDoctor(id);
-//	}
-
-	@RequestMapping(value = "/admin/findUser/manageUser/{id}", method = RequestMethod.PUT)
-	@PreAuthorize("hasRole('ADMIN')") 
-	@ResponseStatus(HttpStatus.CREATED)
-	public void updateExistingDoctor(@RequestBody final Doctor doctor, @PathVariable final Long id) {
-		doctorService.updateDoctor(doctor, id);
-	}
 
 	public DoctorService getDoctorService() {
 		return doctorService;

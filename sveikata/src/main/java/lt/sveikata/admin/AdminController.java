@@ -41,13 +41,6 @@ public class AdminController {
 		adminService.addNewAdmin(newAdmin);
 	}
 
-	@RequestMapping(value = "/{id}/changePassword", method = RequestMethod.PUT)
-	@PreAuthorize("hasRole('ADMIN')") 
-	@ResponseStatus(HttpStatus.CREATED)
-	public void updateExistingAdmin(@RequestBody final Admin admin, @PathVariable final Long id) {
-		adminService.updateAdmin(admin, id);
-	}
-
 	public AdminService getAdminService() {
 		return adminService;
 	}

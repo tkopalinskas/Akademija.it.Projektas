@@ -67,7 +67,8 @@ export default class ListofPatients extends Component {
 
     componentWillMount = () => {
         axios.get("http://localhost:8081/admin/allPatients")
-            .then((responce) => { this.setState({ patientGet: responce.data }); console.log(this.state.patientGet) })
+            .then((responce) => { this.setState({ patientGet: responce.data }); 
+            })
             .catch((error) => { console.log(error) });
     };
 

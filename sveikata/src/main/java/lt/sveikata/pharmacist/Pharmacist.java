@@ -16,7 +16,6 @@ import lt.sveikata.user.User;
 @Entity
 @Table(name = "PHARMACIST")
 @PrimaryKeyJoinColumn(name = "pharmacistId")
-// @DiscriminatorValue("Pharmacist")
 public class Pharmacist extends User {
 
 	private String firstName;

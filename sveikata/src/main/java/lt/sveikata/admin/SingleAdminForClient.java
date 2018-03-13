@@ -1,32 +1,40 @@
 package lt.sveikata.admin;
 
 public class SingleAdminForClient {
-    private String firstName;
-    private String lastName;
-    private String userName;
-    private String role;
+	private String firstName;
+	private String lastName;
+	private String userName;
+	private String role;
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public String getUserName() { return userName; }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setUserName(String userName) { this.userName = userName; }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public String getRole() {return  role; }
+	public String getRole() {
+		return role;
+	}
 
-    public void setRole(String role) { this.role = role; }
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

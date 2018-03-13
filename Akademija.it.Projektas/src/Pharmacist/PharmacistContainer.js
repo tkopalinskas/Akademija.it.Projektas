@@ -91,8 +91,6 @@ class PharmacistContainer extends Component{
                 window.location.href="/#/";
        }
 
-        /*remove before release */
-        console.log(this.state.personalId);
 
         return(
             <MuiThemeProvider>

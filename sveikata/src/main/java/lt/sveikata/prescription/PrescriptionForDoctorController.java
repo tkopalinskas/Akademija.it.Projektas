@@ -26,25 +26,24 @@ public class PrescriptionForDoctorController {
 
 	/* gets all specified patient's prescriptions for doctor */
 	@RequestMapping(value = "/patient/prescriptions", method = RequestMethod.GET)
-    @PreAuthorize("hasRole('DOCTOR')") 
+	@PreAuthorize("hasRole('DOCTOR')")
 	public List<PrescriptionForClient> giveAllPrescriptions() {
 		return getPrescriptionService().receiveAllPrescriptions();
 	}
 
 	/* gets a specified prescription from database, searches by number */
 	@RequestMapping(value = "/patient/prescriptions/{number}", method = RequestMethod.GET)
-	 @PreAuthorize("hasRole('DOCTOR')") 
+	@PreAuthorize("hasRole('DOCTOR')")
 	public Prescription singlePrescription(@PathVariable Long number) {
 		return prescriptionService.receivePrescriptionInfo(number);
 	}
-	/*adds a new prescription to database*/
-	@RequestMapping(value = "{doctorId}/patient/{personalId}/addNewPrescription", method = RequestMethod.POST,
- consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@PreAuthorize("hasRole('DOCTOR')") 
+
+	/* adds a new prescription to database */
+	@RequestMapping(value = "{doctorId}/patient/{personalId}/addNewPrescription", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	// @PreAuthorize("hasRole('DOCTOR')")
 	@ResponseStatus(HttpStatus.CREATED)
-	public 	@ResponseBody void createPrescrition(@RequestBody final AddNewPrescription newPrescription,
-			@PathVariable Long personalId,
-			@PathVariable Long doctorId ) {
+	public @ResponseBody void createPrescrition(@RequestBody final AddNewPrescription newPrescription,
+			@PathVariable Long personalId, @PathVariable Long doctorId) {
 		prescriptionService.addPrescription(newPrescription, personalId, doctorId);
 	}
 

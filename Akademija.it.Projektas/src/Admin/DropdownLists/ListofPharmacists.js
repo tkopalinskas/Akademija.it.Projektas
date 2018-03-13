@@ -58,7 +58,8 @@ export default class ListofPharmacists extends Component {
 
     componentWillMount = () => {
         axios.get("http://localhost:8081/admin/allPharmacists")
-            .then((responce) => { this.setState({ pharmacistGet: responce.data }); console.log(this.state.pharmacistGet) })
+            .then((responce) => { this.setState({ pharmacistGet: responce.data }); 
+         })
             .catch((error) => { console.log(error) });
     };
 
@@ -69,7 +70,8 @@ export default class ListofPharmacists extends Component {
                 <TableRowColumn>{pharmacists.firstName + " " + pharmacists.lastName}</TableRowColumn>
                 <TableRowColumn>{pharmacists.userName}</TableRowColumn>
                 <TableRowColumn>{pharmacists.role}</TableRowColumn>
-                <TableRowColumn><FlatButton label="Info" primary={true} onClick ={() => this.openModal(pharmacists.userName)} /></TableRowColumn>
+                <TableRowColumn><FlatButton label="Info" primary={true}
+                 onClick ={() => this.openModal(pharmacists.userName)} /></TableRowColumn>
             </TableRow>
         ))
 

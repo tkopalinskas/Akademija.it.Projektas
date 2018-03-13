@@ -15,7 +15,7 @@ public class RecordForClient {
 	private boolean isCompensated;
 	private boolean visitIsRepeated;
 	private long recordId;
-	
+
 	private DoctorForPatient doctor;
 
 	public String getDateOfVisit() {
@@ -25,8 +25,6 @@ public class RecordForClient {
 	public void setDateOfVisit(String dateOfVisit) {
 		this.dateOfVisit = dateOfVisit;
 	}
-	
-	
 
 	public DoctorForPatient getDoctor() {
 		return doctor;

@@ -23,13 +23,7 @@ public class PrescriptionsForPharmacistController {
 
 	private ModelMapper modelMapper = new ModelMapper();
 
-	/* gets all specified patient's prescriptions for pharmacist */
-//	@RequestMapping(value = "/{personalId}/prescriptions", method = RequestMethod.GET)
-//	 @PreAuthorize("hasRole('PHARMACIST')") 
-//	public List<PrescriptionForClient> giveValidPrescriptions(@PathVariable("personalId") Long personalId) {
-//		return getPrescriptionService().receiveAllPrescriptionsForPharmacist(personalId);
-//	}
-	
+
 	/* Gets patient prescriptions.Same thing less code */
 	@RequestMapping("/{personalId}/prescriptions")
 	public List<PrescriptionForClient> getPatientPrescriptions(@PathVariable("personalId") Long personalId) {
@@ -45,7 +39,6 @@ public class PrescriptionsForPharmacistController {
 		return prescriptionService.receivePrescriptionInfo(prescriptionId);
 	}
 
-	
 
 	public PrescriptionService getPrescriptionService() {
 		return prescriptionService;

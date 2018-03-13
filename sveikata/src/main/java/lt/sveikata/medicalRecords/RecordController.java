@@ -42,7 +42,7 @@ public class RecordController {
 	/* gets a specified record from database, searches by recordId */
 	@RequestMapping(value = "/medicalRecords/{recordId}", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('PATIENT')") 
-	public RecordForClient singleRecord(@PathVariable("recordId") final Long recordId) {
+	public Record singleRecord(@PathVariable("recordId") final Long recordId) {
 		return recordService.receiveRecordInfo(recordId);
 	}
 
