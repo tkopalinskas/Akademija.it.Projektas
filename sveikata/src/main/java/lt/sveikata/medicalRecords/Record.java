@@ -35,7 +35,7 @@ public class Record {
 	private boolean visitIsRepeated;
 
 	@ManyToOne
-	 @JsonBackReference
+	@JsonBackReference
 	@JoinColumn(name = "patientId")
 	private Patient patient;
 

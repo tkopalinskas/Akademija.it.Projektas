@@ -128,7 +128,6 @@ class PharmacistsPrescriptionsTable extends Component {
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn>{prescription.prescriptionId}</TableRowColumn>
             <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} /* data-prescription-id={prescription.prescriptionId} */ onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
         </TableRow>
     ))

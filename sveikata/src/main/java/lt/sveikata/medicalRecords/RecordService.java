@@ -49,7 +49,7 @@ public class RecordService {
 	public RecordForClient receiveRecordInfo(long recordId) {
 		Record record = recordRepository.findByRecordId(recordId);
 		RecordForClient recordForClient = new RecordForClient();
-		recordForClient.setRecordId(record.getRecordId());
+//		recordForClient.setRecordId(record.getRecordId());
 		recordForClient.setDateOfVisit(record.getDateOfVisit());
 		recordForClient.setIllnessTLKCode(record.getIllnessTLKCode());
 		recordForClient.setDoctorsFullName(record.getDoctorsFullName());
@@ -80,6 +80,9 @@ public class RecordService {
 		recordRepository.save(vis);
 	}
 
+	public List<Record> getRecordsByUserId(long patientId){
+		return recordRepository.getPatientRecordByUserId(patientId);
+	}
 
 	public RecordRepository getRecordRepository() {
 		return recordRepository;

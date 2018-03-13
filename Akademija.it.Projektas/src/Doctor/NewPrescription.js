@@ -33,10 +33,7 @@ class NewPrescription extends Component {
             totalUnits:'',
             totalAmount: '',
             validUntil: '',
-            description: '',
-
-        
-            
+            description: '',   
         };
     }
 
@@ -49,7 +46,11 @@ class NewPrescription extends Component {
             return true;
         }
         else{
-          alert("Įveskite veikliąją medžiagą!")
+          swal({
+            text: "Įveskite veikliąją medžiagą!",
+            icon: "error",
+           button: "Gerai",
+        });
         }
     }
 
@@ -59,7 +60,12 @@ class NewPrescription extends Component {
             return true;
         }
         else{
-          alert("Įveskite veikliosios medžiagos kiekį vienoje dozėje!")
+    
+          swal({
+            text: "Įveskite veikliosios medžiagos kiekį vienoje dozėje!",
+            icon: "error",
+           button: "Gerai",
+        });
         }
     }
 
@@ -68,7 +74,12 @@ class NewPrescription extends Component {
             return true;
         }
         else{
-          alert("Įveskite matavimo vienetus!")
+          swal({
+            text: "Įveskite matavimo vienetus!",
+            icon: "error",
+           button: "Gerai",
+        });
+          
         }
     }
 
@@ -78,7 +89,11 @@ class NewPrescription extends Component {
             return true;
         }
         else{
-          alert("Įveskite visą išrašyto vaisto kiekį!")
+          swal({
+            text: "Įveskite visą išrašyto vaisto kiekį!",
+            icon: "error",
+           button: "Gerai",
+        });
         }
     }
 
@@ -92,7 +107,12 @@ class NewPrescription extends Component {
             return true
         }else{
            // alert("Įvesta galiojimo data yra praeityje, arba neteisingas datos formatas. Teisingas datos formatas: metai-mėnuo-diena")
-            swal("", "Įvesta galiojimo data yra praeityje, arba neteisingas datos formatas. Teisingas datos formatas: metai-mėnuo-diena", "error");
+           swal({
+            text: "Įvesta galiojimo data yra praeityje, arba neteisingas datos formatas. Teisingas datos formatas: metai-mėnuo-diena",
+            icon: "error",
+           button: "Gerai",
+        });
+
         }
     }
 
@@ -102,10 +122,14 @@ class NewPrescription extends Component {
         }
         else{
           //alert("Įveskite vaisto naudojimo aprašymą!")
-          swal("", "Įveskite vaisto naudojimo aprašymą!", "error");
+          swal({
+              text: "Įveskite vaisto naudojimo aprašymą!",
+              icon: "error",
+             button: "Gerai",
+          });
 
+          };
         }
-    }
 
     getCurrentDate(){
         let today = new Date();
@@ -164,7 +188,11 @@ class NewPrescription extends Component {
                 .then((response)=>{
                 console.log("registration  successful");
               //  alert("Receptas įrašytas!"); 
-                swal("", "Receptas įrašytas!", "success");
+                swal({
+                    text: "Receptas įrašytas!",
+                    icon: "success",
+                   button: "Gerai",
+                });
                 
                 this.props.closeAction();    
             })

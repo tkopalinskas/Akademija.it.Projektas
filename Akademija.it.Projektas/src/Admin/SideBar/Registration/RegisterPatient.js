@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { API } from "./HostUrl";
 import axios from 'axios';
+import swal from 'sweetalert';
 
 const textStyles = {
   errorStyle: {
@@ -45,7 +46,11 @@ class RegisterPatient extends Component {
         return true;
     }
     else{
-      alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+      swal({
+        text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
+        icon: "error",
+       button: "Gerai",
+    });
     }
 }
 
@@ -56,7 +61,11 @@ validLastNameEntered(){
         return true;
     }
     else{
-      alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
+      swal({
+        text: "Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
+        icon: "error",
+       button: "Gerai",
+    });
     }
 }
 
@@ -67,7 +76,12 @@ validUserNameEntered(){
         return true;
     }
     else{
-      alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
+
+    swal({
+      text: "Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
+      icon: "error",
+     button: "Gerai",
+  });
     }
 }
 
@@ -100,7 +114,11 @@ generateDateOfBirth=() =>{
   }else if((firstDigit==='5')||(firstDigit==='6')){
     year='20'+secondGroup;
   }else{
-    alert("Patikrinkit ar teisingai įvedėte asmens kodą");
+    swal({
+      text: "Patikrinkit ar teisingai įvedėte asmens kodą",
+      icon: "error",
+     button: "Gerai",
+  });
     return this.setState({personalId:null})
   } 
 
@@ -116,7 +134,11 @@ generateDateOfBirth=() =>{
         return true;
     }
     else{
-      alert("Asmens kodas privalomas! Asmens kodą sudaro 11 skaitmenų")
+      swal({
+        text: "Asmens kodas privalomas! Asmens kodą sudaro 11 skaitmenų",
+        icon: "error",
+       button: "Gerai",
+    });
     }
 }
 
@@ -125,7 +147,11 @@ generateDateOfBirth=() =>{
       return true;
     }
     else {
-      alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
+      swal({
+        text: "Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
+        icon: "error",
+       button: "Gerai",
+    });
     }
   }
 
@@ -135,7 +161,11 @@ generateDateOfBirth=() =>{
       return true;
     }
     else {
-      alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
+      swal({
+        text: "Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.",
+        icon: "error",
+       button: "Gerai",
+    });
     }
 }
 
@@ -155,7 +185,11 @@ handleDateGeneration(event){
       this.validPersonalIdEntered && this.state.dateOfBirth !== 'Invalid Date') {
       return true;
     } else {
-      alert('Paspauskite mygtuką "Generuoti gimimo datą arba suveskite teisingą asmens kodą')
+      swal({
+        text: 'Paspauskite mygtuką "Generuoti gimimo datą arba suveskite teisingą asmens kodą',
+        icon: "error",
+       button: "Gerai",
+    });
     }
   }
 
@@ -194,7 +228,11 @@ handleDateGeneration(event){
       axios.post(apiUrl + '/admin/patient', information)
         .then((response) => {
           console.log("registration  successful");
-          alert("Registracija sėkminga!");
+          swal({
+            text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
+            icon: "success",
+           button: "Gerai",
+        });
         })
         .catch((error) => {
           console.log(error);

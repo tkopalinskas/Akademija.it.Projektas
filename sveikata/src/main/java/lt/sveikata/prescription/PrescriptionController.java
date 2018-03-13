@@ -30,10 +30,10 @@ public class PrescriptionController {
 	private ModelMapper modelMapper = new ModelMapper();
 
 	/*gets  all user prescriptions from database*/
-	@RequestMapping(value = "/{userName}/prescriptions", method = RequestMethod.GET)
+	@RequestMapping(value = "/{patientId}/prescriptions", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('PATIENT')") 
-	public List<PrescriptionForClient> getPatientPrescriptions(@PathVariable("userName") String userName) {
-		List<Prescription> prescriptions = prescriptionService.getUserPrescriptionByUserName(userName);
+	public List<PrescriptionForClient> getPatientPrescriptions(@PathVariable("patientId") Long patientId) {
+		List<Prescription> prescriptions = prescriptionService.getUserPrescriptionByUserId(patientId);
 		return modelMapper.map(prescriptions, new TypeToken<List<PrescriptionForClient>>() {
 		}.getType());
 		/**

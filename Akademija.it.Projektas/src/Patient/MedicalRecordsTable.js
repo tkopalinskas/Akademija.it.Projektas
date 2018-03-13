@@ -33,7 +33,7 @@ class MedicalRecordsTable extends Component {
             height: '300px',
             showModal: false,
 
-            visits: [],
+            medicalRecords: [],
             recordId:'',
             dateOfVisit: '',
             illnessTLKCode: '',
@@ -45,15 +45,17 @@ class MedicalRecordsTable extends Component {
         }
     }
   componentWillMount(){
+    let userData = window.sessionStorage.getItem('userData');
+    let user = JSON.parse(userData);
     axios
-      .get(API+"/patient/medicalRecords")
+      .get("http://localhost:8081/patient/"+ user.userId + "/medicalRecords")
       .then((response) => {
-          console.log(response);
-          this.setState({visits: response.data});
-      })
-      .catch((error) => {
-          console.log(error);
-      });
+        console.log(response);
+        this.setState({medicalRecords: response.data});
+    })
+    .catch((error) => {
+        console.log(error);
+    }); 
   }
     
   /*gets single prescription*/
@@ -75,7 +77,8 @@ class MedicalRecordsTable extends Component {
   }
 
       render() {
-        var allMedicalRecords = this.state.visits.map((records, index) => (
+
+        var allMedicalRecords = this.state.medicalRecords.map((records, index) => (
           <TableRow key={index}>
               {/* <TableRowColumn>{records.recordId}</TableRowColumn> */}
               <TableRowColumn>{records.dateOfVisit}</TableRowColumn>
@@ -85,7 +88,7 @@ class MedicalRecordsTable extends Component {
           </TableRow>
       ))
 
-      if (!this.state.visits) {
+      if (!this.state.medicalRecords) {
           return null;
       }
 

@@ -7,6 +7,8 @@ import TextField from 'material-ui/TextField/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import axios from 'axios';
 import {API} from "../Admin/SideBar/Registration/HostUrl";
+import swal from 'sweetalert';
+
 
 const textStyles = {
     errorStyle: {
@@ -48,7 +50,11 @@ class NewMedicalRecord extends Component {
             return true;
         }
         else{
-          alert("Įveskite vizito trukmę minutėmis!")
+          swal({
+            text: "Įveskite vizito trukmę minutėmis!",
+            icon: "error",
+           button: "Gerai",
+        });
         }
     }
 
@@ -70,9 +76,17 @@ class NewMedicalRecord extends Component {
             return true;
         }
         else if (match===null){
-            alert("Neteisingai įvestas ligos kodas. Ligos kodai sudaromi iš vienos didžiosios lotyniškos raidės ir dviejų skaitmenų. Patikslinant diagnozę, po taško dar gali būti rašomi vienas arba du skaitmenys.")
+            swal({
+                text: "Neteisingai įvestas ligos kodas. Ligos kodai sudaromi iš vienos didžiosios lotyniškos raidės ir dviejų skaitmenų. Patikslinant diagnozę, po taško dar gali būti rašomi vienas arba du skaitmenys.",
+                icon: "error",
+               button: "Gerai",
+            });
         }else{
-            alert("Įveskite ligos TLK kodą!")
+            swal({
+                text: "Įveskite ligos TLK kodą!",
+                icon: "error",
+               button: "Gerai",
+            });
         }
     }
 
@@ -81,7 +95,11 @@ class NewMedicalRecord extends Component {
             return true;
         }
         else{
-          alert("Įveskite ligos aprašymą!")
+            swal({
+                text:"Įveskite ligos aprašymą!",
+                icon: "error",
+               button: "Gerai",
+            });
         }
     }
 
@@ -133,8 +151,12 @@ class NewMedicalRecord extends Component {
                          headers:{'Content-type':'application/json'},
                          data:information
                      })
-                .catch((error)=>{
-                console.log(error);
+                     .then((response)=>{
+                        swal({
+                            text: "Įrašas sukurtas!",
+                            icon: "success",
+                           button: "Gerai",
+                        });
                 this.props.closeAction();
                 console.log("info on error", this.state)
             })
