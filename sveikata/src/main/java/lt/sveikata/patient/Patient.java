@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.EqualsAndHashCode;
 import lt.sveikata.doctor.Doctor;
@@ -35,9 +36,11 @@ public class Patient extends User {
     @JoinColumn(name="doctorId")
 	private Doctor doctor;
     
+	@JsonManagedReference
     @OneToMany(mappedBy="patient")
     private List<Prescription> prescription;
     
+	@JsonManagedReference
     @OneToMany(mappedBy="patient")
     private List<Record>records;
 

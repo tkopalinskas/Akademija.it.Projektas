@@ -117,7 +117,8 @@ class PatientsListTable extends Component {
               <TableRowColumn>{patient.personalId}</TableRowColumn>
               <TableRowColumn>
                 <select className="routeToComponent" 
-                        value={this.state.value} data-patient-id={patient.personalId} onChange={this.handleChange}>
+                        value={this.state.value} data-patient-id={patient.personalId}
+                         onChange={this.handleChange}>
                   <option id="moreOptions" value={""} >Daugiau informacijos </option>
                   <option id="prescriptions" value={"receptai"} >Receptai</option>
                   <option id="medicalRecords" value={"ligos įrašai"} >Ligos įrašai</option>
@@ -141,11 +142,13 @@ class PatientsListTable extends Component {
                                 open={this.state.showModal}
                                 closeAction={this.openPrescriptionModal}
                                 personalId={this.state.personalId}
+                                //perduoti ID
                                 />
-        }else{
+        }else if(this.state.value==="naujas ligos įrašas"){
             newAdditionModal=<NewMedicalRecord
                                 open={this.state.showModal}
-                                closeAction={this.openMedicalRecordModal}/>
+                                closeAction={this.openMedicalRecordModal}
+                                personalId={this.state.personalId}/>
         }    
 
         return (

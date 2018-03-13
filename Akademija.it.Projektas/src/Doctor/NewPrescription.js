@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField/TextField';
 import axios from 'axios';
 import {API} from "../Admin/SideBar/Registration/HostUrl";
+import swal from 'sweetalert';
 
 const textStyles = {
     errorStyle: {
@@ -32,10 +33,7 @@ class NewPrescription extends Component {
             totalUnits:'',
             totalAmount: '',
             validUntil: '',
-            description: '',
-
-        
-            
+            description: '',   
         };
     }
 
@@ -48,7 +46,11 @@ class NewPrescription extends Component {
             return true;
         }
         else{
-          alert("Įveskite veikliąją medžiagą!")
+          swal({
+            text: "Įveskite veikliąją medžiagą!",
+            icon: "error",
+           button: "Gerai",
+        });
         }
     }
 
@@ -58,7 +60,12 @@ class NewPrescription extends Component {
             return true;
         }
         else{
-          alert("Įveskite veikliosios medžiagos kiekį vienoje dozėje!")
+    
+          swal({
+            text: "Įveskite veikliosios medžiagos kiekį vienoje dozėje!",
+            icon: "error",
+           button: "Gerai",
+        });
         }
     }
 
@@ -67,7 +74,12 @@ class NewPrescription extends Component {
             return true;
         }
         else{
-          alert("Įveskite matavimo vienetus!")
+          swal({
+            text: "Įveskite matavimo vienetus!",
+            icon: "error",
+           button: "Gerai",
+        });
+          
         }
     }
 
@@ -77,7 +89,11 @@ class NewPrescription extends Component {
             return true;
         }
         else{
-          alert("Įveskite visą išrašyto vaisto kiekį!")
+          swal({
+            text: "Įveskite visą išrašyto vaisto kiekį!",
+            icon: "error",
+           button: "Gerai",
+        });
         }
     }
 
@@ -90,7 +106,13 @@ class NewPrescription extends Component {
             match!==null ){
             return true
         }else{
-            alert("Įvesta galiojimo data yra praeityje, arba neteisingas datos formatas. Teisingas datos formatas: metai-mėnuo-diena")
+           // alert("Įvesta galiojimo data yra praeityje, arba neteisingas datos formatas. Teisingas datos formatas: metai-mėnuo-diena")
+           swal({
+            text: "Įvesta galiojimo data yra praeityje, arba neteisingas datos formatas. Teisingas datos formatas: metai-mėnuo-diena",
+            icon: "error",
+           button: "Gerai",
+        });
+
         }
     }
 
@@ -99,9 +121,15 @@ class NewPrescription extends Component {
             return true;
         }
         else{
-          alert("Įveskite vaisto naudojimo aprašymą!")
+          //alert("Įveskite vaisto naudojimo aprašymą!")
+          swal({
+              text: "Įveskite vaisto naudojimo aprašymą!",
+              icon: "error",
+             button: "Gerai",
+          });
+
+          };
         }
-    }
 
     getCurrentDate(){
         let today = new Date();
@@ -159,7 +187,13 @@ class NewPrescription extends Component {
                
                 .then((response)=>{
                 console.log("registration  successful");
-                alert("Receptas įrašytas!"); 
+              //  alert("Receptas įrašytas!"); 
+                swal({
+                    text: "Receptas įrašytas!",
+                    icon: "success",
+                   button: "Gerai",
+                });
+                
                 this.props.closeAction();    
             })
                 .catch((error)=>{

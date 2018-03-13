@@ -211,7 +211,8 @@ class PharmacistsPrescriptionsTable extends Component {
           <SinglePrescriptionInformation
                         open={this.state.showModal}
                         closeAction={this.closeModal}
-                        validPrescriptionInfo={this.state.validPrescriptionInfo} />
+                        validPrescriptionInfo={this.state.validPrescriptionInfo}
+                        prescriptionId={this.state.prescriptionId} />
           </Col>
           </Row>
           </Container> 

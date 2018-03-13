@@ -30,7 +30,7 @@ class SinglePrescriptionInformation extends Component {
             markAsUsed: false,
             prescriptionUsesDate:'',
             prescriptionValid: true,
-            /* prescriptionId: props.prescriptionId */
+         prescriptionId: props.prescriptionId 
         };
     }
 

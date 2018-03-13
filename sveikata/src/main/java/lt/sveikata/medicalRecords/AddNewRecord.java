@@ -32,13 +32,11 @@ public class AddNewRecord {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(unique = true)
 	private long recordId;
-	@NotNull
-	@Column
 	private String dateOfVisit;
 	
 
 	private String illnessTLKCode;
-	@NotNull
+//	@NotNull
 	private String doctorsFullName;
 	private int lengthOfVisit;
 	private String description;

@@ -25,6 +25,11 @@ export default class InformationModal extends React.Component {
     translate = (suspend) => {
         if (suspend) {
             return "Taip"
+            .get("http://localhost:8081/user/" + this.props.userInfo.userId +"/suspend")
+            .then((response) => {
+                console.log(response + "Suspeded");
+                this.setState({prescriptions: response.data});
+            })
         } else {
             return "Ne"
         }

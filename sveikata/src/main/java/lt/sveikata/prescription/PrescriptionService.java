@@ -158,13 +158,13 @@ public class PrescriptionService {
 		return prescriptionForClient;
 	}
 	//get user prescriptions
-	public List<Prescription> getUserPrescriptionByUserName(String userName){
-		return prescriptionRepository.getPatientPrescriptionsByUserName(userName);
+	public List<Prescription> getUserPrescriptionByUserId(Long patientId){
+		return prescriptionRepository.getPatientPrescriptionsByUserId(patientId);
 	}
 	//get prescription by personalId
-//	public List<Prescription> byPersonalId(Long personalId){
-//		return prescriptionRepository.getPatientPrescriptionsById(personalId);
-//	}
+	public List<Prescription> byPersonalId(Long personalId){
+		return prescriptionRepository.getPatientPrescriptionsById(personalId);
+	}
 
 //	public Prescription getSinglePrescription(long number) {
 //		return prescriptionRepository.getSinglePrescription(number);

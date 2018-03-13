@@ -20,9 +20,8 @@ public class AddNewUse {
 	private long usesFactId;
 
 //	@Temporal(TemporalType.DATE)
-	private Long prescriptionId;
+//	private Long prescriptionId;
 	private String prescriptionUsesDate;
-
 	private int timesUsed=0;
 	
 	
@@ -42,13 +41,13 @@ public class AddNewUse {
 		this.prescriptionUsesDate = prescriptionUsesDate;
 	}
 
-	public long getPrescriptionId() {
-		return prescriptionId;
-	}
-
-	public void setPrescriptionId(long prescriptionId) {
-		this.prescriptionId = prescriptionId;
-	}
+//	public long getPrescriptionId() {
+//		return prescriptionId;
+//	}
+//
+//	public void setPrescriptionId(long prescriptionId) {
+//		this.prescriptionId = prescriptionId;
+//	}
 
 	public int getTimesUsed() {
 		return timesUsed;

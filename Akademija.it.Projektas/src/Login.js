@@ -40,7 +40,7 @@ context)=>{
     />
     <br/>
     <RaisedButton type="submit" style={style}
-     label="Prsisijungti">
+     label="Prsisijungti" id="loginButton">
     </RaisedButton>
     </form>
     </MuiThemeProvider>

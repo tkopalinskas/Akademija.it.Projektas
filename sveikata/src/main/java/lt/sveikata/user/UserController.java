@@ -44,7 +44,7 @@ public class UserController {
 		userService.addNewUser(newUser);
 	}
 
-	@PutMapping("/user/{id}")
+	@PutMapping("/user/{id}/suspend")
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id, @RequestBody User userDetails) {
 
