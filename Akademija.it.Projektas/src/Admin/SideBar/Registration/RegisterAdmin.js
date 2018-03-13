@@ -5,7 +5,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import axios from 'axios';
 import {API} from "./HostUrl";
-import swal from 'sweetalert';
 
 const textStyles = {
   errorStyle: {
@@ -37,11 +36,7 @@ class RegisterAdmin extends Component {
         return true;
     }
     else{
-      swal({
-        text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-        icon: "error",
-       button: "Gerai",
-    });
+      alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
     }
 }
 
@@ -52,11 +47,7 @@ class RegisterAdmin extends Component {
           return true;
       }
       else{
-        swal({
-          text: "Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-          icon: "error",
-         button: "Gerai",
-      });
+        alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
       }
   }
 
@@ -67,11 +58,7 @@ class RegisterAdmin extends Component {
           return true;
       }
       else{
-        swal({
-          text: "Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
-          icon: "error",
-         button: "Gerai",
-      });
+        alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
       }
   }
 
@@ -80,11 +67,7 @@ class RegisterAdmin extends Component {
           return true;
       }
       else{
-        swal({
-          text: "Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
-          icon: "error",
-         button: "Gerai",
-      });
+        alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
       }
   }
 
@@ -94,11 +77,7 @@ class RegisterAdmin extends Component {
           return true;
       }
       else{
-        swal({
-          text: "Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.",
-          icon: "error",
-         button: "Gerai",
-      });
+        alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
       }
   }
 
@@ -126,16 +105,13 @@ class RegisterAdmin extends Component {
       password: this.state.password
       }
       //send to back end
-      this.refs.form.reset();
+      
        /*sugalvot kuo pakeisti alertus*/
       axios.post(API + "/admin/admin" , information)
       .then((response)=>{
-          console.log("registration  successful");  
-          swal({
-            text: "Registracija sėkminga!",
-            icon: "success",
-           button: "Gerai",
-        }); 
+          console.log("registration  successful");
+          alert("Registracija sėkminga!");   
+          this.refs.form.reset();  
       })
       .catch((error)=>{
         console.log(error);

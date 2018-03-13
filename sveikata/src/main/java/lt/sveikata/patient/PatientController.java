@@ -2,10 +2,15 @@ package lt.sveikata.patient;
 
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import lt.sveikata.user.User;
+import lt.sveikata.user.UserForClient;
 
 @RestController
 @RequestMapping(value="/admin")
@@ -14,6 +19,11 @@ public class PatientController {
 	
 	@Autowired
 	private PatientService patientService;
+	
+
+	private ModelMapper modelMapper = new ModelMapper();
+
+
 
 	@RequestMapping(value = "/allPatients", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('ADMIN')") 
@@ -47,13 +57,15 @@ public class PatientController {
 
 		patientService.assignDoctor(patientUsername, doctorUserName);
 	}
+	
+	@RequestMapping (value="/user/{userId}/firstName_lastName", method= RequestMethod.GET)
+	public PatientForClient getName(@PathVariable long userId) {
+		Patient patient = patientService.getByUserId(userId);
+		return modelMapper.map(patient, PatientForClient.class);
+		
+	}
 
-//	@RequestMapping(value = "/admin/findUser/manageUser/{personalId}", method = RequestMethod.PUT)
-//	@ResponseStatus(HttpStatus.CREATED)
-//	public void updateExistingPatient(@RequestBody final Patient patient, @PathVariable final Long personalId) {
-//		patientService.updatePatient(patient, personalId);
-//	}
-
+	
 	public PatientService getPatientService() {
 		return patientService;
 	}

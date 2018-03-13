@@ -64,37 +64,37 @@ class PasswordChangeComponent extends Component {
     }
 
 
-    handleClick(event){
+    handleClick = (event)=>{
 
         if(this.dataIsValid()){
 
             let userData = window.sessionStorage.getItem('userData');
             let user = JSON.parse(userData);
-            let userRole='';
-            let passwordForChanging={
+            // let userRole='';
+            let passwordInfo={
                 password: this.state.newPassword
             }
-            switch(user.role){
-                case 'ADMIN':
-                    userRole='/admin';
-                    break;
-                case'PATIENT':
-                    userRole='/patient';
-                    break;
-                case 'PHARMACIST':
-                    userRole='/pharmacist';
-                    break;
-                case 'DOCTOR':
-                   userRole='/doctor';
-                   break;
-                default:
-                    return null;   
-            }
+            // switch(user.role){
+            //     case 'ADMIN':
+            //         userRole='/ADMIN';
+            //         break;
+            //     case'PATIENT':
+            //         userRole='/patient';
+            //         break;
+            //     case 'PHARMACIST':
+            //         userRole='/pharmacist';
+            //         break;
+            //     case 'DOCTOR':
+            //        userRole='/doctor';
+            //        break;
+            //     default:
+            //         return null;   
+            // }
 
             axios({method:'PUT',
-                url:API + userRole +"/"+ user.userId+"/changePassword", 
+                url: "http://localhost:8081/" + user.role +"/"+ user.userId+"/changePassword", 
                 headers:{'Content-type':'application/json'},
-                data: passwordForChanging})
+                data: passwordInfo})
             .then((response)=>{
                 console.log("password change successful!");
                 alert("Slaptažodis pakeistas!");

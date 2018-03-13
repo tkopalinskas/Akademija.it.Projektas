@@ -39,10 +39,10 @@ public class PrescriptionsForPharmacistController {
 	}
 	
 	/*gets a specified prescription from database, searches by number*/
-	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)
+	@RequestMapping(value = "/prescriptions/{prescriptionId}", method = RequestMethod.GET)
 	 @PreAuthorize("hasRole('PHARMACIST')") 
-	public Prescription singlePrescription(@PathVariable Long number) {
-		return prescriptionService.receivePrescriptionInfo(number);
+	public Prescription singlePrescription(@PathVariable("prescriptionId") Long prescriptionId) {
+		return prescriptionService.receivePrescriptionInfo(prescriptionId);
 	}
 
 	

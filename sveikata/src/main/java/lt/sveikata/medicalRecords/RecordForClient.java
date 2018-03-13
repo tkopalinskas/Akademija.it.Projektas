@@ -1,5 +1,8 @@
 package lt.sveikata.medicalRecords;
 
+import lt.sveikata.doctor.DoctorForClient;
+import lt.sveikata.doctor.DoctorForPatient;
+
 //import java.time.LocalDate;
 
 public class RecordForClient {
@@ -12,6 +15,8 @@ public class RecordForClient {
 	private boolean isCompensated;
 	private boolean visitIsRepeated;
 	private long recordId;
+	
+	private DoctorForPatient doctor;
 
 	public String getDateOfVisit() {
 		return dateOfVisit;
@@ -19,6 +24,16 @@ public class RecordForClient {
 
 	public void setDateOfVisit(String dateOfVisit) {
 		this.dateOfVisit = dateOfVisit;
+	}
+	
+	
+
+	public DoctorForPatient getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(DoctorForPatient doctor) {
+		this.doctor = doctor;
 	}
 
 	public String getIllnessTLKCode() {

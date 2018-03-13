@@ -35,10 +35,10 @@ public class PatientRegistrationTest {
 
 	@Before
 	public void testSetup() {
-		driver.get("http://localhost:8081/#/admin");
-/*		mainPage.inputUsername("admin1");
+		driver.get("http://localhost:8081/#/");
+		mainPage.inputUsername("admin1");
 		mainPage.inputPassword("admin1");
-		mainPage.clickLogin();*/
+		mainPage.clickLogin();
 		mainPage.clickRegisterNewUser();
 
 	}

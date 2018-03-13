@@ -27,6 +27,9 @@ class PatientContainer extends Component{
         super();
         this.state ={
             userName: 'user',
+            userInfo: [],
+            firstName: '',
+            lastName: '',
             medicalRecords: [],
             prescriptions: [],
             open: true,
@@ -37,6 +40,20 @@ class PatientContainer extends Component{
                           vertical: 'top' },              
         }
     }
+
+    componentWillMount(){
+        let userData = window.sessionStorage.getItem('userData');
+        let user = JSON.parse(userData);
+        axios
+          .get("http://localhost:8081/admin/user/"+ user.userId +"/firstName_lastName")
+          .then((response) => {
+            console.log(response);
+            this.setState({userInfo: response.data});
+        })
+        .catch((error) => {
+            console.log(error);
+        }); 
+      }
 
     handleClick = (event) => {
         event.preventDefault();
@@ -103,7 +120,7 @@ class PatientContainer extends Component{
                         showMenuIconButton={false} iconElementRight={<FlatButton
                         className="userPopoverMenu"
                         onClick={this.handleClick}
-                        label={"Sveiki, " } />
+                        label={ this.state.userInfo.firstName} />
                     }>
                     <Popover
                         open={this.state.leftDrop}

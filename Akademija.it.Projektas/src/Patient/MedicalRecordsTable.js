@@ -40,8 +40,12 @@ class MedicalRecordsTable extends Component {
             lengthOfVisit:'',
             compensated: '',
             visitIsRepeated: '',
-            doctorsFullName: '',
-            description: ''
+            description: '',
+            doctor: {
+            firstName: '',
+            lastName: '',
+            }
+           
         }
     }
   componentWillMount(){
@@ -77,13 +81,14 @@ class MedicalRecordsTable extends Component {
   }
 
       render() {
-
+ 
         var allMedicalRecords = this.state.medicalRecords.map((records, index) => (
           <TableRow key={index}>
               {/* <TableRowColumn>{records.recordId}</TableRowColumn> */}
               <TableRowColumn>{records.dateOfVisit}</TableRowColumn>
               <TableRowColumn>{records.illnessTLKCode}</TableRowColumn>
-              <TableRowColumn>{records.doctorsFullName}</TableRowColumn> 
+              <TableRowColumn>{records.doctor.firstName}</TableRowColumn> 
+              <TableRowColumn>{records.doctor.lastName}</TableRowColumn> 
               <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(records.recordId)}  /></TableRowColumn>
           </TableRow>
       ))
@@ -131,6 +136,12 @@ class MedicalRecordsTable extends Component {
                       wordWrap: "break-word"
                     }} 
                     tooltip="Gydytojo vardas">Gydytojo vardas</TableHeaderColumn>
+                     <TableHeaderColumn 
+                    style={{
+                      whiteSpace: "normal",
+                      wordWrap: "break-word"
+                    }} 
+                    tooltip="Gydytojo vardas">Gydytojo pavardė</TableHeaderColumn>
                     <TableHeaderColumn 
                     style={{
                       whiteSpace: "normal",

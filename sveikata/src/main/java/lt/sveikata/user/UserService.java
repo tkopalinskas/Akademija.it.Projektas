@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +24,10 @@ public class UserService implements UserDetailsService  {
 	private UserRepository userRepository;
 	
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+
 	public List<UserForClient> receiveAllUsers() {
 		List<User> usersFromDatabase = getUserRepository().findAll();
 		List<UserForClient> usersForClient = usersFromDatabase.stream().map((user) -> {
@@ -30,6 +35,7 @@ public class UserService implements UserDetailsService  {
 			use.setUserId(user.getUserId());
 			use.setUserName(user.getUserName());
 			use.setSuspended(user.isSuspended());
+	
 			return use;
 		}).collect(Collectors.toList());
 		return usersForClient;
@@ -50,14 +56,12 @@ public class UserService implements UserDetailsService  {
 		use.setRole(newUser.getRole());
 		use.setSuspended(use.isSuspended());
 		userRepository.save(use);
+		
 	}
-
-	public void updateUser(User user, Long id) {
-		User use = userRepository.findOne(id);
-		use.setUserName(user.getUserName());
-		use.setPassword(user.getPassword());
-		use.setRole(user.getRole());
-		use.setSuspended(user.isSuspended());
+	
+	public void updateUser(NewPass pass,Long userId, String userRole) {
+		User use= userRepository.findByUserIdAndRole(userId, userRole);
+		use.setPassword(passwordEncoder.encode(pass.getPassword()));
 		userRepository.save(use);
 	}
 
@@ -73,11 +77,16 @@ public class UserService implements UserDetailsService  {
 		new String[] { "ROLE_" + user.getRole() }) );
 
 	}
+	
+	public User findById(long userId) {
+		return userRepository.findByUserId(userId);
+	}
 
 
 	public User  getUser(String userName){
 		return userRepository.findByUserName(userName);
 	}
+
 
 
 }

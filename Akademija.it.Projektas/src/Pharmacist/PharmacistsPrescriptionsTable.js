@@ -58,7 +58,6 @@ class PharmacistsPrescriptionsTable extends Component {
             totalAmount:'',
             totalUnits:'',
             description: '',
-            number: '',
             prescriptionId:'',
 
           personalId: '',
@@ -76,7 +75,7 @@ class PharmacistsPrescriptionsTable extends Component {
         /* let userData = window.sessionStorage.getItem('userData');
         let user = JSON.parse(userData); */
       axios
-        .get(API+"/pharmacist/" +personalId +"/prescriptions")
+        .get(API+"/pharmacist/" + personalId +"/prescriptions")
         .then((response) => {
             console.log(response);
             this.setState({validPrescriptions: response.data});
@@ -89,13 +88,13 @@ class PharmacistsPrescriptionsTable extends Component {
   }
   
   /*gets single prescription*/
-  openModal = (/* event, index, */ number) => {
+  openModal = (/* event, index, */ prescripitonId) => {
    /*  let prescriptionID = window.sessionStorage.getItem('prescription-id');
     this.setState({prescriptionId : JSON.parse(prescriptionID)}); */
    /*  this.setState({prescriptionId:prescriptionID}); */
      /*  console.log("prescription id:"+prescriptionID); */
-      console.log("number:"+number);
-      axios.get(API+"/pharmacist/prescriptions/" + number)
+      // console.log("prescripitonId:"+ prescriptionId);
+      axios.get(API+"/pharmacist/prescriptions/" + prescripitonId)
           .then((response) => { this.setState({ validPrescriptionInfo: response.data }) 
             this.setState({ showModal: !this.state.showModal })
             console.log("perscription info", this.state.validPrescriptionInfo)
@@ -119,7 +118,7 @@ class PharmacistsPrescriptionsTable extends Component {
 
        console.log("personal",this.state.personalCode); 
        console.log("info",this.state.validPrescriptionInfo); 
-       console.log("number", this.state.number)
+       console.log("number", this.state.prescriptionId)
 
       var allPrescriptions = this.state.validPrescriptions.map((prescription, index) => (
         <TableRow key={index} >
@@ -128,7 +127,8 @@ class PharmacistsPrescriptionsTable extends Component {
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} /* data-prescription-id={prescription.prescriptionId} */ onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
+            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} 
+            /* data-prescription-id={prescription.prescriptionId} */ onClick={()=>this.openModal(prescription.prescriptionId)} /></TableRowColumn>
         </TableRow>
     ))
 

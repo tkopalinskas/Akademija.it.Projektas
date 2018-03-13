@@ -5,7 +5,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import {API} from "./HostUrl";
 import axios from 'axios';
-import swal from 'sweetalert';
 
 
 const textStyles = {
@@ -41,11 +40,7 @@ class RegisterDoctor extends Component {
             return true;
         }
         else{
-            swal({
-                text: "Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-                icon: "error",
-               button: "Gerai",
-            });
+            alert("Vardo laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
         }
     }
 
@@ -56,11 +51,7 @@ class RegisterDoctor extends Component {
             return true;
         }
         else{
-            swal({
-                text: "Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.",
-                icon: "error",
-               button: "Gerai",
-            });
+            alert("Pavardės laukelis privalomas! Patikrinkite, ar įvedėte teisingai.")
         }
     }
 
@@ -71,11 +62,7 @@ class RegisterDoctor extends Component {
             return true;
         }
         else{
-            swal({
-                text: "Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.",
-                icon: "error",
-               button: "Gerai",
-            });
+            alert("Prisijungimo vardas privalomas! Patikrinkite, ar įvedėte teisingai.")
         }
     }
 
@@ -84,13 +71,8 @@ class RegisterDoctor extends Component {
             return true;
         }
         else{
-            swal({
-                text: "Pasirinkite specializaciją! Jei specializacijos nėra sąraše, pasirinkite 'kita' ir įrašykite specializaciją į laukelį.",
-                icon: "error",
-               button: "Gerai",
-            });
+            alert("Pasirinkite specializaciją! Jei specializacijos nėra sąraše, pasirinkite 'kita' ir įrašykite specializaciją į laukelį.")
         }
-
     }
 
     bothPasswordsMatch(){
@@ -98,11 +80,7 @@ class RegisterDoctor extends Component {
             return true;
         }
         else{
-            swal({
-                text: "Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.",
-                icon: "error",
-               button: "Gerai",
-            })
+            alert("Slaptažodis nesutampa su pakartotu slaptažodžiu! Bandykite įvesti iš naujo.");
         }
     }
 
@@ -112,11 +90,7 @@ class RegisterDoctor extends Component {
             return true;
         }
         else{
-            swal({
-                text:"Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.",
-                icon: "error",
-               button: "Gerai",
-            });
+            alert("Slaptažodis privalomas! Slaptažodis turi būti nuo 6 iki 30 simbolių.")
         }
     }
 
@@ -147,16 +121,13 @@ class RegisterDoctor extends Component {
             password : this.state.password,
             }
 
-            this.refs.form.reset();
+           
 
             axios.post(apiUrl + '/admin/doctor', information)
             .then((response)=>{
                 console.log("registration  successful");
-                swal({
-                    text: "Registracija sėkminga!",
-                    icon: "success",
-                   button: "Gerai",
-                });
+                alert("Registracija sėkminga!");  
+                this.refs.form.reset();
             })
             .catch((error)=>{
                 console.log(error);
