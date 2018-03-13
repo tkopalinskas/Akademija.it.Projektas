@@ -51,13 +51,13 @@ public class AdminRegistrationTest {
 		mainPage.clickRegisterAdmin();
 		mainPage.inputFirstName("name");
 		mainPage.inputLastName("lastname");
-		mainPage.inputUsername(usernames + "a");		
+		mainPage.inputUsername(usernames);		
 		mainPage.inputPassword("password");
 		mainPage.inputConfirmPassword("password");
 		mainPage.clickRegister();
 		Alert alert = driver.switchTo().alert(); 
 		String text = alert.getText(); 		
-		Assert.assertTrue("Registration failed",text.contains("Registracija sėkminga!"));
+		Assert.assertTrue("Username already used",text.contains("Registracija sėkminga!"));
 		alert.dismiss(); 
 		
 	}
