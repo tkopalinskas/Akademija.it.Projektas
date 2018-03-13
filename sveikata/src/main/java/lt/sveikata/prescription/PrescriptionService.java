@@ -69,40 +69,13 @@ public class PrescriptionService {
 	}
 	
 	/* receives info about a single prescription found by it's number */
-	public Prescription receivePrescriptionInfo(long number) {
-		Prescription prescription = prescriptionRepository.findByNumber(number);
+	public Prescription receivePrescriptionInfo(long prescriptionId) {
+		Prescription prescription = prescriptionRepository.findByPrescriptionId(prescriptionId);
 		return prescription;
 	}
 
-
-	/*saves all information about a new prescription into database*/
-//	public void addNewPrescription(AddNewPrescription newPrescription) {
-//		Prescription prescr = new Prescription();
-//		// you are using this one
-//		//no
-//		prescr.setDoctorsFullName(newPrescription.getDoctorsFullName());
-//		prescr.setPrescriptionDate(newPrescription.getPrescriptionDate());
-//		prescr.setPersonalId(newPrescription.getPersonalId());
-//		prescr.setValidUntil(newPrescription.getValidUntil());
-//		prescr.setActiveIngredient(newPrescription.getActiveIngredient());
-//		prescr.setAmountPerDose(newPrescription.getAmountPerDose());
-//		prescr.setUnits(newPrescription.getUnits());
-//		prescr.setTotalAmount(newPrescription.getTotalAmount());
-//		prescr.setTotalUnits(newPrescription.getTotalUnits());
-//		prescr.setDescription(newPrescription.getDescription());
-//		prescr.setTimesUsed(newPrescription.getTimesUsed());
-//		prescriptionRepository.save(prescr);
-//	}
-	
-//	public void assignDoctor(String patientUsername, String doctorUserName) {
-//		Patient pat = patientRepository.findAllByUserName(patientUsername);
-//		pat.setDoctor(doctorRepository.findOneByUserName(doctorUserName));
-//		patientRepository.save(pat);
-//	}
-	
 	public void addPrescription(AddNewPrescription newPrescription, long personalId, long doctorId) {
 		Prescription prescr = new Prescription();
-		prescr.setDoctorsFullName(newPrescription.getDoctorsFullName());
 		prescr.setPrescriptionDate(newPrescription.getPrescriptionDate());	
 		Patient patient = patientRepository.findByPersonalId(newPrescription.getPersonalId());
 		prescr.setPatient(patient);
@@ -120,12 +93,11 @@ public class PrescriptionService {
 		prescr.setDoctor(doc);
 		Patient pat = patientRepository.findByPersonalId(personalId);
 		prescr.setPatient(pat);
-//		pat.getPrescription().add(prescr);
 	}
 
 	/*saves new information about specified prescription into database*/
-	public void updatePrescription(Prescription prescription, Long number) {
-		Prescription prescr = prescriptionRepository.findOne(number);
+	public void updatePrescription(Prescription prescription, Long prescriptionId) {
+		Prescription prescr = prescriptionRepository.findByPrescriptionId(prescriptionId);
 		prescr.setTimesUsed(prescription.getTimesUsed() + 1);
 		// prescr.setNameOfHealthInstitution(prescription.getNameOfHealthInstitution());
 		// prescr.setDoctorsFullName(prescription.getDoctorsFullName());
@@ -153,7 +125,8 @@ public class PrescriptionService {
 		prescriptionForClient.setTotalAmount(prescription.getTotalAmount());
 		prescriptionForClient.setTotalUnits(prescription.getTotalUnits());
 		prescriptionForClient.setDescription(prescription.getDescription());
-		prescriptionForClient.setNumber(prescription.getNumber());
+		prescriptionForClient.setPrescriptionId(prescription.getPrescriptionId());
+//		prescriptionForClient.setNumber(prescription.getNumber());
 		prescriptionForClient.setPrescriptionId(prescription.getPrescriptionId());
 		return prescriptionForClient;
 	}

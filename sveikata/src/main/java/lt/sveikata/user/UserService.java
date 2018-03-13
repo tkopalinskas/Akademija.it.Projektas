@@ -30,6 +30,7 @@ public class UserService implements UserDetailsService  {
 			use.setUserId(user.getUserId());
 			use.setUserName(user.getUserName());
 			use.setSuspended(user.isSuspended());
+	
 			return use;
 		}).collect(Collectors.toList());
 		return usersForClient;
@@ -50,6 +51,7 @@ public class UserService implements UserDetailsService  {
 		use.setRole(newUser.getRole());
 		use.setSuspended(use.isSuspended());
 		userRepository.save(use);
+		
 	}
 
 	public void updateUser(User user, Long id) {
@@ -72,6 +74,10 @@ public class UserService implements UserDetailsService  {
 		AuthorityUtils.createAuthorityList(
 		new String[] { "ROLE_" + user.getRole() }) );
 
+	}
+	
+	public User findById(long userId) {
+		return userRepository.findByUserId(userId);
 	}
 
 

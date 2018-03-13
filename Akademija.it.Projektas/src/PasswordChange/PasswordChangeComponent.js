@@ -65,27 +65,32 @@ class PasswordChangeComponent extends Component {
 
     handleClick(event){
  
+    //     if(this.dataIsValid()){
 
-        if(this.dataIsValid()){
-/* 
-           axios.put(API + "/admin/{id}/changePassword", 
-           {password: this.state.password})
-           .then((response)=>{
-               console.log("password change successful!");
-               alert("Slaptažodis pakeistas!");
-           })
-           .catch((error)=>{
-               console.log(error);
-           }) */
-           alert("Slaptažodis pakeistas!");
-           /*galutiniam variante istrinti console.log, 
-        kad nesimatytu slaptazodzio konsolej*/   
-        }
-        else{
-            console.log("wrong password");
-        } 
-        console.log(this.state);
-        event.preventDefault();
+    //         let info ={
+    //             password: this.state.password,
+    //             newPassword:this.state.newPassword,
+    //             confirmPassword:this.state.confirmPassword
+    //         }
+    //         let userData = window.sessionStorage.getItem('userData');
+    //         let user = JSON.parse(userData);
+    //         axios({
+    //             method:'POST',
+    //             url:API + "/user/" + user.userId + "/changePassword",
+    //             // headers:{'Content-type':'application/x-www-form-urlencoded'},
+    //             headers:{'Content-type':'application/json'},
+    //             data:info
+    //         })
+                     
+    //             .then((response)=>{
+    //             console.log("registration  successful");
+    //        })
+    //     }
+    //     else{
+    //         console.log("wrong password");
+    //     } 
+    //     console.log(this.state);
+    //     event.preventDefault();
     }
 
     render() {

@@ -44,11 +44,11 @@ public class UserController {
 		userService.addNewUser(newUser);
 	}
 
-	@PutMapping("/user/{id}/suspend")
+	@PutMapping("/user/{userId}/suspend")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long id, @RequestBody User userDetails) {
+	public ResponseEntity<User> updateUser(@PathVariable(value = "userId") Long userId) {
 
-		User user = userRepository.findOne(id);
+		User user = userRepository.findOne(userId);
 		// if (user == null) {
 		// return ResponseEntity.notFound().build();
 		// }
@@ -59,11 +59,7 @@ public class UserController {
 		return ResponseEntity.ok(updatedUser);
 	}
 
-//	@RequestMapping(/*value = "/admin/findUser/manageUser", */path = "/{id}", method = RequestMethod.DELETE)
-//	@ResponseStatus(HttpStatus.NO_CONTENT)
-//	public void deleteAdminFromDatabase(@PathVariable final Long id) {
-//		userService.deleteUser(id);
-//	}
+
 
 	@RequestMapping(value = "/admin/findUser/manageUser/{id=7}", method = RequestMethod.PATCH)
 	@PreAuthorize("hasRole('ADMIN')")

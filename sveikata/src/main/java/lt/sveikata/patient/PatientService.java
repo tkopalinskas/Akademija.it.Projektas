@@ -98,6 +98,15 @@ public class PatientService {
 		patientRepository.save(pat);
 
 	}
+	
+	public Patient getByUserId(long userId) {
+		Patient pat = patientRepository.findByUserId(userId);
+		pat.getFirstName();
+		pat.getLastName();
+		
+		return pat;
+		
+	}
 
 	// update patient info
 

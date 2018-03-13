@@ -24,13 +24,6 @@ public class RecordController {
 	
 	private ModelMapper modelMapper = new ModelMapper();
 
-
-	@RequestMapping(value = "/medicalRecords", method = RequestMethod.GET)
-	@PreAuthorize("hasRole('PATIENT')") 
-	public List<RecordForClient> giveAllVisits() {
-		return getRecordService().receiveAllVisits();
-	}
-
 	/*gets  all user prescriptions from database*/
 	
 	@RequestMapping(value = "/{patientId}/medicalRecords", method = RequestMethod.GET)

@@ -131,21 +131,21 @@ class NewPrescription extends Component {
           };
         }
 
-    getCurrentDate(){
-        let today = new Date();
-        let year = today.getFullYear();
-        let month = today.getMonth() + 1;
-        let day = today.getDate();
-        if (month<10){
-            month='0'+month;
+        getCurrentDate(){
+            let today = new Date()
+            let year = today.getFullYear();
+            let month = today.getMonth() + 1;
+            let day = today.getDate();
+            if (month<10){
+                month='0'+month;
+            }
+            if (day<10){
+                day='0'+day
+            }
+    
+            let dateForChecking = (year+'-'+month+'-'+day); 
+            this.setState({currentDate: dateForChecking});
         }
-        if (day<10){
-            day='0'+day
-        }
-
-        let dateForChecking = year+'-'+month+'-'+day;
-        this.setState({currentDate: dateForChecking});
-    }
 
     dataIsValid(){
         if (this.validActiveIngredientEntered()&&
