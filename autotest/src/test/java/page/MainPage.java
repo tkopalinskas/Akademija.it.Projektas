@@ -27,7 +27,7 @@ public class MainPage extends AbstractPage{
 	//buttons
 	@FindBy (id= "submitForm")
 	private WebElement buttonRegister;
-	@FindBy (css = "button[type='submit']")
+	@FindBy (id = "loginButton")
 	private WebElement buttonLogin;
 	@FindBy (className = "newUserRegistration")
 	private WebElement buttonUserRegistration;
