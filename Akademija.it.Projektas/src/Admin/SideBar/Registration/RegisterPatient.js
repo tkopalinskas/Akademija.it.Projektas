@@ -79,7 +79,6 @@ validUserNameEntered(){
       personalId: newValue,
       disabled: false
     });
-    console.log('get id', this.state.personalId)
   }
 
 generateDateOfBirth=() =>{
@@ -190,7 +189,6 @@ handleDateGeneration(event){
      
       this.setState({ dateOfBirth: '' })
 
-      console.log('info', information)
       axios.post(apiUrl + '/admin/patient', information)
         .then((response) => {
           console.log("registration  successful");
@@ -199,11 +197,11 @@ handleDateGeneration(event){
         })
         .catch((error) => {
           console.log(error);
-          if(error.response.status === 500){
-            alert("Vartotojas tokiu prisijungimo vardu jau egzistuoja "); 
-          }
+          if(error.response.status === 500){ 
+            alert("Toks vartotojo vardas jau egzistuoja. Sukurkite naują.")
+            console.log("error status",error.response.status)
+          } 
         })
-      console.log(this.state);
       event.preventDefault();
       return true;
     } else {

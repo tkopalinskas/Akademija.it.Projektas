@@ -23,7 +23,6 @@ class RegisterAdmin extends Component {
       firstName: '',
       lastName: '',
       userName: '',
-      //codeofUserRights: 1,
       password: '',
       repeatedPassword: '',
       showAdminRegistration: false,
@@ -116,11 +115,11 @@ class RegisterAdmin extends Component {
       })
       .catch((error)=>{
         console.log(error);
-        if(error.response.status === 500){
-          alert("Vartotojas tokiu prisijungimo vardu jau egzistuoja "); 
-        }
+        if(error.response.status === 500){ 
+          alert("Toks vartotojo vardas jau egzistuoja. Sukurkite naują.")
+          console.log("error status",error.response.status)
+        } 
       })
-      console.log(this.state);
       event.preventDefault();
     }else{
       console.log("some data is wrong");
@@ -128,7 +127,6 @@ class RegisterAdmin extends Component {
 }
    
   render() {
-    console.log(this.state.showAdminRegistration)
     return (
       <div >
         <MuiThemeProvider>

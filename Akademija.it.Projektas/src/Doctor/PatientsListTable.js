@@ -33,7 +33,6 @@ class PatientsListTable extends Component {
             deselectOnClickaway: true,
             height: '300px',
             showModal: false,
-            personalId:'',
 
             patients: [],
             firstName: '',

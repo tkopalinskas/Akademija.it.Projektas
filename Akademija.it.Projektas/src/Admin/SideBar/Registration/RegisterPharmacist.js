@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { API } from "./HostUrl";
 import axios from 'axios';
+import swal from 'sweetalert';
 
 
 
@@ -136,25 +137,25 @@ class RegisterPharmacist extends Component {
                 typeOfWorkplace: this.state.typeOfWorkplace
             }
 
-
-
-            axios.post(apiUrl + '/admin/pharmacist', information)
-                .then((response) => {
-                    console.log("registration  successful");
-                    alert("Registracija sėkminga!");
+                axios.post(apiUrl + '/admin/pharmacist', information)
+                .then((response)=>{
+                    console.log("registration  successful"); 
                     this.refs.form.reset();
-                    console.log("response status: ", response.status)
+                    swal({
+                        text: "Registracija sėkminga!",
+                        icon: "success",
+                       button: "Gerai",
+                    });  
                 })
-                .catch((error) => {
-                    console.log(error);
-                    if(error.response.status === 500){
-                        alert("Vartotojas tokiu prisijungimo vardu jau egzistuoja "); 
-                      }
+                .catch((error)=>{
+                console.log(error);
+                 if(error.response.status === 500){ 
+                    alert("Toks vartotojo vardas jau egzistuoja. Sukurkite naują.")
+                    console.log("error status",error.response.status)
+                   } 
                 })
-            console.log(this.state);
-            event.preventDefault();
-
-        } else {
+                event.preventDefault();
+        }else{
             console.log("some data is wrong");
         }
     }
