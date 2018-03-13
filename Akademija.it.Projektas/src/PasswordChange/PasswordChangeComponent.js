@@ -3,8 +3,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import {orange500, blue500} from 'material-ui/styles/colors';
 import RaisedButton from 'material-ui/RaisedButton';
-//import axios from 'axios';
-//import {API} from "../SideBar/Registration/HostUrl";
+import axios from 'axios';
+import {API} from "../Admin/SideBar/Registration/HostUrl";
 import Container from 'muicss/lib/react/container';
 import Row from 'muicss/lib/react/row';
 import Col from 'muicss/lib/react/col';
@@ -63,34 +63,52 @@ class PasswordChangeComponent extends Component {
         }
     }
 
-    handleClick(event){
- 
-    //     if(this.dataIsValid()){
 
-    //         let info ={
-    //             password: this.state.password,
-    //             newPassword:this.state.newPassword,
-    //             confirmPassword:this.state.confirmPassword
-    //         }
-    //         let userData = window.sessionStorage.getItem('userData');
-    //         let user = JSON.parse(userData);
-    //         axios({
-    //             method:'POST',
-    //             url:API + "/user/" + user.userId + "/changePassword",
-    //             // headers:{'Content-type':'application/x-www-form-urlencoded'},
-    //             headers:{'Content-type':'application/json'},
-    //             data:info
-    //         })
-                     
-    //             .then((response)=>{
-    //             console.log("registration  successful");
-    //        })
-    //     }
-    //     else{
-    //         console.log("wrong password");
-    //     } 
-    //     console.log(this.state);
-    //     event.preventDefault();
+    handleClick = (event)=>{
+
+        if(this.dataIsValid()){
+
+            let userData = window.sessionStorage.getItem('userData');
+            let user = JSON.parse(userData);
+            // let userRole='';
+            let passwordInfo={
+                password: this.state.newPassword
+            }
+            // switch(user.role){
+            //     case 'ADMIN':
+            //         userRole='/ADMIN';
+            //         break;
+            //     case'PATIENT':
+            //         userRole='/patient';
+            //         break;
+            //     case 'PHARMACIST':
+            //         userRole='/pharmacist';
+            //         break;
+            //     case 'DOCTOR':
+            //        userRole='/doctor';
+            //        break;
+            //     default:
+            //         return null;   
+            // }
+
+            axios({method:'PUT',
+                url: "http://localhost:8081/" + user.role +"/"+ user.userId+"/changePassword", 
+                headers:{'Content-type':'application/json'},
+                data: passwordInfo})
+            .then((response)=>{
+                console.log("password change successful!");
+                alert("Slaptažodis pakeistas!");
+            })
+            .catch((error)=>{
+                console.log(error);
+            }) 
+            
+        }
+        else{
+            console.log("wrong password");
+        } 
+        console.log(this.state);
+        event.preventDefault();
     }
 
     render() {

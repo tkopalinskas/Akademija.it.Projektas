@@ -10,6 +10,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,10 @@ public class UserService implements UserDetailsService  {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 
 	public List<UserForClient> receiveAllUsers() {
@@ -53,13 +58,10 @@ public class UserService implements UserDetailsService  {
 		userRepository.save(use);
 		
 	}
-
-	public void updateUser(User user, Long id) {
-		User use = userRepository.findOne(id);
-		use.setUserName(user.getUserName());
-		use.setPassword(user.getPassword());
-		use.setRole(user.getRole());
-		use.setSuspended(user.isSuspended());
+	
+	public void updateUser(NewPass pass,Long userId, String userRole) {
+		User use= userRepository.findByUserIdAndRole(userId, userRole);
+		use.setPassword(passwordEncoder.encode(pass.getPassword()));
 		userRepository.save(use);
 	}
 
@@ -84,6 +86,7 @@ public class UserService implements UserDetailsService  {
 	public User  getUser(String userName){
 		return userRepository.findByUserName(userName);
 	}
+
 
 
 }
