@@ -77,7 +77,7 @@ export default class InformationModal extends React.Component {
 
                         {user}
                         <Checkbox
-                            label="Suspend User"
+                            label="Suspenduoti vartotoją"
                             onCheck={this.handleToggle}
                         />
                     </Dialog>

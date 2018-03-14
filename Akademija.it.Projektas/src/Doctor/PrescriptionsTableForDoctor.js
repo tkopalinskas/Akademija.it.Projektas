@@ -45,7 +45,8 @@ class PrescriptionsTableForDoctor extends Component {
           height: '300px',
           showModal: false,
 
-          patientsPrescriptions: [],           
+          patientsPrescriptions: [],    
+            prescriptionId: '',       
             validUntil: '',
             prescriptionDate: '',
             doctorsFullName:'',
@@ -58,15 +59,16 @@ class PrescriptionsTableForDoctor extends Component {
             description: '',
             number: '',
 
-          personalCode: '',
           prescriptionInfo:[]
       }
   }
 
   /*gets all patient's prescriptions*/
   componentWillMount() {
+    /* let userData = window.sessionStorage.getItem('userData');
+      let user = JSON.parse(userData); */
     axios
-         .get(API+"/doctor/patient/prescriptions")
+         .get(API+"/doctor/patient/" + this.props.personalId + "/prescriptions")
          .then((response) => {
              console.log(response);
              this.setState({patientsPrescriptions: response.data});
@@ -77,9 +79,9 @@ class PrescriptionsTableForDoctor extends Component {
  }
   
   /*gets single prescription*/
-  openModal = (number) => {
-      console.log("number:"+number);
-      axios.get(API+"/doctor/patient/prescriptions/" + number)
+  openModal = (prescriptionId) => {
+      console.log("number:"+prescriptionId);
+      axios.get(API+"/prescriptions/" + prescriptionId)
           .then((response) => { this.setState({ prescriptionInfo: response.data }) 
             this.setState({ showModal: !this.state.showModal })
             console.log("perscription info", this.state.prescriptionInfo)
@@ -97,21 +99,21 @@ class PrescriptionsTableForDoctor extends Component {
  
     render() {
 
-      if (!this.state.patientsPrescriptions) {   
+      if (!this.props.patients) {   
         return null;
       }
 
        console.log("personal",this.state.personalCode); 
        console.log("info",this.state.prescriptionInfo); 
-       console.log("number", this.state.number)
+       console.log("number", this.state.prescriptionId)
 
       var allPrescriptions = this.state.patientsPrescriptions.map((prescription, index) => (
         <TableRow key={index} >
             <TableRowColumn>{prescription.validUntil}</TableRowColumn>
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
-            {/* <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} *//*/>  {prescription.timesUsed}</TableRowColumn> */}
+            {/* <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.prescriptionId)} *//*/>  {prescription.timesUsed}</TableRowColumn> */}
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
+            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(prescription.prescriptionId)} /></TableRowColumn>
         </TableRow>
     ))
 
@@ -134,7 +136,7 @@ class PrescriptionsTableForDoctor extends Component {
                 enableSelectAll={this.state.enableSelectAll}
               >
               <TableRow>
-                <TableHeaderColumn colSpan="5" tooltip="Receptai" style={{textAlign: 'center'}}>
+                <TableHeaderColumn colSpan="4" tooltip="Receptai" style={{textAlign: 'center'}}>
                   Receptai
                 </TableHeaderColumn>
               </TableRow>

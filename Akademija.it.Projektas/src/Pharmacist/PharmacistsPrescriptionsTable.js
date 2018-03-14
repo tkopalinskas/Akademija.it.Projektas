@@ -150,7 +150,7 @@ class PharmacistsPrescriptionsTable extends Component {
                 enableSelectAll={this.state.enableSelectAll}
               >
               <TableRow>
-                <TableHeaderColumn colSpan="5" tooltip="Receptai" style={{textAlign: 'center'}}>
+                <TableHeaderColumn colSpan="4" tooltip="Receptai" style={{textAlign: 'center'}}>
                 Galiojantys paciento receptai</TableHeaderColumn>
               </TableRow>
               <TableRow>

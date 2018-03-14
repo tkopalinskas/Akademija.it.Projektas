@@ -71,8 +71,8 @@ public class RecordService {
 		recordRepository.save(vis);
 	}
 
-	public List<Record> getRecordsByUserId(long patientId) {
-		return recordRepository.getPatientRecordByUserId(patientId);
+	public List<Record> getUserRecordsByUserId(long patientId) {
+		return recordRepository.getPatientRecordsByUserId(patientId);
 	}
 
 	public RecordRepository getRecordRepository() {

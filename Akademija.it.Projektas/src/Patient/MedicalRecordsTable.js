@@ -48,6 +48,7 @@ class MedicalRecordsTable extends Component {
            
         }
     }
+
   componentWillMount(){
     let userData = window.sessionStorage.getItem('userData');
     let user = JSON.parse(userData);
@@ -160,7 +161,7 @@ class MedicalRecordsTable extends Component {
                         open={this.state.showModal}
                         closeAction={this.closeModal}
                         recordInfo={this.state.recordInfo}
-                        recordId={this.state.recordId} /> 
+                        /* recordId={this.state.recordId} */ /> 
         </div>
         </MuiThemeProvider>
     );

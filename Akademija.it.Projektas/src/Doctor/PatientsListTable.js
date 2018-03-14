@@ -20,6 +20,9 @@ const styles ={
   
 }
 
+let userData = window.sessionStorage.getItem('userData');
+let user = JSON.parse(userData);
+
 class PatientsListTable extends Component {
     constructor(){
         super();
@@ -37,7 +40,7 @@ class PatientsListTable extends Component {
             patients: [],
             firstName: '',
             lastName: '',
-            personalId: '',
+            patientId: '',
             routeToComponent: '',
             value: ''
         }
@@ -46,8 +49,6 @@ class PatientsListTable extends Component {
     /*received all doctor's patients from database */
    
     componentWillMount(){
-      let userData = window.sessionStorage.getItem('userData');
-       let user = JSON.parse(userData);
         axios
             .get("http://localhost:8081/doctor/patientsList/" + user.userId)
             .then((response) => {
@@ -61,9 +62,9 @@ class PatientsListTable extends Component {
 
     /* sets a route value to a selected one */
     handleChange= (event, index, value) => {
-      let patientID = event.target.getAttribute('data-patient-id');
+      let patientID = user.userId;
       this.setState({value: event.target.value }) 
-      this.setState({personalId:patientID});
+      this.setState({patientId:patientID});
        switch (event.target.value){
         case "naujas receptas":
           this.openPrescriptionModal();
@@ -72,10 +73,10 @@ class PatientsListTable extends Component {
           this.openMedicalRecordModal();
           break;
         case "receptai":
-          window.location.assign("http://localhost:8081/#/doctor/patient/prescriptions/" + patientID);
+          window.location.assign("http://localhost:8081/#/doctor/patient/" + patientID + "/prescriptions/");
           break;
         case "ligos įrašai":
-          window.location.assign("http://localhost:8081/#/doctor/patient/medicalRecords/" + patientID);
+          window.location.assign("http://localhost:8081/#/doctor/patient/" + patientID + "/medicalRecords/");
           break;
         default: return null;
       } 

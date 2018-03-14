@@ -11,10 +11,10 @@ import lt.sveikata.patient.Patient;
 public interface PrescriptionRepository extends JpaRepository<Prescription, Long>{
 
 	
-	List<Prescription> findAllByOrderByPrescriptionDate();
+//	List<Prescription> findAllByOrderByPrescriptionDate();
 
 	
-//	List<Prescription> findByPersonalId(long personalId);
+	//List<Prescription> findByPersonalId(long personalId);
 	
 	Prescription findByPrescriptionId(long prescriptionId);
 	
@@ -23,8 +23,8 @@ public interface PrescriptionRepository extends JpaRepository<Prescription, Long
 	List<Prescription> getPatientPrescriptionsByUserId(@Param("patId") Long id);
 	
 
-	@Query("SELECT prescription FROM Prescription prescription JOIN prescription.patient patient WHERE patient.personalId = :persId")
-	List<Prescription> getPatientPrescriptionsById(@Param("persId") Long id);
+	@Query("SELECT prescription FROM Prescription prescription JOIN prescription.patient patient WHERE patient.personalId = :presId")
+	List<Prescription> getPatientPrescriptionsById(@Param("presId") Long id);
 	
 
 	

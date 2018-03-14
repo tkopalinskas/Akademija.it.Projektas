@@ -29,7 +29,7 @@ public class RecordController {
 	@RequestMapping(value = "/{patientId}/medicalRecords", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('PATIENT')") 
 	public List<RecordForClient> getPatientRcords(@PathVariable("patientId") long patientId) {
-		List<Record> records = recordService.getRecordsByUserId(patientId);
+		List<Record> records = recordService.getUserRecordsByUserId(patientId);
 		return modelMapper.map(records, new TypeToken<List<RecordForClient>>() {
 		}.getType());
 		/**

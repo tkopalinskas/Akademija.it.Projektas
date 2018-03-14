@@ -70,7 +70,7 @@ export default class ListofPharmacists extends Component {
                 <TableRowColumn>{pharmacists.firstName + " " + pharmacists.lastName}</TableRowColumn>
                 <TableRowColumn>{pharmacists.userName}</TableRowColumn>
                 <TableRowColumn>{pharmacists.role}</TableRowColumn>
-                <TableRowColumn><FlatButton label="Info" primary={true}
+                <TableRowColumn><FlatButton label="Informacija" primary={true}
                  onClick ={() => this.openModal(pharmacists.userName)} /></TableRowColumn>
             </TableRow>
         ))

@@ -34,7 +34,7 @@ class TopBar extends Component {
       
         axios.get('http://localhost:8081/logout')
              .then((resp)=>{
-               let user = resp.data;
+               //let user = resp.data;
                window.sessionStorage.removeItem("userData");
              } );
     };

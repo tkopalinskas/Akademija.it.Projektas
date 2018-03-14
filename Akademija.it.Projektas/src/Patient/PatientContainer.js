@@ -22,6 +22,9 @@ const containerStyle={
     padding: 0,
 }
 
+let userData = window.sessionStorage.getItem('userData');
+let user = JSON.parse(userData);
+
 class PatientContainer extends Component{
     constructor(){
         super();
@@ -41,9 +44,8 @@ class PatientContainer extends Component{
         }
     }
 
-    componentWillMount(){
-        let userData = window.sessionStorage.getItem('userData');
-        let user = JSON.parse(userData);
+   /*  componentWillMount(){
+        
         axios
           .get("http://localhost:8081/admin/user/"+ user.userId +"/firstName_lastName")
           .then((response) => {
@@ -52,7 +54,7 @@ class PatientContainer extends Component{
         .catch((error) => {
             console.log(error);
         }); 
-      }
+      } */
 
     handleClick = (event) => {
         event.preventDefault();
@@ -99,7 +101,7 @@ class PatientContainer extends Component{
     
     render(){
     
-    let userData = window.sessionStorage.getItem('userData');
+    /* let userData = window.sessionStorage.getItem('userData'); */
        if(userData==null)
             window.location.href="/#/";
        else{
@@ -118,7 +120,7 @@ class PatientContainer extends Component{
                         showMenuIconButton={false} iconElementRight={<FlatButton
                         className="userPopoverMenu"
                         onClick={this.handleClick}
-                        label={ this.state.userInfo.firstName} />
+                        label={"Sveiki, " + user.userName} />
                     }>
                     <Popover
                         open={this.state.leftDrop}
