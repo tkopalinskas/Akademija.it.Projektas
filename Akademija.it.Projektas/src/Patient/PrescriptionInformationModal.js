@@ -37,7 +37,7 @@ class PrescriptionInformationModal extends Component {
                     <p> Aprašymas: {this.props.prescriptionInfo.description}</p>
                 </div>
             )
-            
+        
         return (
             <MuiThemeProvider>
                 <div>

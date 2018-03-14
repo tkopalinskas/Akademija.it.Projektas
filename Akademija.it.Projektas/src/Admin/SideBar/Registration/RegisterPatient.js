@@ -218,7 +218,7 @@ handleDateGeneration(event){
         personalId: this.state.personalId,
       }
      
-      this.setState({ dateOfBirth: '' })
+      
 
       axios.post(apiUrl + '/admin/patient', information)
         .then((response) => {
@@ -228,6 +228,7 @@ handleDateGeneration(event){
            button: "Gerai",
         });
           this.refs.form.reset();
+          this.setState({ dateOfBirth: '' })
         })
         .catch((error) => {
           console.log(error);

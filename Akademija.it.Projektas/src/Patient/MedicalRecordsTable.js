@@ -51,6 +51,19 @@ class MedicalRecordsTable extends Component {
         }
     }
 
+  componentWillMount(){
+    let userData = window.sessionStorage.getItem('userData');
+    let user = JSON.parse(userData);
+    axios
+      .get("http://localhost:8081/patient/"+ user.userId + "/medicalRecords")
+      .then((response) => {
+        console.log(response);
+        this.setState({medicalRecords: response.data});
+    })
+    .catch((error) => {
+        console.log(error);
+    }); 
+  }
     
   /*gets single prescription*/
   openModal = (recordId) => {
@@ -163,7 +176,7 @@ class MedicalRecordsTable extends Component {
                         open={this.state.showModal}
                         closeAction={this.closeModal}
                         recordInfo={this.state.recordInfo}
-                        recordId={this.state.recordId} /> 
+                        /* recordId={this.state.recordId} */ /> 
         </div>
         </MuiThemeProvider>
     );

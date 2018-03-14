@@ -17,6 +17,7 @@ const rowStyle={
 const containerStyle={
     padding: 0,
 }
+const personId = window.location.href.substring(window.location.href.length - 11)
 
 class PrescriptionsWithAddNew extends Component{
 
@@ -43,6 +44,7 @@ class PrescriptionsWithAddNew extends Component{
     };
 
     render(){
+
         return(
             <MuiThemeProvider>
                 <div>
@@ -64,6 +66,7 @@ class PrescriptionsWithAddNew extends Component{
                         <PrescriptionsTableForDoctor/>
                         <NewPrescription
                             open={this.state.showModal}
+                            personalId={personId}
                             closeAction={this.openPrescriptionModal} />
                     </Col>
                     </Row>

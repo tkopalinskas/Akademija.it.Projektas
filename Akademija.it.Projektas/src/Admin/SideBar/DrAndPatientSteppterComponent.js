@@ -139,7 +139,7 @@ class DoctorAssignmentToPatient extends Component {
                             <StepLabel>Pasirinkite</StepLabel>
                         </Step>
                         <Step completed={visited.indexOf(1) !== -1} active={stepIndex === 1}>
-                            <StepLabel>Pasirinkite Daktarą</StepLabel>
+                            <StepLabel>Pasirinkite gydytoją</StepLabel>
 
                         </Step>
                         <Step completed={visited.indexOf(2) !== -1} active={stepIndex === 2}>
@@ -163,7 +163,7 @@ class DoctorAssignmentToPatient extends Component {
                             />
                             <Snackbar
                                 open={this.state.open}
-                                message="Daktaras priskirtas pacientui"
+                                message="Gydytojas priskirtas pacientui"
                                 autoHideDuration={4000}
                                 onRequestClose={this.handleRequestClose}
                                 style={{ backgroundColor: '#ffd699' }}

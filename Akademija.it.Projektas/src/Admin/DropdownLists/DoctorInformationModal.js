@@ -18,7 +18,6 @@ export default class InformationModal extends React.Component {
 
     handleToggle = (event) => {
         this.setState({ disabled: !this.state.disabled })
-   console.log("userName" + this.state.userNa)
    let userNa = window.sessionStorage.getItem("userName")
         axios.put("http://localhost:8081/user/" + userNa+"/suspend")
             .then((response) => {
@@ -45,12 +44,12 @@ export default class InformationModal extends React.Component {
         }
    const actions = [
             <FlatButton
-                label="Cancel"
+                label="Atgal"
                 primary={true}
                 onClick={this.props.closeAction}
             />,
             <FlatButton
-                label="Submit"
+                label="Siųsti"
                 primary={true}
                 disabled={this.state.disabled}
                 onClick={this.props.closeAction}

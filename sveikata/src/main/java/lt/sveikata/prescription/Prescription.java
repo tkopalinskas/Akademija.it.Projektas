@@ -36,17 +36,17 @@ public class Prescription {
 	private int totalAmount;
 	private String totalUnits;
 
-	@JsonManagedReference
+	@JsonManagedReference(value="prescription")
 	@OneToMany(mappedBy = "prescription")
 	private List<UsesFact> usesFact;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value="patientId")
 	@JoinColumn(name = "patientId")
 	private Patient patient;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value="doctorId")
 	@JoinColumn(name = "doctorId")
 	private Doctor doctor;
 

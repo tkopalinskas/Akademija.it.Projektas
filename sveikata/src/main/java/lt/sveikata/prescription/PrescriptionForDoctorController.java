@@ -25,17 +25,17 @@ public class PrescriptionForDoctorController {
 	private PrescriptionService prescriptionService;
 
 	/* gets all specified patient's prescriptions for doctor */
-	@RequestMapping(value = "/patient/prescriptions", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientId}/prescriptions", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('DOCTOR')")
-	public List<PrescriptionForClient> giveAllPrescriptions() {
-		return getPrescriptionService().receiveAllPrescriptions();
+	public List<Prescription> giveAllPrescriptions(@PathVariable ("patientId") Long patientId) {
+		return getPrescriptionService().getUserPrescriptionByUserId(patientId);
 	}
 
 	/* gets a specified prescription from database, searches by number */
-	@RequestMapping(value = "/patient/prescriptions/{number}", method = RequestMethod.GET)
+	@RequestMapping(value = "/prescriptions/{prescriptionId}", method = RequestMethod.GET)
 	@PreAuthorize("hasRole('DOCTOR')")
-	public Prescription singlePrescription(@PathVariable Long number) {
-		return prescriptionService.receivePrescriptionInfo(number);
+	public Prescription singlePrescription(@PathVariable Long prescriptionId) {
+		return prescriptionService.receivePrescriptionInfo(prescriptionId);
 	}
 
 	/* adds a new prescription to database */

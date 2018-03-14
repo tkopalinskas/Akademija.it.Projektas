@@ -17,7 +17,7 @@ const textStyles = {
     },
 };
 let date = new Date()
-let dateOfToday = date.getFullYear() + "-" + date.getDate() + "-" + (date.getMonth()+1)
+let dateOfToday = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate()
 
 class NewPrescription extends Component {
     constructor(props) {
@@ -98,9 +98,9 @@ class NewPrescription extends Component {
     validExpirationDateEntered(){   
         var reg = new RegExp(/(\d{4})(-)(\d{2})(-)(\d{2})/)
         var match = reg.exec(this.state.validUntil);
-       
+        //var expiration = new Date(this.state.validUntil) 
         
-        if(
+        if(/* expiration>this.dateForChecking && */
             match!==null ){
             return true
         }else{
@@ -127,21 +127,6 @@ class NewPrescription extends Component {
           };
         }
 
-        getCurrentDate(){
-            let today = new Date()
-            let year = today.getFullYear();
-            let month = today.getMonth() + 1;
-            let day = today.getDate();
-            if (month<10){
-                month='0'+month;
-            }
-            if (day<10){
-                day='0'+day
-            }
-    
-            let dateForChecking = (year+'-'+month+'-'+day); 
-            this.setState({currentDate: dateForChecking});
-        }
 
     dataIsValid(){
         if (this.validActiveIngredientEntered()&&
@@ -171,14 +156,15 @@ class NewPrescription extends Component {
         console.log(information);    
        let userData = window.sessionStorage.getItem('userData');
        let user = JSON.parse(userData);
+            
             axios({
                 method:'POST',
                 url:API + "/doctor/" + user.userId + "/patient/" + this.state.personalId + "/addNewPrescription",
                 headers:{'Content-type':'application/json'},
                 data:information
             })
-                            
                 .then((response)=>{
+                console.log("registration  successful");
                 swal({
                     text: "Receptas įrašytas!",
                     icon: "success",
@@ -190,12 +176,12 @@ class NewPrescription extends Component {
                 .catch((error)=>{
                 console.log(error);
                 this.props.closeAction();
-                console.log("info on error", this.state)
             })
+           
             event.preventDefault();
 
         }else{
-            console.log("Neteisingi duomenys");
+            console.log("some data is wrong");
         }
     }
 
@@ -282,8 +268,6 @@ class NewPrescription extends Component {
                             className="validUntil"
                             id="inputValidUntil"
                             hintText="YYYY-MM-DD"
-                            /* errorText="Privalomas laukas"
-                            errorStyle={textStyles.errorStyle} */
                             floatingLabelText="Galiojimo data"
                             floatingLabelFocusStyle={textStyles.floatingLabelFocusStyle}
                             onChange={(event, newValue) => this.setState({ validUntil: newValue })}

@@ -9,8 +9,8 @@ import {
   TableRowColumn,
 } from 'material-ui/Table';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Search from 'material-ui/svg-icons/action/search';
-import TextField from 'material-ui/TextField';
+//import Search from 'material-ui/svg-icons/action/search';
+//import TextField from 'material-ui/TextField';
 import NewPrescription from './NewPrescription';
 import NewMedicalRecord from './NewMedicalRecord';
 
@@ -19,6 +19,9 @@ const styles ={
   marginRight: 10
   
 }
+
+let userData = window.sessionStorage.getItem('userData');
+let user = JSON.parse(userData);
 
 class PatientsListTable extends Component {
     constructor(){
@@ -37,8 +40,7 @@ class PatientsListTable extends Component {
             patients: [],
             firstName: '',
             lastName: '',
-            personalId: '',
-            /* illnessTLKCode: '', */
+            patientId: '',
             routeToComponent: '',
             value: ''
         }
@@ -47,8 +49,6 @@ class PatientsListTable extends Component {
     /*received all doctor's patients from database */
    
     componentWillMount(){
-      let userData = window.sessionStorage.getItem('userData');
-       let user = JSON.parse(userData);
         axios
             .get("http://localhost:8081/doctor/patientsList/" + user.userId)
             .then((response) => {
@@ -62,10 +62,9 @@ class PatientsListTable extends Component {
 
     /* sets a route value to a selected one */
     handleChange= (event, index, value) => {
-      let patientID = event.target.getAttribute('data-patient-id');
+      let patientID = user.userId;
       this.setState({value: event.target.value }) 
-      this.setState({personalId:patientID});
-      console.log("patient id:"+patientID);
+      this.setState({patientId:patientID});
        switch (event.target.value){
         case "naujas receptas":
           this.openPrescriptionModal();
@@ -74,10 +73,10 @@ class PatientsListTable extends Component {
           this.openMedicalRecordModal();
           break;
         case "receptai":
-          window.location.assign("http://localhost:8081/#/doctor/patient/prescriptions");
+          window.location.assign("http://localhost:8081/#/doctor/patient/" + patientID + "/prescriptions/");
           break;
         case "ligos įrašai":
-          window.location.assign("http://localhost:8081/#/doctor/patient/medicalRecords");
+          window.location.assign("http://localhost:8081/#/doctor/patient/" + patientID + "/medicalRecords/");
           break;
         default: return null;
       } 
@@ -89,7 +88,6 @@ class PatientsListTable extends Component {
           this.setState({
               personalId: e.target.value,
           });
-        console.log('get personal');
       }
     };
 
@@ -106,7 +104,7 @@ class PatientsListTable extends Component {
     };
 
       render() {
-     
+
         var allPatients = this.state.patients.map((patient, index) => (          
           <TableRow key={index}>
               <TableRowColumn>{patient.firstName}</TableRowColumn>
@@ -139,22 +137,22 @@ class PatientsListTable extends Component {
                                 open={this.state.showModal}
                                 closeAction={this.openPrescriptionModal}
                                 personalId={this.state.personalId}
-                              
+                                //perduoti ID
                                 />
         }else if(this.state.value==="naujas ligos įrašas"){
             newAdditionModal=<NewMedicalRecord
                                 open={this.state.showModal}
                                 closeAction={this.openMedicalRecordModal}
                                 personalId={this.state.personalId}/>
-        }    
+        }
 
         return (
         <MuiThemeProvider>
           <div>
-            <div>
+            {/* <div>
               <Search style={{ color: '#9E9E9E', textAlign: 'left', marginRight: '25', marginTop: '25'}} />
               <TextField hintText="Pacientų paieška" underlineShow={true} onKeyPress={this.handleKeyPress}/>
-            </div>
+            </div> */}
             <Table
               height={this.state.height}
               style={styles}

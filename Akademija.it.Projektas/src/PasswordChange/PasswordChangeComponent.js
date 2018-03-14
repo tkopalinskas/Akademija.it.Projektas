@@ -83,7 +83,7 @@ class PasswordChangeComponent extends Component {
                 password: this.state.newPassword
             }
             axios({method:'PUT',
-                url: "http://localhost:8081/" + user.role +"/"+ user.userId+"/changePassword", 
+                url: API + user.role +"/"+ user.userId+"/changePassword", 
                 headers:{'Content-type':'application/json'},
                 data: passwordInfo})
             .then((response)=>{
@@ -103,7 +103,6 @@ class PasswordChangeComponent extends Component {
         else{
             console.log("Neteisingi duomenys");
         } 
-        console.log(this.state);
         event.preventDefault();
     }
 

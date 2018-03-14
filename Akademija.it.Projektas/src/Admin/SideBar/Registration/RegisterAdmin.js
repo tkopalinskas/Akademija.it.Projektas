@@ -118,7 +118,8 @@ class RegisterAdmin extends Component {
     if (this.dataIsValid()){
       
       console.log("data is valid: " + this.dataIsValid());
-  
+      
+      //set values
       var information= {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -126,8 +127,10 @@ class RegisterAdmin extends Component {
       password: this.state.password
       }
 
+      //send to back end
       axios.post(API + "/admin/admin" , information)
       .then((response)=>{
+          console.log("registration  successful");
           swal({
             text: "Registracija sėkminga!",
             icon: "success",

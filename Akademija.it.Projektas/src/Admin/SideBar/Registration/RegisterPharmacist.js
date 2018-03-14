@@ -164,6 +164,7 @@ class RegisterPharmacist extends Component {
 
                 axios.post(apiUrl + '/admin/pharmacist', information)
                 .then((response)=>{
+                    console.log("registration  successful"); 
                     this.refs.form.reset();
                     swal({
                         text: "Registracija sėkminga!",

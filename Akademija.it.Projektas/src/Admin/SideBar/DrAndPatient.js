@@ -164,7 +164,7 @@ class DoctorAssignmentToPatient extends Component {
                             />
                             <Snackbar
                                 open={this.state.open}
-                                message="Daktaras priskirtas pacientui"
+                                message="Gydytojas priskirtas pacientui"
                                 autoHideDuration={4000}
                                 onRequestClose={this.handleRequestClose}
                                 style={{ backgroundColor: '#ffd699' }}

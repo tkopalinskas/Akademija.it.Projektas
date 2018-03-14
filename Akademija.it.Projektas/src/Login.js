@@ -2,7 +2,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+//import { browserHistory } from 'react-router';
 import healthCare from './healthCare.png';
 import axios from 'axios';
 import swal from 'sweetalert';
@@ -41,7 +41,7 @@ context)=>{
     />
     <br/>
     <RaisedButton type="submit" style={style}
-     label="Prsisijungti" id="loginButton">
+     label="Prisijungti" id="loginButton">
     </RaisedButton>
     </form>
     </MuiThemeProvider>
@@ -113,7 +113,7 @@ class Login extends Component {
     return (
       <div>
         <div>
-        <img src={healthCare} style={image}/>
+        <img alt={"sveikata"} src={healthCare} style={image}/>
         </div>
       <div>
        <Form userName={this.state.userName} pass={this.state.pass}

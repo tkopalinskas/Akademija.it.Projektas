@@ -117,12 +117,13 @@ class SinglePrescriptionInformation extends Component {
                 data:markPrescription
             })
                 .then((response)=>{
-        
+                console.log("registration  successful");
+                
                 swal({
                     text: "Receptas panaudotas!",
-                    icon: "error",
-                   button: "Gerai",
-                });
+                    icon: "success",
+                    button: "Gerai",
+                }); 
                 this.props.closeAction();    
             })
                 .catch((error)=>{

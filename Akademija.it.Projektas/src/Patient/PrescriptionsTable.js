@@ -91,10 +91,9 @@ class PrescriptionsTable extends Component {
 
       var allPrescriptions = this.state.prescriptions.map((prescription, index) => (
         <TableRow key={index} >
-            {/* <TableRowColumn>{prescription.number}</TableRowColumn> */}
             <TableRowColumn>{prescription.validUntil}</TableRowColumn>
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
-            <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
+            {/* <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ /*/>  {prescription.timesUsed}</TableRowColumn> */}
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
             <TableRowColumn><FlatButton id="moreButton" label="Daugiau"
              primary={true} onClick={()=>this.openModal(prescription.prescriptionId)} /></TableRowColumn>
@@ -104,6 +103,7 @@ class PrescriptionsTable extends Component {
     if (!this.state.prescriptions) {
       return null;
     }
+
     return (
       <MuiThemeProvider>
         <div>
@@ -120,7 +120,7 @@ class PrescriptionsTable extends Component {
               enableSelectAll={this.state.enableSelectAll}
             >
               <TableRow>
-                <TableHeaderColumn colSpan="5" tooltip="Receptai" style={{ textAlign: 'center' }}>
+                <TableHeaderColumn colSpan="4" tooltip="Receptai" style={{ textAlign: 'center' }}>
                   Receptai
                 </TableHeaderColumn>
               </TableRow>
@@ -139,13 +139,13 @@ class PrescriptionsTable extends Component {
                     wordWrap: "break-word"
                   }}
                   tooltip="Išrašymo data">Išrašymo data</TableHeaderColumn>
-                <TableHeaderColumn
+                {/* <TableHeaderColumn
                   className="timesUsed"
                   style={{
                     whiteSpace: "normal",
                     wordWrap: "break-word"
                   }}
-                  tooltip="Recepto panaudojimų sąrašas">Recepto panaudojimų sąrašas ir skaičius</TableHeaderColumn>
+                  tooltip="Recepto panaudojimų sąrašas">Recepto panaudojimų sąrašas ir skaičius</TableHeaderColumn> */}
                 <TableHeaderColumn
                   className="activeIngredient"
                   style={{
@@ -170,13 +170,6 @@ class PrescriptionsTable extends Component {
               showRowHover={this.state.showRowHover}
             >
               {allPrescriptions}
-              {/* <TableRow>
-                <TableRowColumn>validUntil</TableRowColumn>
-                <TableRowColumn>prescriptionDate</TableRowColumn>
-                <TableRowColumn>timesUsed</TableRowColumn>
-                <TableRowColumn>activeIngredient</TableRowColumn>
-                <TableRowColumn>description<FlatButton label="Info" primary={true} onClick={this.openModal} /></TableRowColumn>
-              </TableRow> */}
             </TableBody>
 
           </Table>

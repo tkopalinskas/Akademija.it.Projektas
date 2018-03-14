@@ -27,20 +27,20 @@ public class PrescriptionService {
 	private DoctorRepository doctorRepository;
 
 	/* receives a list of all prescriptions from database */
-	public List<PrescriptionForClient> receiveAllPrescriptions() {
-		List<Prescription> prescriptionsFromDatabase = getPrescriptionRepository().findAllByOrderByPrescriptionDate();
-		List<PrescriptionForClient> prescriptionsForClient = prescriptionsFromDatabase.stream().map((prescription) -> {
-			PrescriptionForClient prescr = new PrescriptionForClient();
-			prescr.setPrescriptionDate(prescription.getPrescriptionDate());
-			prescr.setValidUntil(prescription.getValidUntil());
-			prescr.setActiveIngredient(prescription.getActiveIngredient());
-			prescr.setNumber(prescription.getNumber());
-			prescr.setTimesUsed(prescription.getTimesUsed());
-			prescr.setNumber(prescription.getNumber());
-			return prescr;
-		}).collect(Collectors.toList());
-		return prescriptionsForClient;
-	}
+//	public List<PrescriptionForClient> receiveAllPrescriptions() {
+//		List<Prescription> prescriptionsFromDatabase = getPrescriptionRepository().findAllByOrderByPrescriptionDate();
+//		List<PrescriptionForClient> prescriptionsForClient = prescriptionsFromDatabase.stream().map((prescription) -> {
+//			PrescriptionForClient prescr = new PrescriptionForClient();
+//			prescr.setPrescriptionDate(prescription.getPrescriptionDate());
+//			prescr.setValidUntil(prescription.getValidUntil());
+//			prescr.setActiveIngredient(prescription.getActiveIngredient());
+//			prescr.setNumber(prescription.getNumber());
+//			prescr.setTimesUsed(prescription.getTimesUsed());
+//			prescr.setNumber(prescription.getNumber());
+//			return prescr;
+//		}).collect(Collectors.toList());
+//		return prescriptionsForClient;
+//	}
 
 
 	/* receives info about a single prescription found by it's number */
@@ -88,8 +88,6 @@ public class PrescriptionService {
 		prescriptionForClient.setTotalAmount(prescription.getTotalAmount());
 		prescriptionForClient.setTotalUnits(prescription.getTotalUnits());
 		prescriptionForClient.setDescription(prescription.getDescription());
-		prescriptionForClient.setPrescriptionId(prescription.getPrescriptionId());
-		// prescriptionForClient.setNumber(prescription.getNumber());
 		prescriptionForClient.setPrescriptionId(prescription.getPrescriptionId());
 		return prescriptionForClient;
 	}

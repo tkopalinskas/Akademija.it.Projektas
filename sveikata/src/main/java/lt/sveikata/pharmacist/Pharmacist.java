@@ -25,7 +25,7 @@ public class Pharmacist extends User {
 	private String workplace;
 	private String typeOfWorkplace;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="pharmacist")
 	@OneToMany(mappedBy = "pharmacist")
 	private List<UsesFact> usesFact;
 

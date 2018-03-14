@@ -139,6 +139,7 @@ class RegisterDoctor extends Component {
       
             console.log("data is valid: " + this.dataIsValid());
             
+            //set values
             var information= {
             firstName : this.state.firstName,
             lastName : this.state.lastName,
@@ -151,6 +152,7 @@ class RegisterDoctor extends Component {
 
             axios.post(apiUrl + '/admin/doctor', information)
             .then((response)=>{
+                console.log("registration  successful");
                 swal({
                     text: "Registracija sėkminga!",
                     icon: "success",

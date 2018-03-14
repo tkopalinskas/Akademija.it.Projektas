@@ -13,6 +13,7 @@ import Search from 'material-ui/svg-icons/action/search';
 import TextField from 'material-ui/TextField';
 import NewPrescription from './NewPrescription';
 import NewMedicalRecord from './NewMedicalRecord';
+import swal from 'sweetalert';
 
 const styles ={
     marginLeft: 0,
@@ -60,7 +61,11 @@ class PatientFromDatabase extends Component{
              })
              .catch((error) => {
                  console.log(error);
-                 alert('Tokio paciento nėra!')
+                 swal({
+                    text: 'Tokio paciento nėra!',
+                    icon: "success",
+                    button: "Gerai",
+                });
              }); 
         }
     }
@@ -87,6 +92,7 @@ class PatientFromDatabase extends Component{
 
 
     render(){
+    
         if (!this.state.patients) {
             return null;
         } 

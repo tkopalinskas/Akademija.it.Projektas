@@ -26,13 +26,13 @@ public class UsesFact {
 	private int timesUsed;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value="prescriptionId")
 	@JoinColumn(name = "prescriptionId")
 	private Prescription prescription;
 
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonBackReference(value="pharmacistId")
 	@JoinColumn(name = "pharmacistId")
 	private Pharmacist pharmacist;
 

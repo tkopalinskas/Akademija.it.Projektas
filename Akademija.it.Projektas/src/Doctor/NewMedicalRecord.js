@@ -21,10 +21,6 @@ const textStyles = {
 
 let user = JSON.parse(window.sessionStorage.getItem('userData'));
 
-let date = new Date()
-let dateOfToday = date.getFullYear() + "-" + date.getDate() + "-" + (date.getMonth()+1)
-
-
 class NewMedicalRecord extends Component {
     constructor(props) {
         super(props);
@@ -108,7 +104,19 @@ class NewMedicalRecord extends Component {
         }
     }
 
-
+    getCurrentDate(){
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = today.getMonth() + 1;
+        let day = today.getDate();
+        if (month<10){
+            month='0'+month;
+        }
+        if (day<10){
+            day='0'+day
+        }
+        this.setState({dateOfVisit: year+'-'+month+'-'+day});
+    }
 
     dataIsValid() {
         if (this.validLengthOfVisit() &&
@@ -121,7 +129,8 @@ class NewMedicalRecord extends Component {
     addNewMedicalRecord = (event) => {
         if (this.dataIsValid()) {
 
-
+            this.getCurrentDate();
+      
             console.log("data is valid: " + this.dataIsValid());
 
 
@@ -131,11 +140,9 @@ class NewMedicalRecord extends Component {
                 visitIsCompensated: this.state.visitIsCompensated,
                 visitIsRepeated: this.state.visitIsRepeated,
                 description: this.state.description,
-                dateOfVisit: dateOfToday,
-
-            }
-            console.log("information:", information)
-
+                dateOfVisit:this.state.dateOfVisit   
+                }
+            
             axios({
                 method: 'POST',
                 url: API + "/doctor/" + user.userId + "/patient/" + this.state.personalId + "/addNewRecord",
@@ -152,12 +159,16 @@ class NewMedicalRecord extends Component {
                     this.props.closeAction();
                     console.log("info on error", this.state)
                 })
+            console.log("ok");
+            console.log("info", this.state)
             event.preventDefault();
 
         } else {
-            console.log("Neteisingi duomenys");
+            console.log("some data is wrong");
         }
     }
+
+
 
     render() {
 
@@ -174,6 +185,8 @@ class NewMedicalRecord extends Component {
                 onClick={this.addNewMedicalRecord}
             />,
         ];
+
+
 
 
         return (

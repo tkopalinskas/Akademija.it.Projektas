@@ -67,8 +67,8 @@ export default class InformationModal extends React.Component {
                             <span>
                                 <p>{"Rolė: " + this.props.userInfo.role}</p>
                                 <p>Slapyvardis: {this.props.userInfo.userName}</p>
-                                <p>Gimimo Data: {this.props.userInfo.dateOfBirth}</p>
-                                <p>Paskirtas Daktaras: {this.props.userInfo.doctorsFullName}</p>
+                                <p>Gimimo data: {this.props.userInfo.dateOfBirth}</p>
+                                <p>Paskirtas gydytojas: {this.props.userInfo.doctorsFullName}</p>
                                 <p>Suspenduotas:  {this.translate(this.props.userInfo.suspanded)} </p>
                             </span>
                         </div>
