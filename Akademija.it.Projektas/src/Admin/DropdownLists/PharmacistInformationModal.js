@@ -14,8 +14,13 @@ export default class InformationModal extends React.Component {
         };
     }
 
-    handleToggle = () => {
+    handleToggle = (event) => {
         this.setState({ disabled: !this.state.disabled })
+   console.log("userName" + this.state.userNa)
+   let userNa = window.sessionStorage.getItem("userName")
+        axios.put("http://localhost:8081/user/" + userNa+"/suspend")
+            .then((response) => {
+            })
     }
 
     componentWillMount = ()=>{
@@ -38,12 +43,12 @@ export default class InformationModal extends React.Component {
 
         const actions = [
             <FlatButton
-                label="Cancel"
+                label="Atšaukti"
                 primary={true}
                 onClick={this.props.closeAction}
             />,
             <FlatButton
-                label="Submit"
+                label="Patvirtinti"
                 primary={true}
                 disabled={this.state.disabled}
             />,
@@ -59,10 +64,7 @@ export default class InformationModal extends React.Component {
                 </span>
             </div>
         ));
-
-
-        console.log(this.props.userInfo);
-
+        
         return (
             <div>
                 <MuiThemeProvider>

@@ -150,13 +150,13 @@ class DoctorAssignmentToPatient extends Component {
                         <div>{this.getStepContent(stepIndex)}</div>
                         <div style={{ marginTop: 12 }}>
                             <FlatButton
-                                label="Back"
+                                label="Atgal"
                                 disabled={stepIndex === 0}
                                 onClick={this.handlePrev}
                                 style={{ marginRight: 12 }}
                             />
                             <RaisedButton
-                                label={stepIndex === 2 ? 'Submit' : 'Next'}
+                                label={stepIndex === 2 ? 'Patvirtinti' : 'Kitas'}
                                 primary={true}
                                 onClick={stepIndex === 2 ? this.handleSubmit : this.handleNext}
                                 disabled={stepIndex === 2 ? false : this.state.disabled2}

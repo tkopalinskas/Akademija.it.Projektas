@@ -3,6 +3,8 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import Checkbox from 'material-ui/Checkbox';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import axios from 'axios';
+
 
 
 export default class InformationModal extends React.Component {
@@ -10,38 +12,38 @@ export default class InformationModal extends React.Component {
         super(props);
         this.state = {
             open: false,
-            disabled: true,
+           
         };
     }
 
-    handleToggle = () => {
+    handleToggle = (event) => {
         this.setState({ disabled: !this.state.disabled })
+   console.log("userName" + this.state.userNa)
+   let userNa = window.sessionStorage.getItem("userName")
+        axios.put("http://localhost:8081/user/" + userNa+"/suspend")
+            .then((response) => {
+            })
     }
 
     componentWillMount = ()=>{
         this.setState({disabled: true})
-    }
+   
 
+    }
+    
     translate = (suspend) => {
         if (suspend) {
             return "Taip"
-            .get("http://localhost:8081/user/" + this.props.userInfo.userId +"/suspend")
-            .then((response) => {
-                this.setState({prescriptions: response.data});
-            })
         } else {
             return "Ne"
         }
     }
 
-
     render() {
-
         if (!this.props.userInfo) {
             return null;
         }
-
-        const actions = [
+   const actions = [
             <FlatButton
                 label="Cancel"
                 primary={true}
@@ -51,10 +53,11 @@ export default class InformationModal extends React.Component {
                 label="Submit"
                 primary={true}
                 disabled={this.state.disabled}
-            // onClick={this.props.closeAction}
+                onClick={this.props.closeAction}
+        
             />,
         ];
-
+     
         //modal pagauna paduoda array su specifiniu userinfo per props
         let user = this.props.userInfo.map((User, index) => (
             <div key={index} >
@@ -67,10 +70,6 @@ export default class InformationModal extends React.Component {
                 </span>
             </div>
         ));
-
-
-        console.log(this.props.userInfo);
-
         return (
             <div>
                 <MuiThemeProvider>

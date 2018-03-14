@@ -48,7 +48,6 @@ class PrescriptionsTableForDoctor extends Component {
           patientsPrescriptions: [],           
             validUntil: '',
             prescriptionDate: '',
-            doctorsFullName:'',
             timesUsed: 0,
             activeIngredient: '',
             amountPerDose:'',
@@ -56,9 +55,9 @@ class PrescriptionsTableForDoctor extends Component {
             totalAmount:'',
             totalUnits:'',
             description: '',
-            number: '',
+            prescriptionId: '',
 
-          personalCode: '',
+          personalId: props.personalId,
           prescriptionInfo:[]
       }
   }
@@ -66,7 +65,7 @@ class PrescriptionsTableForDoctor extends Component {
   /*gets all patient's prescriptions*/
   componentWillMount() {
     axios
-         .get(API+"/doctor/patient/prescriptions")
+         .get(API+"/doctor/patient/prescriptions" + this.state.personalId )
          .then((response) => {
              console.log(response);
              this.setState({patientsPrescriptions: response.data});
@@ -111,7 +110,8 @@ class PrescriptionsTableForDoctor extends Component {
             <TableRowColumn>{prescription.prescriptionDate}</TableRowColumn>
             <TableRowColumn><FlatButton id="listOfUsesButton" label="Sąrašas" primary={true} /* onClick={()=>this.openModal(uses.number)} */ />  {prescription.timesUsed}</TableRowColumn>
             <TableRowColumn>{prescription.activeIngredient}</TableRowColumn>
-            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
+            <TableRowColumn><FlatButton id="moreButton" label="Daugiau" 
+            primary={true} onClick={()=>this.openModal(prescription.number)} /></TableRowColumn>
         </TableRow>
     ))
 

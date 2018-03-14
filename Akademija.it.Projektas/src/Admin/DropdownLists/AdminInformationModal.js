@@ -14,8 +14,13 @@ export default class InformationModal extends React.Component {
         };
     }
 
-    handleToggle = () => {
+    handleToggle = (event) => {
         this.setState({ disabled: !this.state.disabled })
+   console.log("userName" + this.state.userNa)
+   let userNa = window.sessionStorage.getItem("userName")
+        axios.put("http://localhost:8081/user/" + userNa+"/suspend")
+            .then((response) => {
+            })
     }
 
     componentWillMount = () => {
@@ -25,10 +30,6 @@ export default class InformationModal extends React.Component {
     translate = (suspend) => {
         if (suspend) {
             return "Taip"
-            .get("http://localhost:8081/user/" + this.props.userInfo.userId +"/suspend")
-            .then((response) => {
-                this.setState({prescriptions: response.data});
-            })
         } else {
             return "Ne"
         }
@@ -42,12 +43,12 @@ export default class InformationModal extends React.Component {
 
         const actions = [
             <FlatButton
-                label="Cancel"
+                label="Gerai"
                 primary={true}
                 onClick={this.props.closeAction}
             />,
             <FlatButton
-                label="Submit"
+                label="Atšaukti"
                 primary={true}
                 disabled={this.state.disabled}
             // onClick={this.props.closeAction}
@@ -66,8 +67,6 @@ export default class InformationModal extends React.Component {
         ));
 
 
-        console.log(this.props.userInfo);
-
         return (
             <div>
                 <MuiThemeProvider>
@@ -79,7 +78,7 @@ export default class InformationModal extends React.Component {
 
                         {user}
                         <Checkbox
-                            label="Suspend User"
+                            label="Suspenduoti vartotoją"
                             onCheck={this.handleToggle}
                         />
                     </Dialog>

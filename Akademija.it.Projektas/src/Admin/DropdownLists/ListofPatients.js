@@ -57,12 +57,14 @@ export default class ListofPatients extends Component {
 
     openModal = (userName) => {
         axios.get(`http://localhost:8081/admin/patient/${userName}`)
+        window.sessionStorage.setItem("userName", userName)
             .then((response) => { this.setState({ userInfo: response.data }) })
             .then(this.setState({ showModal: !this.state.showModal }))
     }
 
     closeModal = () => {
         this.setState({ showModal: false});
+        window.sessionStorage.removeItem("userName");
     }
 
     componentWillMount = () => {

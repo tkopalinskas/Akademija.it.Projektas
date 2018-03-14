@@ -38,11 +38,12 @@ public class PrescriptionController {
 	}
 	
 	/*gets a specified prescription from database, searches by number*/
-	@RequestMapping(value = "/prescriptions/{number}", method = RequestMethod.GET)
+	@RequestMapping(value = "/prescriptions/{prescriptionId}", method = RequestMethod.GET)
 	//	@PreAuthorize("hasRole('PATIENT')") 
-	public Prescription singlePrescription(@PathVariable("number") final Long number) {
+	public PrescriptionForClient singlePrescription(@PathVariable("prescriptionId") final Long prescriptionId) {
 		//long number = Long.parseLong(Strnumber);
-		return prescriptionService.receivePrescriptionInfo(number);
+		Prescription presc = prescriptionService.receivePrescriptionInfo(prescriptionId);
+		return modelMapper.map(presc, PrescriptionForClient.class);
 	}
 
 
