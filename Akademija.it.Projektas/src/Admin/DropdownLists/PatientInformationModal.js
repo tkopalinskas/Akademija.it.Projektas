@@ -17,11 +17,12 @@ export default class InformationModal extends React.Component {
 
     handleToggle = (event) => {
         this.setState({ disabled: !this.state.disabled })
-   console.log("userName" + this.state.userNa)
-        axios.put("http://localhost:8081/user/" + this.state.userNa+"/suspend")
+       let userNa = window.sessionStorage.getItem("userName")
+        axios.put("http://localhost:8081/user/" + userNa+"/suspend")
             .then((response) => {
             })
     }
+
 
     componentWillMount = () => {
         this.setState({ disabled: true })
