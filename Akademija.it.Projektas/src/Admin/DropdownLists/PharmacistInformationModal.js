@@ -43,7 +43,7 @@ export default class InformationModal extends React.Component {
 
         const actions = [
             <FlatButton
-                label="Atšaukti"
+                label="Išjunkti"
                 primary={true}
                 onClick={this.props.closeAction}
             />,
@@ -51,6 +51,7 @@ export default class InformationModal extends React.Component {
                 label="Patvirtinti"
                 primary={true}
                 disabled={this.state.disabled}
+                onClick={this.props.closeAction}
             />,
         ];
         let user = this.props.userInfo.map((User, index) => (

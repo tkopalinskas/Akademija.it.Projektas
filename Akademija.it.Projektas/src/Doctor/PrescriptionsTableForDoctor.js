@@ -67,7 +67,7 @@ class PrescriptionsTableForDoctor extends Component {
     /* let userData = window.sessionStorage.getItem('userData');
       let user = JSON.parse(userData); */
     axios
-         .get(API+"/doctor/patient/" + this.props.personalId + "/prescriptions")
+         .get(API+"/doctor/patient/prescriptions")
          .then((response) => {
              console.log(response);
              this.setState({patientsPrescriptions: response.data});

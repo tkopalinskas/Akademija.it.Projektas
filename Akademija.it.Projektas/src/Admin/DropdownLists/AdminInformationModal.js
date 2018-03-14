@@ -43,15 +43,15 @@ export default class InformationModal extends React.Component {
 
         const actions = [
             <FlatButton
-                label="Gerai"
+                label="Išjunkti"
                 primary={true}
                 onClick={this.props.closeAction}
             />,
             <FlatButton
-                label="Atšaukti"
+                label="Patvirtinit"
                 primary={true}
                 disabled={this.state.disabled}
-            // onClick={this.props.closeAction}
+                onClick={this.props.closeAction}
             />,
         ];
 
