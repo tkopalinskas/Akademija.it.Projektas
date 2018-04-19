@@ -54,7 +54,7 @@ class PasswordChangeComponent extends Component {
     validPassword(){
         if(this.state.newPassword.length>=6&&
         this.state.newPassword.length<=30){
-            return true;
+            return true; 
         }
         else{
             swal({

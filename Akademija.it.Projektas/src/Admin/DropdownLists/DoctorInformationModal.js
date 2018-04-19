@@ -26,7 +26,6 @@ export default class InformationModal extends React.Component {
 
     componentWillMount = ()=>{
         this.setState({disabled: true})
-   
 
     }
     

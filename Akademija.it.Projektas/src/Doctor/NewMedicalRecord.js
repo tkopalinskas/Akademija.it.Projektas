@@ -23,8 +23,9 @@ let user = JSON.parse(window.sessionStorage.getItem('userData'));
 
 class NewMedicalRecord extends Component {
     constructor(props) {
-        super(props);
+        super(props); 
         this.state = {
+            
             open: false,
             personalId: this.props.personalId,
             illnessTLKCode: '',
@@ -104,18 +105,18 @@ class NewMedicalRecord extends Component {
         }
     }
 
-    getCurrentDate(){
+    getCurrentDate() {
         let today = new Date();
         let year = today.getFullYear();
         let month = today.getMonth() + 1;
         let day = today.getDate();
-        if (month<10){
-            month='0'+month;
+        if (month < 10) {
+            month = '0' + month;
         }
-        if (day<10){
-            day='0'+day
+        if (day < 10) {
+            day = '0' + day
         }
-        this.setState({dateOfVisit: year+'-'+month+'-'+day});
+        this.setState({ dateOfVisit: year + '-' + month + '-' + day });
     }
 
     dataIsValid() {
@@ -130,7 +131,7 @@ class NewMedicalRecord extends Component {
         if (this.dataIsValid()) {
 
             this.getCurrentDate();
-      
+
             console.log("data is valid: " + this.dataIsValid());
 
 
@@ -140,9 +141,9 @@ class NewMedicalRecord extends Component {
                 visitIsCompensated: this.state.visitIsCompensated,
                 visitIsRepeated: this.state.visitIsRepeated,
                 description: this.state.description,
-                dateOfVisit:this.state.dateOfVisit   
-                }
-            
+                dateOfVisit: this.state.dateOfVisit
+            }
+
             axios({
                 method: 'POST',
                 url: API + "/doctor/" + user.userId + "/patient/" + this.props.personalId + "/addNewRecord",

@@ -13,6 +13,7 @@ export default class InformationModal extends React.Component {
             disabled: true,
         };
     }
+    
 
     handleToggle = (event) => {
         this.setState({ disabled: !this.state.disabled })
